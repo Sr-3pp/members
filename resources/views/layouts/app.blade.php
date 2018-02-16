@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Scripts -->
@@ -25,12 +25,12 @@
     </script>
     <script src="https://use.typekit.net/jhn7mqk.js"></script>
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
-    
+
     <script
   src="https://code.jquery.com/jquery-3.1.1.js"
   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
   crossorigin="anonymous"></script>
-  
+
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -41,16 +41,14 @@
   ga('send', 'pageview');
 
 </script>
-  
+
 </head>
 <body>
     <div id="app">
         @include('partials.nav')
-        
-        @include('partials.form-section')
-        
+
         @yield('content')
-        
+
         @include('partials.footer')
     </div>
 
