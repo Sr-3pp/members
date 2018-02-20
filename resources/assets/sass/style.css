@@ -1,0 +1,226 @@
+.parallax{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.parallax .content{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.content>div{
+  width: 100%;
+}
+.futura-light{
+  font-family: 'futura-pt' ,'Raleway', sans-serif!important;
+  font-weight: 300;
+}
+.blanco{
+  color: #FFF;
+}
+
+.category-list{
+  padding: 0;
+  width: 100%;
+}
+.category-list li{
+  list-style: none;
+  padding: 0;
+  float: left;
+  width: 20%;
+  margin: 80px auto;
+  text-align: center;
+  cursor: pointer;
+  font-size: 23px;
+}
+.category-list img{
+  width: 80%;
+  margin: 0 auto;
+  transition: all .2s ease;
+}
+.category-list img:hover{
+  width: 82%;
+}
+.Masthead{
+  min-height: 500px!important;
+}
+.card{
+  width: 600px;
+  margin: 0 auto 60px auto;
+  transition: all .2s ease;
+}
+.card:hover{
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5)
+}
+.member{
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+.member-flag{
+  position: absolute;
+  bottom: -20px;
+  left: 30px;
+  background-size: cover!important;
+  width: 60px;
+  height: 60px;
+  border-radius: 40px;
+}
+.activated{
+  position: relative;
+  height: 100vh;
+  width: 100%!important;
+  top: 0;
+  left: 0;
+  background: #FFF;
+  max-width: 100%!important;
+}
+.plusWidth{
+  width: 80%;
+}
+.center-content{
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.btn-back{
+  background: #d74343;
+  border-top-left-radius: 0!important;
+  border-top-right-radius: 0!important;
+  color: #FFF;
+  margin-right: 100px;
+}
+.fixedCat{
+  position: absolute;
+  bottom: 0;
+  background: #FFF;
+  left: 0;
+  border-top: solid thin;
+  padding-top: 10px;
+  margin: 0 auto;
+  height: 140px;
+}
+.fixedCat img{
+  width: 30%;
+}
+.fixedCat img:hover{
+  width: 32%;
+}
+.fixedCat li{
+  list-style: none;
+  padding: 0;
+  float: left;
+  width: 20%;
+  margin: 0px auto;
+  text-align: center;
+  cursor: pointer;
+  font-size: 23px;
+}
+.conscard .card-header{
+  background: #01b1af;
+  color: #FFF;
+}
+.coachcard .card-header{
+  background: #f5821d;
+  color: #FFF;
+}
+.capacard .card-header{
+  background: #92c860;
+  color: #FFF;
+}
+.empresacard .card-header{
+  background: #30bdff;
+  color: #FFF;
+}
+.programcard .card-header{
+  background: #d20894;
+  color: #FFF;
+}
+.top-links{
+  position: absolute;
+  width: 100%;
+  padding: 0;
+  top: 0;
+  left: 0;
+  font-weight: bold;
+}
+.top-links li{
+  list-style: none;
+  padding: 5px 20px;
+  float: right;
+}
+.top-links a, .navigation a{
+  color: #FFF;
+}
+.navigation a{
+  font-size: 18px;
+}
+.navigation a:hover{
+  color: #d4df03!important;
+}
+.country-results{
+  width: 92%;
+  padding: 0;
+  position: absolute;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  z-index: 2;
+
+}
+.list-group-item:first-child{
+  border-top-left-radius: 0px!important;
+  border-top-right-radius: 0px!important;
+}
+.country-results a{
+  list-style: none;
+  padding: 5px 10px;
+  width: 100%;
+}
+.social-icons{
+  width: 100%;
+}
+.social-icons ul{
+  padding:0;
+  width: 100%;
+}
+.social-icons li{
+  list-style: none;
+  padding:0 10px;
+  float: right;
+}
+
+.member-picture{
+  width: 120px;
+  border-radius:  60px;
+  height: 120px;
+  position: relative;
+  background-size: cover!important;
+  overflow: hidden;
+  margin-top: -45px;
+  margin-left: 0px;
+  border: solid #FFF;
+}
+.navigation ul li{
+  list-style: none;
+  float: left;
+  padding: 10px;
+}
+.footer {
+  width: 100%;
+  padding: 100px 0;
+  text-align: center;
+  background: url('/media/img/recursos/footer-bg.png') center no-repeat;
+  background-size: cover;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all .2s ease;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}

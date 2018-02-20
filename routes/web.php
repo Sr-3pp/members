@@ -22,6 +22,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Rutas-------------------------------------------------------------------------------------------->
 
+Route::get('/get-categorias', 'AxiosController@getCategorias');
+Route::get('/get-user/{id}', 'AxiosController@getUser');
+Route::get('/get-categoria/{id}', 'AxiosController@getCategoria');
+Route::get('/get-members/{id}', 'AxiosController@getMembers');
+Route::get('/get-paises', 'AxiosController@getPaises');
+Route::post('/search-members', 'AxiosController@searchMember');
+Route::post('/search-pais', 'AxiosController@searchPais');
+
 //Route::get('/home', 'GuestController@index');
 Route::any('/resultados', 'GuestController@resultados')->middleware('blank');
 Route::any('categoria/{categoria}', 'GuestController@categorias');

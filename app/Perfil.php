@@ -28,6 +28,6 @@ class Perfil extends Model
       return $this->hasOne('App\Pais');
     }
     public function user(){
-      return $this->belongsTo('App\User');
+      return $this->hasOne('App\User');
     }
 }

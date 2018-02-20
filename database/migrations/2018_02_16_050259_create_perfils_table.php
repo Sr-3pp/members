@@ -18,7 +18,7 @@ class CreatePerfilsTable extends Migration
             $table->string('telefono');
             $table->string('celular')->nullable();
             $table->string('website')->nullable();
-            $table->string('foto')->default('media/img/defaults/profile_1.jpg');
+            $table->string('foto')->default('/media/img/defaults/profile_1.png');
             $table->string('fb')->nullable();
             $table->string('tw')->nullable();
             $table->string('in')->nullable();

@@ -28,14 +28,18 @@ class User extends Authenticatable
     ];
 
     public function perfil(){
-      return $this->hasOne('App\Perfil');
+      return $this->belongsTo('App\Perfil');
     }
 
     public function categoria(){
-      return $this->hasMany('App\Categoria');
+      return $this->belongsTo('App\Categoria');
     }
 
     public function valoracion(){
       return $this->belongsTo('App\Valoracion');
+    }
+
+    public function scopeSearch($query, $name, $categoria){
+      return $query->where('name', "LIKE", "%$name%")->where('categoria_id',$categoria);
     }
 }

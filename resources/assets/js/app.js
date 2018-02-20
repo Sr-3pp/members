@@ -16,6 +16,10 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('parallax-bg', require('./components/Parallax.vue'));
+Vue.component('miembros', require('./components/Miembros.vue'));
+Vue.component('navigation', require('./components/partials/Navigation.vue'));
+Vue.component('card', require('./components/partials/Card.vue'));
 
 const app = new Vue({
     el: '#app'
