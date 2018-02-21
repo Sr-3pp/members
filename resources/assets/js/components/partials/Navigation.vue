@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-default" style="height:200px!important; background:url('media/img/recursos/nav_bg.jpg'); border:none!important;">
+  <nav class="navbar navbar-default" style="height:200px!important; background:url('/media/img/recursos/nav_bg.jpg'); border:none!important;">
               <div class="container">
                 <ul class="top-links">
                   <li>
@@ -38,27 +38,27 @@
                     <ul>
                       <li>
                         <a href="https://www.internationalccn.org/blank-ekhzj">¿Qué es la ICCN? &nbsp;</a>
-                        <img src="media/img/recursos/nav-separator.png" height="85" alt="">
+                        <img src="/media/img/recursos/nav-separator.png" height="85" alt="">
                       </li>
                       <li>
                         <a href="https://www.internationalccn.org/blank-luchn">Membresías &nbsp;</a>
-                        <img src="media/img/recursos/nav-separator.png" height="85" alt="">
+                        <img src="/media/img/recursos/nav-separator.png" height="85" alt="">
                       </li>
                       <li>
                         <a href="https://www.internationalccn.org/b">Programas &nbsp;</a>
-                        <img src="media/img/recursos/nav-separator.png" height="85" alt="">
+                        <img src="/media/img/recursos/nav-separator.png" height="85" alt="">
                       </li>
                       <li>
                         <a href="http://miembros.internationalccn.org">Miembros &nbsp;</a>
-                        <img src="media/img/recursos/nav-separator.png" height="85" alt="">
+                        <img src="/media/img/recursos/nav-separator.png" height="85" alt="">
                       </li>
                       <li>
                         <a href="https://www.internationalccn.org/blank-1">Blog &nbsp;</a>
-                        <img src="media/img/recursos/nav-separator.png" height="85" alt="" style="">
+                        <img src="/media/img/recursos/nav-separator.png" height="85" alt="" style="">
                       </li>
                       <li>
                         <a href="https://www.internationalccn.org/formulario">Contacto</a>
-                         <img src="media/img/recursos/nav-separator.png" height="85" alt="" style="visibility: hidden;">
+                         <img src="/media/img/recursos/nav-separator.png" height="85" alt="" style="visibility: hidden;">
                       </li>
                     </ul>
                   </div>

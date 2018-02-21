@@ -36,7 +36,7 @@
                           <div class="col-sm-3">
                             <div class="member">
                               <div class="member-picture" :style="'background: url('+member.perfil.foto+') center no-repeat'"></div>
-                              <div class="member-flag" style="background: url('/media/img/flags/Mexico.png') center no-repeat"></div>
+                              <div class="member-flag" :style="'background: url(/media/img/flags/'+member.perfil.pais.nombre+'.png) center no-repeat'"></div>
                             </div>
                           </div>
                           <div class="col-sm-9 text-right">
@@ -79,7 +79,7 @@
                               <td class="text-left">{{member.perfil['website']}}</td>
                             </tr>
                           </table>
-                          <a class="btn btn-primary" :href="'/perfil/'+member.id">Más información</a>
+                          <a class="btn btn-primary" :href="'/perfil/'+member.folio">Más información</a>
                         </div>
                       </div>
                     </div>

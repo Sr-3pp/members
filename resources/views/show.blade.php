@@ -1,12 +1,6 @@
-<?php
-$pais = utf8_decode($pais);
-                            $pais = strtr($pais, utf8_decode($originales), $modificadas);
-?>
 @extends('layouts.cvs')
-
 @section('content')
 <div class="container-fluid">
-  @include('flash::message')
     <div class="container" style="margin-top:50px;">
         <div class="col-md-4">
            <div style="border:solid 10px {{$color}}; height:272.5px; width:272.5px; border-radius:300px; padding:2px">
@@ -74,7 +68,7 @@ $pais = utf8_decode($pais);
                                                                        <?php $mapa= 'asia' ?>
                                                                         <p style="font-size:15px;">(Sureste de Asia)</p>
                                                                     @else
-                                                                    
+
                                                                     @endif
                                                                 @endif
                                                             @endif
@@ -102,8 +96,8 @@ $pais = utf8_decode($pais);
                                                             @if($zona == 'sureste')
                                                                 <p style="font-size:15px;">(Sureste de Asia)</p>
                                                             @else
-                                                                
-                                                                
+
+
                                                             @endif
                                                         @endif
                                                       @endif
@@ -148,7 +142,7 @@ $pais = utf8_decode($pais);
                                                                 @if($zona == 'polinesia')
                                                                     <p style="font-size:15px;">(Polinesia)</p>
                                                                 @else
-                                                                    
+
                                                                 @endif
                                                               @endif
                                                           @endif
@@ -162,7 +156,7 @@ $pais = utf8_decode($pais);
                                 @endif
                           </td>
                       </tr>
-                  </table>                   
+                  </table>
                 </div>
                 <div class="row">
                    <table>
@@ -181,21 +175,21 @@ $pais = utf8_decode($pais);
                 </div>
             </div>
         </div>
-        
+
         <div class="col-md-8">
             <div style="color:#FFF; font-size:50px!important; font-weight:100!important; font-style:normal; position:relative;">
              <table style="width:100%; margin-bottom:-70px;">
                  <tr>
                      <td>
                           @if($usuario->tipo == 'empresa')
-                  {{$usuario->name}} 
+                  {{$usuario->name}}
               @else
                   {{$usuario->name}} {{$usuario->apellido_p}} {{$usuario->apellido_m}}
               @endif
                      </td>
                      <td style="text-align:right!important;">
                              @if(Auth::guest())
-              
+
                               @else
                                 @if($usuario->id == Auth::user()->id)
                                <a href="{{url('auth/edit-profile/'.Auth::user()->id)}}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i> &nbsp;Editar perfil</a>
@@ -206,8 +200,8 @@ $pais = utf8_decode($pais);
                      </td>
                  </tr>
              </table>
-             
-             
+
+
                   <br>
                   <table>
                       <tr>@if($usuario->categoria == 'empresa')
@@ -247,8 +241,8 @@ $pais = utf8_decode($pais);
                         @endif
                       </tr>
                   </table>
-         
-              
+
+
             </div><hr><br>
             <img src="{{asset('IMG/mapas/'.$mapa)}}.png" style="width:100%; margin-top:20px;" alt="">
         </div>
@@ -306,7 +300,7 @@ $pais = utf8_decode($pais);
                     </tr>
                     @endif
                     @if($idiomas == '')
-                    
+
                     @else
                     <tr>
                         <td><img  src="{{asset('IMG/recursos/idiomas-icon.png')}}" alt="">{{$idiomas}}</td>
@@ -319,31 +313,31 @@ $pais = utf8_decode($pais);
                     <tr>
                         <td><img  src="{{asset('IMG/recursos/web-icon.png')}}" alt=""> <a style="color:#636b6f; text-decoration:none" href="http://{{$usuario->www}}">{{$usuario->www}}</a></td>
                     </tr>
-                    
+
                     @else
-                    
+
                     @endif
                 </table>
                 <h3>Redes Sociales</h3>
                 <div class="text-center social-res">
                      @if($usuario->urlTW != '')
                      <ul><a href="{{$usuario->urlTW}}"><img style="max-width:40px; width:100%;" src="{{asset('IMG/recursos/tw-logo.png')}}" alt=""></a></ul>
-                    
+
                     @else
-                    
-                    @endif 
+
+                    @endif
                       @if($usuario->urlFB != '')
                      <ul><a href="{{$usuario->urlFB}}"><img style="max-width:40px; width:100%;" src="{{asset('IMG/recursos/fb-logo.png')}}" alt=""></a></ul>
-                    
+
                     @else
-                    
+
                     @endif
                     @if($usuario->urlIN != '')
                      <ul><a href="{{$usuario->urlIN}}"><img style="max-width:40px; width:100%;" src="{{asset('IMG/recursos/in-logo.png')}}" alt=""></a></ul>
-                    
+
                     @else
-                    
-                    @endif                      
+
+                    @endif
                 </div>
                 </div>
             </div>
@@ -380,7 +374,7 @@ $pais = utf8_decode($pais);
                         $decode = json_decode($usuario->valoracion_1);
                         $percent = $decode->percent;
                         if($percent == 0){
-                        
+
                         }else{
                             echo str_repeat('<i class="glyphicon glyphicon-star"></i>', $percent);
                         } ?>
@@ -403,7 +397,7 @@ $pais = utf8_decode($pais);
                         $decode = json_decode($usuario->valoracion_2);
                         $percent = $decode->percent;
                         if($percent == 0){
-                        
+
                         }else{
                             echo str_repeat('<i class="glyphicon glyphicon-star"></i>', $percent);
                         } ?>
@@ -426,7 +420,7 @@ $pais = utf8_decode($pais);
                         $decode = json_decode($usuario->valoracion_3);
                         $percent = $decode->percent;
                         if($percent == 0){
-                        
+
                         }else{
                             echo str_repeat('<i class="glyphicon glyphicon-star"></i>', $percent);
                         } ?>
@@ -449,7 +443,7 @@ $pais = utf8_decode($pais);
                         $decode = json_decode($usuario->valoracion_4);
                         $percent = $decode->percent;
                         if($percent == 0){
-                        
+
                         }else{
                             echo str_repeat('<i class="glyphicon glyphicon-star"></i>', $percent);
                         } ?>
@@ -470,7 +464,7 @@ $pais = utf8_decode($pais);
                         $decode = json_decode($usuario->valoracion_5);
                         $percent = $decode->percent;
                         if($percent == 0){
-                           
+
                         }else{
                             echo str_repeat('<i class="glyphicon glyphicon-star"></i>', $percent);
                         } ?>

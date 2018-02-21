@@ -23,7 +23,7 @@ class AxiosController extends Controller
     public function getMembers($id){
       $users = User::where('categoria_id', $id)->get();
       foreach ($users as $key => $user) {
-        $user->perfil;
+        $user->perfil->pais;
         $user->categoria;
       }
       return $users;

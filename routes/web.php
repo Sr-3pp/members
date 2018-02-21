@@ -30,6 +30,8 @@ Route::get('/get-paises', 'AxiosController@getPaises');
 Route::post('/search-members', 'AxiosController@searchMember');
 Route::post('/search-pais', 'AxiosController@searchPais');
 
+Route::get('perfil/{folio}', 'Controller@getPerfil');
+
 //Route::get('/home', 'GuestController@index');
 Route::any('/resultados', 'GuestController@resultados')->middleware('blank');
 Route::any('categoria/{categoria}', 'GuestController@categorias');
@@ -54,3 +56,5 @@ Route::get('enviar', ['as' => 'enviar', function () {
 
     return "Se envío el email";
 }]);
+
+Route::get('test-user', 'Controller@test');
