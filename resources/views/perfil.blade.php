@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="jumbotron" style="background: url('/media/img/recursos/footer-bg.png') center no-repeat; background-size: cover;">
-  <perfil user="{{$user}}" profile="{{$user->perfil}}" pais="{{$user->perfil->pais->nombre}}" categoria="{{$user->categoria->nombre}}"></perfil>
+  <perfil zona="{{$user->perfil->pais->zona}}" user="{{$user}}" profile="{{$user->perfil}}" pais="{{$user->perfil->pais->nombre}}" categoria="{{$user->categoria->nombre}}"></perfil>
 </div>
 <div class="container" style="padding: 20px 0 50px 0;">
   <div class="row">

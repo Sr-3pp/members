@@ -40,6 +40,9 @@
 </head>
 <body>
     <div id="app">
+        <empresa></empresa>
+        <register></register>
+        <poplogin></poplogin>
         <navigation userid="{{ Auth::check() ? Auth::id() : 0 }}"></navigation>
 
         @yield('content')

@@ -9,13 +9,13 @@
                      <a v-if="userid !== '0' && user.tipo === 3" href="#" class="btn btn-warning"><i class="glyphicon glyphicon-list-alt"></i> &nbsp;Dashboard</a>
                   </li>
                   <li>
-                    <a v-if="userid === '0'" href="#">Registrar Empresa</a>
+                    <button  data-toggle="modal" data-target="#empresaModal" v-if="userid === '0'">Registrar Empresa</button>
                   </li>
                   <li>
-                    <a v-if="userid === '0'" href="#">Crear Perfil</a>
+                    <button data-toggle="modal" data-target="#registerModal" v-if="userid === '0'">Crear Perfil</button>
                   </li>
                   <li>
-                    <a v-if="userid === '0'" href="#">Acceder</a>
+                    <button data-toggle="modal" data-target="#loginModal" v-if="userid === '0'">Acceder</button>
                   </li>
                 </ul>
                   <div class="navbar-header">

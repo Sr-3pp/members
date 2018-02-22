@@ -15,7 +15,7 @@
             <li>
               <h3 style="margin-bottom: 0;">{{pais}}</h3>
               <span>{{perfil.ciudad}}</span><br>
-              <span>{{perfil.ciudad}}</span>
+              <span>({{zonaa.nombre}})</span>
             </li>
           </ul>
           <ul class="country-list">
@@ -39,7 +39,7 @@
           </div>
           <hr style="border-top: 1px solid #FFF;">
           <br>
-          <img width="100%" src="/media/img/mapas/americacentral.png" alt="mapa de zona">
+          <img width="100%" :src="'/media/img/mapas/'+zonaa.id+'.png'" alt="mapa de zona">
         </div>
       </div>
     </div>
@@ -51,11 +51,12 @@
         mounted() {
           console.log(this.categoria);
         },
-        props: ['user', 'profile', 'pais', 'categoria'],
+        props: ['user', 'profile', 'pais', 'categoria', 'zona'],
         data(){
           return {
             usuario: JSON.parse(this.user),
             perfil: JSON.parse(this.profile),
+            zonaa: JSON.parse(this.zona),
           }
         }
     }

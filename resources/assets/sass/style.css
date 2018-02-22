@@ -25,7 +25,9 @@
 .blanco{
   color: #FFF;
 }
-
+.form-control{
+  height: 30px!important;
+}
 .category-list{
   padding: 0;
   width: 100%;
@@ -267,7 +269,7 @@
   width: 100%;
 }
 .country-list li{
-  padding: 10px 20px;
+  padding: 10px 15px;
   list-style: none;
   float: left;
 }
@@ -282,6 +284,17 @@
   list-style: none;
   padding: 10px;
   position: relative;
+}
+.reg-stars{
+  font-size: 14px;
+  margin: 10px auto;
+  color: #b9b9b9;
+}
+.reg-stars div{
+  float: left;
+}
+.active{
+  color: #00a7ff!important;
 }
 .fade-enter-active, .fade-leave-active {
   transition: all .2s ease;

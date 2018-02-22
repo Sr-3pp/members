@@ -11,6 +11,9 @@ class Pais extends Model
     public function perfil(){
       return $this->hasMany('App\User');
     }
+    public function zona(){
+      return $this->belongsTo('App\Zona');
+    }
     public function scopeSearch($query, $pais){
       return $query->where('nombre', "LIKE", "%$pais%");
     }
