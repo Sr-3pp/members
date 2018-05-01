@@ -17,6 +17,7 @@ class CreatePaisTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->integer('zona_id');
+            $table->string('bandera')->default('/media/img/flags/default.png');
             $table->timestamps();
         });
     }

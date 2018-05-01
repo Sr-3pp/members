@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Programa extends Model
 {
-    protected $fillable = ['folio', 'nombre', 'duracion', 'foto', 'user_id', 'alcance'];
+    protected $fillable = ['folio', 'nombre', 'duracion', 'foto', 'empresa_id', 'alcance'];
 
-    public function user(){
-      return $this->hasMany('App\User');
+    public function empresa(){
+      return $this->belongsTo('App\Empresa');
     }
+
+    public function participantes(){
+      return $this->hasMany('App\Participantes');
+    }
+
 }

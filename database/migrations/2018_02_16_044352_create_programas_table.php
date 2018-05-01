@@ -15,12 +15,12 @@ class CreateProgramasTable extends Migration
     {
         Schema::create('programas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('folio');
             $table->string('nombre');
             $table->string('duracion');
             $table->string('foto')->default('media/img/defaults/program.jpg');
-            $table->string('user_id');
+            $table->integer('empresa_id');
             $table->longText('alcance');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

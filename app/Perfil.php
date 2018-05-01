@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Perfil extends Model
 {
     protected $fillable = [
+      "user_id",
+      "name",
+      "apellido_p",
+      "apellido_m",
       "telefono",
+      "rango",
       "celular",
       "website",
       "foto",
@@ -28,6 +33,11 @@ class Perfil extends Model
       return $this->belongsTo('App\Pais');
     }
     public function user(){
-      return $this->hasOne('App\User');
+      return $this->belongsTo('App\User');
+    }
+
+
+    public function scopeSearch($query, $name){
+          return $query->where('name', "LIKE", "%$name%");
     }
 }

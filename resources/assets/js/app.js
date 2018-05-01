@@ -22,8 +22,23 @@ Vue.component('empresa', require('./components/Empresa.vue'));
 Vue.component('poplogin', require('./components/Poplogin.vue'));
 Vue.component('register', require('./components/Register.vue'));
 Vue.component('perfil', require('./components/Perfil.vue'));
+Vue.component('programa', require('./components/Programa.vue'));
 Vue.component('valoraciones', require('./components/Valoraciones.vue'));
+
+
+Vue.component('panel', require('./components/panel/Panel.vue'));
+Vue.component('inbox', require('./components/panel/partials/Inbox.vue'));
+Vue.component('members', require('./components/panel/partials/Members.vue'));
+Vue.component('programs', require('./components/panel/partials/Programs.vue'));
+Vue.component('general', require('./components/panel/partials/General.vue'));
+
+Vue.component('newprogram', require('./components/panel/modals/NewProgram.vue'));
+Vue.component('participants', require('./components/panel/modals/ParticipantsModal.vue'));
+
+
 Vue.component('navigation', require('./components/partials/Navigation.vue'));
+Vue.component('preview', require('./components/partials/PreviewPic.vue'));
+Vue.component('modal', require('./components/partials/Modal.vue'));
 Vue.component('card', require('./components/partials/Card.vue'));
 
 Vue.prototype.$bus = new Vue();

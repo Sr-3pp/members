@@ -11,4 +11,7 @@ class Categoria extends Model
     public function user(){
       return $this->hasMany('App\User');
     }
+    public function usercats(){
+      return $this->hasMany('App\MemberCat');
+    }
 }

@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'folio', 'apellido_p', 'apellido_m', 'tipo', 'rango', 'categoria_id', 'perfil_id'
+        'email', 'password', 'folio', 'tipo',
     ];
 
     /**
@@ -28,18 +28,20 @@ class User extends Authenticatable
     ];
 
     public function perfil(){
-      return $this->belongsTo('App\Perfil');
+      return $this->hasOne('App\Perfil');
+    }
+    public function empresa(){
+      return $this->hasOne('App\Empresa');
     }
 
-    public function categoria(){
-      return $this->belongsTo('App\Categoria');
+    public function categorias(){
+      return $this->hasMany('App\MemberCat');
     }
 
     public function valoracion(){
-      return $this->belongsTo('App\Valoracion');
+      return $this->hasMany('App\Valoracion');
     }
 
-    public function scopeSearch($query, $name, $categoria){
-      return $query->where('name', "LIKE", "%$name%")->where('categoria_id',$categoria);
-    }
+
+
 }

@@ -11,4 +11,7 @@ class Valoracion extends Model
     public function user(){
       return $this->hasOne('App\User');
     }
+    public function programa(){
+      return $this->hasOne('App\Programa');
+    }
 }

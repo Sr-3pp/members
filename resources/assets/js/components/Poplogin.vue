@@ -12,22 +12,28 @@
           <form>
             <div class="row">
               <div class="col">
+                <transition name="fade">
+                  <span class="must" v-if="alertMail">{{alertMailText}}</span>
+                </transition>
                 <label>E-mail:</label>
-                <input type="text" class="form-control" placeholder="ejemplo@mail.com">
+                <input v-model="email" type="text" class="form-control" placeholder="ejemplo@mail.com">
               </div>
             </div>
             <br>
             <div class="row">
               <div class="col">
+                <transition name="fade">
+                  <span class="must" v-if="alertPass">Este campo es Obligatorio</span>
+                </transition>
                 <label>Password</label>
-                <input type="password" class="form-control" placeholder="Password">
+                <input v-model="password" type="password" class="form-control" placeholder="Password">
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Login</button>
+          <button type="button" class="btn btn-primary" @click="login">Login</button>
         </div>
       </div>
     </div>
@@ -37,7 +43,35 @@
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
+          var este = this;
+        },
+        data(){
+          return {
+            email: '',
+            password: '',
+            alertMail: false,
+            alertPass: false,
+            alertMailText: 'Este campo es obligatorio'
+          }
+        },
+        methods: {
+          login(){
+            if (this.email !== '' || this.password !== '') {
+              if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
+                this.$bus.$emit('login', {email: this.email, password: this.password})
+              }else{
+                this.alertMail = true
+                this.alertMailText = 'Introduce un correo válido'
+              }
+            }else{
+              if (this.email === '') {
+                this.alertPass = true
+              }
+              if (this.password === '') {
+                this.alertMail = true
+              }
+            }
+          }
         }
     }
 </script>

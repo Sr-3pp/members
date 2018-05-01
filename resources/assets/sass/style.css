@@ -14,6 +14,7 @@
   display: flex;
   align-items: center;
   height: 100%;
+  overflow-y: scroll; 
 }
 .content>div{
   width: 100%;
@@ -23,15 +24,48 @@
   font-weight: 300;
 }
 .blanco{
-  color: #FFF;
+  color: #FFF!important;
 }
-.form-control{
-  height: 30px!important;
+.danger{
+  color: red!important;
+}
+.success{
+  color: green!important;
+}
+textarea {
+    resize: none!important;
+}
+.col, .row{
+  position: relative;
+}
+.must{
+  color: #d73400;
+  position: absolute;
+  right: 18px;
+  top: -15px;
+  font-size: 12px;
+}
+.panel-list .col{
+  max-height: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.uploadPicPrev{
+  height: 100px;
+  width: 100px;
+  background-size: cover!important;
+  margin: 0 auto;
+  cursor: pointer;
+  border-radius: 50px;
+  overflow: hidden;
 }
 .category-list{
   padding: 0;
   width: 100%;
 }
+
+
 .category-list li{
   list-style: none;
   padding: 0;
@@ -50,15 +84,32 @@
 .category-list img:hover{
   width: 82%;
 }
+.catSelector img{
+  cursor: pointer;
+  transition: all .2s ease;
+  border-radius: 45px;
+}
+.border-separator>.col{
+  border-right: solid thin #ababab;
+}
+.catSelector img:hover{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.54);
+}
+.list-group-item-action{
+  cursor: pointer;
+}
+.activeCat{
+  border: solid 2px #f54e10;
+}
 .Masthead{
   min-height: 500px!important;
 }
-.card{
+#memberCards .card{
   width: 600px;
   margin: 0 auto 60px auto;
   transition: all .2s ease;
 }
-.card:hover{
+#memberCards .card:hover{
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5)
 }
 .member{
@@ -125,23 +176,23 @@
   cursor: pointer;
   font-size: 23px;
 }
-.conscard .card-header{
+.conscard  .card-header{
   background: #01b1af;
   color: #FFF;
 }
-.coachcard .card-header{
+.coachcard  .card-header{
   background: #f5821d;
   color: #FFF;
 }
-.capacard .card-header{
+.capacard  .card-header{
   background: #92c860;
   color: #FFF;
 }
-.empresacard .card-header{
+.empresacard  .card-header{
   background: #30bdff;
   color: #FFF;
 }
-.programcard .card-header{
+.programcard  .card-header{
   background: #d20894;
   color: #FFF;
 }
@@ -158,8 +209,73 @@
   padding: 5px 20px;
   float: right;
 }
-.top-links a, .navigation a{
+.top-links button, .navigation a{
   color: #FFF;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.wedit{
+  display: none!important;
+}
+.user-card{
+  padding: 20px;
+  border-radius: 20px;
+  border: solid thin #bbbbbb;
+  background: url('/media/img/recursos/nav_bg.jpg') center;
+  background-size: cover;
+  color: #FFF;
+  transition: all .2s ease;
+}
+.user-card:hover{
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.8);
+}
+.user-card .row{
+  border-bottom: solid thin #bbbbbb;
+}
+.user-card .col{
+  padding: 12px 10px;
+  cursor: pointer;
+
+}
+.user-card input,.user-card select, .user-card textarea{
+  background: none!important;
+  border: none!important;
+  border-bottom: solid thin #009c89!important;
+  color: #FFF!important;
+}
+.user-card textarea{
+  height: 150px;
+}
+.user-card select:focus{
+  color: #000!important;
+}
+.user-card input, .user-card select{
+  margin-top: 9px;
+}
+.panel-member-pic{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.panel-member-pic div{
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-size: cover!important; height:100%
+}
+.edit-btns{
+  position: absolute;
+  top: -5px;
+  right: 0;
+}
+.span-cat{
+  padding: 5px 10px;
+  background: #383737;
+  color: #FFF;
+  font-size: 12px;
+  margin: 0 5px;
+  text-align: center;
 }
 .navigation a{
   font-size: 18px;
@@ -167,7 +283,7 @@
 .navigation a:hover{
   color: #d4df03!important;
 }
-.country-results{
+.input-results{
   width: 92%;
   padding: 0;
   position: absolute;
@@ -180,10 +296,56 @@
   border-top-left-radius: 0px!important;
   border-top-right-radius: 0px!important;
 }
-.country-results a{
+.input-results a{
   list-style: none;
   padding: 5px 10px;
   width: 100%;
+}
+.languajes{
+width: 100%;
+padding: 0;
+}
+.languajes li{
+  list-style: none;
+  padding: 5px;
+  background: #47bebe;
+  color: #FFF;
+  float: right;
+  margin: 0 5px;
+  position: relative;
+}
+.del-idioma{
+  cursor: pointer;
+}
+.user-lang{
+  padding: 5px;
+  background: #47bebe;
+  color: #FFF;
+  margin: 0 5px;
+}
+.overflowv{
+  overflow: visible!important;
+}
+.membresias img{
+  cursor: pointer;
+  border-radius: 50%;
+}
+.membresias img:hover{
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.58);
+  border: solid #c2edff;
+  border-radius: 50%;
+}
+.membresias .selected{
+  border: solid #eda20f;
+  border-radius: 50%;
+}
+.social-input span{
+  position: absolute;
+  bottom: 19px;
+  font-weight: bold;
+}
+.social-input input{
+  padding-left: 145px;
 }
 .contact-list{
   padding: 0;
@@ -280,6 +442,9 @@
   padding-top: 10px;
   color: #00a7ff;
 }
+.valoracion-stars span{
+  padding: 0 5px;
+}
 .valoracion-list li{
   list-style: none;
   padding: 10px;
@@ -289,16 +454,50 @@
   font-size: 14px;
   margin: 10px auto;
   color: #b9b9b9;
+  cursor: pointer;
 }
 .reg-stars div{
   float: left;
 }
 .active{
-  color: #00a7ff!important;
+  color: #00a7ff;
 }
+
+
+.panel-nav{
+  background: url('/media/img/recursos/nav_bg.jpg');
+  color: #FFF;
+}
+.panel-nav>div{
+  transition: all .2s ease;
+    padding: 10px;
+    cursor: pointer;
+}
+.panel-nav>.active{
+    background: #f1f1f1;
+    color: #000!important;
+}
+.panel-nav>.active>button{
+    color: #000!important;
+}
+.panel-nav>.active:hover{
+  background: #f1f1f1;
+}
+.panel-nav>div:hover{
+  background: rgba(255, 255, 255, 0.51);
+}
+.panel-nav button{
+  background: none;
+  border: none;
+  color: #FFF;
+cursor: pointer;
+}
+
+
 .fade-enter-active, .fade-leave-active {
   transition: all .2s ease;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+  position: absolute;
 }

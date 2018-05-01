@@ -6,31 +6,10 @@
             </div>
             <div class="col-md-8 center-content">
               <ul class="valoracion-list">
-                <li>
-                  Liderazgo
+                <li v-for="valoracion in vals">
+                  {{valoracion.area}}
                   <div class="valoracion-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                </li>
-                <li>
-                  Coaching Ejecutivo
-                  <div class="valoracion-stars">
-                    <i class="fas fa-star"></i>
-                  </div>
-                </li>
-                <li>
-                  Coaching de Ventas
-                  <div class="valoracion-stars">
-                    <i class="fas fa-star"></i>
-                  </div>
-                </li>
-                <li>
-                  Capacitacion Empresarial
-                  <div class="valoracion-stars">
-                    <i class="fas fa-star"></i>
+                    <span v-for="val in valoracion.porcentaje"><i class="fas fa-star"></i></span>
                   </div>
                 </li>
               </ul>
@@ -42,7 +21,20 @@
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
+          var este = this
+            axios.get('/get-vals/'+this.userid).then(function(valorations){
+              este.vals = valorations.data
+              console.log(este.vals);
+            });
+        },
+        props: ['userid'],
+        data(){
+          return {
+            vals: []
+          }
+        },
+        methods: {
+
         }
     }
 </script>

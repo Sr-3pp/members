@@ -2,20 +2,24 @@
   <nav class="navbar navbar-default" style="height:200px!important; background:url('/media/img/recursos/nav_bg.jpg'); border:none!important;">
               <div class="container">
                 <ul class="top-links">
-                  <li>
-                    <a v-if="userid !== '0'" :href="'/perfil/'+user.id">Perfil</a>
+                  <li  v-if="userid !== '0'">
+                    <button type="button" @click="logout">Logout</button>
                   </li>
-                  <li>
-                     <a v-if="userid !== '0' && user.tipo === 3" href="#" class="btn btn-warning"><i class="glyphicon glyphicon-list-alt"></i> &nbsp;Dashboard</a>
+                  <li v-if="userid !== '0'">
+                    <button type="button" v-if="!empresa" @click="perfil">Perfil</button>
+                    <button type="button" v-else @click="perfile">Perfil</button>
                   </li>
-                  <li>
-                    <button  data-toggle="modal" data-target="#empresaModal" v-if="userid === '0'">Registrar Empresa</button>
+                  <li v-if="userid !== '0' && user.tipo === 3">
+                     <button type="button" onclick="window.location.href = '/panel'"><i class="far fa-list-alt"></i> &nbsp;Dashboard</button>
                   </li>
-                  <li>
-                    <button data-toggle="modal" data-target="#registerModal" v-if="userid === '0'">Crear Perfil</button>
+                  <li v-if="userid === '0'">
+                    <button type="button"  data-toggle="modal" @click="$bus.$emit('registerModal', {sw: 2})">Registrar Empresa</button>
                   </li>
-                  <li>
-                    <button data-toggle="modal" data-target="#loginModal" v-if="userid === '0'">Acceder</button>
+                  <li v-if="userid === '0'">
+                    <button type="button" data-toggle="modal" @click="$bus.$emit('registerModal', {sw: 1})">Crear Perfil</button>
+                  </li>
+                  <li v-if="userid === '0'">
+                    <button type="button" data-toggle="modal" data-target="#loginModal">Acceder</button>
                   </li>
                 </ul>
                   <div class="navbar-header">
@@ -79,20 +83,44 @@
 <script>
     export default {
         mounted() {
-          console.log(this.userid);
             var este = this;
             axios.get('/get-user/'+this.userid).then(function(user){
               este.user = user.data
+              if (!user.data.perfil) {
+                este.empresa = true
+              }
+            });
+
+            this.$bus.$on('login', $event => {
+              este.email = $event.email,
+              este.password = $event.password,
+              este.login();
             });
         },
         props: ['userid'],
         data(){
           return {
             user: [],
+            empresa: false
           }
         },
         methods: {
-
+          logout(){
+            axios.post('/user-logout', {email: this.user.email, password: this.user.password}).then(function(){
+              window.location.href = '/'
+            });
+          },
+          login(){
+            axios.post('/login-member', {email: this.email, password: this.password}).then(function(response){
+              window.location.href = '/'
+            });
+          },
+          perfil(){
+            window.location.href= '/perfil/'+this.user.folio
+          },
+          perfile(){
+            window.location.href= '/empresa/'+this.user.folio
+          }
         }
     }
 </script>

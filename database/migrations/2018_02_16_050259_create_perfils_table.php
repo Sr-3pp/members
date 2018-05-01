@@ -15,6 +15,11 @@ class CreatePerfilsTable extends Migration
     {
         Schema::create('perfils', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->default(0);
+            $table->string('name');
+            $table->string('apellido_p');
+            $table->string('apellido_m')->nullable();
+            $table->string('rango');
             $table->string('telefono');
             $table->string('celular')->nullable();
             $table->string('website')->nullable();
