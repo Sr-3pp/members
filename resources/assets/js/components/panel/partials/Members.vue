@@ -318,7 +318,7 @@
                         <span :id="'spanEfolio_'+index"><b>Folio: </b> <br>{{user.user.folio}}</span>
 
                         <div class="wedit" :id="'inputEfolio_'+index">
-                          <input :value="user.user.folio" type="text" class="form-control">
+                          <input maxLength="6" :value="user.user.folio" type="text" class="form-control">
                           <div class="edit-btns">
                             <button @click="editEmpresa(index, 0, 'folio')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
                             <button @click="updateEmpresa(user.user_id, index, 'folio')" class="btn btn-link" ><i class="fas fa-check success"></i></button>

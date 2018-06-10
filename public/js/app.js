@@ -68835,7 +68835,10 @@ var render = function() {
                                       [
                                         _c("input", {
                                           staticClass: "form-control",
-                                          attrs: { type: "text" },
+                                          attrs: {
+                                            maxLength: "6",
+                                            type: "text"
+                                          },
                                           domProps: { value: user.user.folio }
                                         }),
                                         _vm._v(" "),

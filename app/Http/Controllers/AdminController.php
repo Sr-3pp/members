@@ -219,6 +219,7 @@ class AdminController extends Controller
         }
       }
       $user->save();
+      $user->user->save();
       $user->pais;
 
       foreach ($user->user->categorias as $key => $categoria) {
