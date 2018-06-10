@@ -22,23 +22,17 @@
             <li>
               <div class="row">
                 <div v-if="usuario.empresa" class="col">
-                  <img v-if="usuario.empresa.rango === '1'" width="60" :src="'/media/img/medallas/afiliado.png'" alt="afiliado icon">
-                  <img v-if="usuario.empresa.rango === '2'" width="60" :src="'/media/img/medallas/especialista.png'" alt="especialista icon">
-                  <img v-if="usuario.empresa.rango === '3'" width="60" :src="'/media/img/medallas/experto.png'" alt="experto icon">
-                  <img v-if="usuario.empresa.rango === '4'" width="60" :src="'/media/img/medallas/profesional.png'" alt="profesional icon">
+                  <img width="60" :src="'/media/img/medallas/'+usuario.empresa.rango+'.png'" alt="medalla_rango">
                 </div>
                 <div v-else class="col">
-                  <img v-if="profile.rango === '1'" width="60" :src="'/media/img/medallas/afiliado.png'" alt="afiliado icon">
-                  <img v-if="profile.rango === '2'" width="60" :src="'/media/img/medallas/especialista.png'" alt="especialista icon">
-                  <img v-if="profile.rango === '3'" width="60" :src="'/media/img/medallas/experto.png'" alt="experto icon">
-                  <img v-if="profile.rango === '4'" width="60" :src="'/media/img/medallas/profesional.png'" alt="profesional icon">
+                  <img width="60" :src="'/media/img/medallas/'+perfil.rango+'.png'" alt="medalla_rango">
                 </div>
                 <div class="col">
                   <h4 style="margin-bottom: 0; margin-top: 15px; text-transform: capitalize">
-                    <span v-if="profile.rango === '1'">Afiliado</span>
-                    <span v-if="profile.rango === '2'">Especialista</span>
-                    <span v-if="profile.rango === '3'">Experto</span>
-                    <span v-if="profile.rango === '4'">Profesional</span>
+                    <span v-if="perfil.rango === 'afiliado'">Afiliado</span>
+                    <span v-if="perfil.rango === 'especialista'">Especialista</span>
+                    <span v-if="perfil.rango === 'experto'">Experto</span>
+                    <span v-if="perfil.rango === 'profesional'">Profesional</span>
                   </h4>
                 </div>
               </div>
@@ -76,7 +70,7 @@
 <script>
     export default {
         mounted() {
-
+          console.log(this.usuario);
         },
         props: ['user', 'profile', 'pais', 'categorias', 'zona'],
         data(){
