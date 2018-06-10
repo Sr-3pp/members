@@ -7,27 +7,32 @@
     <div v-if="!search" class="text-center">
       <h3 class="futura-light blanco">Ingresa los datos del miembro ICCN para iniciar la busqueda</h3><br>
       <img src="https://static.wixstatic.com/media/b258fc_524e497a8fd94c96bc704c826cfd9a9f~mv2.png/v1/fill/w_673,h_264,al_c,usm_0.66_1.00_0.01/b258fc_524e497a8fd94c96bc704c826cfd9a9f~mv2.png" alt="iccn_map">
-      <div style="width:50%; margin: 40px auto;">
-        <div class="form-row">
-          <div class="col">
-            <input v-model="nombre" type="text" class="form-control" placeholder="Nombre">
-          </div>
-          <div class="col">
-            <input @keyup="searchPais" v-model="pais" type="text" class="form-control" placeholder="País*">
-            <transition name="fade">
-              <ul v-if="paises.length !== 0" class="input-results list-group">
-                 <a @click="setPais(pais.id, pais.nombre)" v-for="pais in paises" role="button" class="list-group-item list-group-item-action">{{pais.nombre}}</a>
-              </ul>
-            </transition>
-          </div>
-          <div class="col">
-            <select class="form-control" v-model="categoria">
-              <option :value="0">Selecciona una categoría</option>
-              <option v-for="categoria in categorias" :value="categoria.id">{{categoria.nombre}}</option>
-            </select>
-          </div>
-          <div class="col">
-            <button @click="searchFor()" class="btn btn-default">Buscar</button>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3 form-group">
+                  <input v-model="nombre" type="text" class="form-control" placeholder="Nombre">
+              </div>
+              <div class="col-md-3 form-group">
+                <input @keyup="searchPais" v-model="pais" type="text" class="form-control" placeholder="País*">
+                <transition name="fade">
+                  <ul v-if="paises.length !== 0" class="input-results list-group">
+                     <a @click="setPais(pais.id, pais.nombre)" v-for="pais in paises" role="button" class="list-group-item list-group-item-action">{{pais.nombre}}</a>
+                  </ul>
+                </transition>
+              </div>
+              <div class="col-md-3 form-group">
+                <select class="form-control" v-model="categoria">
+                  <option :value="0">Selecciona una categoría</option>
+                  <option v-for="categoria in categorias" :value="categoria.id">{{categoria.nombre}}</option>
+                </select>
+              </div>
+              <div class="col-md-3 form-group">
+                <button @click="searchFor()" class="btn btn-default mb-2 pull-right">Buscar</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -31,11 +31,11 @@
               </div>
               <transition-group name="fade">
                 <div v-if="selected && selected !== 5" :key="0" id="memberCards" class="row" :style="active">
-                  <div v-if="member.perfil && member.perfil.status === 1 || member.empresa && member.empresa.status === 1" class="col-md-6" v-for="member in members">
+                  <div v-if="member.perfil && member.perfil.status === 1 || member.empresa && member.empresa.status === 1" class="col-lg-6" v-for="member in members">
                     <div class="card" :class="{conscard: consultor, coachcard: coach, capacard: capacitador, empresacard: empresa, programcard: programa}">
                       <div class="card-header">
                         <div class="row">
-                          <div class="col-sm-3">
+                          <div class="col-3">
                             <div v-if="member.perfil" class="member">
                               <div class="member-picture" :style="'background: url(/storage/'+member.perfil.foto+') center no-repeat'"></div>
                               <div class="member-flag" :style="'background: url(/storage/flags/'+member.perfil.pais.id+'.png) center no-repeat'"></div>
@@ -45,7 +45,7 @@
                               <div class="member-flag" :style="'background: url(/storage/flags/'+member.empresa.pais.id+'.png) center no-repeat'"></div>
                             </div>
                           </div>
-                          <div class="col-sm-9 text-right">
+                          <div class="col-9 text-right">
                             <div class="row">
                               <div class="col-md-10" style="padding-top:3px;">
                                 <h3 v-if="member.perfil">{{member.perfil.name+' '+member.perfil.apellido_p+' '+member.perfil.apellido_m}}</h3>

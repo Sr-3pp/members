@@ -6,6 +6,43 @@
 .jumbotron{
   border-radius: 0!important;
 }
+
+.nav-btns{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  padding-top: 50px;
+}
+.nav-btns li{
+  padding: 0;
+  list-style: none;
+  float: right;
+}
+.nav-btns li a{
+  color: #FFF;
+  font-size: 18px;
+  transition: all .2s ease;
+}
+.nav-btns li a:hover{
+  text-decoration: none;
+  color: yellow;
+}
+.hide{
+  display: none!important;
+}
+.hamburger-icon{
+  color: #FFF;
+  cursor: pointer;
+}
+.mobile-display-menu{
+  display: none;
+}
+.mob-disp{
+  display: none;
+}
+.desk-disp{
+  display: block;
+}
 .parallax .content{
   position: absolute;
   top: 0px;
@@ -14,7 +51,7 @@
   display: flex;
   align-items: center;
   height: 100%;
-  overflow-y: scroll; 
+  overflow: hidden;
 }
 .content>div{
   width: 100%;
@@ -105,7 +142,7 @@ textarea {
   min-height: 500px!important;
 }
 #memberCards .card{
-  width: 600px;
+  width: 100%;
   margin: 0 auto 60px auto;
   transition: all .2s ease;
 }
@@ -203,6 +240,7 @@ textarea {
   top: 0;
   left: 0;
   font-weight: bold;
+  z-index: 9;
 }
 .top-links li{
   list-style: none;
@@ -276,6 +314,14 @@ textarea {
   font-size: 12px;
   margin: 0 5px;
   text-align: center;
+}
+.sr-nav{
+  height:200px;
+}
+.mob-logo{
+  margin: 55px auto;
+  width: auto;
+  height: 75px
 }
 .navigation a{
   font-size: 18px;
@@ -492,6 +538,7 @@ padding: 0;
   color: #FFF;
 cursor: pointer;
 }
+
 
 
 .fade-enter-active, .fade-leave-active {

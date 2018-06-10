@@ -15,10 +15,10 @@
       <ul class="list-group">
         <li class="list-group-item">
           <div class="row">
-            <div  v-for="(programa, index) in programas" class="col-md-4" style="padding:30px;">
+            <div  v-for="(programa, index) in programas" class="col-xl-4" style="padding:30px;">
               <div class="user-card">
                 <div class="row" style="border-bottom: none">
-                  <div class="col-sm-3">
+                  <div class="col-3">
                     <div class="row">
                       <div class="col" style="height: 151px;">
                         <div class="panel-member-pic">
@@ -27,7 +27,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-9">
+                  <div class="col-9">
                     <div class="row"  v-if="editEmpresa !== magic+'_'+index">
                       <div class="col">
                         <b>Status:</b><br>

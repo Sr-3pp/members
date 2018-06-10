@@ -58375,6 +58375,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -58479,153 +58484,155 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticStyle: { width: "50%", margin: "40px auto" } },
-                [
-                  _c("div", { staticClass: "form-row" }, [
-                    _c("div", { staticClass: "col" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.nombre,
-                            expression: "nombre"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text", placeholder: "Nombre" },
-                        domProps: { value: _vm.nombre },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.nombre = $event.target.value
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "col" },
-                      [
+              _c("hr"),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-8 offset-md-2" }, [
+                  _c("div", { staticClass: "container" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-3 form-group" }, [
                         _c("input", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.pais,
-                              expression: "pais"
+                              value: _vm.nombre,
+                              expression: "nombre"
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "text", placeholder: "País*" },
-                          domProps: { value: _vm.pais },
+                          attrs: { type: "text", placeholder: "Nombre" },
+                          domProps: { value: _vm.nombre },
                           on: {
-                            keyup: _vm.searchPais,
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.pais = $event.target.value
+                              _vm.nombre = $event.target.value
                             }
                           }
-                        }),
-                        _vm._v(" "),
-                        _c("transition", { attrs: { name: "fade" } }, [
-                          _vm.paises.length !== 0
-                            ? _c(
-                                "ul",
-                                { staticClass: "input-results list-group" },
-                                _vm._l(_vm.paises, function(pais) {
-                                  return _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "list-group-item list-group-item-action",
-                                      attrs: { role: "button" },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.setPais(pais.id, pais.nombre)
-                                        }
-                                      }
-                                    },
-                                    [_vm._v(_vm._s(pais.nombre))]
-                                  )
-                                })
-                              )
-                            : _vm._e()
-                        ])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col" }, [
+                        })
+                      ]),
+                      _vm._v(" "),
                       _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.categoria,
-                              expression: "categoria"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.categoria = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            }
-                          }
-                        },
+                        "div",
+                        { staticClass: "col-md-3 form-group" },
                         [
-                          _c("option", { domProps: { value: 0 } }, [
-                            _vm._v("Selecciona una categoría")
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(_vm.categorias, function(categoria) {
-                            return _c(
-                              "option",
-                              { domProps: { value: categoria.id } },
-                              [_vm._v(_vm._s(categoria.nombre))]
-                            )
-                          })
-                        ],
-                        2
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-default",
-                          on: {
-                            click: function($event) {
-                              _vm.searchFor()
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.pais,
+                                expression: "pais"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "text", placeholder: "País*" },
+                            domProps: { value: _vm.pais },
+                            on: {
+                              keyup: _vm.searchPais,
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.pais = $event.target.value
+                              }
                             }
-                          }
-                        },
-                        [_vm._v("Buscar")]
-                      )
+                          }),
+                          _vm._v(" "),
+                          _c("transition", { attrs: { name: "fade" } }, [
+                            _vm.paises.length !== 0
+                              ? _c(
+                                  "ul",
+                                  { staticClass: "input-results list-group" },
+                                  _vm._l(_vm.paises, function(pais) {
+                                    return _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "list-group-item list-group-item-action",
+                                        attrs: { role: "button" },
+                                        on: {
+                                          click: function($event) {
+                                            _vm.setPais(pais.id, pais.nombre)
+                                          }
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(pais.nombre))]
+                                    )
+                                  })
+                                )
+                              : _vm._e()
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-3 form-group" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.categoria,
+                                expression: "categoria"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.categoria = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { domProps: { value: 0 } }, [
+                              _vm._v("Selecciona una categoría")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.categorias, function(categoria) {
+                              return _c(
+                                "option",
+                                { domProps: { value: categoria.id } },
+                                [_vm._v(_vm._s(categoria.nombre))]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-3 form-group" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-default mb-2 pull-right",
+                            on: {
+                              click: function($event) {
+                                _vm.searchFor()
+                              }
+                            }
+                          },
+                          [_vm._v("Buscar")]
+                        )
+                      ])
                     ])
                   ])
-                ]
-              )
+                ])
+              ])
             ])
           : _c("div", { staticClass: "container" }, [
               _c(
@@ -59460,7 +59467,7 @@ var render = function() {
                       _vm._l(_vm.members, function(member) {
                         return (member.perfil && member.perfil.status === 1) ||
                           (member.empresa && member.empresa.status === 1)
-                          ? _c("div", { staticClass: "col-md-6" }, [
+                          ? _c("div", { staticClass: "col-lg-6" }, [
                               _c(
                                 "div",
                                 {
@@ -59476,7 +59483,7 @@ var render = function() {
                                 [
                                   _c("div", { staticClass: "card-header" }, [
                                     _c("div", { staticClass: "row" }, [
-                                      _c("div", { staticClass: "col-sm-3" }, [
+                                      _c("div", { staticClass: "col-3" }, [
                                         member.perfil
                                           ? _c(
                                               "div",
@@ -59524,7 +59531,7 @@ var render = function() {
                                       _vm._v(" "),
                                       _c(
                                         "div",
-                                        { staticClass: "col-sm-9 text-right" },
+                                        { staticClass: "col-9 text-right" },
                                         [
                                           _c("div", { staticClass: "row" }, [
                                             _c(
@@ -66798,7 +66805,7 @@ var render = function() {
                   return _c(
                     "div",
                     {
-                      staticClass: "col-md-4",
+                      staticClass: "col-xl-4",
                       staticStyle: { padding: "30px" }
                     },
                     [
@@ -66810,7 +66817,7 @@ var render = function() {
                             staticStyle: { "border-bottom": "none" }
                           },
                           [
-                            _c("div", { staticClass: "col-sm-3" }, [
+                            _c("div", { staticClass: "col-3" }, [
                               _c("div", { staticClass: "row" }, [
                                 _c(
                                   "div",
@@ -67009,7 +67016,7 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-lg-9" }, [
+                            _c("div", { staticClass: "col-9" }, [
                               _vm.editMemb !== _vm.magic + "_" + index &&
                               _vm.editCat !== _vm.magic + "_" + index
                                 ? _c("div", { staticClass: "row" }, [
@@ -68679,7 +68686,7 @@ var render = function() {
                   return _c(
                     "div",
                     {
-                      staticClass: "col-md-4",
+                      staticClass: "col-xl-4",
                       staticStyle: { padding: "30px" }
                     },
                     [
@@ -68691,7 +68698,7 @@ var render = function() {
                             staticStyle: { "border-bottom": "none" }
                           },
                           [
-                            _c("div", { staticClass: "col-sm-3" }, [
+                            _c("div", { staticClass: "col-3" }, [
                               _c("div", { staticClass: "row" }, [
                                 _c(
                                   "div",
@@ -68888,7 +68895,7 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-lg-9" }, [
+                            _c("div", { staticClass: "col-9" }, [
                               _vm.editMemb !== _vm.magic + "_" + index
                                 ? _c("div", { staticClass: "row" }, [
                                     _c("div", { staticClass: "col" }, [
@@ -70547,7 +70554,7 @@ var render = function() {
             _vm._l(_vm.programas, function(programa, index) {
               return _c(
                 "div",
-                { staticClass: "col-md-4", staticStyle: { padding: "30px" } },
+                { staticClass: "col-xl-4", staticStyle: { padding: "30px" } },
                 [
                   _c("div", { staticClass: "user-card" }, [
                     _c(
@@ -70557,7 +70564,7 @@ var render = function() {
                         staticStyle: { "border-bottom": "none" }
                       },
                       [
-                        _c("div", { staticClass: "col-sm-3" }, [
+                        _c("div", { staticClass: "col-3" }, [
                           _c("div", { staticClass: "row" }, [
                             _c(
                               "div",
@@ -70579,7 +70586,7 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-lg-9" }, [
+                        _c("div", { staticClass: "col-9" }, [
                           _vm.editEmpresa !== _vm.magic + "_" + index
                             ? _c("div", { staticClass: "row" }, [
                                 _c("div", { staticClass: "col" }, [
@@ -74377,6 +74384,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -74417,6 +74437,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     perfile: function perfile() {
       window.location.href = '/empresa/' + this.user.folio;
+    },
+    showMenu: function showMenu(sw) {
+      if (sw === 0) {
+        $('.mobile-display-menu').css('display', 'none');
+        $('.mobile-display-menu').addClass('hide');
+        setTimeout(function () {
+          $('#mobileMenu').addClass('hide');
+        }, 200);
+        $('.nav-btns-mobile').css('left', '-200px');
+      } else {
+        $('#mobileMenu').removeClass('hide');
+
+        setTimeout(function () {
+          $('.mobile-display-menu').css('display', 'block');
+          $('.mobile-display-menu').removeClass('hide');
+          $('.nav-btns-mobile').css('left', '0');
+        }, 200);
+      }
     }
   }
 });
@@ -74432,102 +74470,138 @@ var render = function() {
   return _c(
     "nav",
     {
-      staticClass: "navbar navbar-default",
+      staticClass: "sr-nav",
       staticStyle: {
-        height: "200px!important",
         background: "url('/media/img/recursos/nav_bg.jpg')",
         border: "none!important"
       }
     },
     [
+      _c("ul", { staticClass: "top-links" }, [
+        _vm.userid !== "0"
+          ? _c("li", [
+              _c(
+                "button",
+                { attrs: { type: "button" }, on: { click: _vm.logout } },
+                [_vm._v("Logout")]
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.userid !== "0"
+          ? _c("li", [
+              !_vm.empresa
+                ? _c(
+                    "button",
+                    { attrs: { type: "button" }, on: { click: _vm.perfil } },
+                    [_vm._v("Perfil")]
+                  )
+                : _c(
+                    "button",
+                    { attrs: { type: "button" }, on: { click: _vm.perfile } },
+                    [_vm._v("Perfil")]
+                  )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.userid !== "0" && _vm.user.tipo === 3
+          ? _c("li", [_vm._m(0)])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.userid === "0"
+          ? _c("li", [
+              _c(
+                "button",
+                {
+                  attrs: { type: "button", "data-toggle": "modal" },
+                  on: {
+                    click: function($event) {
+                      _vm.$bus.$emit("registerModal", { sw: 2 })
+                    }
+                  }
+                },
+                [_vm._v("Registrar Empresa")]
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.userid === "0"
+          ? _c("li", [
+              _c(
+                "button",
+                {
+                  attrs: { type: "button", "data-toggle": "modal" },
+                  on: {
+                    click: function($event) {
+                      _vm.$bus.$emit("registerModal", { sw: 1 })
+                    }
+                  }
+                },
+                [_vm._v("Crear Perfil")]
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.userid === "0"
+          ? _c("li", [
+              _c(
+                "button",
+                {
+                  attrs: {
+                    type: "button",
+                    "data-toggle": "modal",
+                    "data-target": "#loginModal"
+                  }
+                },
+                [_vm._v("Acceder")]
+              )
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "container" }, [
-        _c("ul", { staticClass: "top-links" }, [
-          _vm.userid !== "0"
-            ? _c("li", [
-                _c(
-                  "button",
-                  { attrs: { type: "button" }, on: { click: _vm.logout } },
-                  [_vm._v("Logout")]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.userid !== "0"
-            ? _c("li", [
-                !_vm.empresa
-                  ? _c(
-                      "button",
-                      { attrs: { type: "button" }, on: { click: _vm.perfil } },
-                      [_vm._v("Perfil")]
-                    )
-                  : _c(
-                      "button",
-                      { attrs: { type: "button" }, on: { click: _vm.perfile } },
-                      [_vm._v("Perfil")]
-                    )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.userid !== "0" && _vm.user.tipo === 3
-            ? _c("li", [_vm._m(0)])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.userid === "0"
-            ? _c("li", [
-                _c(
-                  "button",
-                  {
-                    attrs: { type: "button", "data-toggle": "modal" },
-                    on: {
-                      click: function($event) {
-                        _vm.$bus.$emit("registerModal", { sw: 2 })
-                      }
+        _c("div", { staticClass: "row", attrs: { id: "navToggle" } }, [
+          _c("div", { staticClass: "col-2" }, [
+            _c("ul", { staticClass: "nav-btns" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "mob-disp",
+                  on: {
+                    click: function($event) {
+                      _vm.showMenu(1)
                     }
-                  },
-                  [_vm._v("Registrar Empresa")]
-                )
-              ])
-            : _vm._e(),
+                  }
+                },
+                [_vm._m(2)]
+              )
+            ])
+          ]),
           _vm._v(" "),
-          _vm.userid === "0"
-            ? _c("li", [
-                _c(
-                  "button",
-                  {
-                    attrs: { type: "button", "data-toggle": "modal" },
-                    on: {
-                      click: function($event) {
-                        _vm.$bus.$emit("registerModal", { sw: 1 })
-                      }
-                    }
-                  },
-                  [_vm._v("Crear Perfil")]
-                )
-              ])
-            : _vm._e(),
+          _c("img", {
+            staticClass: "mob-disp mob-logo",
+            attrs: {
+              src:
+                "https://static.wixstatic.com/media/b258fc_1804aea6d7ff4188905eda7f86d65487.png/v1/fill/w_171,h_96,al_c,usm_0.66_1.00_0.01/b258fc_1804aea6d7ff4188905eda7f86d65487.png",
+              alt: ""
+            }
+          }),
           _vm._v(" "),
-          _vm.userid === "0"
-            ? _c("li", [
-                _c(
-                  "button",
-                  {
-                    attrs: {
-                      type: "button",
-                      "data-toggle": "modal",
-                      "data-target": "#loginModal"
-                    }
-                  },
-                  [_vm._v("Acceder")]
-                )
-              ])
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _vm._m(2),
-        _vm._v(" "),
-        _vm._m(3)
+          _vm._m(3),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "mobile-display-menu hide",
+            on: {
+              click: function($event) {
+                _vm.showMenu(0)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._m(4)
+        ])
       ])
     ]
   )
@@ -74547,32 +74621,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "navbar-header" }, [
-      _c(
-        "button",
-        {
-          staticClass: "navbar-toggle collapsed",
-          attrs: {
-            type: "button",
-            "data-toggle": "collapse",
-            "data-target": "#app-navbar-collapse"
-          }
-        },
-        [
-          _c("span", { staticClass: "sr-only" }, [_vm._v("Toggle Navigation")]),
-          _vm._v(" "),
-          _c("span", { staticClass: "icon-bar" }),
-          _vm._v(" "),
-          _c("span", { staticClass: "icon-bar" }),
-          _vm._v(" "),
-          _c("span", { staticClass: "icon-bar" })
-        ]
-      ),
-      _vm._v(" "),
+    return _c("li", { staticClass: "desk-disp" }, [
       _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
         _c("img", {
           attrs: {
-            width: "150",
+            width: "130",
             src:
               "https://static.wixstatic.com/media/b258fc_1804aea6d7ff4188905eda7f86d65487.png/v1/fill/w_171,h_96,al_c,usm_0.66_1.00_0.01/b258fc_1804aea6d7ff4188905eda7f86d65487.png",
             alt: ""
@@ -74585,11 +74638,140 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("h1", { staticClass: "hamburger-icon" }, [
+      _c("i", { staticClass: "fas fa-bars" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col desk" }, [
+      _c("ul", { staticClass: "nav-btns" }, [
+        _c("li", [
+          _c(
+            "a",
+            { attrs: { href: "https://www.internationalccn.org/formulario" } },
+            [_vm._v("Contacto")]
+          ),
+          _vm._v(" "),
+          _c("img", {
+            staticStyle: { visibility: "hidden" },
+            attrs: {
+              src: "/media/img/recursos/nav-separator.png",
+              height: "85",
+              alt: ""
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            { attrs: { href: "https://www.internationalccn.org/blank-1" } },
+            [_vm._v("Blog  ")]
+          ),
+          _vm._v(" "),
+          _c("img", {
+            attrs: {
+              src: "/media/img/recursos/nav-separator.png",
+              height: "85",
+              alt: ""
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "http://miembros.internationalccn.org" } }, [
+            _vm._v("Miembros  ")
+          ]),
+          _vm._v(" "),
+          _c("img", {
+            attrs: {
+              src: "/media/img/recursos/nav-separator.png",
+              height: "85",
+              alt: ""
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "https://www.internationalccn.org/b" } }, [
+            _vm._v("Programas  ")
+          ]),
+          _vm._v(" "),
+          _c("img", {
+            attrs: {
+              src: "/media/img/recursos/nav-separator.png",
+              height: "85",
+              alt: ""
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            { attrs: { href: "https://www.internationalccn.org/blank-luchn" } },
+            [_vm._v("Membresías  ")]
+          ),
+          _vm._v(" "),
+          _c("img", {
+            attrs: {
+              src: "/media/img/recursos/nav-separator.png",
+              height: "85",
+              alt: ""
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            { attrs: { href: "https://www.internationalccn.org/blank-ekhzj" } },
+            [_vm._v("¿Qué es la ICCN?  ")]
+          ),
+          _vm._v(" "),
+          _c("img", {
+            attrs: {
+              src: "/media/img/recursos/nav-separator.png",
+              height: "85",
+              alt: ""
+            }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "navigation", attrs: { id: "app-navbar-collapse" } },
+      { staticClass: "mob-disp hide", attrs: { id: "mobileMenu" } },
       [
-        _c("ul", [
+        _c("ul", { staticClass: "nav-btns-mobile" }, [
+          _c(
+            "li",
+            {
+              staticClass: "text-center",
+              staticStyle: { background: "rgba(0,0,0, .8)!important" }
+            },
+            [
+              _c("br"),
+              _vm._v(" "),
+              _c("img", {
+                attrs: {
+                  width: "80",
+                  src:
+                    "https://static.wixstatic.com/media/b258fc_1804aea6d7ff4188905eda7f86d65487.png/v1/fill/w_171,h_96,al_c,usm_0.66_1.00_0.01/b258fc_1804aea6d7ff4188905eda7f86d65487.png",
+                  alt: ""
+                }
+              })
+            ]
+          ),
+          _vm._v(" "),
           _c("li", [
             _c(
               "a",
@@ -74597,47 +74779,13 @@ var staticRenderFns = [
                 attrs: { href: "https://www.internationalccn.org/blank-ekhzj" }
               },
               [_vm._v("¿Qué es la ICCN?  ")]
-            ),
-            _vm._v(" "),
-            _c("img", {
-              attrs: {
-                src: "/media/img/recursos/nav-separator.png",
-                height: "85",
-                alt: ""
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c(
-              "a",
-              {
-                attrs: { href: "https://www.internationalccn.org/blank-luchn" }
-              },
-              [_vm._v("Membresías  ")]
-            ),
-            _vm._v(" "),
-            _c("img", {
-              attrs: {
-                src: "/media/img/recursos/nav-separator.png",
-                height: "85",
-                alt: ""
-              }
-            })
+            )
           ]),
           _vm._v(" "),
           _c("li", [
             _c("a", { attrs: { href: "https://www.internationalccn.org/b" } }, [
               _vm._v("Programas  ")
-            ]),
-            _vm._v(" "),
-            _c("img", {
-              attrs: {
-                src: "/media/img/recursos/nav-separator.png",
-                height: "85",
-                alt: ""
-              }
-            })
+            ])
           ]),
           _vm._v(" "),
           _c("li", [
@@ -74645,15 +74793,7 @@ var staticRenderFns = [
               "a",
               { attrs: { href: "http://miembros.internationalccn.org" } },
               [_vm._v("Miembros  ")]
-            ),
-            _vm._v(" "),
-            _c("img", {
-              attrs: {
-                src: "/media/img/recursos/nav-separator.png",
-                height: "85",
-                alt: ""
-              }
-            })
+            )
           ]),
           _vm._v(" "),
           _c("li", [
@@ -74661,15 +74801,7 @@ var staticRenderFns = [
               "a",
               { attrs: { href: "https://www.internationalccn.org/blank-1" } },
               [_vm._v("Blog  ")]
-            ),
-            _vm._v(" "),
-            _c("img", {
-              attrs: {
-                src: "/media/img/recursos/nav-separator.png",
-                height: "85",
-                alt: ""
-              }
-            })
+            )
           ]),
           _vm._v(" "),
           _c("li", [
@@ -74679,68 +74811,11 @@ var staticRenderFns = [
                 attrs: { href: "https://www.internationalccn.org/formulario" }
               },
               [_vm._v("Contacto")]
-            ),
-            _vm._v(" "),
-            _c("img", {
-              staticStyle: { visibility: "hidden" },
-              attrs: {
-                src: "/media/img/recursos/nav-separator.png",
-                height: "85",
-                alt: ""
-              }
-            })
+            )
           ])
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "social-icons" }, [
-      _c("ul", [
-        _c("li", [
-          _c(
-            "a",
-            {
-              attrs: {
-                href: "https://www.facebook.com/internationalccn/?fref=ts"
-              }
-            },
-            [
-              _c("img", {
-                attrs: {
-                  src:
-                    "https://static.wixstatic.com/media/f61c7a3b4b4947b28511a25034973383.png/v1/fill/w_29,h_29,al_c,usm_0.66_1.00_0.01/f61c7a3b4b4947b28511a25034973383.png",
-                  alt: ""
-                }
-              })
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c(
-            "a",
-            {
-              attrs: {
-                href: "https://www.facebook.com/internationalccn/?fref=ts"
-              }
-            },
-            [
-              _c("img", {
-                attrs: {
-                  src:
-                    "https://static.wixstatic.com/media/e0678ef25486466ba65ef6ad47b559e1.png/v1/fill/w_29,h_29,al_c,usm_0.66_1.00_0.01/e0678ef25486466ba65ef6ad47b559e1.png",
-                  alt: ""
-                }
-              })
-            ]
-          )
-        ])
-      ])
-    ])
   }
 ]
 render._withStripped = true

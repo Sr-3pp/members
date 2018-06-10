@@ -6,6 +6,44 @@
 .jumbotron{
   border-radius: 0!important;
 }
+
+.nav-btns{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  padding-top: 50px;
+}
+.nav-btns li{
+  padding: 0;
+  list-style: none;
+  float: right;
+}
+.nav-btns li a{
+  color: #FFF;
+  font-size: 18px;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+.nav-btns li a:hover{
+  text-decoration: none;
+  color: yellow;
+}
+.hide{
+  display: none!important;
+}
+.hamburger-icon{
+  color: #FFF;
+  cursor: pointer;
+}
+.mobile-display-menu{
+  display: none;
+}
+.mob-disp{
+  display: none;
+}
+.desk-disp{
+  display: block;
+}
 .parallax .content{
   position: absolute;
   top: 0px;
@@ -18,7 +56,7 @@
       -ms-flex-align: center;
           align-items: center;
   height: 100%;
-  overflow-y: scroll; 
+  overflow: hidden;
 }
 .content>div{
   width: 100%;
@@ -112,7 +150,7 @@ textarea {
   min-height: 500px!important;
 }
 #memberCards .card{
-  width: 600px;
+  width: 100%;
   margin: 0 auto 60px auto;
   -webkit-transition: all .2s ease;
   transition: all .2s ease;
@@ -216,6 +254,7 @@ textarea {
   top: 0;
   left: 0;
   font-weight: bold;
+  z-index: 9;
 }
 .top-links li{
   list-style: none;
@@ -291,6 +330,14 @@ textarea {
   font-size: 12px;
   margin: 0 5px;
   text-align: center;
+}
+.sr-nav{
+  height:200px;
+}
+.mob-logo{
+  margin: 55px auto;
+  width: auto;
+  height: 75px
 }
 .navigation a{
   font-size: 18px;
@@ -511,6 +558,7 @@ cursor: pointer;
 }
 
 
+
 .fade-enter-active, .fade-leave-active {
   -webkit-transition: all .2s ease;
   transition: all .2s ease;
@@ -518,6 +566,67 @@ cursor: pointer;
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
   position: absolute;
+}
+@media only screen and (max-width: 991px){
+  #navToggle .desk{
+    display: none;
+  }
+  #navToggle .mobile{
+    display: block;
+  }
+  .sr-nav{
+    height:150px;
+  }
+  .mob-disp{
+    display: block;
+  }
+  .desk-disp{
+    display: none;
+  }
+  .Masthead{
+    height: 105vh!important;
+  }
+  .nav-btns-mobile{
+    width: 25%;
+    min-width: 200px;
+    height: 100vh;
+    background: rgba(0,0,0, .8);
+    position: fixed;
+    left: 0;
+    z-index: 11;
+    padding: 0;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+  }
+  .mobile-display-menu{
+    z-index: 10;
+    background: rgba(0,0,0, .8);
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: block;
+    left: 0;
+  }
+  .nav-btns-mobile li{
+    list-style: none;
+    text-align: right;
+    height: 16vh;
+    cursor: pointer;
+    border-top: solid thin #FFF;
+  }
+  .nav-btns-mobile li:hover{
+    background: #FFF;
+  }
+  .nav-btns-mobile li:hover a{
+    color: #222;
+    text-decoration: none;
+  }
+  .nav-btns-mobile li a{
+    text-align: right;
+    color: #FFF;
+    font-size: 14px;
+    padding: 5px 10px;
+  }
 }
 /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)

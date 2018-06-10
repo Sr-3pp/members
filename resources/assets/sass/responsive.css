@@ -1,0 +1,60 @@
+@media only screen and (max-width: 991px){
+  #navToggle .desk{
+    display: none;
+  }
+  #navToggle .mobile{
+    display: block;
+  }
+  .sr-nav{
+    height:150px;
+  }
+  .mob-disp{
+    display: block;
+  }
+  .desk-disp{
+    display: none;
+  }
+  .Masthead{
+    height: 105vh!important;
+  }
+  .nav-btns-mobile{
+    width: 25%;
+    min-width: 200px;
+    height: 100vh;
+    background: rgba(0,0,0, .8);
+    position: fixed;
+    left: 0;
+    z-index: 11;
+    padding: 0;
+    transition: all .2s ease;
+  }
+  .mobile-display-menu{
+    z-index: 10;
+    background: rgba(0,0,0, .8);
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: block;
+    left: 0;
+  }
+  .nav-btns-mobile li{
+    list-style: none;
+    text-align: right;
+    height: 16vh;
+    cursor: pointer;
+    border-top: solid thin #FFF;
+  }
+  .nav-btns-mobile li:hover{
+    background: #FFF;
+  }
+  .nav-btns-mobile li:hover a{
+    color: #222;
+    text-decoration: none;
+  }
+  .nav-btns-mobile li a{
+    text-align: right;
+    color: #FFF;
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+}
