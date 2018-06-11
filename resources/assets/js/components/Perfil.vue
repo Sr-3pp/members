@@ -1,7 +1,9 @@
 <template>
   <div class="container blanco">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 text-center">
+        <h1 class="mob-disp" v-if="perfil.apellido_p">{{perfil.name}} {{perfil.apellido_p}} {{perfil.apellido_m}}</h1>
+        <h1 class="mob-disp" v-else>{{perfil.name}}</h1>
         <div class="profile-pic profile-cons">
           <div :style="'background: url(/storage/'+perfil.foto+')center no-repeat'"></div>
         </div>
@@ -40,11 +42,11 @@
           </ul>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8 no-padding mob-text-center">
         <div>
           <div>
-            <h1 v-if="perfil.apellido_p">{{perfil.name}} {{perfil.apellido_p}} {{perfil.apellido_m}}</h1>
-            <h1 v-else>{{perfil.name}}</h1>
+            <h1 class="desk-disp" v-if="perfil.apellido_p">{{perfil.name}} {{perfil.apellido_p}} {{perfil.apellido_m}}</h1>
+            <h1 class="desk-disp" v-else>{{perfil.name}}</h1>
             <span  v-for="categoria in categoriass">
               <img v-if="categoria.categoria_id === 1" width="40" :src="'/media/img/categorias/consultor.png'" alt="categoria icon">
               <span v-if="categoria.categoria_id === 1">Consultor</span>
@@ -60,7 +62,7 @@
           </div>
           <hr style="border-top: 1px solid #FFF;">
           <br>
-          <img width="100%" :src="'/media/img/mapas/'+zonaa.id+'.png'" alt="mapa de zona">
+          <img class="desk-disp-2" width="100%" :src="'/media/img/mapas/'+zonaa.id+'.png'" alt="mapa de zona">
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
     <div class="container blanco">
-        <div class="row" style="height:200px;">
+        <div class="row">
             <div class="col-md-4 center-content">
               <h2>Áreas de expertise</h2>
             </div>

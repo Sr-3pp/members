@@ -3,7 +3,7 @@
 <div class="jumbotron" style="background: url('/media/img/recursos/footer-bg.png') center no-repeat; background-size: cover;">
   <perfil zona="{{$user->perfil->pais->zona}}" user="{{$user}}" profile="{{$user->perfil}}" pais="{{$user->perfil->pais->nombre}}" categorias="{{$user->categorias}}"></perfil>
 </div>
-<div class="container" style="padding: 20px 0 50px 0;">
+<div class="container">
   <div class="row">
     <div class="col-md-8">
       <div>
@@ -65,6 +65,7 @@
     </div>
   </div>
 </div>
+<hr>
 <div class="jumbotron" style="margin-bottom: 0; background: url('/media/img/recursos/footer-bg.png') center no-repeat; background-size: cover;">
   <valoraciones userid="{{$user->id}}"></valoraciones>
 </div>

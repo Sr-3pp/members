@@ -64471,6 +64471,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -64498,7 +64500,21 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container blanco" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "col-md-4 text-center" }, [
+        _vm.perfil.apellido_p
+          ? _c("h1", { staticClass: "mob-disp" }, [
+              _vm._v(
+                _vm._s(_vm.perfil.name) +
+                  " " +
+                  _vm._s(_vm.perfil.apellido_p) +
+                  " " +
+                  _vm._s(_vm.perfil.apellido_m)
+              )
+            ])
+          : _c("h1", { staticClass: "mob-disp" }, [
+              _vm._v(_vm._s(_vm.perfil.name))
+            ]),
+        _vm._v(" "),
         _c("div", { staticClass: "profile-pic profile-cons" }, [
           _c("div", {
             style:
@@ -64602,13 +64618,13 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-8" }, [
+      _c("div", { staticClass: "col-md-8 no-padding mob-text-center" }, [
         _c("div", [
           _c(
             "div",
             [
               _vm.perfil.apellido_p
-                ? _c("h1", [
+                ? _c("h1", { staticClass: "desk-disp" }, [
                     _vm._v(
                       _vm._s(_vm.perfil.name) +
                         " " +
@@ -64617,7 +64633,9 @@ var render = function() {
                         _vm._s(_vm.perfil.apellido_m)
                     )
                   ])
-                : _c("h1", [_vm._v(_vm._s(_vm.perfil.name))]),
+                : _c("h1", { staticClass: "desk-disp" }, [
+                    _vm._v(_vm._s(_vm.perfil.name))
+                  ]),
               _vm._v(" "),
               _vm._l(_vm.categoriass, function(categoria) {
                 return _c("span", [
@@ -64701,6 +64719,7 @@ var render = function() {
           _c("br"),
           _vm._v(" "),
           _c("img", {
+            staticClass: "desk-disp-2",
             attrs: {
               width: "100%",
               src: "/media/img/mapas/" + _vm.zonaa.id + ".png",
@@ -65134,7 +65153,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container blanco" }, [
-    _c("div", { staticClass: "row", staticStyle: { height: "200px" } }, [
+    _c("div", { staticClass: "row" }, [
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-8 center-content" }, [
