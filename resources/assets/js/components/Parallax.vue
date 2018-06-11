@@ -30,7 +30,7 @@
                 </select>
               </div>
               <div class="col-md-3 form-group">
-                <button @click="searchFor()" class="btn btn-default mb-2 pull-right">Buscar</button>
+                <button @click="searchFor()" class="btn btn-searchm">Buscar</button>
               </div>
             </div>
           </div>
