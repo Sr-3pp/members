@@ -82,15 +82,19 @@ class AxiosController extends Controller
     }
     public function searchMember(Request $r){
       $perfiles = Perfil::search($r->nombre)->orderBy('name', 'ASC')->get();
+      $resultados = [];
       foreach ($perfiles as $key => $perfil) {
         $perfil->user;
         $perfil->pais;
         $perfil->user->categorias;
+        array_push($resultados, $perfil->user);
+        $resultados[$key]["perfil"] = $perfil->user->perfil;
+        $resultados[$key]["perfil"]["pais"] = $perfil->pais;
         foreach ($perfil->user->categorias as $key => $categoria) {
           $categoria->categoria;
         }
       }
-      return $perfiles;
+      return $resultados;
     }
     public function searchEmpresa(Request $r){
       $perfiles = Empresa::search($r->empresa)->orderBy('name', 'ASC')->get();

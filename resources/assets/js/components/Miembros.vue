@@ -1,10 +1,10 @@
 <template>
-    <div id="memberSection" class="container center-content" style="min-height:600px; position: relativo" :class="{activated : selected}">
-        <div class="row" style="height:100%; margin: 0 auto;" :class="{plusWidth : selected}">
+    <div id="memberSection" class="container-fluid center-content" style="min-height:600px; position: relative; padding: 0;" :class="{activated : selected}">
+        <div class="row" style="height:100%; margin: 0 auto; width:100%" :class="{plusWidth : selected}">
           <div v-if="selected" class="col-md-12 text-right">
             <button class="btn-back btn" @click="selected = false">< Regresar</button>
           </div>
-            <div class="col-md-12">
+            <div class="col-md-12 no-padding">
               <div>
                 <h2 class="text-center">Conoce a nuestros miembros ICCN</h2>
                 <h3 v-if="!selected" class="text-center">Selecciona el área de tu interes</h3>
@@ -30,7 +30,7 @@
                 </form>
               </div>
               <transition-group name="fade">
-                <div v-if="selected && selected !== 5" :key="0" id="memberCards" class="row" :style="active">
+                <div v-if="selected && selected !== 5" :key="0" id="memberCards" class="row mob-width" :style="active">
                   <div v-if="member.perfil && member.perfil.status === 1 || member.empresa && member.empresa.status === 1" class="col-lg-6" v-for="member in members">
                     <div class="card" :class="{conscard: consultor, coachcard: coach, capacard: capacitador, empresacard: empresa, programcard: programa}">
                       <div class="card-header">
@@ -220,13 +220,13 @@
             window.location = "#memberSection"
             this.active= {
               height: 'auto',
-              maxHeight: '550px',
-              minHeight: '480px',
+              maxHeight: '600px',
+              minHeight: '600px',
               overflowY: 'scroll',
               overflowX: 'hidden',
               marginBottom: '140px',
               marginTop: '50px',
-              margin: '0px auto 149px auto',
+              margin: '0px auto 30px auto',
               paddingTop: '60px'
             }
 
@@ -280,6 +280,7 @@
             this.members = [];
             if (this.nombre !== '') {
               axios.post('/search-members', {nombre: this.nombre, pais: this.paisid, categoria: this.selected}).then(function(results){
+                console.log(results.data);
                 este.members = results.data
               });
             }else{

@@ -10,6 +10,14 @@
   #navToggle .mobile{
     display: block;
   }
+  .fixedCat{
+    height: auto;
+    padding: 20px 0;
+    position: relative;
+  }
+  .mob-width{
+    width: 105%;
+  }
   .sr-nav{
     height:150px;
   }

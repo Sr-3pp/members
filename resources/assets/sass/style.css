@@ -307,6 +307,9 @@ textarea {
   top: -5px;
   right: 0;
 }
+.no-padding{
+  padding: 0!important;
+}
 .span-cat{
   padding: 5px 10px;
   background: #383737;

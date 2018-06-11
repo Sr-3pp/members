@@ -59205,13 +59205,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       window.location = "#memberSection";
       this.active = {
         height: 'auto',
-        maxHeight: '550px',
-        minHeight: '480px',
+        maxHeight: '600px',
+        minHeight: '600px',
         overflowY: 'scroll',
         overflowX: 'hidden',
         marginBottom: '140px',
         marginTop: '50px',
-        margin: '0px auto 149px auto',
+        margin: '0px auto 30px auto',
         paddingTop: '60px'
       };
 
@@ -59265,6 +59265,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.members = [];
       if (this.nombre !== '') {
         axios.post('/search-members', { nombre: this.nombre, pais: this.paisid, categoria: this.selected }).then(function (results) {
+          console.log(results.data);
           este.members = results.data;
         });
       } else {
@@ -59303,9 +59304,13 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "container center-content",
+      staticClass: "container-fluid center-content",
       class: { activated: _vm.selected },
-      staticStyle: { "min-height": "600px", position: "relativo" },
+      staticStyle: {
+        "min-height": "600px",
+        position: "relative",
+        padding: "0"
+      },
       attrs: { id: "memberSection" }
     },
     [
@@ -59314,7 +59319,7 @@ var render = function() {
         {
           staticClass: "row",
           class: { plusWidth: _vm.selected },
-          staticStyle: { height: "100%", margin: "0 auto" }
+          staticStyle: { height: "100%", margin: "0 auto", width: "100%" }
         },
         [
           _vm.selected
@@ -59336,7 +59341,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-md-12" },
+            { staticClass: "col-md-12 no-padding" },
             [
               _c("div", [
                 _c("h2", { staticClass: "text-center" }, [
@@ -59460,7 +59465,7 @@ var render = function() {
                       "div",
                       {
                         key: 0,
-                        staticClass: "row",
+                        staticClass: "row mob-width",
                         style: _vm.active,
                         attrs: { id: "memberCards" }
                       },
