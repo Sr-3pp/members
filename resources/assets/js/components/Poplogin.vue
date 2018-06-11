@@ -12,11 +12,13 @@
           <form>
             <div class="row">
               <div class="col">
-                <transition name="fade">
-                  <span class="must" v-if="alertMail">{{alertMailText}}</span>
-                </transition>
-                <label>E-mail:</label>
-                <input v-model="email" type="text" class="form-control" placeholder="ejemplo@mail.com">
+                <div class="form-group pos-relative">
+                  <transition name="fade">
+                    <span style="top: 0;" class="must" v-if="alertMail">{{alertMailText}}</span>
+                  </transition>
+                  <label>E-mail:</label>
+                  <input @keyup.enter="login" v-model="email" type="text" class="form-control" placeholder="ejemplo@mail.com">
+                </div>
               </div>
             </div>
             <br>
@@ -26,7 +28,7 @@
                   <span class="must" v-if="alertPass">Este campo es Obligatorio</span>
                 </transition>
                 <label>Password</label>
-                <input v-model="password" type="password" class="form-control" placeholder="Password">
+                <input @keyup.enter="login" v-model="password" type="password" class="form-control" placeholder="Password">
               </div>
             </div>
           </form>
@@ -44,6 +46,10 @@
     export default {
         mounted() {
           var este = this;
+          this.$bus.$on('loginattempt', ($event) => {
+            this.alertMail = true
+            this.alertMailText = 'Verifica tus datos'
+          })
         },
         data(){
           return {

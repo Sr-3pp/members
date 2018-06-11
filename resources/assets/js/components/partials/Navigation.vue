@@ -124,8 +124,12 @@
           });
         },
         login(){
+          var este = this;
           axios.post('/login-member', {email: this.email, password: this.password}).then(function(response){
             window.location.href = '/'
+          }).catch(error => {
+              console.log(error.response)
+              este.$bus.$emit('loginattempt')
           });
         },
         perfil(){

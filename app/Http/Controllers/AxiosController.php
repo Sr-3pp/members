@@ -94,6 +94,9 @@ class AxiosController extends Controller
           $categoria->categoria;
         }
       }
+      if ($r->magic === '2') {
+        return $perfiles;
+      }
       return $resultados;
     }
     public function searchEmpresa(Request $r){

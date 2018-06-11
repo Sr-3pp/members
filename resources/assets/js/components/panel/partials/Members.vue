@@ -24,7 +24,7 @@
         <li class="list-group-item">
           <div class="row">
 
-              <div  v-for="(user, index) in users" class="col-xl-4" style="padding:30px;">
+              <div  v-for="(user, index) in users" class="col-xl-4" style="padding:30px; text-align: center;">
                 <div class="user-card">
                   <div class="row" style="border-bottom: none">
                     <div class="col-3">
@@ -83,7 +83,6 @@
                         <div @click="editUser(index, 1, 'cat')" class="col text-center">
 
                               <img  v-for="categoria in user.user.categorias" width="30%" v-if="categoria.categoria_id !== 5" :src="'/media/img/categorias/'+categoria.categoria.nombre+'.png'" alt="user cat">
-
                         </div>
                       </div>
                       <div v-if="editMemb === magic+'_'+index" class="row">
@@ -163,13 +162,13 @@
                       </div>
                       <div v-if="editsocial !== magic+'_'+index" class="row">
                         <div @click="editUser(index, 1, 'fb')" class="col">
-                          <span :id="'spanMfb_'+index"><b>Facebook: </b><br>{{user.fb}}</span>
+                          <span :id="'spanMfb_'+index"><b>Facebook: </b><br>{{user.fb ? user.fb : '-'}}</span>
                         </div>
                         <div  @click="editUser(index, 1, 'tw')" class="col">
-                          <span :id="'spanMtw_'+index"><b>Twitter: </b><br>{{user.tw}}</span>
+                          <span :id="'spanMtw_'+index"><b>Twitter: </b><br>{{user.tw ? user.tw : '-'}}</span>
                         </div>
                         <div  @click="editUser(index, 1, 'in')" class="col">
-                          <span :id="'spanMin_'+index"><b>Linkedin: </b><br>{{user.in}}</span>
+                          <span :id="'spanMin_'+index"><b>Linkedin: </b><br>{{user.in ? user.in : '-'}}</span>
                         </div>
                       </div>
                       <div v-if="editsocial === magic+'_'+index" class="row">
@@ -284,6 +283,7 @@
                     </div>
                   </div>
                 </div>
+                <button @click="editskills(user.user_id)" class="btn btn-default btn-sm" style="margin: 0 auto;">Areas de expertise.</button>
               </div>
 
           </div>
@@ -557,7 +557,8 @@
 
             idioma: '',
             idiomasResults: [],
-            magic: ''
+            magic: '',
+            experise: false
           }
         },
         methods: {
@@ -586,7 +587,7 @@
             if (this.search !== '') {
               if (!this.empresa) {
                 this.users = []
-                axios.post('/search-members', {nombre: this.search}).then(function(users){
+                axios.post('/search-members', {nombre: this.search, magic: '2'}).then(function(users){
 
                   este.users = users.data
                 });
@@ -995,6 +996,9 @@
                 };
                 reader.readAsDataURL(file);
           },
+          editskills(id){
+            alert(id)
+          }
         }
     }
 </script>

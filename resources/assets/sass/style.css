@@ -315,6 +315,9 @@ textarea {
   color: #FFF;
   font-weight: bold;
 }
+.pos-relative{
+  position: relative!important;
+}
 .span-cat{
   padding: 5px 10px;
   background: #383737;
