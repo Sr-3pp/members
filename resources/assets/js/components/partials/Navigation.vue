@@ -67,23 +67,23 @@
           <div @click="showMenu(0)" class="mobile-display-menu hide"></div>
           <div id="mobileMenu" class="mob-disp hide">
             <ul class="nav-btns-mobile">
-              <li class="text-center"  style="background: rgba(0,0,0, .8)!important">
+              <li @click="navGo('index')" class="text-center"  style="background: rgba(0,0,0, .8)!important">
                 <br>
                  <img width="80" src="https://static.wixstatic.com/media/b258fc_1804aea6d7ff4188905eda7f86d65487.png/v1/fill/w_171,h_96,al_c,usm_0.66_1.00_0.01/b258fc_1804aea6d7ff4188905eda7f86d65487.png" alt="">
               </li>
-              <li>
+              <li @click="navGo('https://www.internationalccn.org/blank-ekhzj')">
                 <a href="https://www.internationalccn.org/blank-ekhzj">¿Qué es la ICCN? &nbsp;</a>
               </li>
-              <li>
+              <li @click="navGo('https://www.internationalccn.org/b')">
                 <a href="https://www.internationalccn.org/b">Programas &nbsp;</a>
               </li>
-              <li>
-                <a href="http://miembros.internationalccn.org">Miembros &nbsp;</a>
+              <li @click="navGo('http://members.internationalccn.org')">
+                <a href="http://members.internationalccn.org">Miembros &nbsp;</a>
               </li>
-              <li>
+              <li @click="navGo('https://www.internationalccn.org/blank-1')">
                 <a href="https://www.internationalccn.org/blank-1">Blog &nbsp;</a>
               </li>
-              <li>
+              <li @click="navGo('https://www.internationalccn.org/formulario')">
                 <a href="https://www.internationalccn.org/formulario">Contacto</a>
               </li>
             </ul>
@@ -150,6 +150,13 @@
               $('.mobile-display-menu').removeClass('hide')
               $('.nav-btns-mobile').css('left', '0')
             },200)
+          }
+        },
+        navGo(url){
+          if (url === 'index') {
+            window.location.href = '/'
+          }else{
+            window.location.href = url
           }
         }
       }

@@ -17,7 +17,8 @@ class MemberController extends Controller
     public function newMember(Request $r){
 
       $users = User::all();
-      $folio = count($users)+1;
+      //$folio = count($users)+1;
+      $folio = '0000'.count($users)+1;
       $user= User::create([
         'folio' => $folio,
         'email' => $r->email,

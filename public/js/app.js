@@ -74458,6 +74458,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           $('.nav-btns-mobile').css('left', '0');
         }, 200);
       }
+    },
+    navGo: function navGo(url) {
+      if (url === 'index') {
+        window.location.href = '/';
+      } else {
+        window.location.href = url;
+      }
     }
   }
 });
@@ -74603,7 +74610,144 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _vm._m(4)
+          _c(
+            "div",
+            { staticClass: "mob-disp hide", attrs: { id: "mobileMenu" } },
+            [
+              _c("ul", { staticClass: "nav-btns-mobile" }, [
+                _c(
+                  "li",
+                  {
+                    staticClass: "text-center",
+                    staticStyle: { background: "rgba(0,0,0, .8)!important" },
+                    on: {
+                      click: function($event) {
+                        _vm.navGo("index")
+                      }
+                    }
+                  },
+                  [
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("img", {
+                      attrs: {
+                        width: "80",
+                        src:
+                          "https://static.wixstatic.com/media/b258fc_1804aea6d7ff4188905eda7f86d65487.png/v1/fill/w_171,h_96,al_c,usm_0.66_1.00_0.01/b258fc_1804aea6d7ff4188905eda7f86d65487.png",
+                        alt: ""
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.navGo(
+                          "https://www.internationalccn.org/blank-ekhzj"
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          href: "https://www.internationalccn.org/blank-ekhzj"
+                        }
+                      },
+                      [_vm._v("¿Qué es la ICCN?  ")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.navGo("https://www.internationalccn.org/b")
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "a",
+                      { attrs: { href: "https://www.internationalccn.org/b" } },
+                      [_vm._v("Programas  ")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.navGo("http://members.internationalccn.org")
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "http://members.internationalccn.org" }
+                      },
+                      [_vm._v("Miembros  ")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.navGo("https://www.internationalccn.org/blank-1")
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          href: "https://www.internationalccn.org/blank-1"
+                        }
+                      },
+                      [_vm._v("Blog  ")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.navGo("https://www.internationalccn.org/formulario")
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          href: "https://www.internationalccn.org/formulario"
+                        }
+                      },
+                      [_vm._v("Contacto")]
+                    )
+                  ]
+                )
+              ])
+            ]
+          )
         ])
       ])
     ]
@@ -74745,80 +74889,6 @@ var staticRenderFns = [
         ])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "mob-disp hide", attrs: { id: "mobileMenu" } },
-      [
-        _c("ul", { staticClass: "nav-btns-mobile" }, [
-          _c(
-            "li",
-            {
-              staticClass: "text-center",
-              staticStyle: { background: "rgba(0,0,0, .8)!important" }
-            },
-            [
-              _c("br"),
-              _vm._v(" "),
-              _c("img", {
-                attrs: {
-                  width: "80",
-                  src:
-                    "https://static.wixstatic.com/media/b258fc_1804aea6d7ff4188905eda7f86d65487.png/v1/fill/w_171,h_96,al_c,usm_0.66_1.00_0.01/b258fc_1804aea6d7ff4188905eda7f86d65487.png",
-                  alt: ""
-                }
-              })
-            ]
-          ),
-          _vm._v(" "),
-          _c("li", [
-            _c(
-              "a",
-              {
-                attrs: { href: "https://www.internationalccn.org/blank-ekhzj" }
-              },
-              [_vm._v("¿Qué es la ICCN?  ")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "https://www.internationalccn.org/b" } }, [
-              _vm._v("Programas  ")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c(
-              "a",
-              { attrs: { href: "http://miembros.internationalccn.org" } },
-              [_vm._v("Miembros  ")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c(
-              "a",
-              { attrs: { href: "https://www.internationalccn.org/blank-1" } },
-              [_vm._v("Blog  ")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c(
-              "a",
-              {
-                attrs: { href: "https://www.internationalccn.org/formulario" }
-              },
-              [_vm._v("Contacto")]
-            )
-          ])
-        ])
-      ]
-    )
   }
 ]
 render._withStripped = true
