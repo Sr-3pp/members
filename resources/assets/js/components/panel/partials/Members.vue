@@ -24,8 +24,30 @@
         <li class="list-group-item">
           <div class="row">
 
-              <div  v-for="(user, index) in users" class="col-xl-4" style="padding:30px; text-align: center;">
+              <div v-for="(user, index) in users" class="col-xl-4" style="padding:30px; text-align: center;">
                 <div class="user-card">
+                  <transition name="fade">
+                    <div v-if="expertise === magic+'_exp_'+index" class="skillsEdit">
+                      <div class="row">
+                        <div class="col">
+                          <h1>Areas de expertise
+                            <button @click="expertise = null" class="close right-30 white"><i class="fas fa-window-close"></i></button>
+                          </h1>
+                          <hr>
+                          <div>
+                            <div v-for="valoracion in user.user.valoracion" class="row editvalorations">
+                              <div class="col-3">
+                                {{valoracion.area}}
+                              </div>
+                              <div class="col-9">
+                                <i class="fas fa-star" v-for="star in parseInt(valoracion.porcentaje)"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </transition>
                   <div class="row" style="border-bottom: none">
                     <div class="col-3">
                       <div class="row">
@@ -283,7 +305,7 @@
                     </div>
                   </div>
                 </div>
-                <button @click="editskills(user.user_id)" class="btn btn-default btn-sm" style="margin: 0 auto;">Areas de expertise.</button>
+                <button @click="editskills(index)" class="btn btn-default btn-sm" style="margin: 0 auto;">Areas de expertise.</button>
               </div>
 
           </div>
@@ -558,7 +580,7 @@
             idioma: '',
             idiomasResults: [],
             magic: '',
-            experise: false
+            expertise: false
           }
         },
         methods: {
@@ -997,7 +1019,7 @@
                 reader.readAsDataURL(file);
           },
           editskills(id){
-            alert(id)
+            this.expertise = this.magic+'_exp_'+id
           }
         }
     }

@@ -67,7 +67,7 @@ class AdminController extends Controller
       $perfils = Perfil::all();
 
       foreach ($perfils as $key => $perfil) {
-        $perfil->user;
+        $perfil->user->valoracion;
         $perfil->pais;
         $perfil->user->categorias;
         foreach ($perfil->user->categorias as $key => $categoria) {

@@ -18,6 +18,16 @@
   list-style: none;
   float: right;
 }
+.right-30{
+  position: absolute;
+  right: 30px!important;
+}
+.editvalorations{
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
 .nav-btns li a{
   color: #FFF;
   font-size: 18px;
@@ -87,6 +97,9 @@ textarea {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.white{
+  color: #FFF!important;
 }
 .uploadPicPrev{
   height: 100px;
@@ -264,6 +277,8 @@ textarea {
   background-size: cover;
   color: #FFF;
   transition: all .2s ease;
+  position: relative;
+  overflow: hidden;
 }
 .user-card:hover{
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.8);
@@ -317,6 +332,15 @@ textarea {
 }
 .pos-relative{
   position: relative!important;
+}
+.skillsEdit{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2;
 }
 .span-cat{
   padding: 5px 10px;
