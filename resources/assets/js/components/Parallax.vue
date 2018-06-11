@@ -6,7 +6,7 @@
   <div class="content">
     <div v-if="!search" class="text-center">
       <h3 class="futura-light blanco">Ingresa los datos del miembro ICCN para iniciar la busqueda</h3><br>
-      <img src="https://static.wixstatic.com/media/b258fc_524e497a8fd94c96bc704c826cfd9a9f~mv2.png/v1/fill/w_673,h_264,al_c,usm_0.66_1.00_0.01/b258fc_524e497a8fd94c96bc704c826cfd9a9f~mv2.png" alt="iccn_map">
+      <img width="80%" src="https://static.wixstatic.com/media/b258fc_524e497a8fd94c96bc704c826cfd9a9f~mv2.png/v1/fill/w_673,h_264,al_c,usm_0.66_1.00_0.01/b258fc_524e497a8fd94c96bc704c826cfd9a9f~mv2.png" alt="iccn_map">
       <hr>
       <div class="row">
         <div class="col-md-8 offset-md-2">
