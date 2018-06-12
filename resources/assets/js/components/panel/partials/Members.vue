@@ -37,11 +37,31 @@
                           <div>
                             <div v-for="valoracion in user.user.valoracion" class="row editvalorations">
                               <div class="col-3">
-                                {{valoracion.area}}
+                                <span @click="editVal(index, valoracion.id)" v-if="valoration !== 'val_'+index+'_'+valoracion.id" :id="'val_'+index+'_'+magic">{{valoracion.area}}</span>
+                                <div v-if="valoration === 'val_'+index+'_'+valoracion.id" class="input-group">
+                                  <input maxlength="10" style="margin-bottom: 10px" type="text" class="form-control" :value="valoracion.area">
+                                  <div class="input-group-prepend" style="padding-top: 5px;">
+                                    <button class="btn btn-danger" style="height:40px;"><i class="fas fa-times"></i></button>
+                                  </div>
+                                  <div class="input-group-prepend" style="padding-top: 5px;">
+                                    <button class="btn btn-success" style="height:40px;"><i class="fas fa-check"></i></button>
+                                  </div>
+                                </div>
                               </div>
-                              <div class="col-9">
-                                <i class="fas fa-star" v-for="star in parseInt(valoracion.porcentaje)"></i>
+                              <div class="col-9 text-left">
+                                <span @click="editStars = 'stars_'+index+'_'+valoracion.id" v-if="editStars !== 'stars_'+index+'_'+valoracion.id" class="reg-stars">
+                                    <span v-for="val in parseInt(valoracion.porcentaje)"><i class="fas fa-star active"></i>&nbsp;&nbsp;</span>
+                                </span>
+                                <span v-if="editStars === 'stars_'+index+'_'+valoracion.id" class="reg-stars">
+                                  <span @click="level('a', index2, valoracion.id)" :id="'staram_'+index2+'_'+valoracion.id" @mouseover="setlevel('a', index2, 1, valoracion.id)"  @mouseout="setlevel('a', index2, 0, valoracion.id)" v-for="(star, index2) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
+                                </span>
+                                <span class="right-30 danger">
+                                  <i class="fas fa-minus-square"></i>
+                                </span>
                               </div>
+                            </div>
+                            <div class="text-center" style="width:100%;">
+                              <button v-if="user.user.valoracion.length < 5" class="btn btn-link"><i class="fas fa-plus"></i></button>
                             </div>
                           </div>
                         </div>
@@ -580,7 +600,9 @@
             idioma: '',
             idiomasResults: [],
             magic: '',
-            expertise: false
+            expertise: false,
+            valoration: null,
+            editStars: null
           }
         },
         methods: {
@@ -1020,6 +1042,38 @@
           },
           editskills(id){
             this.expertise = this.magic+'_exp_'+id
+          },
+          setlevel(key, index, sw, user){
+            if (sw === 1) {
+              for (var i = 0; i < index+1 ; i++) {
+                if (key === 'a') {
+
+                  $('#star'+key+'m_'+i+'_'+user).addClass('active')
+                }
+              }
+            }else{
+                for (var i = 0; i < index+1 ; i++) {
+                  if (key === 'a') {
+                    $('#star'+key+'m_'+i+'_'+user).removeClass('active')
+                  }
+                }
+            }
+          },
+          level(key, index, user){
+            if (key === 'a') {
+              if (this.area1v === 0) {
+                this.area1v = index+1
+              }else{
+                this.area1v = 0
+
+              }
+            }
+            for (var i = 0; i < index+1 ; i++) {
+              $('#star'+key+'m_'+i+'_'+user).addClass('active')
+            }
+          },
+          editVal(index, id){
+            this.valoration = 'val_'+index+'_'+id
           }
         }
     }

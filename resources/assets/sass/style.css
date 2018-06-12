@@ -22,6 +22,10 @@
   position: absolute;
   right: 30px!important;
 }
+.right{
+  position: absolute;
+  right: 0;
+}
 .editvalorations{
   padding: 15px;
   text-align: center;
