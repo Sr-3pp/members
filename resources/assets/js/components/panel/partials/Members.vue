@@ -35,16 +35,16 @@
                           </h1>
                           <hr>
                           <div>
-                            <div v-for="valoracion in user.user.valoracion" class="row editvalorations">
+                            <div v-for="(valoracion, index2) in user.user.valoracion" class="row editvalorations">
                               <div class="col-3">
-                                <span @click="editVal(index, valoracion.id)" v-if="valoration !== 'val_'+index+'_'+valoracion.id" :id="'val_'+index+'_'+magic">{{valoracion.area}}</span>
+                                <span @click="editVal(index, valoracion.id, 1)" v-if="valoration !== 'val_'+index+'_'+valoracion.id" :id="'val_'+index+'_'+magic">{{valoracion.area}}</span>
                                 <div v-if="valoration === 'val_'+index+'_'+valoracion.id" class="input-group">
-                                  <input maxlength="10" style="margin-bottom: 10px" type="text" class="form-control" :value="valoracion.area">
+                                  <input :id="'valInput_'+valoracion.id" maxlength="10" style="margin-bottom: 10px" type="text" class="form-control" :value="valoracion.area">
                                   <div class="input-group-prepend" style="padding-top: 5px;">
-                                    <button class="btn btn-danger" style="height:40px;"><i class="fas fa-times"></i></button>
+                                    <button class="btn btn-danger" style="height:40px;" @click="editVal(index, valoracion.id, 0)"><i class="fas fa-times"></i></button>
                                   </div>
                                   <div class="input-group-prepend" style="padding-top: 5px;">
-                                    <button class="btn btn-success" style="height:40px;"><i class="fas fa-check"></i></button>
+                                    <button class="btn btn-success" style="height:40px;" @click="updateVal(valoracion.id, 'name', index, index2)"><i class="fas fa-check"></i></button>
                                   </div>
                                 </div>
                               </div>
@@ -53,15 +53,34 @@
                                     <span v-for="val in parseInt(valoracion.porcentaje)"><i class="fas fa-star active"></i>&nbsp;&nbsp;</span>
                                 </span>
                                 <span v-if="editStars === 'stars_'+index+'_'+valoracion.id" class="reg-stars">
-                                  <span @click="level('a', index2, valoracion.id)" :id="'staram_'+index2+'_'+valoracion.id" @mouseover="setlevel('a', index2, 1, valoracion.id)"  @mouseout="setlevel('a', index2, 0, valoracion.id)" v-for="(star, index2) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
+                                  <span @click="level('a', index2, valoracion.id, index, index3)" :id="'staram_'+index3+'_'+valoracion.id" @mouseover="setlevel('a', index3, 1, valoracion.id)"  @mouseout="setlevel('a', index3, 0, valoracion.id)" v-for="(star, index3) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
                                 </span>
-                                <span class="right-30 danger">
+                                <button @click="deleteVal(valoracion.id, index2, index)" class="btn btn-link right-30 danger">
                                   <i class="fas fa-minus-square"></i>
-                                </span>
+                                </button>
                               </div>
                             </div>
-                            <div class="text-center" style="width:100%;">
-                              <button v-if="user.user.valoracion.length < 5" class="btn btn-link"><i class="fas fa-plus"></i></button>
+                            <div v-if="newVal !== 'newVal_'+index" class="text-center" style="width:100%;">
+                              <button @click="newVal = 'newVal_'+index" v-if="user.user.valoracion.length < 5" class="btn btn-link"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <div class="container">
+                              <div v-if="newVal === 'newVal_'+index" class="row">
+                                <div class="col-3">
+                                  <div class="input-group">
+                                    <input :id="'newValInput_'+index" maxlength="10" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Nombre">
+                                  </div>
+                                </div>
+                                <div class="col-9">
+                                  <br>
+                                  <span class="reg-stars">
+                                    <span @click="newStars = indexs" :id="'newStaram_'+indexs" @mouseover="setleveln('a', indexs, 1)"  @mouseout="setleveln('a', indexs, 0)" v-for="(star, indexs) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
+                                  </span>
+                                  <div class="right-30" style="margin-top: -30px;">
+                                    <button class="btn btn-link"><i class="fas fa-times danger"></i></button>
+                                    <button @click="saveVal(index, user.user_id)" class="btn btn-link"><i class="fas fa-check success"></i></button>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -602,7 +621,9 @@
             magic: '',
             expertise: false,
             valoration: null,
-            editStars: null
+            editStars: null,
+            newVal: null,
+            newStars: null
           }
         },
         methods: {
@@ -1059,22 +1080,71 @@
                 }
             }
           },
-          level(key, index, user){
-            if (key === 'a') {
-              if (this.area1v === 0) {
-                this.area1v = index+1
-              }else{
-                this.area1v = 0
-
-              }
-            }
+          level(key, index, valoracion, user, percent){
             for (var i = 0; i < index+1 ; i++) {
-              $('#star'+key+'m_'+i+'_'+user).addClass('active')
+              $('#star'+key+'m_'+i+'_'+valoracion).addClass('active')
+            }
+            var este = this;
+            var porcentaje = parseInt(percent+1);
+            axios.post('/panel/update-val', {id: valoracion, percent: porcentaje, magic: 'star'}).then(function(response){
+              este.users[user].user.valoracion[index] = response.data
+              este.editStars = null
+            })
+          },
+          editVal(index, id, sw){
+            if (sw === 1) {
+              this.valoration = 'val_'+index+'_'+id
+            }else{
+              this.valoration = null
             }
           },
-          editVal(index, id){
-            this.valoration = 'val_'+index+'_'+id
-          }
+          updateVal(id, magic, user, index){
+            var nombre = $('#valInput_'+id).val()
+            var este = this;
+            axios.post('/panel/update-val', {id: id, name: nombre, magic: magic}).then(function(response){
+              este.users[user].user.valoracion[index] = response.data
+              este.valoration = null
+            })
+          },
+          deleteVal(id, index, user){
+            var este = this;
+            if (confirm("Borrar valoración?") == true) {
+              axios.get('/panel/delete-val/'+id).then(function(response){
+                if (response.data === 1) {
+                  este.users[user].user.valoracion.splice(index, 1)
+                }
+              });
+            }
+          },
+          saveVal(index, id){
+            var area = $('#newValInput_'+index).val()
+            var percent = parseInt(this.newStars+1);
+            var este = this;
+            axios.post('/panel/add-valoration/'+id, {area: area, percent: percent}).then(function(response){
+              este.users[index].user.valoracion.push(response.data)
+              este.newVal = null
+              console.log(response.data);
+            });
+          },
+          setleveln(key, index, sw){
+            if (sw === 1) {
+              for (var i = 0; i < index+1 ; i++) {
+                if (key === 'a') {
+                  if (this.newStars === null) {
+                    $('#newStar'+key+'m_'+i).addClass('active')
+                  }
+                }
+              }
+            }else{
+                for (var i = 0; i < index+1 ; i++) {
+                  if (key === 'a') {
+                    if (this.newStars === null) {
+                      $('#newStar'+key+'m_'+i).removeClass('active')
+                    }
+                  }
+                }
+            }
+          },
         }
     }
 </script>

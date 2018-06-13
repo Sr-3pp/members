@@ -67,6 +67,7 @@ Route::prefix('panel')->middleware('admin')->group(function () {
     Route::get('/delete-pais/{id}', 'AdminController@deletePais');
     Route::get('/delete-idioma/{id}', 'AdminController@deleteIdioma');
     Route::get('/delete-cat/{id}', 'AdminController@deleteCategoria');
+    Route::get('/delete-val/{id}', 'AdminController@deleteValoration');
 
     Route::post('/update-pais', 'AdminController@updatePais');
     Route::post('/update-idioma', 'AdminController@updateIdioma');
@@ -74,11 +75,13 @@ Route::prefix('panel')->middleware('admin')->group(function () {
     Route::post('/update-user', 'AdminController@updateUser');
     Route::post('/update-empresa', 'AdminController@updateEmpresa');
     Route::post('/update-programa', 'AdminController@updatePrograma');
+    Route::post('/update-val', 'AdminController@updateValoration');
 
     Route::post('/new-pais', 'AdminController@newPais');
     Route::post('/new-idioma', 'AdminController@newIdioma');
     Route::post('/new-categoria', 'AdminController@newCategoria');
     Route::post('/add-participant', 'AdminController@addParticipant');
+    Route::post('/add-valoration/{id}', 'AdminController@addValoration');
 });
 
 

@@ -328,6 +328,24 @@ class AdminController extends Controller
 
     }
 
+    public function deleteValoration($id){
+      $valoracion = Valoracion::find($id);
+      $valoracion->delete();
+      return 1;
+    }
+
+    public function updateValoration(Request $r){
+      $valoracion = Valoracion::find($r->id);
+
+      if ($r->magic === 'name') {
+        $valoracion->area = $r->name;
+      }else{
+        $valoracion->porcentaje = $r->percent;
+      }
+      $valoracion->save();
+      return $valoracion;
+    }
+
     public function addParticipant(Request $r){
       $participante = Participantes::create([
         'nombre' => $r->nombre,
@@ -338,5 +356,16 @@ class AdminController extends Controller
       ]);
 
       return $participante;
+    }
+
+    public function addValoration($id, Request $r){
+      $val = Valoracion::create([
+        'area' => $r->area,
+        'porcentaje' => $r->percent,
+        'user_id' => $id,
+        'programa_id' => 0
+      ]);
+
+      return $val;
     }
 }
