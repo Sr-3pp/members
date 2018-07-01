@@ -13,6 +13,7 @@
             <input @keyup="searchMember()" type="text" class="form-control" id="validationCustomUsername" placeholder="Busca un usuario" aria-describedby="inputGroupPrepend" v-model="search">
             <div class="input-group-prepend">
               <button class="btn btn-default" ><i class="fas fa-search"></i></button>
+              <button @click="$bus.$emit('registerModal', {sw: 1, admin: 1})" class="btn btn-success" ><i class="fas fa-plus"></i></button>
             </div>
           </div>
         </div>
@@ -593,6 +594,9 @@
             axios.get('/get-paises').then(function(paises){
               este.paises = paises.data
             });
+            this.$bus.$on('createdUser', ($event) => {
+              este.users.push($event.user);
+            });
         },
         data(){
           return {
@@ -681,7 +685,6 @@
               this.categorias.splice(key, 1)
 
               this.userCats.push(cat)
-              console.log(this.userCats);
             }else{
               this.userCats.forEach(function(cate, key){
 
@@ -690,7 +693,6 @@
                 }
               });
               this.categorias.push(cat)
-              console.log(this.categorias);
             }
           },
           editUser(index, sw, magic){
@@ -869,7 +871,6 @@
               this.idiomasResults = []
               this.idioma = ''
             }else{
-              console.log(index);
               this.idiomas.splice(index, 1);
             }
           },
@@ -878,7 +879,6 @@
             this.magic = 'pic'
             this.editPic = this.magic+'_'+index
             this.bkpic = this.users[index].foto
-            console.log(this.bkpic);
           },
           fileChange(e, index){
             let files = e.target.files || e.dataTransfer.files;
@@ -905,7 +905,6 @@
             var input = $("#inputE"+magic+"_"+index+">input")
             var span = $("#spanE"+magic+"_"+index)
             this.magic = magic
-            //console.log(magic);
 
             if (sw === 1) {
               if (magic === 'idiomas') {
@@ -987,8 +986,6 @@
             var este = this;
             var group = $("#inputE"+magic+"_"+index)
             var span = $("#spanE"+magic+"_"+index)
-
-            console.log(magic);
 
             if (magic === 'pais') {
               var input = $("#inputE"+magic+"_"+index+">select")
@@ -1123,7 +1120,6 @@
             axios.post('/panel/add-valoration/'+id, {area: area, percent: percent}).then(function(response){
               este.users[index].user.valoracion.push(response.data)
               este.newVal = null
-              console.log(response.data);
             });
           },
           setleveln(key, index, sw){

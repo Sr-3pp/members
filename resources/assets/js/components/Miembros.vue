@@ -95,8 +95,8 @@
                               <td class="text-left">{{member.perfil ? member.perfil.website : member.empresa.website}}</td>
                             </tr>
                           </table>
-                          <a v-if="selected !== 4" class="btn btn-primary" :href="'/perfil/'+member.folio">Más información</a>
-                          <a v-else class="btn btn-primary" :href="'/empresa/'+member.folio">Más información</a>
+                          <a v-if="selected !== 4" class="btn btn-primary" :href="'/perfil/'+member.folio+'/'+member.perfil.name.toLowerCase()+(member.perfil.apellido_p ? '-'+member.perfil.apellido_p.toLowerCase() : '')+(member.perfil.apellido_m ? '-'+member.perfil.apellido_m.toLowerCase() : '')">Más información</a>
+                          <a v-else class="btn btn-primary" :href="'/empresa/'+member.folio+'/'+member.perfil.name">Más información</a>
                         </div>
                       </div>
                     </div>

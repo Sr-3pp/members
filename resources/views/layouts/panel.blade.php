@@ -36,6 +36,7 @@
 <body style="background: #f1f1f1;">
     <div id="app">
         @yield('content')
+        <modal admin="true"></modal>
         <newprogram></newprogram>
         <participants></participants>
     </div>

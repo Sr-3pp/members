@@ -2,16 +2,26 @@
 
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          Registrate <br>
+        <h5 v-if="!admin" class="modal-title" id="exampleModalLabel">
+          <span>Registrate</span><br>
           <small>(Recuerda que tu perfil estará en línea hasta realizar el pago de tu membresía.)</small>
+        </h5>
+        <h5 v-else class="modal-title" id="exampleModalLabel">
+          <span>Agregar Usuario</span>
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <h5>Los campos marcados con * son obligatorios</h5>
+        <div class="row">
+          <div class="col-lg-6">
+            <h5>Los campos marcados con * son obligatorios</h5>
+          </div>
+          <div class="col-lg-6">
+            <input v-model="folio" type="text" class="form-control pull-right" placeholder="Folio:">
+          </div>
+        </div>
         <hr>
         <form>
           <div class="row">
@@ -149,13 +159,13 @@
             <h4>Áreas de expertise</h4>
           </div>
           <div class="col text-center">
-            <input maxlength="10" @keyup="validateVal(1)" v-model="area1" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 1">
+            <input maxlength="30" @keyup="validateVal(1)" v-model="area1" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 1">
             <span class="reg-stars">
               <span @click="level('a', index)" :id="'staram_'+index" @mouseover="setlevel('a', index, 1)"  @mouseout="setlevel('a', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
             </span>
           </div>
           <div class="col">
-            <input maxlength="10" @keyup="validateVal(2)" :disabled="area1 === '' || area1v === 0" v-model="area2" style="margin-bottom: 10px" type="twxt" class="form-control" placeholder="Área 2">
+            <input maxlength="30" @keyup="validateVal(2)" :disabled="area1 === '' || area1v === 0" v-model="area2" style="margin-bottom: 10px" type="twxt" class="form-control" placeholder="Área 2">
             <span class="reg-stars" v-if="area1 !== '' && area1v !== 0">
               <span @click="level('b', index)" :id="'starbm_'+index"  @mouseover="setlevel('b', index, 1)"  @mouseout="setlevel('b', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
             </span>
@@ -167,7 +177,7 @@
         <br>
         <div class="row">
           <div class="col">
-            <input maxlength="10" @keyup="validateVal(3)"  :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0" v-model="area3" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 3">
+            <input maxlength="30" @keyup="validateVal(3)"  :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0" v-model="area3" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 3">
             <span class="reg-stars" v-if="area1 !== '' && area1v !== 0 && area2 !== '' && area2v !== 0">
               <span @click="level('c', index)" :id="'starcm_'+index" @mouseover="setlevel('c', index, 1)"  @mouseout="setlevel('c', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
             </span>
@@ -176,7 +186,7 @@
             </span>
           </div>
           <div class="col">
-            <input maxlength="10" @keyup="validateVal(4)" :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0 || area3 === '' || area3v === 0" v-model="area4" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 4">
+            <input maxlength="30" @keyup="validateVal(4)" :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0 || area3 === '' || area3v === 0" v-model="area4" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 4">
             <span class="reg-stars" v-if="area1 !== '' && area1v !== 0 && area2 !== '' && area2v !== 0 && area3 !== '' && area3v !== 0">
               <span @click="level('d', index)" :id="'stardm_'+index"  @mouseover="setlevel('d', index, 1)"  @mouseout="setlevel('d', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
             </span>
@@ -185,7 +195,7 @@
             </span>
           </div>
           <div class="col">
-            <input maxlength="10" :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0 || area3 === '' || area3v === 0 || area4=== '' || area4v === 0" v-model="area5" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 5">
+            <input maxlength="30" :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0 || area3 === '' || area3v === 0 || area4=== '' || area4v === 0" v-model="area5" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 5">
             <span class="reg-stars" v-if="area1 !== '' && area1v !== 0 && area2 !== '' && area2v !== 0 && area3 !== '' && area3v !== 0 && area4 !== '' && area4v !== 0">
               <span @click="level('e', index)" :id="'starem_'+index" @mouseover="setlevel('e', index, 1)"  @mouseout="setlevel('e', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
             </span>
@@ -264,10 +274,13 @@
             this.$bus.$on('file', ($event) => {
               este.picture = $event.file
             });
+
         },
+        props: ['admin'],
         data(){
           return {
             csrf: '',
+            folio: '',
             levelsetted: false,
             nombre: '',
             apellido_p: '',
@@ -579,6 +592,7 @@
                 if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
 
                   var formData = new FormData();
+                  formData.append('folio' , this.folio);
                   formData.append('nombre' , this.nombre);
                   formData.append('apellido_p' , this.apellido_p);
                   formData.append('apellido_m' , this.apellido_m);
@@ -612,7 +626,11 @@
                   formData.append('file', this.picture);
 
                   axios.post('/new-membrer', formData).then(function(member){
-                    este.$bus.$emit('login', {email: este.email, password: este.password});
+                    if (!este.admin) {
+                      este.$bus.$emit('login', {email: este.email, password: este.password});
+                    }else{
+                      este.$bus.$emit('createdUser', {user: member.data});
+                    }
                   }).then(function(){
                     $('.modal-backdrop').css('display', 'none')
                     $('#registerModal').modal('hide');

@@ -18,9 +18,9 @@ class MemberController extends Controller
 
       $users = User::all();
       //$folio = count($users)+1;
-      $folio = '0000'.count($users)+1;
+      //$folio = '0000'.count($users)+1;
       $user= User::create([
-        'folio' => $folio,
+        'folio' => $r->folio,
         'email' => $r->email,
         'tipo' => 0,
         'password' => Hash::make($r->password)
@@ -34,7 +34,7 @@ class MemberController extends Controller
       }
 
       if ($r->hasFile('file')) {
-        Perfil::create([
+        $perfil = Perfil::create([
           'user_id' => $user->id,
           'name' => $r->nombre,
           'apellido_p' => $r->apellido_p,
@@ -55,7 +55,7 @@ class MemberController extends Controller
           'resumen' => $r->cv
         ]);
       }else{
-        Perfil::create([
+        $perfil = Perfil::create([
           'user_id' => $user->id,
           'name' => $r->nombre,
           'apellido_p' => $r->apellido_p,
@@ -115,7 +115,13 @@ class MemberController extends Controller
           'porcentaje' => $r->area5v
         ]);
       }
-      return $user;
+      $perfil->user->valoracion;
+      $perfil->pais;
+      $perfil->user->categorias;
+      foreach ($perfil->user->categorias as $key => $categoria) {
+        $categoria->categoria;
+      }
+      return $perfil;
     }
 
     public function update($id){
