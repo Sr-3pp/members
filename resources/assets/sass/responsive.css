@@ -48,10 +48,14 @@
   }
 
   .nav-btns-mobile{
-    width: 25%;
+    width: 70%;
     min-width: 200px;
     height: 100vh;
-    background: rgba(0,0,0, .8);
+    background: rgba(14, 101, 157, .5);
+    background-image: url('/media/img/recursos/red.png');
+    background-repeat-x: no-repeat;
+    background-position: 0px 0px;
+    background-size: contain;
     position: fixed;
     left: 0;
     z-index: 11;
@@ -69,22 +73,22 @@
   }
   .nav-btns-mobile li{
     list-style: none;
-    text-align: right;
+    text-align: center;
     height: 16vh;
     cursor: pointer;
-    border-top: solid thin #FFF;
+    display: flex;
+    align-items: center;
   }
   .nav-btns-mobile li:hover{
-    background: #FFF;
+    background: rgba(255, 255, 255, 0.47);
   }
   .nav-btns-mobile li:hover a{
     color: #222;
     text-decoration: none;
   }
   .nav-btns-mobile li a{
-    text-align: right;
     color: #FFF;
-    font-size: 14px;
-    padding: 5px 10px;
+    font-size: 20px;
+    width: 100%;
   }
 }

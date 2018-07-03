@@ -37,10 +37,10 @@
                           <hr>
                           <div>
                             <div v-for="(valoracion, index2) in user.user.valoracion" class="row editvalorations">
-                              <div class="col-3">
+                              <div class="col-6">
                                 <span @click="editVal(index, valoracion.id, 1)" v-if="valoration !== 'val_'+index+'_'+valoracion.id" :id="'val_'+index+'_'+magic">{{valoracion.area}}</span>
                                 <div v-if="valoration === 'val_'+index+'_'+valoracion.id" class="input-group">
-                                  <input :id="'valInput_'+valoracion.id" maxlength="10" style="margin-bottom: 10px" type="text" class="form-control" :value="valoracion.area">
+                                  <input :id="'valInput_'+valoracion.id" maxlength="30" style="margin-bottom: 10px" type="text" class="form-control" :value="valoracion.area">
                                   <div class="input-group-prepend" style="padding-top: 5px;">
                                     <button class="btn btn-danger" style="height:40px;" @click="editVal(index, valoracion.id, 0)"><i class="fas fa-times"></i></button>
                                   </div>
@@ -49,7 +49,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-9 text-left">
+                              <div class="col-6 text-left">
                                 <span @click="editStars = 'stars_'+index+'_'+valoracion.id" v-if="editStars !== 'stars_'+index+'_'+valoracion.id" class="reg-stars">
                                     <span v-for="val in parseInt(valoracion.porcentaje)"><i class="fas fa-star active"></i>&nbsp;&nbsp;</span>
                                 </span>

@@ -17,7 +17,7 @@
                     <span style="top: 0;" class="must" v-if="alertMail">{{alertMailText}}</span>
                   </transition>
                   <label>E-mail:</label>
-                  <input @keyup.enter="login" v-model="email" type="text" class="form-control" placeholder="ejemplo@mail.com">
+                  <input id="loginMail" @keyup.enter="login" v-model="email" type="text" class="form-control" placeholder="ejemplo@mail.com">
                 </div>
               </div>
             </div>

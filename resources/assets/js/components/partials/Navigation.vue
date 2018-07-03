@@ -18,7 +18,7 @@
           <button type="button" data-toggle="modal" @click="$bus.$emit('registerModal', {sw: 1})">Crear Perfil</button>
         </li>
         <li v-if="userid === '0'">
-          <button type="button" data-toggle="modal" data-target="#loginModal">Acceder</button>
+          <button @click="setInput()" type="button" data-toggle="modal" data-target="#loginModal">Acceder</button>
         </li>
       </ul>
       <div class="container">
@@ -67,9 +67,10 @@
           <div @click="showMenu(0)" class="mobile-display-menu hide"></div>
           <div id="mobileMenu" class="mob-disp hide">
             <ul class="nav-btns-mobile">
-              <li @click="navGo('index')" class="text-center"  style="background: rgba(0,0,0, .8)!important">
-                <br>
-                 <img width="80" src="https://static.wixstatic.com/media/b258fc_1804aea6d7ff4188905eda7f86d65487.png/v1/fill/w_171,h_96,al_c,usm_0.66_1.00_0.01/b258fc_1804aea6d7ff4188905eda7f86d65487.png" alt="">
+              <li @click="navGo('index')" class="text-center">
+                <a href="/">
+                  <img width="80" src="https://static.wixstatic.com/media/b258fc_1804aea6d7ff4188905eda7f86d65487.png/v1/fill/w_171,h_96,al_c,usm_0.66_1.00_0.01/b258fc_1804aea6d7ff4188905eda7f86d65487.png" alt="">
+                </a>
               </li>
               <li @click="navGo('https://www.internationalccn.org/blank-ekhzj')">
                 <a href="https://www.internationalccn.org/blank-ekhzj">¿Qué es la ICCN? &nbsp;</a>
@@ -162,6 +163,11 @@
           }else{
             window.location.href = url
           }
+        },
+        setInput(){
+          setTimeout(function(){
+            $('#loginMail').focus()
+          }, 500)
         }
       }
     }
