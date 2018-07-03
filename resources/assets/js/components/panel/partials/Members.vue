@@ -37,26 +37,26 @@
                           <hr>
                           <div>
                             <div v-for="(valoracion, index2) in user.user.valoracion" class="row editvalorations">
-                              <div class="col-6">
+                              <div class="col-4">
                                 <span @click="editVal(index, valoracion.id, 1)" v-if="valoration !== 'val_'+index+'_'+valoracion.id" :id="'val_'+index+'_'+magic">{{valoracion.area}}</span>
                                 <div v-if="valoration === 'val_'+index+'_'+valoracion.id" class="input-group">
-                                  <input :id="'valInput_'+valoracion.id" maxlength="30" style="margin-bottom: 10px" type="text" class="form-control" :value="valoracion.area">
-                                  <div class="input-group-prepend" style="padding-top: 5px;">
+                                  <input ref="valoration" @keyup.esc="editVal(index, valoracion.id, 0)" @keyup.enter="updateVal(valoracion.id, 'name', index, index2)" :id="'valInput_'+valoracion.id" maxlength="30" style="margin-bottom: 10px" type="text" class="form-control" :value="valoracion.area">
+                                  <!--<div class="input-group-prepend" style="padding-top: 5px;">
                                     <button class="btn btn-danger" style="height:40px;" @click="editVal(index, valoracion.id, 0)"><i class="fas fa-times"></i></button>
                                   </div>
                                   <div class="input-group-prepend" style="padding-top: 5px;">
                                     <button class="btn btn-success" style="height:40px;" @click="updateVal(valoracion.id, 'name', index, index2)"><i class="fas fa-check"></i></button>
-                                  </div>
+                                  </div>-->
                                 </div>
                               </div>
-                              <div class="col-6 text-left">
+                              <div class="col-8 text-left">
                                 <span @click="editStars = 'stars_'+index+'_'+valoracion.id" v-if="editStars !== 'stars_'+index+'_'+valoracion.id" class="reg-stars">
                                     <span v-for="val in parseInt(valoracion.porcentaje)"><i class="fas fa-star active"></i>&nbsp;&nbsp;</span>
                                 </span>
                                 <span v-if="editStars === 'stars_'+index+'_'+valoracion.id" class="reg-stars">
                                   <span @click="level('a', index2, valoracion.id, index, index3)" :id="'staram_'+index3+'_'+valoracion.id" @mouseover="setlevel('a', index3, 1, valoracion.id)"  @mouseout="setlevel('a', index3, 0, valoracion.id)" v-for="(star, index3) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
                                 </span>
-                                <button @click="deleteVal(valoracion.id, index2, index)" class="btn btn-link right-30 danger">
+                                <button @click="deleteVal(valoracion.id, index2, index)" class="btn btn-link right danger">
                                   <i class="fas fa-minus-square"></i>
                                 </button>
                               </div>
