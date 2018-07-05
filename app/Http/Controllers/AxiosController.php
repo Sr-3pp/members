@@ -65,7 +65,7 @@ class AxiosController extends Controller
     }
 
     public function searchPais(Request $r){
-      $paises = Pais::search($r->pais)->paginate(10);
+      $paises = Pais::search($r->pais)->orderBy('nombre', 'asc')->paginate(10);
       foreach ($paises as $key => $pais) {
         $pais->zona;
       }
@@ -113,7 +113,7 @@ class AxiosController extends Controller
     }
 
     public function getLanguajes($search){
-      $languajes = Idioma::search($search)->get();
+      $languajes = Idioma::search($search)->orderBy('nombre', 'asc')->get();
       return $languajes;
     }
 
