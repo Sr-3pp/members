@@ -54,7 +54,7 @@ class AxiosController extends Controller
     }
 
     public function getPaises(){
-      $paises =  Pais::all();
+      $paises =  Pais::orderBy('nombre', 'asc')->get();
 
       return $paises;
     }
