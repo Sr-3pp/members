@@ -14,9 +14,10 @@ class EmpresaController extends Controller
 {
   public function newEmpresa(Request $r){
     $users = User::all();
-    $folio2 = count($users)+1;
+    //$folio2 = count($users)+1;
+
     $user= User::create([
-      'folio' => $folio2,
+      'folio' => $r->folio,
       'email' => $r->email,
       'tipo' => 0,
       'password' => Hash::make($r->password)

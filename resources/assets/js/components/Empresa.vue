@@ -11,7 +11,14 @@
         </button>
       </div>
       <div class="modal-body">
-        <h5>Los campos marcados con * son obligatorios</h5>
+        <div class="row">
+          <div class="col-lg-6">
+            <h5>Los campos marcados con * son obligatorios</h5>
+          </div>
+          <div class="col-lg-6">
+            <input v-model="folio" type="text" class="form-control pull-right" placeholder="Folio:">
+          </div>
+        </div>
         <hr>
         <form>
           <div class="row">
@@ -256,6 +263,7 @@
             password: '',
             confirm: '',
             picture: null,
+            folio: '',
 
             alertName: false,
             alertMail: false,
@@ -508,6 +516,7 @@
                 if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
 
                   var formData = new FormData();
+                  formData.append('folio' , this.folio);
                   formData.append('nombre' , this.nombre);
                   formData.append('email' , this.email);
                   formData.append('telefono' , this.telefono);

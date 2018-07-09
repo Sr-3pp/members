@@ -19,6 +19,9 @@
             <h5>Los campos marcados con * son obligatorios</h5>
           </div>
           <div class="col-lg-6">
+            <transition name="fade">
+              <span v-if="alertFolio" class="must">Este campo es obligatorio</span>
+            </transition>
             <input v-model="folio" type="text" class="form-control pull-right" placeholder="Folio:">
           </div>
         </div>
@@ -320,6 +323,7 @@
             confirm: '',
             picture: null,
 
+            alertFolio: false,
             alertName: false,
             alertAp: false,
             alertMail: false,
@@ -512,7 +516,12 @@
             if (this.capacitador) {
               this.categorias.push(3)
             }
-            if (this.nombre === '' || this.apellido_p === '' || this.email === '' || this.telefono === '' || this.membresia === '' || this.pais === '' || this.categorias.length === 0 || this.cv === '' || this.educacion === '' || this.password === '' || this.confirm === '') {
+            if (this.folio === ''  || this.nombre === '' || this.apellido_p === '' || this.email === '' || this.telefono === '' || this.membresia === '' || this.pais === '' || this.categorias.length === 0 || this.cv === '' || this.educacion === '' || this.password === '' || this.confirm === '') {
+              if (this.folio === '') {
+                this.alertFolio = true
+              }else{
+                this.alertFolio = false
+              }
               if (this.nombre === '') {
                 this.alertName = true
               }else{
@@ -575,6 +584,7 @@
               }
             }else{
               if (this.password === this.confirm) {
+                this.alertFolio = false
                 this.alertName = false
                 this.alertAp = false
                 this.alertMail = false
