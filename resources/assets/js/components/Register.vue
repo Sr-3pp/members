@@ -32,16 +32,16 @@
               <transition name="fade">
                 <span v-if="alertName" class="must">Este campo es obligatorio</span>
               </transition>
-              <input maxlength="20" v-model="nombre" type="text" class="form-control" placeholder="Nombre*">
+              <input maxlength="30" v-model="nombre" type="text" class="form-control" placeholder="Nombre*">
             </div>
             <div class="col">
               <transition name="fade">
                 <span v-if="alertAp" class="must">Este campo es obligatorio</span>
               </transition>
-              <input maxlength="10" v-model="apellido_p" type="text" class="form-control" placeholder="Apellido paterno *">
+              <input maxlength="30" v-model="apellido_p" type="text" class="form-control" placeholder="Apellido paterno *">
             </div>
             <div class="col">
-              <input maxlength="10" v-model="apellido_m" type="text" class="form-control" placeholder="Apellido materno">
+              <input maxlength="30" v-model="apellido_m" type="text" class="form-control" placeholder="Apellido materno">
             </div>
           </div>
           <br>
