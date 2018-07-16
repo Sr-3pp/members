@@ -13,7 +13,7 @@
             <input @keyup="searchMember()" type="text" class="form-control" id="validationCustomUsername" placeholder="Busca un usuario" aria-describedby="inputGroupPrepend" v-model="search">
             <div class="input-group-prepend">
               <button class="btn btn-default" ><i class="fas fa-search"></i></button>
-              <button @click="$bus.$emit('registerModal', {sw: 1, admin: 1})" class="btn btn-success" ><i class="fas fa-plus"></i></button>
+              <button @click="$bus.$emit('registerModal', {sw: 1, admin: 1})" class="btn btn-link" ><i class="fas fa-plus"></i></button>
             </div>
           </div>
         </div>
@@ -36,16 +36,16 @@
                           </h1>
                           <hr>
                           <div>
-                            <div v-for="(valoracion, index2) in user.user.valoracion" class="row editvalorations">
+                            <div v-if="newVal !== 'newVal_'+index" v-for="(valoracion, index2) in user.user.valoracion" class="row editvalorations">
                               <div class="col-4">
                                 <span @click="editVal(index, valoracion.id, 1)" v-if="valoration !== 'val_'+index+'_'+valoracion.id" :id="'val_'+index+'_'+magic">{{valoracion.area}}</span>
                                 <div v-if="valoration === 'val_'+index+'_'+valoracion.id" class="input-group">
                                   <input ref="valoration" @keyup.esc="editVal(index, valoracion.id, 0)" @keyup.enter="updateVal(valoracion.id, 'name', index, index2)" :id="'valInput_'+valoracion.id" maxlength="30" style="margin-bottom: 10px" type="text" class="form-control" :value="valoracion.area">
                                   <!--<div class="input-group-prepend" style="padding-top: 5px;">
-                                    <button class="btn btn-danger" style="height:40px;" @click="editVal(index, valoracion.id, 0)"><i class="fas fa-times"></i></button>
+                                    <button class="btn btn-link" style="height:40px;" @click="editVal(index, valoracion.id, 0)"><i class="fas fa-times danger"></i></button>
                                   </div>
                                   <div class="input-group-prepend" style="padding-top: 5px;">
-                                    <button class="btn btn-success" style="height:40px;" @click="updateVal(valoracion.id, 'name', index, index2)"><i class="fas fa-check"></i></button>
+                                    <button class="btn btn-link" style="height:40px;" @click="updateVal(valoracion.id, 'name', index, index2)"><i class="fas fa-check success"></i></button>
                                   </div>-->
                                 </div>
                               </div>
@@ -66,19 +66,19 @@
                             </div>
                             <div class="container">
                               <div v-if="newVal === 'newVal_'+index" class="row">
-                                <div class="col-3">
+                                <div class="col-12">
                                   <div class="input-group">
-                                    <input :id="'newValInput_'+index" maxlength="10" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Nombre">
+                                    <input @keyup.enter="saveVal(index, user.user_id)" @keyup.esc="newVal = ''" :id="'newValInput_'+index" maxlength="10" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Nombre">
                                   </div>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-12">
                                   <br>
                                   <span class="reg-stars">
                                     <span @click="newStars = indexs" :id="'newStaram_'+indexs" @mouseover="setleveln('a', indexs, 1)"  @mouseout="setleveln('a', indexs, 0)" v-for="(star, indexs) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
-                                  </span>
-                                  <div class="right-30" style="margin-top: -30px;">
-                                    <button class="btn btn-link"><i class="fas fa-times danger"></i></button>
-                                    <button @click="saveVal(index, user.user_id)" class="btn btn-link"><i class="fas fa-check success"></i></button>
+                                  </span> <br>
+                                  <div>
+                                    <button class="btn btn-link" @click="newVal = ''"><i class="fas fa-times danger"></i></button>
+                                    <button @click="saveVal(index, user.user_id)" class="btn btn-link"><i class="fas fa-check success success"></i></button>
                                   </div>
                                 </div>
                               </div>
@@ -97,7 +97,7 @@
                             </div>
                             <div v-if="editPic === magic+'_'+index " style="position: absolute; right: 0; bottom: 0; height: auto;">
                               <button @click="editUser(index, 0 , 'pic')" class="btn btn-light"><i class="fas fa-times danger"></i></button>
-                              <button @click="updateUser(user.user_id, index, 'pic')" class="btn btn-light"><i class="fas fa-check success"></i></button>
+                              <button @click="updateUser(user.user_id, index, 'pic')" class="btn btn-light"><i class="fas fa-check success success"></i></button>
                             </div>
                             <input @change="fileChange($event, index)" :id="'fileInput_'+index" type="file" class="hidden">
                           </div>
@@ -113,7 +113,7 @@
                             <input :value="user.name" type="text" class="form-control">
                             <div class="edit-btns">
                               <button @click="editUser(index, 0, 'name')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                              <button @click="updateUser(user.user_id, index, 'name')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                              <button @click="updateUser(user.user_id, index, 'name')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                             </div>
                           </div>
 
@@ -135,7 +135,7 @@
                             <input :value="user.user.folio" type="text" class="form-control">
                             <div class="edit-btns">
                               <button @click="editUser(index, 0, 'folio')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                              <button @click="updateUser(user.user_id, index, 'folio')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                              <button @click="updateUser(user.user_id, index, 'folio')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                             </div>
                           </div>
                         </div>
@@ -174,7 +174,7 @@
 
 
                           <span style="float: right; padding: 10px;" @click="editCat = false"><i class="fas fa-times danger"></i></span>
-                          <span style="float: right; padding: 10px;" @click="updateUser(user.user_id, index, 'cat')"><i class="fas fa-check success"></i></span>
+                          <span style="float: right; padding: 10px;" @click="updateUser(user.user_id, index, 'cat')"><i class="fas fa-check success success"></i></span>
                         </div>
                       </div>
                       <div v-if="editAp !== magic+'_'+index" class="row">
@@ -191,7 +191,7 @@
                             <input :value="user.telefono" type="text" class="form-control">
                             <div class="edit-btns">
                               <button @click="editUser(index, 0, 'tel')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                              <button @click="updateUser(user.user_id, index, 'tel')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                              <button @click="updateUser(user.user_id, index, 'tel')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                             </div>
                           </div>
                         </div>
@@ -203,7 +203,7 @@
                             <input :value="user.celular" type="text" class="form-control">
                             <div class="edit-btns">
                               <button @click="editUser(index, 0, 'cel')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                              <button @click="updateUser(user.user_id, index, 'cel')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                              <button @click="updateUser(user.user_id, index, 'cel')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                             </div>
                           </div>
                         </div>
@@ -214,10 +214,10 @@
                             <input :id="'input_ap_'+index" type="text" class="form-control" :value="user.apellido_p">
                             <input :id="'input_am_'+index" type="text" class="form-control" :value="user.apellido_m">
                             <div class="input-group-prepend">
-                              <button @click="editUser(index, 0, magic)" class="btn btn-danger" ><i class="fas fa-times"></i></button>
+                              <button @click="editUser(index, 0, magic)" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
                             </div>
                             <div class="input-group-prepend">
-                              <button @click="updateUser(user.user_id, index, magic)" class="btn btn-success" ><i class="fas fa-check"></i></button>
+                              <button @click="updateUser(user.user_id, index, magic)" class="btn btn-link" ><i class="fas fa-check success"></i></button>
                             </div>
                           </div>
                         </div>
@@ -243,10 +243,10 @@
                             <input v-if="magic === 'tw'" id="socialInput" type="text" class="form-control" :value="user.tw">
                             <input v-if="magic === 'in'" id="socialInput" type="text" class="form-control" :value="user.in">
                             <div class="input-group-prepend">
-                              <button @click="editUser(index, 0, magic)" class="btn btn-danger" ><i class="fas fa-times"></i></button>
+                              <button @click="editUser(index, 0, magic)" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
                             </div>
                             <div class="input-group-prepend">
-                              <button @click="updateUser(user.user_id, index, magic)" class="btn btn-success" ><i class="fas fa-check"></i></button>
+                              <button @click="updateUser(user.user_id, index, magic)" class="btn btn-link" ><i class="fas fa-check success"></i></button>
                             </div>
                           </div>
                         </div>
@@ -263,7 +263,7 @@
                         <input :value="user.website" type="text" class="form-control">
                         <div class="edit-btns">
                           <button @click="editUser(index, 0, 'web')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                          <button @click="updateUser(user.user_id, index, 'web')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                          <button @click="updateUser(user.user_id, index, 'web')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                         </div>
                       </div>
                     </div>
@@ -278,7 +278,7 @@
                         </select>
                         <div class="edit-btns">
                           <button @click="editUser(index, 0, 'pais')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                          <button @click="updateUser(user.user_id, index, 'pais')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                          <button @click="updateUser(user.user_id, index, 'pais')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                         </div>
                       </div>
                     </div>
@@ -290,21 +290,21 @@
                         <input :value="user.ciudad" type="text" class="form-control">
                         <div class="edit-btns">
                           <button @click="editUser(index, 0, 'cd')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                          <button @click="updateUser(user.user_id, index, 'cd')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                          <button @click="updateUser(user.user_id, index, 'cd')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                         </div>
                       </div>
                     </div>
                     <div class="col" :class="{overflowv: idiomasResults}">
 
                       <div v-if="editI === magic+'_'+index">
-                        <span @click="setLang(index, idioma.nombre, 0)" class="user-lang del-idioma" v-for="(idioma, index) in idiomas"><b><i class="fas fa-times"></i></b> {{idioma}}</span>
+                        <span @click="setLang(index, idioma.nombre, 0)" class="user-lang del-idioma" v-for="(idioma, index) in idiomas"><b><i class="fas fa-times danger"></i></b> {{idioma}}</span>
                         <div class="input-group">
                           <input @keyup="searchIdioma" type="text" class="form-control" placeholder="Agregar idioma" v-model="idioma">
                           <div class="input-group-prepend">
-                            <button @click="editI = false" class="btn btn-danger" ><i class="fas fa-times"></i></button>
+                            <button @click="editI = false" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
                           </div>
                           <div class="input-group-prepend">
-                            <button @click="updateUser(user.user_id, index, 'idiomas')" class="btn btn-success" ><i class="fas fa-check"></i></button>
+                            <button @click="updateUser(user.user_id, index, 'idiomas')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
                           </div>
                         </div>
                         <transition name="fade">
@@ -339,7 +339,7 @@
                         <textarea v-if="magic === 'cv'" :value="user.resumen" type="text" class="form-control"></textarea>
                         <div style="float: right">
                           <button @click="editUser(index, 0, magic)" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                          <button @click="updateUser(user.user_id, index, magic)" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                          <button @click="updateUser(user.user_id, index, magic)" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                         </div>
                       </div>
                     </div>
@@ -369,7 +369,7 @@
                           </div>
                           <div v-if="editPic === magic+'_'+index " style="position: absolute; right: 0; bottom: 0; height: auto;">
                             <button @click="editEmpresa(index, 0 , 'pic')" class="btn btn-light"><i class="fas fa-times danger"></i></button>
-                            <button @click="updateEmpresa(user.user_id, index, 'pic')" class="btn btn-light"><i class="fas fa-check success"></i></button>
+                            <button @click="updateEmpresa(user.user_id, index, 'pic')" class="btn btn-light"><i class="fas fa-check success success"></i></button>
                           </div>
                           <input @change="fileChangem($event, index)" :id="'fileInput_'+index" type="file" class="hidden">
                         </div>
@@ -383,7 +383,7 @@
                           <input maxLength="6" :value="user.user.folio" type="text" class="form-control">
                           <div class="edit-btns">
                             <button @click="editEmpresa(index, 0, 'folio')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                            <button @click="updateEmpresa(user.user_id, index, 'folio')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                            <button @click="updateEmpresa(user.user_id, index, 'folio')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                           </div>
                         </div>
                       </div>
@@ -427,7 +427,7 @@
                           <input :value="user.name" type="text" class="form-control">
                           <div class="edit-btns">
                             <button @click="editEmpresa(index, 0, 'name')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                            <button @click="updateEmpresa(user.user_id, index, 'name')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                            <button @click="updateEmpresa(user.user_id, index, 'name')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                           </div>
                         </div>
 
@@ -441,7 +441,7 @@
                           <input :value="user.telefono" type="text" class="form-control">
                           <div class="edit-btns">
                             <button @click="editEmpresa(index, 0, 'tel')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                            <button @click="updateEmpresa(user.user_id, index, 'tel')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                            <button @click="updateEmpresa(user.user_id, index, 'tel')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                           </div>
                         </div>
 
@@ -455,7 +455,7 @@
                           <input :value="user.website" type="text" class="form-control">
                           <div class="edit-btns">
                             <button @click="editEmpresa(index, 0, 'web')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                            <button @click="updateEmpresa(user.user_id, index, 'web')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                            <button @click="updateEmpresa(user.user_id, index, 'web')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                           </div>
                         </div>
                       </div>
@@ -481,10 +481,10 @@
                           <input v-if="magic === 'tw'" id="socialInput" type="text" class="form-control" :value="user.tw">
                           <input v-if="magic === 'in'" id="socialInput" type="text" class="form-control" :value="user.in">
                           <div class="input-group-prepend">
-                            <button @click="editEmpresa(index, 0, magic)" class="btn btn-danger" ><i class="fas fa-times"></i></button>
+                            <button @click="editEmpresa(index, 0, magic)" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
                           </div>
                           <div class="input-group-prepend">
-                            <button @click="updateEmpresa(user.user_id, index, magic)" class="btn btn-success" ><i class="fas fa-check"></i></button>
+                            <button @click="updateEmpresa(user.user_id, index, magic)" class="btn btn-link" ><i class="fas fa-check success"></i></button>
                           </div>
                         </div>
                       </div>
@@ -504,7 +504,7 @@
                       </select>
                       <div class="edit-btns">
                         <button @click="editEmpresa(index, 0, 'pais')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                        <button @click="updateEmpresa(user.user_id, index, 'pais')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                        <button @click="updateEmpresa(user.user_id, index, 'pais')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                       </div>
                     </div>
                   </div>
@@ -516,21 +516,21 @@
                       <input :value="user.ciudad" type="text" class="form-control">
                       <div class="edit-btns">
                         <button @click="editEmpresa(index, 0, 'cd')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                        <button @click="updateEmpresa(user.user_id, index, 'cd')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                        <button @click="updateEmpresa(user.user_id, index, 'cd')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                       </div>
                     </div>
                   </div>
                   <div class="col" :class="{overflowv: idiomasResults}">
 
                     <div v-if="editI === magic+'_'+index">
-                      <span @click="setLang(index, idioma.nombre, 0)" class="user-lang del-idioma" v-for="(idioma, index) in idiomas"><b><i class="fas fa-times"></i></b> {{idioma}}</span>
+                      <span @click="setLang(index, idioma.nombre, 0)" class="user-lang del-idioma" v-for="(idioma, index) in idiomas"><b><i class="fas fa-times danger"></i></b> {{idioma}}</span>
                       <div class="input-group">
                         <input @keyup="searchIdioma" type="text" class="form-control" placeholder="Agregar idioma" v-model="idioma">
                         <div class="input-group-prepend">
-                          <button @click="editI = false" class="btn btn-danger" ><i class="fas fa-times"></i></button>
+                          <button @click="editI = false" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
                         </div>
                         <div class="input-group-prepend">
-                          <button @click="updateEmpresa(user.user_id, index, 'idiomas')" class="btn btn-success" ><i class="fas fa-check"></i></button>
+                          <button @click="updateEmpresa(user.user_id, index, 'idiomas')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
                         </div>
                       </div>
                       <transition name="fade">
@@ -565,7 +565,7 @@
                       <textarea v-if="magic === 'cv'" :value="user.descripcion" type="text" class="form-control"></textarea>
                       <div style="float: right">
                         <button @click="editEmpresa(index, 0, magic)" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                        <button @click="updateEmpresa(user.user_id, index, magic)" class="btn btn-link" ><i class="fas fa-check success"></i></button>
+                        <button @click="updateEmpresa(user.user_id, index, magic)" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
                       </div>
                     </div>
                   </div>

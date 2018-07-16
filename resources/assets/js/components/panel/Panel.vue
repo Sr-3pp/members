@@ -6,7 +6,7 @@
           </div>
           <div class="col text-center" @click="setSection(2)" :class="{active : members}">
             <button>
-              <span class="badge badge-danger">2</span>  Miembros <i class="fas fa-users"></i>
+              Miembros <i class="fas fa-users"></i>
             </button>
           </div>
           <div class="col text-center" @click="setSection(3)" :class="{active : programas}">

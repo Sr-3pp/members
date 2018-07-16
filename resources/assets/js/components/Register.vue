@@ -20,7 +20,7 @@
           </div>
           <div class="col-lg-6">
             <transition name="fade">
-              <span v-if="alertFolio" class="must">Este campo es obligatorio</span>
+              <span v-if="alertFolio" class="must">{{textFolio}}</span>
             </transition>
             <input v-model="folio" type="text" class="form-control pull-right" placeholder="Folio:">
           </div>
@@ -338,6 +338,8 @@
             alertEd: false,
             alertPass: false,
             alertConfirm: false,
+
+            textFolio: 'Este campo es obligatorio'
           }
         },
         methods: {
@@ -516,7 +518,7 @@
             if (this.capacitador) {
               this.categorias.push(3)
             }
-            if (this.folio === ''  || this.nombre === '' || this.apellido_p === '' || this.email === '' || this.telefono === '' || this.membresia === '' || this.pais === '' || this.categorias.length === 0 || this.cv === '' || this.educacion === '' || this.password === '' || this.confirm === '') {
+            if (this.folio === ''  || this.nombre === '' || this.apellido_p === '' || this.email === '' || this.membresia === '' || this.pais === '' || this.paisr === '' || this.categorias.length === 0 || this.cv === '' || this.educacion === '' || this.password === '' || this.confirm === '') {
               if (this.folio === '') {
                 this.alertFolio = true
               }else{
@@ -536,11 +538,6 @@
                 this.alertMail = true
               }else{
                 this.alertMail = false
-              }
-              if (this.telefono === '') {
-                this.alertTel = true
-              }else{
-                this.alertTel = false
               }
               if (this.membresia === '') {
                 this.alertMemb = true
@@ -636,14 +633,22 @@
                   formData.append('file', this.picture);
 
                   axios.post('/new-membrer', formData).then(function(member){
-                    if (!este.admin) {
-                      este.$bus.$emit('login', {email: este.email, password: este.password});
+                    if (member.data !== 99) {
+                      este.alertFolio = false
+                      if (!este.admin) {
+                        este.$bus.$emit('login', {email: este.email, password: este.password});
+                      }else{
+                        este.$bus.$emit('createdUser', {user: member.data});
+                      }
                     }else{
-                      este.$bus.$emit('createdUser', {user: member.data});
+                      este.textFolio = 'Este folio ya esta registrado'
+                      este.alertFolio = true
                     }
                   }).then(function(){
-                    $('.modal-backdrop').css('display', 'none')
-                    $('#registerModal').modal('hide');
+                    if (!este.alertFolio) {
+                      $('.modal-backdrop').css('display', 'none')
+                      $('#registerModal').modal('hide');
+                    }
                   });
                 }else{
                   this.alertMail = true

@@ -426,12 +426,11 @@ padding: 0;
 }
 .social-input span{
   position: absolute;
-  bottom: 19px;
+  top: 10px;
   font-weight: bold;
+  left: 10px;
 }
-.social-input input{
-  padding-left: 145px;
-}
+
 .contact-list{
   padding: 0;
   width: 100%;

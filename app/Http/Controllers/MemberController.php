@@ -19,12 +19,17 @@ class MemberController extends Controller
       $users = User::all();
       //$folio = count($users)+1;
       //$folio = '0000'.count($users)+1;
-      $user= User::create([
-        'folio' => $r->folio,
-        'email' => $r->email,
-        'tipo' => 0,
-        'password' => Hash::make($r->password)
-      ]);
+      try {
+        $user= User::create([
+          'folio' => $r->folio,
+          'email' => $r->email,
+          'tipo' => 0,
+          'password' => Hash::make($r->password)
+        ]);
+      } catch (\Exception $e) {
+        return 99;
+      }
+
 
       foreach (json_decode($r->categorias) as $key => $categoria) {
         MemberCat::create([
