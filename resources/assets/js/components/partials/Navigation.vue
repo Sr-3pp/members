@@ -134,10 +134,13 @@
           });
         },
         perfil(){
-          window.location.href= '/perfil/'+this.user.folio
+          var name = this.user.perfil.name+'-'+this.user.perfil.apellido_p
+          name = name.replace(/\s/g, '-');
+          window.location.href= '/perfil/'+this.user.folio+'/'+name.toLowerCase()
         },
         perfile(){
-          window.location.href= '/empresa/'+this.user.folio
+          var name = this.user.empresa.name
+          window.location.href= '/empresa/'+this.user.folio+'/'+name.toLowerCase()
         },
         showMenu(sw){
           if (sw === 0) {
