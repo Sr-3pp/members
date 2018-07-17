@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 v-if="!admin" class="modal-title" id="exampleModalLabel">
-          <span>Registrate</span><br>
+          <span>Regístrate</span><br>
           <small>(Recuerda que tu perfil estará en línea hasta realizar el pago de tu membresía.)</small>
         </h5>
         <h5 v-else class="modal-title" id="exampleModalLabel">
