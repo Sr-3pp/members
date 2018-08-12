@@ -411,6 +411,12 @@ padding: 0;
 .overflowv{
   overflow: visible!important;
 }
+.overflow-y-scroll{
+  overflow-y: scroll!important;
+}
+.full-height{
+  height: 100vh!important;
+}
 .membresias img{
   cursor: pointer;
   border-radius: 50%;
@@ -476,6 +482,13 @@ padding: 0;
   margin-top: -45px;
   margin-left: 0px;
   border: solid #FFF;
+}
+.result-member{
+  margin: 50px auto;
+}
+.search-member-btn{
+  border-top-left-radius: 0!important;
+  border-top-right-radius: 0!important;
 }
 .navigation ul li{
   list-style: none;
@@ -575,6 +588,19 @@ padding: 0;
   border: none;
   color: #FFF;
 cursor: pointer;
+}
+
+.loader{
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.loader div{
+  width: 100%;
+  text-align: center;
+  color: #FFF;
+  font-size: 20px;
 }
 
 

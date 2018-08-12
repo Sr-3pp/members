@@ -1,9 +1,14 @@
 <template>
-<div class="parallax">
+<div id="results" class="parallax">
   <parallax :parallax="true" :speedFactor="0.5">
     <img src="/media/img/recursos/parallax-bg.png" alt="very cool bg">
   </parallax>
-  <div class="content">
+  <div v-if="loading" class="content loader">
+    <div>
+      Buscando &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-spiner fa-spin"></i>
+    </div>
+  </div>
+  <div v-else class="content" :class="{'overflow-y-scroll': search}">
     <div v-if="!search" class="text-center">
       <h3 class="futura-light blanco">Ingresa los datos del miembro ICCN para iniciar la busqueda</h3><br>
       <img width="80%" style="max-width: 800px;" src="https://static.wixstatic.com/media/b258fc_524e497a8fd94c96bc704c826cfd9a9f~mv2.png/v1/fill/w_673,h_264,al_c,usm_0.66_1.00_0.01/b258fc_524e497a8fd94c96bc704c826cfd9a9f~mv2.png" alt="iccn_map">
@@ -38,9 +43,9 @@
       </div>
     </div>
     <div class="container" v-else>
-      <button @click="search = false" style="float:right" class="btn btn-danger">Regresar</button>
+      <button @click="home()" style="float:right" class="search-member-btn btn btn-danger"><i class="fas fa-home"></i></button>
       <div class="row" style="height: -webkit-fill-available">
-        <div  class="col-md-6" v-for="member in results">
+        <div  class="col-md-6 result-member" v-for="member in results">
           <div class="card" :class="{conscard: member.categoria_id === 1, coachcard: member.categoria_id === 2, capacard: member.categoria_id === 3, empresacard: member.categoria_id === 4, programcard: member.categoria_id === 5}">
             <div class="card-header">
               <div class="row">
@@ -133,20 +138,28 @@ import Parallax from 'vue-parallaxy'
             paisid: 0,
             nombre: '',
             search: false,
-            results: []
+            results: [],
+            loading: false
           }
         },
         methods: {
           searchFor(){
             var este = this;
-
-              this.search = true
-
+            this.loading = true
                 axios.post('/search', {nombre: this.nombre, pais: this.paisid, categoria: this.categoria}).then(function(results){
                   este.results = results.data
+                }).then(function(){
+                  este.search = true
+                  este.loading = false
+                  window.location.href = '#results'
+                  $(".Masthead").addClass('full-height')
                 });
 
 
+          },
+          home(){
+            this.search = false
+            $(".Masthead").removeClass('full-height')
           },
           searchPais(){
             var este = this;
