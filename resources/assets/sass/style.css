@@ -261,7 +261,7 @@ textarea {
 }
 .top-links li{
   list-style: none;
-  padding: 5px 20px;
+  padding: 5px 5px;
   float: right;
 }
 .top-links button, .navigation a{
