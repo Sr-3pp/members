@@ -51,6 +51,9 @@
     margin-bottom: -20px;
     padding: 10px 30px;
   }
+  .no-padding{
+    padding: 0 10px!important;
+  }
   .nav-btns-mobile{
     width: 70%;
     min-width: 200px;
@@ -99,6 +102,6 @@
     margin-bottom: 50px;
   }
   #memberSection h2, #memberSection h3{
-    color: #212529!important;
+    color: #031e39!important;
   }
 }
