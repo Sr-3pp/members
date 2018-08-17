@@ -18,6 +18,20 @@
   list-style: none;
   float: right;
 }
+.right-30{
+  position: absolute;
+  right: 30px!important;
+}
+.right{
+  position: absolute;
+  right: 0;
+}
+.editvalorations{
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
 .nav-btns li a{
   color: #FFF;
   font-size: 18px;
@@ -92,6 +106,9 @@ textarea {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.white{
+  color: #FFF!important;
 }
 .uploadPicPrev{
   height: 100px;
@@ -258,7 +275,7 @@ textarea {
 }
 .top-links li{
   list-style: none;
-  padding: 5px 20px;
+  padding: 5px 5px;
   float: right;
 }
 .top-links button, .navigation a{
@@ -270,6 +287,7 @@ textarea {
 .wedit{
   display: none!important;
 }
+
 .user-card{
   padding: 20px;
   border-radius: 20px;
@@ -279,6 +297,8 @@ textarea {
   color: #FFF;
   -webkit-transition: all .2s ease;
   transition: all .2s ease;
+  position: relative;
+  overflow: hidden;
 }
 .user-card:hover{
   -webkit-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.8);
@@ -325,6 +345,23 @@ textarea {
 }
 .no-padding{
   padding: 0!important;
+}
+.btn-searchm{
+  background: #383737;
+  color: #FFF;
+  font-weight: bold;
+}
+.pos-relative{
+  position: relative!important;
+}
+.skillsEdit{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2;
 }
 .span-cat{
   padding: 5px 10px;
@@ -391,6 +428,12 @@ padding: 0;
 .overflowv{
   overflow: visible!important;
 }
+.overflow-y-scroll{
+  overflow-y: scroll!important;
+}
+.full-height{
+  height: 100vh!important;
+}
 .membresias img{
   cursor: pointer;
   border-radius: 50%;
@@ -407,12 +450,11 @@ padding: 0;
 }
 .social-input span{
   position: absolute;
-  bottom: 19px;
+  top: 10px;
   font-weight: bold;
+  left: 10px;
 }
-.social-input input{
-  padding-left: 145px;
-}
+
 .contact-list{
   padding: 0;
   width: 100%;
@@ -458,6 +500,13 @@ padding: 0;
   margin-top: -45px;
   margin-left: 0px;
   border: solid #FFF;
+}
+.result-member{
+  margin: 50px auto;
+}
+.search-member-btn{
+  border-top-left-radius: 0!important;
+  border-top-right-radius: 0!important;
 }
 .navigation ul li{
   list-style: none;
@@ -560,6 +609,23 @@ padding: 0;
 cursor: pointer;
 }
 
+.loader{
+  height: 70vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+.loader div{
+  width: 100%;
+  text-align: center;
+  color: #FFF;
+  font-size: 20px;
+}
+
 
 
 .fade-enter-active, .fade-leave-active {
@@ -573,6 +639,7 @@ cursor: pointer;
 @media only screen and (max-width: 760px){
   .category-list li{
     width: 100%;
+    margin: 10px auto;
   }
   .desk-disp-2{
     display: none;
@@ -615,14 +682,26 @@ cursor: pointer;
     display: none;
   }
   .Masthead{
-    height: 105vh!important;
+    /*height: 105vh!important;*/
   }
-
+  .content h3{
+    margin-top: 20px;
+    margin-bottom: -20px;
+    font-size: 31px;
+    padding: 10px 30px;
+  }
+  .no-padding{
+    padding: 0 10px!important;
+  }
   .nav-btns-mobile{
-    width: 25%;
+    width: 70%;
     min-width: 200px;
     height: 100vh;
-    background: rgba(0,0,0, .8);
+    background: rgba(14, 101, 157, .5);
+    background-image: url('/media/img/recursos/red.png');
+    background-repeat-x: no-repeat;
+    background-position: 0px 0px;
+    background-size: contain;
     position: fixed;
     left: 0;
     z-index: 11;
@@ -641,23 +720,33 @@ cursor: pointer;
   }
   .nav-btns-mobile li{
     list-style: none;
-    text-align: right;
+    text-align: center;
     height: 16vh;
     cursor: pointer;
-    border-top: solid thin #FFF;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .nav-btns-mobile li:hover{
-    background: #FFF;
+    background: rgba(255, 255, 255, 0.47);
   }
   .nav-btns-mobile li:hover a{
     color: #222;
     text-decoration: none;
   }
   .nav-btns-mobile li a{
-    text-align: right;
     color: #FFF;
-    font-size: 14px;
-    padding: 5px 10px;
+    font-size: 20px;
+    width: 100%;
+  }
+  .parallax{
+    margin-bottom: 50px;
+  }
+  #memberSection h2, #memberSection h3{
+    color: #031e39!important;
   }
 }
 /*!
