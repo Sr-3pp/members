@@ -86,7 +86,7 @@
               </div>
             </div>
             <div class="card-body">
-              <div class="card-text text-center">
+              <div class="card-text text-center table-responsive">
                 <table class="table">
                   <tr>
                     <th class="text-right">Folio</th>
