@@ -270,6 +270,9 @@ textarea {
   background: none;
   cursor: pointer;
 }
+.mb-20{
+  margin-bottom: 20px;
+}
 .wedit{
   display: none!important;
 }
@@ -490,6 +493,12 @@ padding: 0;
 .search-member-btn{
   border-top-left-radius: 0!important;
   border-top-right-radius: 0!important;
+  position: absolute;
+  right: 0px;
+  z-index: 99;
+}
+#memberCards h3{
+  color: #FFF!important;
 }
 .navigation ul li{
   list-style: none;
@@ -534,10 +543,7 @@ padding: 0;
   float: left;
 }
 .valoracion-stars{
-  position: absolute;
-  top: 0;
   left: 200px;
-  padding-top: 10px;
   color: #00a7ff;
 }
 .valoracion-stars span{

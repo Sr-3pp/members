@@ -11,13 +11,13 @@
                 <form v-else style="width: 80%; margin: 0 auto;">
                   <br>
                   <div class="row">
-                    <div class="col text-right">
+                    <div class="col-sm-4">
                       <h4>Busca un miembro:</h4>
                     </div>
-                    <div class="col">
+                    <div class="col-sm-4 mb-20">
                       <input v-model="nombre" @keyup="search()" type="text" class="form-control" placeholder="Nombre">
                     </div>
-                    <div class="col" style="position: relative">
+                    <div class="col-sm-4" style="position: relative">
                       <input v-model="pais" type="text" class="form-control" placeholder="País" @keyup="searchPais()">
                       <transition name="fade">
                         <ul v-if="searchCountry" class="input-results list-group">
@@ -35,21 +35,23 @@
                     <div class="card" :class="{conscard: consultor, coachcard: coach, capacard: capacitador, empresacard: empresa, programcard: programa}">
                       <div class="card-header">
                         <div class="row">
-                          <div class="col-3">
+                          <div class="col-md-3">
                             <div v-if="member.perfil" class="member">
-                              <div class="member-picture" :style="'background: url(/storage/'+member.perfil.foto+') center no-repeat'"></div>
-                              <div class="member-flag" :style="'background: url(/storage/flags/'+member.perfil.pais.id+'.png) center no-repeat'"></div>
+                              <div class="mobile-member">
+                                <div class="member-picture" :style="'background: url(/storage/'+member.perfil.foto+') center no-repeat'"></div>
+                                <div class="member-flag" :style="'background: url(/storage/flags/'+member.perfil.pais.id+'.png) center no-repeat'"></div>
+                              </div>
                             </div>
                             <div v-else class="member">
                               <div class="member-picture" :style="'background: url(/storage/'+member.empresa.foto+') center no-repeat'"></div>
                               <div class="member-flag" :style="'background: url(/storage/flags/'+member.empresa.pais.id+'.png) center no-repeat'"></div>
                             </div>
                           </div>
-                          <div class="col-9 text-right">
+                          <div class="col-md-9 text-right">
                             <div class="row">
                               <div class="col-md-10" style="padding-top:3px;">
-                                <h3 v-if="member.perfil">{{member.perfil.name+' '+member.perfil.apellido_p+' '+member.perfil.apellido_m}}</h3>
-                                <h3 v-else>{{member.empresa.name}}</h3>
+                                <h3 class="white" v-if="member.perfil">{{member.perfil.name+' '+member.perfil.apellido_p+' '+member.perfil.apellido_m}}</h3>
+                                <h3 class="white" v-else>{{member.empresa.name}}</h3>
                               </div>
                               <div class="col-md-2">
                                 <img v-if="selected === 1" width="40" src="/media/img/categorias/consultor.png" alt="categoria_icon">

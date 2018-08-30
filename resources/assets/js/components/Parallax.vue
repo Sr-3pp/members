@@ -51,13 +51,15 @@
               <div class="row">
                 <div class="col-sm-3">
                   <div class="member">
-                    <div class="member-picture" :style="'background: url(/storage/'+member.foto+') center no-repeat'"></div>
-                    <div class="member-flag" :style="'background: url(/storage/flags/'+member.pais.id+'.png) center no-repeat'"></div>
+                    <div class="mobile-member">
+                      <div class="member-picture" :style="'background: url(/storage/'+member.foto+') center no-repeat'"></div>
+                      <div class="member-flag" :style="'background: url(/storage/flags/'+member.pais.id+'.png) center no-repeat'"></div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-sm-9 text-right">
                   <div class="row">
-                    <div class="col-md-10" style="padding-top:3px;">
+                    <div class="col-md-10">
                       <h3 v-if="member.apellido_p">{{member.name+' '+member.apellido_p+' '+member.apellido_m}}</h3>
                       <h3 v-else>{{member.name}}</h3>
                     </div>
@@ -105,7 +107,7 @@
                     <td class="text-left">{{member.website}}</td>
                   </tr>
                 </table>
-                <a v-if="member.categoria_id !== 4" class="btn btn-primary" :href="'/perfil/'+member.user.folio">Más información</a>
+                <a v-if="member.categoria_id !== 4" class="btn btn-primary" :href="'/perfil/'+member.user.folio+'/'+member.perfil.nombre+'-'+member.perfil.apellido_p+'-'+member.perfil.apellido_m">Más información</a>
                 <a v-else class="btn btn-primary" :href="'/empresa/'+member.user.folio">Más información</a>
               </div>
             </div>

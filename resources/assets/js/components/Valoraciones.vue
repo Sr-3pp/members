@@ -7,9 +7,15 @@
             <div class="col-md-8 center-content">
               <ul class="valoracion-list">
                 <li v-for="valoracion in vals">
-                  {{valoracion.area}}
-                  <div class="valoracion-stars">
-                    <span v-for="val in valoracion.porcentaje"><i class="fas fa-star"></i></span>
+                  <div class="row">
+                    <div class="col-md-4">
+                      {{valoracion.area}}
+                    </div>
+                    <div class="col-md-8">
+                      <div class="valoracion-stars">
+                        <span v-for="val in valoracion.porcentaje"><i class="fas fa-star"></i></span>
+                      </div>
+                    </div>
                   </div>
                 </li>
               </ul>

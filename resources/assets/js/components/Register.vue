@@ -28,43 +28,43 @@
         <hr>
         <form>
           <div class="row">
-            <div class="col">
+            <div class="col-sm-4 mb-20">
               <transition name="fade">
                 <span v-if="alertName" class="must">Este campo es obligatorio</span>
               </transition>
               <input maxlength="30" v-model="nombre" type="text" class="form-control" placeholder="Nombre*">
             </div>
-            <div class="col">
+            <div class="col-sm-4 mb-20">
               <transition name="fade">
                 <span v-if="alertAp" class="must">Este campo es obligatorio</span>
               </transition>
               <input maxlength="30" v-model="apellido_p" type="text" class="form-control" placeholder="Apellido paterno *">
             </div>
-            <div class="col">
+            <div class="col-sm-4">
               <input maxlength="30" v-model="apellido_m" type="text" class="form-control" placeholder="Apellido materno">
             </div>
           </div>
           <br>
           <div class="row">
-            <div class="col">
+            <div class="col-sm-4 mb-20">
               <transition name="fade">
                 <span v-if="alertMail" class="must">{{alertMailText}}</span>
               </transition>
               <input maxlength="100" v-model="email" type="email" class="form-control" placeholder="E-mail*">
             </div>
-            <div class="col">
+            <div class="col-sm-4 mb-20">
               <transition name="fade">
                 <span v-if="alertTel" class="must">Este campo es obligatorio</span>
               </transition>
               <input maxlength="10" v-model="telefono" type="text" class="form-control" placeholder="Telefono *">
             </div>
-            <div class="col">
+            <div class="col-sm-4">
               <input maxlength="15" v-model="cel" type="text" class="form-control" placeholder="Cel.">
             </div>
           </div>
           <br>
           <div class="row">
-            <div class="col">
+            <div class="col-sm-4 mb-20">
               <transition name="fade">
                 <span v-if="alertMemb" class="must">Este campo es obligatorio</span>
               </transition>
@@ -76,7 +76,7 @@
                 <option value="profesional">Profesional</option>
               </select>
             </div>
-            <div class="col">
+            <div class="col-sm-4 mb-20">
               <transition name="fade">
                 <span v-if="alertPais" class="must">Este campo es obligatorio</span>
               </transition>
@@ -85,13 +85,13 @@
                 <option v-for="pais in paises" :value="pais.id">{{pais.nombre}}</option>
               </select>
             </div>
-            <div class="col">
+            <div class="col-sm-4">
               <input maxlength="25" v-model="ciudad" type="text" class="form-control" placeholder="Ciudad">
             </div>
           </div>
           <br>
           <div class="row">
-            <div class="col">
+            <div class="col-sm-4 mb-20">
               <transition name="fade">
                 <span v-if="alertPaisr" class="must">Este campo es obligatorio</span>
               </transition>
@@ -100,7 +100,7 @@
                 <option v-for="pais in paises" :value="pais.id">{{pais.nombre}}</option>
               </select>
             </div>
-            <div class="col">
+            <div class="col-sm-4 mb-20">
               <input maxlength="15" @keyup="searchLanguage" v-model="idioma" type="text" class="form-control" placeholder="Idiomas">
               <transition name="fade">
                 <ul v-if="languajes.length !== 0" class="list-group input-results">
@@ -112,7 +112,7 @@
           <transition name="fade">
             <div v-if="idiomas.length !== 0" class="row">
               <br>
-              <div class="col">
+              <div class="col-sm-4">
                   <ul class="languajes">
                     <li v-for="idioma in idiomas">
                       <span @click="delIdioma(idioma)" class="badge del-idioma"><i class="fas fa-times"></i></span>
@@ -124,13 +124,13 @@
           </transition>
           <br>
           <div class="row">
-            <div class="col">
+            <div class="col-sm-4 mb-20">
               <input maxlength="100" v-model="fb" type="text" class="form-control" placeholder="Facebook url">
             </div>
-            <div class="col">
+            <div class="col-sm-4 mb-20">
               <input maxlength="100" v-model="tw" type="text" class="form-control" placeholder="Twitter url">
             </div>
-            <div class="col">
+            <div class="col-sm-4">
               <input maxlength="100" v-model="lin" type="text" class="form-control" placeholder="Linkedin url">
             </div>
           </div>
@@ -139,35 +139,35 @@
         <h5>Selecciona 1 ó más categorias</h5>
         <br>
         <div class="row catSelector">
-          <div class="col text-center">
+          <div class="col-sm-4 text-center">
             <transition name="fade">
               <span v-if="alertCats" class="must">Selecciona almenos una categoría</span>
             </transition>
             <img :class="{activeCat : consultor}" @click="consultor ? consultor = false : consultor = true " width="90" src="/media/img/categorias/consultor.png" alt="consultor icon">
             <h4>Consultor</h4>
           </div>
-          <div class="col text-center">
+          <div class="col-sm-4 text-center">
             <img :class="{activeCat : coach}" @click="coach ? coach = false : coach = true " width="90" src="/media/img/categorias/coach.png" alt="coach icon">
             <h4>Coach</h4>
           </div>
-          <div class="col text-center">
+          <div class="col-sm-4 text-center">
             <img :class="{activeCat : capacitador}" @click="capacitador ? capacitador = false : capacitador = true " width="90" src="/media/img/categorias/capacitador.png" alt="capacitador icon">
             <h4>Capacitador</h4>
           </div>
         </div>
         <hr>
         <div class="row">
-          <div class="col text-center">
+          <div class="col-sm-4 text-center">
             <br>
             <h4>Áreas de expertise</h4>
           </div>
-          <div class="col text-center">
+          <div class="col-sm-4 text-center">
             <input maxlength="30" @keyup="validateVal(1)" v-model="area1" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 1">
             <span class="reg-stars">
               <span @click="level('a', index)" :id="'staram_'+index" @mouseover="setlevel('a', index, 1)"  @mouseout="setlevel('a', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
             </span>
           </div>
-          <div class="col">
+          <div class="col-sm-4">
             <input maxlength="30" @keyup="validateVal(2)" :disabled="area1 === '' || area1v === 0" v-model="area2" style="margin-bottom: 10px" type="twxt" class="form-control" placeholder="Área 2">
             <span class="reg-stars" v-if="area1 !== '' && area1v !== 0">
               <span @click="level('b', index)" :id="'starbm_'+index"  @mouseover="setlevel('b', index, 1)"  @mouseout="setlevel('b', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
@@ -179,7 +179,7 @@
         </div>
         <br>
         <div class="row">
-          <div class="col">
+          <div class="col-sm-4">
             <input maxlength="30" @keyup="validateVal(3)"  :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0" v-model="area3" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 3">
             <span class="reg-stars" v-if="area1 !== '' && area1v !== 0 && area2 !== '' && area2v !== 0">
               <span @click="level('c', index)" :id="'starcm_'+index" @mouseover="setlevel('c', index, 1)"  @mouseout="setlevel('c', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
@@ -188,7 +188,7 @@
               <span  v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
             </span>
           </div>
-          <div class="col">
+          <div class="col-sm-4">
             <input maxlength="30" @keyup="validateVal(4)" :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0 || area3 === '' || area3v === 0" v-model="area4" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 4">
             <span class="reg-stars" v-if="area1 !== '' && area1v !== 0 && area2 !== '' && area2v !== 0 && area3 !== '' && area3v !== 0">
               <span @click="level('d', index)" :id="'stardm_'+index"  @mouseover="setlevel('d', index, 1)"  @mouseout="setlevel('d', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
@@ -197,7 +197,7 @@
               <span  v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
             </span>
           </div>
-          <div class="col">
+          <div class="col-sm-4">
             <input maxlength="30" :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0 || area3 === '' || area3v === 0 || area4=== '' || area4v === 0" v-model="area5" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 5">
             <span class="reg-stars" v-if="area1 !== '' && area1v !== 0 && area2 !== '' && area2v !== 0 && area3 !== '' && area3v !== 0 && area4 !== '' && area4v !== 0">
               <span @click="level('e', index)" :id="'starem_'+index" @mouseover="setlevel('e', index, 1)"  @mouseout="setlevel('e', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
@@ -209,14 +209,14 @@
         </div>
         <hr>
         <div class="row">
-          <div class="col">
+          <div class="col-sm-6">
             <transition name="fade">
               <span v-if="alertCv" class="must">Este campo es obligatorio</span>
             </transition>
             <label>Resume tu CV *</label>
             <textarea style="height: 200px!important" v-model="cv" cols="30" rows="10" class="form-control"></textarea>
           </div>
-          <div class="col">
+          <div class="col-sm-6">
             <label>Educación *</label>
             <transition name="fade">
               <span v-if="alertEd" class="must">Este campo es obligatorio</span>
@@ -226,7 +226,7 @@
         </div>
         <hr>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-8 mb-20">
             <br>
             <div class="row">
               <div class="col">
