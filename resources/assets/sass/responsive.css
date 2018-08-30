@@ -19,6 +19,9 @@
     left: 65px;
     font-size: 8px;
   }
+  #memberCards .col-lg-6{
+    margin-bottom: 70px;
+  }
 }
 @media only screen and (max-width: 991px){
   #navToggle .desk{
