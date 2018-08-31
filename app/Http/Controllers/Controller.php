@@ -124,22 +124,73 @@ class Controller extends BaseController
 
       }
 
-
-      foreach ($results as $key => $resultado) {
-        if (count($resultados) !== 0) {
-          foreach ($resultados as $key2 => $value) {
-            if ($resultado->user_id === $value->user_id ) {
-              unset($resultados[$key2]);
-            }else{
-              array_push($resultados, $resultado);
+      if ($r->pais && $r->nombre !== null && $r->categoria !== 0) {
+        foreach ($results as $key => $resultado) {
+          if (count($resultados) !== 0) {
+            foreach ($resultados as $key2 => $value) {
+              if ($resultado->user_id === $value->user_id ) {
+                unset($resultados[$key2]);
+              }else{
+                array_push($resultados, $resultado);
+              }
             }
+          }else{
+            array_push($resultados, $resultado);
           }
-        }else{
-          array_push($resultados, $resultado);
         }
-      }
 
-      return $resultados;
+        return $resultados;
+      }else if($r->pais && $r->nombre !== null){
+        foreach ($results as $key => $resultado) {
+          if (count($resultados) !== 0) {
+            foreach ($resultados as $key2 => $value) {
+              if ($resultado->user_id === $value->user_id ) {
+                unset($resultados[$key2]);
+              }else{
+                array_push($resultados, $resultado);
+              }
+            }
+          }else{
+            array_push($resultados, $resultado);
+          }
+        }
+
+        return $resultados;
+      }else if ($r->categoria !== 0 && $r->nombre !== null) {
+        foreach ($results as $key => $resultado) {
+          if (count($resultados) !== 0) {
+            foreach ($resultados as $key2 => $value) {
+              if ($resultado->user_id === $value->user_id ) {
+                unset($resultados[$key2]);
+              }else{
+                array_push($resultados, $resultado);
+              }
+            }
+          }else{
+            array_push($resultados, $resultado);
+          }
+        }
+
+        return $resultados;
+      }else if($r->categoria !== 0 && $r->pais){
+        foreach ($results as $key => $resultado) {
+          if (count($resultados) !== 0) {
+            foreach ($resultados as $key2 => $value) {
+              if ($resultado->user_id === $value->user_id ) {
+                unset($resultados[$key2]);
+              }else{
+                array_push($resultados, $resultado);
+              }
+            }
+          }else{
+            array_push($resultados, $resultado);
+          }
+        }
+
+        return $resultados;
+      }else{
+        return $results;
+      }
     }
 
     public function test(){
