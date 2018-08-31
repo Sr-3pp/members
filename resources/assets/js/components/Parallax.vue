@@ -11,7 +11,7 @@
   <div v-else class="content" :class="{'overflow-y-scroll': search}">
     <div v-if="!search" class="text-center">
       <h3 class="futura-light blanco">Ingresa los datos del miembro ICCN para iniciar la búsqueda</h3><br>
-      <img class="desk-disp" width="80%" style="max-width: 800px;" src="https://static.wixstatic.com/media/b258fc_524e497a8fd94c96bc704c826cfd9a9f~mv2.png/v1/fill/w_673,h_264,al_c,usm_0.66_1.00_0.01/b258fc_524e497a8fd94c96bc704c826cfd9a9f~mv2.png" alt="iccn_map">
+      <img class="desk-disp" width="80%" style="max-width: 800px; margin:0 auto;" src="https://static.wixstatic.com/media/b258fc_524e497a8fd94c96bc704c826cfd9a9f~mv2.png/v1/fill/w_673,h_264,al_c,usm_0.66_1.00_0.01/b258fc_524e497a8fd94c96bc704c826cfd9a9f~mv2.png" alt="iccn_map">
       <hr>
       <div class="row">
         <div class="col-md-8 offset-md-2">
@@ -107,7 +107,7 @@
                     <td class="text-left">{{member.website}}</td>
                   </tr>
                 </table>
-                <a v-if="member.categoria_id !== 4" class="btn btn-primary" :href="'/perfil/'+member.user.folio+'/'+member.perfil.nombre+'-'+member.perfil.apellido_p+'-'+member.perfil.apellido_m">Más información</a>
+                <a v-if="member.categoria_id !== 4" class="btn btn-primary" :href="'/perfil/'+member.user.folio+'/'+member.name+'-'+member.apellido_p+'-'+member.apellido_m">Más información</a>
                 <a v-else class="btn btn-primary" :href="'/empresa/'+member.user.folio">Más información</a>
               </div>
             </div>
@@ -150,11 +150,11 @@ import Parallax from 'vue-parallaxy'
             this.loading = true
                 axios.post('/search', {nombre: this.nombre, pais: this.paisid, categoria: this.categoria}).then(function(results){
                   este.results = results.data
+                  $(".Masthead").addClass('full-height')
                 }).then(function(){
                   este.search = true
                   este.loading = false
                   window.location.href = '#results'
-                  $(".Masthead").addClass('full-height')
                 });
 
 

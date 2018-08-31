@@ -37,9 +37,8 @@ class Controller extends BaseController
       $resultados = [];
       $cats = MemberCat::all();
       if ($r->pais) {
-        $perfiles = Perfil::where('pais_id', $r->pais)->get();
+        $perfiles = Perfil::where('pais_id', $r->pais)->paginate(15);
         $empresas = Empresa::where('pais_id', $r->pais)->get();
-
         foreach ($perfiles as $key => $perfil) {
           $perfil->user;
           $perfil->pais;
