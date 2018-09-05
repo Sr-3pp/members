@@ -36,6 +36,42 @@ class Controller extends BaseController
       $results = [];
       $resultados = [];
       $cats = MemberCat::all();
+      if ($r->nombre !== null) {
+
+        $empresas = Empresa::search($r->nombre)->orderBy('name', 'ASC')->get();
+        foreach ($empresas as $key => $perfil) {
+          $perfil->user;
+          $perfil->pais;
+          $perfil->user->categorias;
+          foreach ($perfil->user->categorias as $key => $categoria) {
+            $categoria->categoria;
+          }
+          foreach ($cats as $key => $cat) {
+
+            if ($perfil->user_id === $cat->user_id) {
+              $perfil->categoria_id = $cat->categoria_id;
+            }
+          }
+          array_push($results, $perfil);
+        }
+        $perfiles = Perfil::search($r->nombre)->orderBy('name', 'ASC')->get();
+        foreach ($perfiles as $key => $perfil) {
+          $perfil->user;
+          $perfil->pais;
+          $perfil->user->categorias;
+          foreach ($perfil->user->categorias as $key => $categoria) {
+            $categoria->categoria;
+          }
+          foreach ($cats as $key => $cat) {
+
+            if ($perfil->user_id === $cat->user_id) {
+              $perfil->categoria_id = $cat->categoria_id;
+            }
+          }
+          array_push($results, $perfil);
+        }
+
+      }
       if ($r->pais) {
         $perfiles = Perfil::where('pais_id', $r->pais)->paginate(15);
         $empresas = Empresa::where('pais_id', $r->pais)->get();
@@ -80,17 +116,32 @@ class Controller extends BaseController
             $perfil->user;
             $perfil->pais;
             $perfil->user->categorias;
+            foreach ($cats as $key => $cat) {
+
+              if ($perfil->user_id === $cat->user_id) {
+                $perfil->categoria_id = $cat->categoria_id;
+              }
+            }
             array_push($results, $perfil);
           }
           $empresas = Empresa::where('user_id', $cat->user_id)->get();
           foreach ($empresas as $key => $perfil) {
-            $perfil->user->pais;
+            $perfil->user;
+            $perfil->pais;
+            $perfil->user->categorias;
+            foreach ($cats as $key => $cat) {
+
+              if ($perfil->user_id === $cat->user_id) {
+                $perfil->categoria_id = $cat->categoria_id;
+              }
+            }
             array_push($results, $perfil);
           }
         }
       }
-      if ($r->nombre !== null) {
 
+
+      if ($r->nombre !== null && $r->pais && $r->categoria !== 0) {
         $empresas = Empresa::search($r->nombre)->orderBy('name', 'ASC')->get();
         foreach ($empresas as $key => $perfil) {
           $perfil->user;
@@ -105,7 +156,7 @@ class Controller extends BaseController
               $perfil->categoria_id = $cat->categoria_id;
             }
           }
-          array_push($results, $perfil);
+          array_push($resultados, $perfil);
         }
         $perfiles = Perfil::search($r->nombre)->orderBy('name', 'ASC')->get();
         foreach ($perfiles as $key => $perfil) {
@@ -121,71 +172,139 @@ class Controller extends BaseController
               $perfil->categoria_id = $cat->categoria_id;
             }
           }
-          array_push($results, $perfil);
+          array_push($resultados, $perfil);
         }
 
-      }
-
-      if ($r->pais && $r->nombre !== null && $r->categoria !== 0) {
-        foreach ($results as $key => $resultado) {
-          if (count($resultados) !== 0) {
-            foreach ($resultados as $key2 => $value) {
-              if ($resultado->user_id === $value->user_id ) {
-                unset($resultados[$key2]);
-              }else{
-                array_push($resultados, $resultado);
-              }
-            }
-          }else{
-            array_push($resultados, $resultado);
+        foreach ($resultados as $key => $result) {
+          if ($result->pais_id !== $r->pais) {
+            unset($resultados[$key]);
+          }
+          if ($result->categoria_id !== $r->categoria) {
+            unset($resultados[$key]);
           }
         }
 
         return $resultados;
-      }else if($r->pais && $r->nombre !== null){
-        foreach ($results as $key => $resultado) {
-          if (count($resultados) !== 0) {
-            foreach ($resultados as $key2 => $value) {
-              if ($resultado->user_id === $value->user_id ) {
-                unset($resultados[$key2]);
-              }else{
-                array_push($resultados, $resultado);
-              }
+      }else if($r->nombre !== null && $r->pais){
+        $empresas = Empresa::search($r->nombre)->orderBy('name', 'ASC')->get();
+        foreach ($empresas as $key => $perfil) {
+          $perfil->user;
+          $perfil->pais;
+          $perfil->user->categorias;
+          foreach ($perfil->user->categorias as $key => $categoria) {
+            $categoria->categoria;
+          }
+          foreach ($cats as $key => $cat) {
+
+            if ($perfil->user_id === $cat->user_id) {
+              $perfil->categoria_id = $cat->categoria_id;
             }
-          }else{
-            array_push($resultados, $resultado);
+          }
+          array_push($resultados, $perfil);
+        }
+        $perfiles = Perfil::search($r->nombre)->orderBy('name', 'ASC')->get();
+        foreach ($perfiles as $key => $perfil) {
+          $perfil->user;
+          $perfil->pais;
+          $perfil->user->categorias;
+          foreach ($perfil->user->categorias as $key => $categoria) {
+            $categoria->categoria;
+          }
+          foreach ($cats as $key => $cat) {
+
+            if ($perfil->user_id === $cat->user_id) {
+              $perfil->categoria_id = $cat->categoria_id;
+            }
+          }
+          array_push($resultados, $perfil);
+        }
+
+        foreach ($resultados as $key => $result) {
+          if ($result->pais_id !== $r->pais) {
+            unset($resultados[$key]);
           }
         }
 
         return $resultados;
-      }else if ($r->categoria !== 0 && $r->nombre !== null) {
-        foreach ($results as $key => $resultado) {
-          if (count($resultados) !== 0) {
-            foreach ($resultados as $key2 => $value) {
-              if ($resultado->user_id === $value->user_id ) {
-                unset($resultados[$key2]);
-              }else{
-                array_push($resultados, $resultado);
-              }
+      }else if ($r->nombre !== null && $r->categoria !== 0) {
+        $empresas = Empresa::search($r->nombre)->orderBy('name', 'ASC')->get();
+        foreach ($empresas as $key => $perfil) {
+          $perfil->user;
+          $perfil->pais;
+          $perfil->user->categorias;
+          foreach ($perfil->user->categorias as $key => $categoria) {
+            $categoria->categoria;
+          }
+          foreach ($cats as $key => $cat) {
+
+            if ($perfil->user_id === $cat->user_id) {
+              $perfil->categoria_id = $cat->categoria_id;
             }
-          }else{
-            array_push($resultados, $resultado);
+          }
+          array_push($resultados, $perfil);
+        }
+        $perfiles = Perfil::search($r->nombre)->orderBy('name', 'ASC')->get();
+        foreach ($perfiles as $key => $perfil) {
+          $perfil->user;
+          $perfil->pais;
+          $perfil->user->categorias;
+          foreach ($perfil->user->categorias as $key => $categoria) {
+            $categoria->categoria;
+          }
+          foreach ($cats as $key => $cat) {
+
+            if ($perfil->user_id === $cat->user_id) {
+              $perfil->categoria_id = $cat->categoria_id;
+            }
+          }
+          array_push($resultados, $perfil);
+        }
+
+        foreach ($resultados as $key => $result) {
+          if ($result->categoria_id !== $r->categoria) {
+            unset($resultados[$key]);
           }
         }
 
         return $resultados;
-      }else if($r->categoria !== 0 && $r->pais){
-        foreach ($results as $key => $resultado) {
-          if (count($resultados) !== 0) {
-            foreach ($resultados as $key2 => $value) {
-              if ($resultado->user_id === $value->user_id ) {
-                unset($resultados[$key2]);
-              }else{
-                array_push($resultados, $resultado);
-              }
+      }else if($r->pais && $r->categoria !== 0){
+        $perfiles = Perfil::where('pais_id', $r->pais)->paginate(15);
+        $empresas = Empresa::where('pais_id', $r->pais)->get();
+        foreach ($perfiles as $key => $perfil) {
+          $perfil->user;
+          $perfil->pais;
+          $perfil->user->categorias;
+          foreach ($perfil->user->categorias as $key => $categoria) {
+            $categoria->categoria;
+          }
+          foreach ($cats as $key => $cat) {
+
+            if ($perfil->user_id === $cat->user_id) {
+              $perfil->categoria_id = $cat->categoria_id;
             }
-          }else{
-            array_push($resultados, $resultado);
+          }
+          array_push($resultados, $perfil);
+        }
+
+        foreach ($empresas as $key => $perfil) {
+          $perfil->user;
+          $perfil->pais;
+          $perfil->user->categorias;
+          foreach ($perfil->user->categorias as $key => $categoria) {
+            $categoria->categoria;
+          }
+          foreach ($cats as $key => $cat) {
+
+            if ($perfil->user_id === $cat->user_id) {
+              $perfil->categoria_id = $cat->categoria_id;
+            }
+          }
+          array_push($resultados, $perfil);
+        }
+
+        foreach ($resultados as $key => $result) {
+          if ($result->categoria_id !== $r->categoria) {
+            unset($resultados[$key]);
           }
         }
 

@@ -150,6 +150,7 @@ import Parallax from 'vue-parallaxy'
             this.loading = true
                 axios.post('/search', {nombre: this.nombre, pais: this.paisid, categoria: this.categoria}).then(function(results){
                   este.results = results.data
+                  console.log(este.results);
                   $(".Masthead").addClass('full-height')
                 }).then(function(){
                   este.search = true
