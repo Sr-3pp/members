@@ -11,7 +11,7 @@
         <li v-if="userid !== '0' && user.tipo === 3">
            <button type="button" onclick="window.location.href = '/panel'"><i class="far fa-list-alt"></i> &nbsp;Dashboard</button>
         </li>
-        <li v-if="userid === '0'">
+        <!--<li v-if="userid === '0'">
           <button type="button"  data-toggle="modal" @click="$bus.$emit('registerModal', {sw: 2})">Registrar Empresa</button>
         </li>
         <li v-if="userid === '0'">
@@ -19,7 +19,7 @@
         </li>
         <li v-if="userid === '0'">
           <button @click="setInput()" type="button" data-toggle="modal" data-target="#loginModal">Acceder</button>
-        </li>
+        </li>-->
       </ul>
       <div class="container">
         <div class="row" id="navToggle">

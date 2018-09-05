@@ -77,7 +77,9 @@ class Controller extends BaseController
         foreach ($categorias as $key => $cat) {
           $perfiles = Perfil::where('user_id', $cat->user_id)->get();
           foreach ($perfiles as $key => $perfil) {
-            $perfil->user->pais;
+            $perfil->user;
+            $perfil->pais;
+            $perfil->user->categorias;
             array_push($results, $perfil);
           }
           $empresas = Empresa::where('user_id', $cat->user_id)->get();
