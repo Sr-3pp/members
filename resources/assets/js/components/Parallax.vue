@@ -43,72 +43,80 @@
       </div>
     </div>
     <div class="container" v-else>
-      <button @click="home()" style="float:right" class="search-member-btn btn btn-danger"><i class="fas fa-home"></i></button>
-      <div class="row" style="height: -webkit-fill-available">
-        <div  class="col-md-6 result-member" v-for="member in results">
-          <div class="card" :class="{conscard: member.categoria_id === 1, coachcard: member.categoria_id === 2, capacard: member.categoria_id === 3, empresacard: member.categoria_id === 4, programcard: member.categoria_id === 5}">
-            <div class="card-header">
-              <div class="row">
-                <div class="col-sm-3">
-                  <div class="member">
-                    <div class="mobile-member">
-                      <div class="member-picture" :style="'background: url(/storage/'+member.foto+') center no-repeat'"></div>
-                      <div class="member-flag" :style="'background: url(/storage/flags/'+member.pais.id+'.png) center no-repeat'"></div>
+      <div class="content loader" v-if="results.length === 0">
+        <div>
+          No se encontrarón resultados <br><br>
+          <button class="btn btn-primary" @click="home()">Regresar</button>
+        </div>
+      </div>
+      <div v-else>
+        <button @click="home()" style="float:right" class="search-member-btn btn btn-danger"><i class="fas fa-home"></i></button>
+        <div class="row" style="height: -webkit-fill-available">
+          <div  class="col-md-6 result-member" v-for="member in results">
+            <div class="card" :class="{conscard: member.categoria_id === 1, coachcard: member.categoria_id === 2, capacard: member.categoria_id === 3, empresacard: member.categoria_id === 4, programcard: member.categoria_id === 5}">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="member">
+                      <div class="mobile-member">
+                        <div class="member-picture" :style="'background: url(/storage/'+member.foto+') center no-repeat'"></div>
+                        <div class="member-flag" :style="'background: url(/storage/flags/'+member.pais.id+'.png) center no-repeat'"></div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-sm-9 text-right">
-                  <div class="row">
-                    <div class="col-md-10">
-                      <h3 v-if="member.apellido_p">{{member.name+' '+member.apellido_p+' '+member.apellido_m}}</h3>
-                      <h3 v-else>{{member.name}}</h3>
+                  <div class="col-sm-9 text-right">
+                    <div class="row">
+                      <div class="col-md-10">
+                        <h3 v-if="member.apellido_p">{{member.name+' '+member.apellido_p+' '+member.apellido_m}}</h3>
+                        <h3 v-else>{{member.name}}</h3>
+                      </div>
+                      <div class="col-md-2">
+                        <img v-if="member.categoria_id === 1" width="40" src="/media/img/categorias/consultor.png" alt="categoria_icon">
+                        <img v-if="member.categoria_id === 2" width="40" src="/media/img/categorias/coach.png" alt="categoria_icon">
+                        <img v-if="member.categoria_id === 3" width="40" src="/media/img/categorias/capacitador.png" alt="categoria_icon">
+                        <img v-if="member.categoria_id === 4" width="40" src="/media/img/categorias/empresa.png" alt="categoria_icon">
+                        <img v-if="member.categoria_id === 5" width="40" src="/media/img/categorias/programas.png" alt="categoria_icon">
+                      </div>
                     </div>
-                    <div class="col-md-2">
-                      <img v-if="member.categoria_id === 1" width="40" src="/media/img/categorias/consultor.png" alt="categoria_icon">
-                      <img v-if="member.categoria_id === 2" width="40" src="/media/img/categorias/coach.png" alt="categoria_icon">
-                      <img v-if="member.categoria_id === 3" width="40" src="/media/img/categorias/capacitador.png" alt="categoria_icon">
-                      <img v-if="member.categoria_id === 4" width="40" src="/media/img/categorias/empresa.png" alt="categoria_icon">
-                      <img v-if="member.categoria_id === 5" width="40" src="/media/img/categorias/programas.png" alt="categoria_icon">
-                    </div>
+                    <span v-if="member.categoria_id === 1">Consultor</span>
+                    <span v-if="member.categoria_id === 2">Coach</span>
+                    <span v-if="member.categoria_id === 3">Capacitador</span>
+                    <span v-if="member.categoria_id === 4">Empresa</span>
+                    <span v-if="member.categoria_id === 5">Programa</span> <br>
+                    <a v-if="member.fb" :href="member.fb"><img width="30" src="/media/img/recursos/fb-logo.png" alt="facebook logo"></a>
+
+
+                    <a v-if="member.tw" :href="member.tw"><img width="30" src="/media/img/recursos/tw-logo.png" alt="facebook logo"></a>
+
+
+                    <a v-if="member.in" :href="member.in"><img width="30" src="/media/img/recursos/in-logo.png" alt="facebook logo"></a>
+
                   </div>
-                  <span v-if="member.categoria_id === 1">Consultor</span>
-                  <span v-if="member.categoria_id === 2">Coach</span>
-                  <span v-if="member.categoria_id === 3">Capacitador</span>
-                  <span v-if="member.categoria_id === 4">Empresa</span>
-                  <span v-if="member.categoria_id === 5">Programa</span> <br>
-                  <a v-if="member.fb" :href="member.fb"><img width="30" src="/media/img/recursos/fb-logo.png" alt="facebook logo"></a>
-
-
-                  <a v-if="member.tw" :href="member.tw"><img width="30" src="/media/img/recursos/tw-logo.png" alt="facebook logo"></a>
-
-
-                  <a v-if="member.in" :href="member.in"><img width="30" src="/media/img/recursos/in-logo.png" alt="facebook logo"></a>
-
                 </div>
               </div>
-            </div>
-            <div class="card-body">
-              <div class="card-text text-center table-responsive">
-                <table class="table">
-                  <tr>
-                    <th class="text-right">Folio</th>
-                    <td class="text-left">{{member.user.folio}}</td>
-                  </tr>
-                  <tr>
-                    <th class="text-right">Tipo de Miembro</th>
-                    <td class="text-left" style="text-transform: capitalize">{{member.rango}}</td>
-                  </tr>
-                  <tr>
-                    <th class="text-right">Correo electrónico</th>
-                    <td class="text-left">{{member.user.email}}</td>
-                  </tr>
-                  <tr>
-                    <th class="text-right">Sitio Web</th>
-                    <td class="text-left">{{member.website}}</td>
-                  </tr>
-                </table>
-                <a v-if="member.categoria_id !== 4" class="btn btn-primary" :href="'/perfil/'+member.user.folio+'/'+member.name+'-'+member.apellido_p+'-'+member.apellido_m">Más información</a>
-                <a v-else class="btn btn-primary" :href="'/empresa/'+member.user.folio">Más información</a>
+              <div class="card-body">
+                <div class="card-text text-center table-responsive">
+                  <table class="table">
+                    <tr>
+                      <th class="text-right">Folio</th>
+                      <td class="text-left">{{member.user.folio}}</td>
+                    </tr>
+                    <tr>
+                      <th class="text-right">Tipo de Miembro</th>
+                      <td class="text-left" style="text-transform: capitalize">{{member.rango}}</td>
+                    </tr>
+                    <tr>
+                      <th class="text-right">Correo electrónico</th>
+                      <td class="text-left">{{member.user.email}}</td>
+                    </tr>
+                    <tr>
+                      <th class="text-right">Sitio Web</th>
+                      <td class="text-left">{{member.website}}</td>
+                    </tr>
+                  </table>
+                  <a v-if="member.categoria_id !== 4" class="btn btn-primary" :href="'/perfil/'+member.user.folio+'/'+member.slug">Más información</a>
+                  <a v-else class="btn btn-primary" :href="'/empresa/'+member.user.folio">Más información</a>
+                </div>
               </div>
             </div>
           </div>
@@ -141,7 +149,8 @@ import Parallax from 'vue-parallaxy'
             nombre: '',
             search: false,
             results: [],
-            loading: false
+            loading: false,
+            noResults: false
           }
         },
         methods: {
@@ -149,12 +158,38 @@ import Parallax from 'vue-parallaxy'
             var este = this;
             this.loading = true
                 axios.post('/search', {nombre: this.nombre, pais: this.paisid, categoria: this.categoria}).then(function(results){
-                  este.results = results.data
-                  console.log(este.results);
-                  $(".Masthead").addClass('full-height')
+                    este.results = results.data
+                    for (var i = 0; i < este.results.length; i++) {
+                      if (este.results[i].apellido_p) {
+                        var apP = este.results[i].apellido_p
+                      }else{
+                        var apP = ''
+                      }
+                      if (este.results[i].apellido_m) {
+                        var apM = este.results[i].apellido_m
+                      }else{
+                        var apM = ''
+                      }
+                      var cadena = este.results[i].name+'-'+apP+'-'+apM
+                      cadena = cadena.toLowerCase();
+
+                       cadena = cadena.replace(/ /g,"-");
+
+                       cadena = cadena.replace(/á/gi,"a");
+                       cadena = cadena.replace(/é/gi,"e");
+                       cadena = cadena.replace(/í/gi,"i");
+                       cadena = cadena.replace(/ó/gi,"o");
+                       cadena = cadena.replace(/ú/gi,"u");
+                       cadena = cadena.replace(/ñ/gi,"n");
+                      este.results[i].slug = cadena
+                    }
                 }).then(function(){
+                  $(".Masthead").addClass('full-height')
                   este.search = true
-                  este.loading = false
+                  if (este.results.length === 0) {
+                    este.noResults = true
+                  }
+                    este.loading = false
                   window.location.href = '#results'
                 });
 
@@ -162,6 +197,7 @@ import Parallax from 'vue-parallaxy'
           },
           home(){
             this.search = false
+            this.noResults = false
             $(".Masthead").removeClass('full-height')
           },
           searchPais(){

@@ -14,6 +14,7 @@ use App\Pais;
 use App\Idioma;
 use Storage;
 use App\Participantes;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -178,6 +179,12 @@ class AdminController extends Controller
       }
       if ($r->magic === 'web') {
         $user->website = $r->value;
+      }
+      if ($r->magic === 'email') {
+        $user->user->email = $r->value;
+      }
+      if ($r->magic === 'pass') {
+        $user->user->password = Hash::make($r->value);
       }
       if ($r->magic === 'pais') {
         $user->pais_id = $r->value;

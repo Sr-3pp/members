@@ -97,8 +97,8 @@
                               <td class="text-left">{{member.perfil ? member.perfil.website : member.empresa.website}}</td>
                             </tr>
                           </table>
-                          <a v-if="selected !== 4" class="btn btn-primary" :href="'/perfil/'+member.folio+'/'+member.perfil.name.toLowerCase()+(member.perfil.apellido_p ? '-'+member.perfil.apellido_p.toLowerCase() : '')+(member.perfil.apellido_m ? '-'+member.perfil.apellido_m.toLowerCase() : '')">Más información</a>
-                          <a v-else class="btn btn-primary" :href="'/empresa/'+member.folio+'/'+member.perfil.name">Más información</a>
+                          <a v-if="selected !== 4" class="btn btn-primary" :href="'/perfil/'+member.folio+'/'+member.perfil.slug">Más información</a>
+                          <a v-else class="btn btn-primary" :href="'/empresa/'+member.folio+'/'+member.perfil.slug">Más información</a>
                         </div>
                       </div>
                     </div>
@@ -273,7 +273,31 @@
             }else{
               axios.get('/get-members/'+sw).then(function(members){
                 este.members = members.data
-                console.log(este.members);
+                for (var i = 0; i < este.members.length; i++) {
+                  if (este.members[i].perfil.apellido_p) {
+                    var apP = este.members[i].perfil.apellido_p
+                  }else{
+                    var apP = ''
+                  }
+                  if (este.members[i].perfil.apellido_m) {
+                    var apM = este.members[i].perfil.apellido_m
+                  }else{
+                    var apM = ''
+                  }
+                  var cadena = este.members[i].perfil.name+'-'+apP+'-'+apM
+                  cadena = cadena.toLowerCase();
+
+                   cadena = cadena.replace(/ /g,"-");
+
+                   cadena = cadena.replace(/á/gi,"a");
+                   cadena = cadena.replace(/é/gi,"e");
+                   cadena = cadena.replace(/í/gi,"i");
+                   cadena = cadena.replace(/ó/gi,"o");
+                   cadena = cadena.replace(/ú/gi,"u");
+                   cadena = cadena.replace(/ñ/gi,"n");
+                  este.members[i].perfil.slug = cadena
+                  console.log(este.members[i]);
+                }
               });
             }
           },

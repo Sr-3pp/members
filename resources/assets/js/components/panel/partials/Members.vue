@@ -320,6 +320,38 @@
 
                     </div>
                   </div>
+                  <div v-if="editCred !== magic+'_'+index" class="row">
+                    <div @click="editUser(index, 1, 'email')" class="col-9">
+                      <span :id="'spanMemail_'+index"><b>Email: </b><br>{{user.user.email ? user.user.email : '-'}}</span>
+                    </div>
+                    <div class="col-3">
+                      <span @click="editUser(index, 1, 'pass')" :id="'spanMpass_'+index"><b>Password: </b><br>{{user.user.password ? user.user.password : '******'}}</span>
+                    </div>
+                  </div>
+                  <div v-if="editCred === magic+'_'+index" class="row">
+                    <div v-if="magic === 'email'" class="col social-input">
+                      <div :id="'inputM'+magic+'_'+index" class="input-group">
+                        <input type="text" class="form-control" :value="user.user.email">
+                        <div class="input-group-prepend">
+                          <button @click="editUser(index, 0, 'email')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
+                        </div>
+                        <div class="input-group-prepend">
+                          <button @click="updateUser(user.user_id, index, 'email')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                    <div v-if="magic === 'pass'" class="col social-input">
+                      <div :id="'inputM'+magic+'_'+index" class="input-group">
+                        <input type="text" class="form-control" placeholder="**********">
+                        <div class="input-group-prepend">
+                          <button @click="editUser(index, 0, 'pass')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
+                        </div>
+                        <div class="input-group-prepend">
+                          <button @click="updateUser(user.user_id, index, 'pass')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div v-if="editinfo !== magic+'_'+index" class="row">
                     <div @click="editUser(index, 1, 'cv')" class="col">
                       <span :id="'spanMcv_'+index">
@@ -491,6 +523,38 @@
                     </div>
                   </div>
                 </div>
+                <div v-if="editCred !== magic+'_'+index" class="row">
+                  <div @click="editEmpresa(index, 1, 'email')" class="col-9">
+                    <span :id="'spanEemail_'+index"><b>Email: </b><br>{{user.user.email ? user.user.email : '-'}}</span>
+                  </div>
+                  <div class="col-3">
+                    <span @click="editEmpresa(index, 1, 'pass')" :id="'spanEpass_'+index"><b>Password: </b><br>{{user.user.password ? user.user.password : '******'}}</span>
+                  </div>
+                </div>
+                <div v-if="editCred === magic+'_'+index" class="row">
+                  <div v-if="magic === 'email'" class="col social-input">
+                    <div :id="'inputE'+magic+'_'+index" class="input-group">
+                      <input type="text" class="form-control" :value="user.user.email">
+                      <div class="input-group-prepend">
+                        <button @click="editEmpresa(index, 0, 'email')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
+                      </div>
+                      <div class="input-group-prepend">
+                        <button @click="updateEmpresa(user.user_id, index, 'email')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                  <div v-if="magic === 'pass'" class="col social-input">
+                    <div :id="'inputE'+magic+'_'+index" class="input-group">
+                      <input type="text" class="form-control" placeholder="**********">
+                      <div class="input-group-prepend">
+                        <button @click="editEmpresa(index, 0, 'pass')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
+                      </div>
+                      <div class="input-group-prepend">
+                        <button @click="updateEmpresa(user.user_id, index, 'pass')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
 
                   <div v-if="editI !== magic+'_'+index" @click="editEmpresa(index, 1, 'pais')" class="col">
@@ -618,6 +682,7 @@
             editinfo: false,
             editsocial: false,
             editPic: false,
+            editCred: false,
             bkpic: '',
 
             idioma: '',
@@ -718,6 +783,9 @@
               if (magic === 'fb' || magic === 'tw' || magic === 'in') {
                 this.editsocial= magic+'_'+index
               }
+              if (magic === 'email' || magic === 'pass') {
+                this.editCred = magic+'_'+index
+              }
 
               if (magic === 'apellidos') {
                 this.editAp = magic+'_'+index
@@ -755,6 +823,9 @@
 
               if (magic === 'fb' || magic === 'tw' || magic === 'in') {
                 this.editsocial = false
+              }
+              if (magic === 'email' || magic === 'pass') {
+                this.editCred = false
               }
 
               if (magic === 'apellidos') {
@@ -920,6 +991,9 @@
               if (magic === 'fb' || magic === 'tw' || magic === 'in') {
                 this.editsocial= magic+'_'+index
               }
+              if (magic === 'email' || magic === 'pass') {
+                this.editCred = magic+'_'+index
+              }
 
               if (magic === 'apellidos') {
                 this.editAp = magic+'_'+index
@@ -957,6 +1031,9 @@
 
               if (magic === 'fb' || magic === 'tw' || magic === 'in') {
                 this.editsocial = false
+              }
+              if (magic === 'email' || magic === 'pass') {
+                this.editCred = false
               }
 
               if (magic === 'apellidos') {
