@@ -45,7 +45,7 @@
     <div class="container" v-else>
       <div class="content loader" v-if="results.length === 0">
         <div>
-          No se encontrarón resultados <br><br>
+          No se encontraron resultados <br><br>
           <button class="btn btn-primary" @click="home()">Regresar</button>
         </div>
       </div>
