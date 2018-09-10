@@ -116,10 +116,17 @@ class Controller extends BaseController
             $perfil->user;
             $perfil->pais;
             $perfil->user->categorias;
-            foreach ($cats as $key => $cat) {
-
-              if ($perfil->user_id === $cat->user_id) {
-                $perfil->categoria_id = $cat->categoria_id;
+            if (count($perfil->user->categorias) > 1) {
+              foreach ($perfil->user->categorias as $key => $categoria) {
+                if ($categoria->categoria_id === $r->categoria) {
+                  $perfil->categoria_id = $r->categoria;
+                }
+              }
+            }else{
+              foreach ($cats as $key => $cat) {
+                if ($perfil->user_id === $cat->user_id) {
+                  $perfil->categoria_id = $cat->categoria_id;
+                }
               }
             }
             array_push($results, $perfil);
@@ -166,10 +173,17 @@ class Controller extends BaseController
           foreach ($perfil->user->categorias as $key => $categoria) {
             $categoria->categoria;
           }
-          foreach ($cats as $key => $cat) {
-
-            if ($perfil->user_id === $cat->user_id) {
-              $perfil->categoria_id = $cat->categoria_id;
+          if (count($perfil->user->categorias) > 1) {
+            foreach ($perfil->user->categorias as $key => $categoria) {
+              if ($categoria->categoria_id === $r->categoria) {
+                $perfil->categoria_id = $r->categoria;
+              }
+            }
+          }else{
+            foreach ($cats as $key => $cat) {
+              if ($perfil->user_id === $cat->user_id) {
+                $perfil->categoria_id = $cat->categoria_id;
+              }
             }
           }
           array_push($resultados, $perfil);
@@ -235,10 +249,17 @@ class Controller extends BaseController
           foreach ($perfil->user->categorias as $key => $categoria) {
             $categoria->categoria;
           }
-          foreach ($cats as $key => $cat) {
-
-            if ($perfil->user_id === $cat->user_id) {
-              $perfil->categoria_id = $cat->categoria_id;
+          if (count($perfil->user->categorias) > 1) {
+            foreach ($perfil->user->categorias as $key => $categoria) {
+              if ($categoria->categoria_id === $r->categoria) {
+                $perfil->categoria_id = $r->categoria;
+              }
+            }
+          }else{
+            foreach ($cats as $key => $cat) {
+              if ($perfil->user_id === $cat->user_id) {
+                $perfil->categoria_id = $cat->categoria_id;
+              }
             }
           }
           array_push($resultados, $perfil);
@@ -277,10 +298,17 @@ class Controller extends BaseController
           foreach ($perfil->user->categorias as $key => $categoria) {
             $categoria->categoria;
           }
-          foreach ($cats as $key => $cat) {
-
-            if ($perfil->user_id === $cat->user_id) {
-              $perfil->categoria_id = $cat->categoria_id;
+          if (count($perfil->user->categorias) > 1) {
+            foreach ($perfil->user->categorias as $key => $categoria) {
+              if ($categoria->categoria_id === $r->categoria) {
+                $perfil->categoria_id = $r->categoria;
+              }
+            }
+          }else{
+            foreach ($cats as $key => $cat) {
+              if ($perfil->user_id === $cat->user_id) {
+                $perfil->categoria_id = $cat->categoria_id;
+              }
             }
           }
           array_push($resultados, $perfil);
