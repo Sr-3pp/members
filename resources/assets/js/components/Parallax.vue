@@ -51,7 +51,7 @@
       </div>
       <div v-else>
         <button @click="home()" style="float:right" class="search-member-btn btn btn-danger"><i class="fas fa-home"></i></button>
-        <div class="row" style="height: -webkit-fill-available">
+        <div class="row" style="height: -webkit-fill-available; padding-top: 30px;">
           <div  class="col-md-6 result-member" v-for="member in results">
             <div class="card" :class="{conscard: member.categoria_id === 1, coachcard: member.categoria_id === 2, capacard: member.categoria_id === 3, empresacard: member.categoria_id === 4, programcard: member.categoria_id === 5}">
               <div class="card-header">
