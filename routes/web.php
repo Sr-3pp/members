@@ -13,6 +13,7 @@
 Auth::routes();
 
 Route::get('/', function(){
+  App::setLocale('es');
   return view('welcome');
 })->name('home');
 

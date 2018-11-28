@@ -43,6 +43,22 @@ Vue.component('card', require('./components/partials/Card.vue'));
 
 Vue.prototype.$bus = new Vue();
 
+import Vue from 'vue';
+import VueInternationalization from 'vue-i18n';
+import Locale from './vue-i18n-locales.generated';
+
+Vue.use(VueInternationalization);
+
+const lang = document.documentElement.lang.substr(0, 2);
+// or however you determine your current app locale
+
+const i18n = new VueInternationalization({
+    locale: lang,
+    messages: Locale
+});
+
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    i18n
 });

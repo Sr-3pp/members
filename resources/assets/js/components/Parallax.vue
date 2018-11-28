@@ -5,12 +5,12 @@
   </parallax>
   <div v-if="loading" class="content loader">
     <div>
-      Buscando &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-spiner fa-spin"></i>
+      {{$t('Searching')}} &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-spiner fa-spin"></i>
     </div>
   </div>
   <div v-else class="content" :class="{'overflow-y-scroll': search}">
     <div v-if="!search" class="text-center">
-      <h3 class="futura-light blanco">Ingresa los datos del miembro ICCN para iniciar la búsqueda</h3><br>
+      <h3 class="futura-light blanco">{{$t('parallax-text')}}</h3><br>
       <img class="desk-disp" width="80%" style="max-width: 800px; margin:0 auto;" src="https://static.wixstatic.com/media/b258fc_524e497a8fd94c96bc704c826cfd9a9f~mv2.png/v1/fill/w_673,h_264,al_c,usm_0.66_1.00_0.01/b258fc_524e497a8fd94c96bc704c826cfd9a9f~mv2.png" alt="iccn_map">
       <hr>
       <div class="row">
@@ -18,10 +18,10 @@
           <div class="container">
             <div class="row">
               <div class="col-md-3 form-group">
-                  <input v-model="nombre" type="text" class="form-control" placeholder="Nombre">
+                  <input v-model="nombre" type="text" class="form-control" :placeholder="$t('form.placeholder.Name')">
               </div>
               <div class="col-md-3 form-group">
-                <input @keyup="searchPais" v-model="pais" type="text" class="form-control" placeholder="País*">
+                <input @keyup="searchPais" v-model="pais" type="text" class="form-control" :placeholder="$t('form.placeholder.Country')">
                 <transition name="fade">
                   <ul v-if="paises.length !== 0" class="input-results list-group">
                      <a @click="setPais(pais.id, pais.nombre)" v-for="pais in paises" role="button" class="list-group-item list-group-item-action">{{pais.nombre}}</a>
@@ -30,12 +30,12 @@
               </div>
               <div class="col-md-3 form-group">
                 <select class="form-control" v-model="categoria">
-                  <option :value="0">Selecciona una categoría</option>
-                  <option v-for="categoria in categorias" :value="categoria.id">{{categoria.nombre}}</option>
+                  <option :value="0">{{$t('form.select-categoria')}}</option>
+                  <option v-for="categoria in categorias" :value="categoria.id">{{$t('categoria.'+categoria.nombre)}}</option>
                 </select>
               </div>
               <div class="col-md-3 form-group">
-                <button @click="searchFor()" class="btn btn-searchm">Buscar</button>
+                <button @click="searchFor()" class="btn btn-searchm">{{$t('form.button.Search')}}</button>
               </div>
             </div>
           </div>
@@ -45,8 +45,8 @@
     <div class="container" v-else>
       <div class="content loader" v-if="results.length === 0">
         <div>
-          No se encontraron resultados <br><br>
-          <button class="btn btn-primary" @click="home()">Regresar</button>
+          {{$t('no-results')}} <br><br>
+          <button class="btn btn-primary" @click="home()">{{$t('form.button.Return')}}</button>
         </div>
       </div>
       <div v-else>
@@ -78,11 +78,11 @@
                         <img v-if="member.categoria_id === 5" width="40" src="/media/img/categorias/programas.png" alt="categoria_icon">
                       </div>
                     </div>
-                    <span v-if="member.categoria_id === 1">Consultor</span>
-                    <span v-if="member.categoria_id === 2">Coach</span>
-                    <span v-if="member.categoria_id === 3">Capacitador</span>
-                    <span v-if="member.categoria_id === 4">Empresa</span>
-                    <span v-if="member.categoria_id === 5">Programa</span> <br>
+                    <span v-if="member.categoria_id === 1">{{$t('categoria.Consultor')}}</span>
+                    <span v-if="member.categoria_id === 2">{{$t('categoria.Coach')}}</span>
+                    <span v-if="member.categoria_id === 3">{{$t('categoria.Capacitador')}}</span>
+                    <span v-if="member.categoria_id === 4">{{$t('categoria.Empresa')}}</span>
+                    <span v-if="member.categoria_id === 5">{{$t('categoria.Programa')}}</span> <br>
                     <a v-if="member.fb" :href="member.fb"><img width="30" src="/media/img/recursos/fb-logo.png" alt="facebook logo"></a>
 
 
@@ -102,20 +102,20 @@
                       <td class="text-left">{{member.user.folio}}</td>
                     </tr>
                     <tr>
-                      <th class="text-right">Tipo de Miembro</th>
+                      <th class="text-right">{{$t('user.tipo-mimebro')}}</th>
                       <td class="text-left" style="text-transform: capitalize">{{member.rango}}</td>
                     </tr>
                     <tr>
-                      <th class="text-right">Correo electrónico</th>
+                      <th class="text-right">{{$t('user.Email')}}</th>
                       <td class="text-left">{{member.user.email}}</td>
                     </tr>
                     <tr>
-                      <th class="text-right">Sitio Web</th>
+                      <th class="text-right">{{$t('user.site')}}</th>
                       <td class="text-left">{{member.website}}</td>
                     </tr>
                   </table>
-                  <a v-if="member.categoria_id !== 4" class="btn btn-primary" :href="'/perfil/'+member.user.folio+'/'+member.slug">Más información</a>
-                  <a v-else class="btn btn-primary" :href="'/empresa/'+member.user.folio">Más información</a>
+                  <a v-if="member.categoria_id !== 4" class="btn btn-primary" :href="'/perfil/'+member.user.folio+'/'+member.slug">{{$t('form.button.more-info')}}</a>
+                  <a v-else class="btn btn-primary" :href="'/empresa/'+member.user.folio">{{$t('form.button.more-info')}}</a>
                 </div>
               </div>
             </div>
