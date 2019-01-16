@@ -24,7 +24,7 @@ class EmpresaController extends Controller
     ]);
 
     if ($r->hasFile('file')) {
-      Empresa::create([
+      $perfil = Empresa::create([
         'user_id' => $user->id,
         'name' => $r->nombre,
         'telefono' => $r->telefono,
@@ -42,7 +42,7 @@ class EmpresaController extends Controller
         'descripcion' => $r->descripcion
       ]);
     }else{
-      Empresa::create([
+      $perfil = Empresa::create([
         'user_id' => $user->id,
         'name' => $r->nombre,
         'telefono' => $r->telefono,
@@ -106,7 +106,14 @@ class EmpresaController extends Controller
         'porcentaje' => $r->area5v
       ]);
     }
-    return $user;
+
+    $perfil->user;
+    $perfil->pais;
+    $perfil->user->categorias;
+    foreach ($perfil->user->categorias as $key => $categoria) {
+      $categoria->categoria;
+    }
+    return $perfil;
   }
 
   public function update($id){

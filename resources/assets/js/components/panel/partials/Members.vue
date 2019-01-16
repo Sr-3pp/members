@@ -13,7 +13,7 @@
             <input @keyup="searchMember()" type="text" class="form-control" id="validationCustomUsername" placeholder="Busca un usuario" aria-describedby="inputGroupPrepend" v-model="search">
             <div class="input-group-prepend">
               <button class="btn btn-default" ><i class="fas fa-search"></i></button>
-              <button @click="$bus.$emit('registerModal', {sw: 1, admin: 1})" class="btn btn-link" ><i class="fas fa-plus"></i></button>
+              <button @click="$bus.$emit('registerModal', {sw: empresa, admin: 1})" class="btn btn-link" ><i class="fas fa-plus"></i></button>
             </div>
           </div>
         </div>
@@ -659,8 +659,13 @@
               este.paises = paises.data
             });
             this.$bus.$on('createdUser', ($event) => {
-              este.users.push($event.user);
+              este.users.unshift($event.user);
+              $("#registerModal").modal('hide');
+            }).$on('createdCompany', ($event) => {
+              este.empresas.unshift($event.company)
+              $("#registerModal").modal('hide');
             });
+
         },
         data(){
           return {

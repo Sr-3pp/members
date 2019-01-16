@@ -543,12 +543,9 @@
                   formData.append('password' , this.password);
                   formData.append('confirm' , this.confirm);
                   formData.append('file', this.picture);
-                  console.log();
+                
                   axios.post('/new-empresa', formData).then(function(member){
-                    este.$bus.$emit('login', {email: este.email, password: este.password});
-                  }).then(function(){
-                    $('.modal-backdrop').css('display', 'none')
-                    $('#empresaModal').modal('hide');
+                    este.$bus.$emit('createdCompany', {company: member.data});
                   });
                 }else{
                   this.alertMail = true
