@@ -47,7 +47,7 @@
                 <img src="/media/img/recursos/nav-separator.png" height="85" alt="" style="">
               </li>
               <li>
-                <a href="http://miembros.internationalccn.org">Miembros &nbsp;</a>
+                <a href="#">Miembros &nbsp;</a>
                 <img src="/media/img/recursos/nav-separator.png" height="85" alt="">
               </li>
               <li>
@@ -98,12 +98,14 @@
     export default {
       mounted() {
           var este = this;
-          axios.get('/get-user/'+this.userid).then(function(user){
-            este.user = user.data
-            if (!user.data.perfil) {
-              este.empresa = true
-            }
-          });
+            if (this.userid != 0) {
+              axios.get('/get-user/'+this.userid).then(function(user){
+              este.user = user.data
+              if (!user.data.perfil) {
+                este.empresa = true
+              }
+            });
+          }
 
           this.$bus.$on('login', $event => {
             este.email = $event.email,

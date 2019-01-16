@@ -37,7 +37,13 @@ class Perfil extends Model
     }
 
 
-    public function scopeSearch($query, $name){
-          return $query->where('name', "LIKE", "%$name%");
+    public function scopeSearch($query, $name, $key){
+          if($key === 'name'){
+            return $query->where('name', "LIKE", "%$name%");
+          }else if($key === 'app_p'){
+            return $query->where('apellido_p', "LIKE", "%$name%");
+          }else if($key === 'app_m'){
+            return $query->where('apellido_m', "LIKE", "%$name%");
+          }
     }
 }

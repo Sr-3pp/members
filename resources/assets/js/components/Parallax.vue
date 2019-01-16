@@ -18,7 +18,7 @@
           <div class="container">
             <div class="row">
               <div class="col-md-3 form-group">
-                  <input v-model="nombre" type="text" class="form-control" :placeholder="$t('form.placeholder.Name')">
+                  <input @keyup.enter="searchFor()" v-model="nombre" type="text" class="form-control" :placeholder="$t('form.placeholder.Name')">
               </div>
               <div class="col-md-3 form-group">
                 <input @keyup="searchPais" v-model="pais" type="text" class="form-control" :placeholder="$t('form.placeholder.Country')">

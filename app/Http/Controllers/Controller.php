@@ -53,7 +53,13 @@ class Controller extends BaseController
           }
           array_push($results, $perfil);
         }
-        $perfiles = Perfil::search($r->nombre)->orderBy('name', 'ASC')->get();
+        $perfiles = Perfil::search($r->nombre, 'name')->orderBy('name', 'ASC')->get();
+        if (count($perfiles) == 0) {
+          $perfiles = Perfil::search($r->nombre, 'app_p')->orderBy('name', 'ASC')->get();
+        }
+        if(count($perfiles) == 0){
+          $perfiles = Perfil::search($r->nombre, 'app_m')->orderBy('name', 'ASC')->get();
+        }
         foreach ($perfiles as $key => $perfil) {
           $perfil->user;
           $perfil->pais;
