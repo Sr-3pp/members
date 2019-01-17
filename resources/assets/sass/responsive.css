@@ -72,11 +72,29 @@
     transition: all .2s ease;
   }
   .mobile-member{
-    width: 120px;
-    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     position: relative;
     margin-bottom: 20px;
-        margin-top: -80px;
+        margin-top: -30px;
+  }
+  .card-category{
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    border: none;
+  }
+  .result-member .col-sm-9{
+    text-align: center;
+  }
+  .member-picture{
+    margin-top: -45px;
   }
   .mobile-display-menu{
     z-index: 10;

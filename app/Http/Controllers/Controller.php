@@ -60,6 +60,13 @@ class Controller extends BaseController
         if(count($perfiles) == 0){
           $perfiles = Perfil::search($r->nombre, 'app_m')->orderBy('name', 'ASC')->get();
         }
+        if(count($perfiles) == 0){
+          $users = User::search($r->nombre)->orderBy('folio', 'ASC')->get();
+          $perfiles = [];
+          foreach ($users as $key => $user) {
+            array_push($perfiles, $user->perfil);
+          }
+        }
         foreach ($perfiles as $key => $perfil) {
           $perfil->user;
           $perfil->pais;

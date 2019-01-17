@@ -103,7 +103,8 @@ export default {
         "form": {
           "placeholder": {
             "Country": "Country",
-            "Name": "Name"
+            "Name": "Name",
+            "Search": "Search by Name, Last name or folio"
           },
           "button": {
             "Search": "Search",
@@ -132,7 +133,8 @@ export default {
       "form": {
         "placeholder": {
           "Country": "País",
-          "Name": "Nombre"
+          "Name": "Nombre",
+          "Search": "Nombre / apellido / folio"
         },
         "button": {
           "Search": "Buscar",

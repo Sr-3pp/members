@@ -28,10 +28,15 @@
               <input maxlength="100" v-model="duracion" type="text" class="form-control" placeholder="Duración*">
             </div>
             <div v-if="empresaid === 0" class="col">
-              <transition name="fade">
-                <span v-if="alertTel" class="must">Este campo es obligatorio</span>
-              </transition>
-              <input @keyup="searchEmpresa" v-model="empresa" type="text" class="form-control" placeholder="Empresa que lo imparte">
+              <div class="input-group">
+                <transition name="fade">
+                  <span v-if="alertTel" class="must">Este campo es obligatorio</span>
+                </transition>
+                <input @keyup="searchEmpresa" v-model="empresa" type="text" class="form-control" placeholder="Empresa que lo imparte">
+                <div class="input-group-prepend">
+                  <button type="button" @click="listEmpresas" class="btn btn-default"><i class="fas fa-chevron-down"></i></button>
+                </div>
+              </div>
               <transition name="fade">
                 <ul v-if="searchEmpresa" class="input-results list-group">
                    <a @click="setEmpresa(empresa.id, empresa.name)" v-for="empresa in empresas" role="button" class="list-group-item list-group-item-action">{{empresa.name}}</a>
@@ -214,12 +219,17 @@
             this.searchEmpresas = true
             if (this.empresa !== '') {
               axios.post('/search-empresas', {empresa: this.empresa}).then(function(empresas){
-                console.log(empresas.data);
                 este.empresas = empresas.data;
               });
             }else{
               este.empresas = []
             }
+          },
+          listEmpresas(){
+            var este = this;
+            axios.get('/panel/get-empresas').then(function(empresas){
+              este.empresas = empresas.data;
+            });
           },
           setEmpresa(id, nombre){
             this.empresaid = id
@@ -231,7 +241,7 @@
             formData.append('file', this.picture);
 
             axios.post('/upload-pic', formData).then(function(response){
-              console.log(response.data);
+
             });
           },
           fileChange(e){
@@ -242,7 +252,6 @@
           },
           preview(file){
             this.picture = file
-            console.log(this.picture);
             let reader = new FileReader();
                 let vm = this;
                 reader.onload = (e) => {
@@ -397,7 +406,7 @@
             }
           },
           register(){
-            if (this.nombre === '' || this.duracion === '' || this.empresa === '' || this.pais === '' || this.cv === '') {
+            if (this.nombre === '' || this.duracion === '' || this.empresaid === 0 || this.pais === '' || this.cv === '') {
               if (this.nombre === '') {
                 this.alertName = true
               }else{
@@ -408,7 +417,7 @@
               }else{
                 this.alertMail = false
               }
-              if (this.empresa === '') {
+              if (this.empresaid === 0) {
                 this.alertTel = true
               }else{
                 this.alertTel = false

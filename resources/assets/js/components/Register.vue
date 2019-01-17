@@ -101,7 +101,12 @@
               </select>
             </div>
             <div class="col-sm-4 mb-20">
-              <input maxlength="15" @keyup="searchLanguage" v-model="idioma" type="text" class="form-control" placeholder="Idiomas">
+              <div class="input-group">
+                <input :disabled="languajes.length === 0" maxlength="15" @keyup="searchLanguage" v-model="idioma" type="text" class="form-control" placeholder="Idiomas">
+                <div class="input-group-prepend">
+                  <button @click="listLang" type="button" class="btn btn-default"><i class="fas fa-chevron-down"></i></button>
+                </div>
+              </div>
               <transition name="fade">
                 <ul v-if="languajes.length !== 0" class="list-group input-results">
                   <a @click="setLang(languaje.nombre)" href="#" role="button" class="list-group-item list-group-item-action" v-for="languaje in languajes">{{languaje.nombre}}</a>
@@ -347,6 +352,16 @@
             var index = this.idiomas.indexOf(idioma);
             if (index > -1) {
                 this.idiomas.splice(index, 1);
+            }
+          },
+          listLang(){
+            var este = this;
+            if (this.languajes.length !== 0) {
+              este.languajes = []
+            }else{
+              axios.get('/get-languages-all').then(function(languajes){
+                este.languajes = languajes.data
+              })
             }
           },
           setLang(lang){

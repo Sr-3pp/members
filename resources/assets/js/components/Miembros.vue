@@ -31,7 +31,7 @@
               </div>
               <transition-group name="fade">
                 <div v-if="selected && selected !== 5" :key="0" id="memberCards" class="row mob-width" :style="active">
-                  <div v-if="member.perfil && member.perfil.status === 1 || member.empresa && member.empresa.status === 1" class="col-lg-6" v-for="member in members">
+                  <div v-if="member.perfil && member.perfil.status == 1 || member.empresa && member.empresa.status == 1" class="col-lg-6" v-for="member in members">
                     <div class="card" :class="{conscard: consultor, coachcard: coach, capacard: capacitador, empresacard: empresa, programcard: programa}">
                       <div class="card-header">
                         <div class="row">
@@ -49,23 +49,24 @@
                           </div>
                           <div class="col-md-9 text-right">
                             <div class="row">
-                              <div class="col-md-10" style="padding-top:3px;">
-                                <h3 class="white" v-if="member.perfil">{{member.perfil.name+' '+member.perfil.apellido_p+' '+member.perfil.apellido_m}}</h3>
-                                <h3 class="white" v-else>{{member.empresa.name}}</h3>
-                              </div>
-                              <div class="col-md-2">
-                                <img v-if="selected === 1" width="40" src="/media/img/categorias/consultor.png" alt="categoria_icon">
-                                <img v-if="selected === 2" width="40" src="/media/img/categorias/coach.png" alt="categoria_icon">
-                                <img v-if="selected === 3" width="40" src="/media/img/categorias/capacitador.png" alt="categoria_icon">
-                                <img v-if="selected === 4" width="40" src="/media/img/categorias/empresa.png" alt="categoria_icon">
-                                <img v-if="selected === 5" width="40" src="/media/img/categorias/programas.png" alt="categoria_icon">
+                              <div class="col-md-12" style="padding-top:3px;">
+                                <div class="card-category">
+                                      <span v-if="selected === 1">{{$t('categoria.Consultor')}}</span>
+                                      <span v-if="selected === 2">{{$t('categoria.Coach')}}</span>
+                                      <span v-if="selected === 3">{{$t('categoria.Capacitador')}}</span>
+                                      <span v-if="selected === 4">{{$t('categoria.Empresa')}}</span>
+                                      <span v-if="selected === 5">{{$t('categoria.Programa')}}</span>
+                                      &nbsp;&nbsp;&nbsp;
+                                      <img v-if="selected === 1" width="40" src="/media/img/categorias/consultor.png" alt="categoria_icon">
+                                      <img v-if="selected === 2" width="40" src="/media/img/categorias/coach.png" alt="categoria_icon">
+                                      <img v-if="selected === 3" width="40" src="/media/img/categorias/capacitador.png" alt="categoria_icon">
+                                      <img v-if="selected === 4" width="40" src="/media/img/categorias/empresa.png" alt="categoria_icon">
+                                      <img v-if="selected === 5" width="40" src="/media/img/categorias/programas.png" alt="categoria_icon">
+                                </div>
+                                <h3 v-if="selected !== 4" class="white">{{member.name}} {{member.apellido_p ? member.apellido_p : '' +' '+member.apellido_m ? member.apellido_m : ''}}</h3>
+                                <h3 v-else class="white">{{member.empresa.name}}</h3>
                               </div>
                             </div>
-                            <span v-if="selected === 1">Consultor</span>
-                            <span v-if="selected === 2">Coach</span>
-                            <span v-if="selected === 3">Capacitador</span>
-                            <span v-if="selected === 4">Empresa</span>
-                            <span v-if="selected === 5">Programa</span> <br>
                             <a :href="member.perfil ? member.perfil.fb : member.empresa.fb"><img width="30" src="/media/img/recursos/fb-logo.png" alt="facebook logo"></a>
 
 
@@ -98,7 +99,7 @@
                             </tr>
                           </table>
                           <a v-if="selected !== 4" class="btn btn-primary" :href="'/perfil/'+member.folio+'/'+member.perfil.slug">Más información</a>
-                          <a v-else class="btn btn-primary" :href="'/empresa/'+member.folio+'/'+member.perfil.slug">Más información</a>
+                          <a v-else class="btn btn-primary" :href="'/empresa/'+member.folio">Más información</a>
                         </div>
                       </div>
                     </div>
@@ -273,30 +274,31 @@
             }else{
               axios.get('/get-members/'+sw).then(function(members){
                 este.members = members.data
-                for (var i = 0; i < este.members.length; i++) {
-                  if (este.members[i].perfil.apellido_p) {
-                    var apP = este.members[i].perfil.apellido_p
-                  }else{
-                    var apP = ''
-                  }
-                  if (este.members[i].perfil.apellido_m) {
-                    var apM = este.members[i].perfil.apellido_m
-                  }else{
-                    var apM = ''
-                  }
-                  var cadena = este.members[i].perfil.name+'-'+apP+'-'+apM
-                  cadena = cadena.toLowerCase();
+                if (este.selected !== 4 && este.selected !== 5) {
+                  for (var i = 0; i < este.members.length; i++) {
+                    if (este.members[i].perfil.apellido_p) {
+                      var apP = este.members[i].perfil.apellido_p
+                    }else{
+                      var apP = ''
+                    }
+                    if (este.members[i].perfil.apellido_m) {
+                      var apM = este.members[i].perfil.apellido_m
+                    }else{
+                      var apM = ''
+                    }
+                    var cadena = este.members[i].perfil.name+'-'+apP+'-'+apM
+                    cadena = cadena.toLowerCase();
 
-                   cadena = cadena.replace(/ /g,"-");
+                     cadena = cadena.replace(/ /g,"-");
 
-                   cadena = cadena.replace(/á/gi,"a");
-                   cadena = cadena.replace(/é/gi,"e");
-                   cadena = cadena.replace(/í/gi,"i");
-                   cadena = cadena.replace(/ó/gi,"o");
-                   cadena = cadena.replace(/ú/gi,"u");
-                   cadena = cadena.replace(/ñ/gi,"n");
-                  este.members[i].perfil.slug = cadena
-                  console.log(este.members[i]);
+                     cadena = cadena.replace(/á/gi,"a");
+                     cadena = cadena.replace(/é/gi,"e");
+                     cadena = cadena.replace(/í/gi,"i");
+                     cadena = cadena.replace(/ó/gi,"o");
+                     cadena = cadena.replace(/ú/gi,"u");
+                     cadena = cadena.replace(/ñ/gi,"n");
+                    este.members[i].perfil.slug = cadena
+                  }
                 }
               });
             }
@@ -306,7 +308,6 @@
             this.members = [];
             if (this.nombre !== '') {
               axios.post('/search-members', {nombre: this.nombre, pais: this.paisid, categoria: this.selected}).then(function(results){
-                console.log(results.data);
                 este.members = results.data
               });
             }else{

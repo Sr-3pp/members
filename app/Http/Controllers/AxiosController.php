@@ -116,6 +116,10 @@ class AxiosController extends Controller
       $languajes = Idioma::search($search)->orderBy('nombre', 'asc')->get();
       return $languajes;
     }
+    public function getLanguajesAll(){
+      $languajes = Idioma::orderBy('nombre', 'asc')->get();
+      return $languajes;
+    }
 
     public function getVals($id){
       return Valoracion::where('user_id', $id)->get();

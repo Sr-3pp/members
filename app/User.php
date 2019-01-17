@@ -42,6 +42,8 @@ class User extends Authenticatable
       return $this->hasMany('App\Valoracion');
     }
 
-
+    public function scopeSearch($query, $name){
+      return $query->where('folio', "LIKE", "%$name%");
+    }
 
 }

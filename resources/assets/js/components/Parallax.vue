@@ -18,10 +18,15 @@
           <div class="container">
             <div class="row">
               <div class="col-md-3 form-group">
-                  <input @keyup.enter="searchFor()" v-model="nombre" type="text" class="form-control" :placeholder="$t('form.placeholder.Name')">
+                  <input @keyup.enter="searchFor()" v-model="nombre" type="text" class="form-control" :placeholder="$t('form.placeholder.Search')">
               </div>
               <div class="col-md-3 form-group">
-                <input @keyup="searchPais" v-model="pais" type="text" class="form-control" :placeholder="$t('form.placeholder.Country')">
+                <div class="input-group">
+                  <input :disabled="paises.length === 0" @keyup="searchPais" v-model="pais" type="text" class="form-control" :placeholder="$t('form.placeholder.Country')">
+                  <div class="input-group-prepend">
+                    <button @click="listCountry" type="button" class="btn btn-default"><i class="fas fa-chevron-down"></i></button>
+                  </div>
+                </div>
                 <transition name="fade">
                   <ul v-if="paises.length !== 0" class="input-results list-group">
                      <a @click="setPais(pais.id, pais.nombre)" v-for="pais in paises" role="button" class="list-group-item list-group-item-action">{{pais.nombre}}</a>
@@ -64,25 +69,25 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-9 text-right">
+                  <div class="col-sm-9">
                     <div class="row">
-                      <div class="col-md-10">
-                        <h3 v-if="member.apellido_p">{{member.name+' '+member.apellido_p+' '+member.apellido_m}}</h3>
-                        <h3 v-else>{{member.name}}</h3>
-                      </div>
-                      <div class="col-md-2">
-                        <img v-if="member.categoria_id === 1" width="40" src="/media/img/categorias/consultor.png" alt="categoria_icon">
-                        <img v-if="member.categoria_id === 2" width="40" src="/media/img/categorias/coach.png" alt="categoria_icon">
-                        <img v-if="member.categoria_id === 3" width="40" src="/media/img/categorias/capacitador.png" alt="categoria_icon">
-                        <img v-if="member.categoria_id === 4" width="40" src="/media/img/categorias/empresa.png" alt="categoria_icon">
-                        <img v-if="member.categoria_id === 5" width="40" src="/media/img/categorias/programas.png" alt="categoria_icon">
+                      <div class="col-md-12">
+                        <div class="card-category">
+                              <span v-if="member.categoria_id === 1">{{$t('categoria.Consultor')}}</span>
+                              <span v-if="member.categoria_id === 2">{{$t('categoria.Coach')}}</span>
+                              <span v-if="member.categoria_id === 3">{{$t('categoria.Capacitador')}}</span>
+                              <span v-if="member.categoria_id === 4">{{$t('categoria.Empresa')}}</span>
+                              <span v-if="member.categoria_id === 5">{{$t('categoria.Programa')}}</span>
+                              &nbsp;&nbsp;&nbsp;
+                              <img v-if="member.categoria_id === 1" width="40" src="/media/img/categorias/consultor.png" alt="categoria_icon">
+                              <img v-if="member.categoria_id === 2" width="40" src="/media/img/categorias/coach.png" alt="categoria_icon">
+                              <img v-if="member.categoria_id === 3" width="40" src="/media/img/categorias/capacitador.png" alt="categoria_icon">
+                              <img v-if="member.categoria_id === 4" width="40" src="/media/img/categorias/empresa.png" alt="categoria_icon">
+                              <img v-if="member.categoria_id === 5" width="40" src="/media/img/categorias/programas.png" alt="categoria_icon">
+                        </div>
+                        <h3>{{member.name}} {{member.apellido_p ? member.apellido_p : '' +' '+member.apellido_m ? member.apellido_m : ''}}</h3>
                       </div>
                     </div>
-                    <span v-if="member.categoria_id === 1">{{$t('categoria.Consultor')}}</span>
-                    <span v-if="member.categoria_id === 2">{{$t('categoria.Coach')}}</span>
-                    <span v-if="member.categoria_id === 3">{{$t('categoria.Capacitador')}}</span>
-                    <span v-if="member.categoria_id === 4">{{$t('categoria.Empresa')}}</span>
-                    <span v-if="member.categoria_id === 5">{{$t('categoria.Programa')}}</span> <br>
                     <a v-if="member.fb" :href="member.fb"><img width="30" src="/media/img/recursos/fb-logo.png" alt="facebook logo"></a>
 
 
@@ -199,6 +204,16 @@ import Parallax from 'vue-parallaxy'
             this.search = false
             this.noResults = false
             $(".Masthead").removeClass('full-height')
+          },
+          listCountry(){
+            var este = this;
+            if (this.paises.length !== 0) {
+              this.paises = []
+            }else{
+              axios.get('/get-paises').then(function(paises){
+                este.paises = paises.data;
+              });
+            }
           },
           searchPais(){
             var este = this;

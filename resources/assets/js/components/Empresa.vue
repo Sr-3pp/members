@@ -71,7 +71,12 @@
           <br>
           <div class="row">
             <div class="col">
-              <input maxlength="15" @keyup="searchLanguage" v-model="idioma" type="text" class="form-control" placeholder="Idiomas">
+              <div class="input-group">
+                <input :disabled="languajes.length === 0" maxlength="15" @keyup="searchLanguage" v-model="idioma" type="text" class="form-control" placeholder="Idiomas">
+                <div class="input-group-prepend">
+                  <button type="button" @click="listLang" class="btn btn-default"><i class="fas fa-chevron-down"></i></button>
+                </div>
+              </div>
               <transition name="fade">
                 <ul v-if="languajes.length !== 0" class="list-group input-results">
                   <a @click="setLang(languaje.nombre)" href="#" role="button" class="list-group-item list-group-item-action" v-for="languaje in languajes">{{languaje.nombre}}</a>
@@ -289,6 +294,16 @@
             this.idiomas.push(lang)
             this.languajes = []
             this.idioma = ''
+          },
+          listLang(){
+            var este = this;
+            if (this.languajes.length !== 0) {
+              este.languajes = []
+            }else{
+              axios.get('/get-languages-all').then(function(languajes){
+                este.languajes = languajes.data
+              })
+            }
           },
           searchLanguage(){
             var este = this;
@@ -543,7 +558,7 @@
                   formData.append('password' , this.password);
                   formData.append('confirm' , this.confirm);
                   formData.append('file', this.picture);
-                
+
                   axios.post('/new-empresa', formData).then(function(member){
                     este.$bus.$emit('createdCompany', {company: member.data});
                   });

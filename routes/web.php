@@ -28,6 +28,7 @@ Route::get('/get-members/{id}', 'AxiosController@getMembers');
 Route::get('/get-programas', 'AxiosController@getProgramas');
 Route::get('/get-programa/{id}', 'AxiosController@getPrograma');
 Route::get('/get-languages/{search}', 'AxiosController@getLanguajes');
+Route::get('/get-languages-all', 'AxiosController@getLanguajesAll');
 Route::get('/get-paises', 'AxiosController@getPaises');
 Route::get('/get-idiomas', 'AxiosController@getIdiomas');
 Route::post('/search-empresas', 'AxiosController@searchEmpresas');
