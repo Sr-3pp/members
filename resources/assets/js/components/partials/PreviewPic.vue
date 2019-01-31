@@ -33,11 +33,11 @@
             this.picture = file
             this.$bus.$emit('file', {file: this.picture});
             let reader = new FileReader();
-                let vm = this;
-                reader.onload = (e) => {
-                    vm.foto = e.target.result;
-                };
-                reader.readAsDataURL(file);
+            let vm = this;
+            reader.onload = (e) => {
+              vm.foto = e.target.result;
+            };
+            reader.readAsDataURL(file);
           },
           selectPic(){
             $('#registerPic').click()

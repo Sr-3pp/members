@@ -4,8 +4,8 @@
       <div class="row">
         <div class="col-sm-6">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button @click="empresa = false" type="button" style="border-bottom-left-radius: 0 ;" class="btn" :class="{'btn-primary' : !empresa, 'btn-dark': empresa}">Miembros</button>
-            <button @click="empresa = true" type="button" style="border-bottom-right-radius: 0;" class="btn" :class="{'btn-primary' : empresa, 'btn-dark': !empresa}">Empresas</button>
+            <button @click="empresa = 0" type="button" style="border-bottom-left-radius: 0 ;" class="btn" :class="{'btn-primary' : !empresa, 'btn-dark': empresa}">Miembros</button>
+            <button @click="empresa = 1" type="button" style="border-bottom-right-radius: 0;" class="btn" :class="{'btn-primary' : empresa, 'btn-dark': !empresa}">Empresas</button>
           </div>
         </div>
         <div class="col-sm-6">
@@ -13,7 +13,7 @@
             <input @keyup="searchMember()" type="text" class="form-control" id="validationCustomUsername" placeholder="Busca un usuario" aria-describedby="inputGroupPrepend" v-model="search">
             <div class="input-group-prepend">
               <button class="btn btn-default" ><i class="fas fa-search"></i></button>
-              <button @click="$bus.$emit('registerModal', {sw: empresa, admin: 1})" class="btn btn-link" ><i class="fas fa-plus"></i></button>
+        <button @click="$bus.$emit('registerModal', {sw: empresa, admin: 1})" class="btn btn-link" ><i class="fas fa-plus"></i></button>      
             </div>
           </div>
         </div>
@@ -675,7 +675,7 @@
             idiomas: [],
             categorias: [1,2,3],
             userCats:[],
-            empresa: false,
+            empresa: 0,
             search: '',
             picture: null,
             rango: '',

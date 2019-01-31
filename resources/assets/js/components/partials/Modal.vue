@@ -1,8 +1,9 @@
 <template>
   <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-      <register v-if="!sw" :admin="admin"></register>
-      <empresa v-else></empresa>
+      <register v-if="sw === 0" :admin="admin"></register>
+      <empresa v-if="sw === 1"></empresa>
+      <program-form v-if="sw === 2"></program-form>
     </div>
   </div>
 </template>

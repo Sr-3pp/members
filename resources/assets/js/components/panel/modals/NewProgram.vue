@@ -1,7 +1,5 @@
 <template>
-  <div class="modal fade" id="newProgramModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
+<div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
           Registrar Programa
@@ -110,14 +108,7 @@
             <textarea style="height: 200px!important" v-model="cv" cols="30" rows="10" class="form-control"></textarea>
           </div>
           <div class="col">
-            <div class="row">
-              <div class="col text-center">
-                <h6>Selecciona una foto de perfil</h6>
-                <hr>
-                <img style="cursor: pointer" @click="selectPic" width="100" :src="foto" alt="default picture"><br><br>
-                <input accept="image/x-png,image/gif,image/jpeg"  @change="fileChange" id="registerPic" type="file" style="display: none">
-              </div>
-            </div>
+            <preview></preview>
           </div>
         </div>
         <hr>
@@ -147,8 +138,6 @@
         <button type="button" class="btn btn-primary" @click="register">Registrar</button>
       </div>
     </div>
-  </div>
-</div>
 </template>
 
 <script>
@@ -156,6 +145,9 @@
         mounted() {
             var este = this;
             this.csrf = $('meta[name="csrf-token"]').attr('content')
+            this.$bus.$on('file', ($event) => {
+              este.picture = $event.file              
+            });
 
         },
         data(){
@@ -235,29 +227,6 @@
             this.empresaid = id
             this.empresa = nombre
             this.searchEmpresas = false
-          },
-          upload(){
-            var formData = new FormData();
-            formData.append('file', this.picture);
-
-            axios.post('/upload-pic', formData).then(function(response){
-
-            });
-          },
-          fileChange(e){
-            let files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                this.preview(files[0]);
-          },
-          preview(file){
-            this.picture = file
-            let reader = new FileReader();
-                let vm = this;
-                reader.onload = (e) => {
-                    vm.foto = e.target.result;
-                };
-                reader.readAsDataURL(file);
           },
           validateVal(key){
             if (key === 1) {
@@ -457,7 +426,7 @@
               formData.append('area5' , this.area5);
               formData.append('area5v' , this.area5v);
               formData.append('cv' , this.cv);
-              formData.append('file', this.picture);
+              formData.append('picture', this.picture);
 
               axios.post('/new-programa', formData).then(function(program){
                 este.$bus.$emit('newProg', {program: program.data});

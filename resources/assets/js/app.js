@@ -18,9 +18,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('parallax-bg', require('./components/Parallax.vue'));
 Vue.component('miembros', require('./components/Miembros.vue'));
-Vue.component('empresa', require('./components/Empresa.vue'));
 Vue.component('poplogin', require('./components/Poplogin.vue'));
-Vue.component('register', require('./components/Register.vue'));
 Vue.component('perfil', require('./components/Perfil.vue'));
 Vue.component('programa', require('./components/Programa.vue'));
 Vue.component('valoraciones', require('./components/Valoraciones.vue'));
@@ -32,8 +30,10 @@ Vue.component('members', require('./components/panel/partials/Members.vue'));
 Vue.component('programs', require('./components/panel/partials/Programs.vue'));
 Vue.component('general', require('./components/panel/partials/General.vue'));
 
-Vue.component('newprogram', require('./components/panel/modals/NewProgram.vue'));
+Vue.component('program-form', require('./components/panel/modals/NewProgram.vue'));
 Vue.component('participants', require('./components/panel/modals/ParticipantsModal.vue'));
+Vue.component('empresa', require('./components/panel/modals/Empresa.vue'));
+Vue.component('register', require('./components/panel/modals/Register.vue'));
 
 
 Vue.component('navigation', require('./components/partials/Navigation.vue'));

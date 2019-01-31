@@ -7,7 +7,7 @@
           <button type="button" class="btn btn-default"><i class="fas fa-search"></i></button>
         </div>
         <div class="input-group-prepend">
-          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newProgramModal"><i class="fas fa-plus"></i></button>
+          <button @click="$bus.$emit('registerModal', {sw: 2, admin: 1})" class="btn btn-link" ><i class="fas fa-plus"></i></button>
         </div>
       </div>
     </div>

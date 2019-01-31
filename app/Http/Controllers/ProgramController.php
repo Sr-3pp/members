@@ -10,6 +10,7 @@ use App\MemberCat;
 class ProgramController extends Controller
 {
     public function newPrograma(Request $r){
+      dd($r->all());
       $programa = Programa::create([
                     'nombre' => $r->nombre,
                     'duracion' => $r->duracion,
