@@ -661,7 +661,6 @@
                     }
                   }).then(function(){
                     if (!este.alertFolio) {
-                      $('.modal-backdrop').css('display', 'none')
                       $('#registerModal').modal('hide');
                     }
                   });

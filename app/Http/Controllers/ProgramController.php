@@ -10,7 +10,6 @@ use App\MemberCat;
 class ProgramController extends Controller
 {
     public function newPrograma(Request $r){
-      dd($r->all());
       $programa = Programa::create([
                     'nombre' => $r->nombre,
                     'duracion' => $r->duracion,
@@ -19,7 +18,7 @@ class ProgramController extends Controller
                     'alcance' => $r->cv
                   ]);
 
-      $programa->foto = $r->file->store('/programas/'.$programa->id);
+      $programa->foto = $r->picture->store('/programas/'.$programa->id);
       $programa->save();
 
                   MemberCat::create([
@@ -68,6 +67,7 @@ class ProgramController extends Controller
         ]);
       }
       $programa->empresa->pais;
+        $programa->participantes;
       return $programa;
     }
 

@@ -139,8 +139,7 @@
             });
 
             this.$bus.$on('newProg', ($event) => {
-
-              este.programas.push($event.program)
+              este.programas.unshift($event.program)
             })
             this.$bus.$on('pushPart', ($event) => {
               este.programas[$event.index].participantes.push($event.participant)

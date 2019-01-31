@@ -190,6 +190,40 @@
           }
         },
         methods: {
+          reset(){
+            this.levelsetted =  false
+            this.nombre =  ''
+            this.duracion =  ''
+            this.empresa =  ''
+            this.empresas =  []
+            this.pais =  ''
+            this.paises =  []
+            this.area1 =  ''
+            this.area2 =  ''
+            this.area3 =  ''
+            this.area4 =  ''
+            this.area5 =  ''
+            this.area1v =  0
+            this.area2v =  0
+            this.area3v =  0
+            this.area4v =  0
+            this.area5v =  0
+            this.cv =  ''
+            this.foto =  '/media/img/defaults/profile_1.png'
+            this.picture =  null
+
+            this.alertName =  false
+            this.alertMail =  false
+            this.alertMailText =  'Este campo es Obligatorio'
+            this.alertTel =  false
+            this.alertPais =  false
+            this.alertCv =  false
+
+            this.searchCountry =  false
+            this.searchEmpresas =  false
+            this.empresaid =  0
+            this.paisid =  0
+          },
           searchPais(){
             var este = this;
             this.searchCountry = true
@@ -431,8 +465,8 @@
               axios.post('/new-programa', formData).then(function(program){
                 este.$bus.$emit('newProg', {program: program.data});
               }).then(function(){
-                $('.modal-backdrop').css('display', 'none')
-                $('#newProgramModal').modal('hide');
+                $('#registerModal').modal('hide');
+                este.reset();
               });
             }
           }
