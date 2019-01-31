@@ -111,27 +111,6 @@
             <preview></preview>
           </div>
         </div>
-        <hr>
-        <h4>Participantes</h4>
-        <div class="row">
-          <div class="col">
-            <input type="text" class="form-control" placeholder="Nombre">
-          </div>
-          <div v-if="paisid === 0" class="col" style="position: relative">
-            <input v-model="pais" type="text" class="form-control" placeholder="País" @keyup="searchPais()">
-            <transition name="fade">
-              <ul v-if="searchCountry" class="input-results list-group">
-                 <a @click="setPais(pais.id, pais.nombre)" v-for="pais in paises" role="button" class="list-group-item list-group-item-action">{{pais.nombre}}</a>
-              </ul>
-            </transition>
-          </div>
-          <div v-else class="col text-center">
-              <span>{{pais}}</span> <button class="btn btn-link danger" @click="paisid = 0"><i class="fas fa-times"></i></button>
-          </div>
-          <div class="col">
-            <input type="text" class="form-control" placeholder="Folio">
-          </div>
-        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

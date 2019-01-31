@@ -45,7 +45,7 @@ class AdminController extends Controller
     }
 
     public function getProgramas(){
-      $programas =  Programa::all();
+      $programas =  Programa::orderBy('desc')->get();
 
       foreach ($programas as $key => $programa) {
         $programa->empresa->pais;
