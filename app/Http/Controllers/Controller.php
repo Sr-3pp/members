@@ -51,7 +51,9 @@ class Controller extends BaseController
               $perfil->categoria_id = $cat->categoria_id;
             }
           }
-          array_push($results, $perfil);
+          if ($perfil->status === 1) {
+            array_push($results, $perfil);
+          }
         }
         $perfiles = Perfil::search($r->nombre, 'name')->orderBy('name', 'ASC')->get();
         if (count($perfiles) == 0) {
@@ -142,7 +144,9 @@ class Controller extends BaseController
                 }
               }
             }
-            array_push($results, $perfil);
+            if($perfil->status === 1){
+              array_push($results, $perfil);
+            }
           }
           $empresas = Empresa::where('user_id', $cat->user_id)->get();
           foreach ($empresas as $key => $perfil) {
@@ -162,7 +166,9 @@ class Controller extends BaseController
                 }
               }
             }
-            array_push($results, $perfil);
+            if ($perfil->status === 1) {
+              array_push($results, $perfil);
+            }
           }
         }
       }
