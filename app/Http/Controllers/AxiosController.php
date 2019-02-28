@@ -81,17 +81,25 @@ class AxiosController extends Controller
       return $programas;
     }
     public function searchMember(Request $r){
-      $perfiles = Perfil::search($r->nombre)->orderBy('name', 'ASC')->get();
+      $perfiles = Perfil::search($r->nombre, 'name')->orderBy('name', 'ASC')->get();
+      if (count($perfiles) == 0) {
+        $perfiles = Perfil::search($r->nombre, 'app_p')->orderBy('name', 'ASC')->get();
+      }
+      if(count($perfiles) == 0){
+        $perfiles = Perfil::search($r->nombre, 'app_m')->orderBy('name', 'ASC')->get();
+      }
       $resultados = [];
       foreach ($perfiles as $key => $perfil) {
-        $perfil->user;
-        $perfil->pais;
-        $perfil->user->categorias;
-        array_push($resultados, $perfil->user);
-        $resultados[$key]["perfil"] = $perfil->user->perfil;
-        $resultados[$key]["perfil"]["pais"] = $perfil->pais;
-        foreach ($perfil->user->categorias as $key => $categoria) {
-          $categoria->categoria;
+        if ($perfil->status === 1) {
+          $perfil->user;
+          $perfil->pais;
+          $perfil->user->categorias;
+          array_push($resultados, $perfil->user);
+          $resultados[$key]["perfil"] = $perfil->user->perfil;
+          $resultados[$key]["perfil"]["pais"] = $perfil->pais;
+          foreach ($perfil->user->categorias as $key => $categoria) {
+            $categoria->categoria;
+          }
         }
       }
       if ($r->magic === '2') {

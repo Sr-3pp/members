@@ -242,6 +242,12 @@ class AdminController extends Controller
       if ($r->magic === 'name') {
         $user->name = $r->value;
       }
+      if ($r->magic === 'email') {
+        $user->user->email = $r->value;
+      }
+      if ($r->magic === 'password') {
+        $user->user->password = bcrypt($r->value);
+      }
 
       if ($r->magic === 'tel') {
         $user->telefono = $r->value;
@@ -289,7 +295,7 @@ class AdminController extends Controller
       }
       $user->save();
       $user->pais;
-      $user->user;
+      $user->user->save();
 
       return $user;
 

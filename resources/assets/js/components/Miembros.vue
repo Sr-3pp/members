@@ -63,7 +63,7 @@
                                       <img v-if="selected === 4" width="40" src="/media/img/categorias/empresa.png" alt="categoria_icon">
                                       <img v-if="selected === 5" width="40" src="/media/img/categorias/programas.png" alt="categoria_icon">
                                 </div>
-                                <h3 v-if="selected !== 4" class="white">{{member.name}} {{member.apellido_p ? member.apellido_p : '' +' '+member.apellido_m ? member.apellido_m : ''}}</h3>
+                                <h3 v-if="selected !== 4" class="white">{{member.perfil.name}} {{member.perfil.apellido_p ? member.perfil.apellido_p : '' +' '+member.perfil.apellido_m ? member.perfil.apellido_m : ''}}</h3>
                                 <h3 v-else class="white">{{member.empresa.name}}</h3>
                               </div>
                             </div>

@@ -79,7 +79,9 @@ class Controller extends BaseController
               $perfil->categoria_id = $cat->categoria_id;
             }
           }
-          array_push($results, $perfil);
+          if ($perfil->status === 1) {
+            array_push($results, $perfil);
+          }
         }
 
       }
@@ -190,7 +192,13 @@ class Controller extends BaseController
           }
           array_push($resultados, $perfil);
         }
-        $perfiles = Perfil::search($r->nombre)->orderBy('name', 'ASC')->get();
+        $perfiles = Perfil::search($r->nombre, 'name')->orderBy('name', 'ASC')->get();
+        if (count($perfiles) == 0) {
+          $perfiles = Perfil::search($r->nombre, 'app_p')->orderBy('name', 'ASC')->get();
+        }
+        if(count($perfiles) == 0){
+          $perfiles = Perfil::search($r->nombre, 'app_m')->orderBy('name', 'ASC')->get();
+        }
         foreach ($perfiles as $key => $perfil) {
           $perfil->user;
           $perfil->pais;
@@ -221,6 +229,9 @@ class Controller extends BaseController
           if ($result->categoria_id !== $r->categoria) {
             unset($resultados[$key]);
           }
+          if ($result->status !== 1) {
+            unset($resultados[$key]);
+          }
         }
 
         return $resultados;
@@ -248,7 +259,13 @@ class Controller extends BaseController
           }
           array_push($resultados, $perfil);
         }
-        $perfiles = Perfil::search($r->nombre)->orderBy('name', 'ASC')->get();
+        $perfiles = Perfil::search($r->nombre, 'name')->orderBy('name', 'ASC')->get();
+        if (count($perfiles) == 0) {
+          $perfiles = Perfil::search($r->nombre, 'app_p')->orderBy('name', 'ASC')->get();
+        }
+        if(count($perfiles) == 0){
+          $perfiles = Perfil::search($r->nombre, 'app_m')->orderBy('name', 'ASC')->get();
+        }
         foreach ($perfiles as $key => $perfil) {
           $perfil->user;
           $perfil->pais;
@@ -267,6 +284,9 @@ class Controller extends BaseController
 
         foreach ($resultados as $key => $result) {
           if ($result->pais_id !== $r->pais) {
+            unset($resultados[$key]);
+          }
+          if ($result->status !== 1) {
             unset($resultados[$key]);
           }
         }
@@ -296,7 +316,13 @@ class Controller extends BaseController
           }
           array_push($resultados, $perfil);
         }
-        $perfiles = Perfil::search($r->nombre)->orderBy('name', 'ASC')->get();
+        $perfiles = Perfil::search($r->nombre, 'name')->orderBy('name', 'ASC')->get();
+        if (count($perfiles) == 0) {
+          $perfiles = Perfil::search($r->nombre, 'app_p')->orderBy('name', 'ASC')->get();
+        }
+        if(count($perfiles) == 0){
+          $perfiles = Perfil::search($r->nombre, 'app_m')->orderBy('name', 'ASC')->get();
+        }
         foreach ($perfiles as $key => $perfil) {
           $perfil->user;
           $perfil->pais;
@@ -317,7 +343,9 @@ class Controller extends BaseController
               }
             }
           }
-          array_push($resultados, $perfil);
+          if ($perfil->status === 1) {
+            array_push($resultados, $perfil);
+          }
         }
 
 
@@ -373,6 +401,9 @@ class Controller extends BaseController
 
         foreach ($resultados as $key => $result) {
           if ($result->categoria_id !== $r->categoria) {
+            unset($resultados[$key]);
+          }
+          if ($result->status === 0) {
             unset($resultados[$key]);
           }
         }
