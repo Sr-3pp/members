@@ -53,13 +53,13 @@
             <h4>Áreas de expertise</h4>
           </div>
           <div class="col text-center">
-            <input maxlength="10" @keyup="validateVal(1)" v-model="area1" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 1">
+            <input maxlength="40" @keyup="validateVal(1)" v-model="area1" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 1">
             <span class="reg-stars">
               <span @click="level('a', index)" :id="'stara_'+index" @mouseover="setlevel('a', index, 1)"  @mouseout="setlevel('a', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
             </span>
           </div>
           <div class="col">
-            <input maxlength="10" @keyup="validateVal(2)" :disabled="area1 === '' || area1v === 0" v-model="area2" style="margin-bottom: 10px" type="twxt" class="form-control" placeholder="Área 2">
+            <input maxlength="40" @keyup="validateVal(2)" :disabled="area1 === '' || area1v === 0" v-model="area2" style="margin-bottom: 10px" type="twxt" class="form-control" placeholder="Área 2">
             <span class="reg-stars" v-if="area1 !== '' && area1v !== 0">
               <span @click="level('b', index)" :id="'starb_'+index"  @mouseover="setlevel('b', index, 1)"  @mouseout="setlevel('b', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
             </span>
@@ -71,7 +71,7 @@
         <br>
         <div class="row">
           <div class="col">
-            <input maxlength="10" @keyup="validateVal(3)"  :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0" v-model="area3" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 3">
+            <input maxlength="40" @keyup="validateVal(3)"  :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0" v-model="area3" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 3">
             <span class="reg-stars" v-if="area1 !== '' && area1v !== 0 && area2 !== '' && area2v !== 0">
               <span @click="level('c', index)" :id="'starc_'+index" @mouseover="setlevel('c', index, 1)"  @mouseout="setlevel('c', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
             </span>
@@ -80,7 +80,7 @@
             </span>
           </div>
           <div class="col">
-            <input maxlength="10" @keyup="validateVal(4)" :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0 || area3 === '' || area3v === 0" v-model="area4" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 4">
+            <input maxlength="40" @keyup="validateVal(4)" :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0 || area3 === '' || area3v === 0" v-model="area4" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 4">
             <span class="reg-stars" v-if="area1 !== '' && area1v !== 0 && area2 !== '' && area2v !== 0 && area3 !== '' && area3v !== 0">
               <span @click="level('d', index)" :id="'stard_'+index"  @mouseover="setlevel('d', index, 1)"  @mouseout="setlevel('d', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
             </span>
@@ -89,7 +89,7 @@
             </span>
           </div>
           <div class="col">
-            <input maxlength="10" :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0 || area3 === '' || area3v === 0 || area4=== '' || area4v === 0" v-model="area5" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 5">
+            <input maxlength="40" :disabled="area1 === '' || area1v === 0 || area2 === '' || area2v === 0 || area3 === '' || area3v === 0 || area4=== '' || area4v === 0" v-model="area5" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Área 5">
             <span class="reg-stars" v-if="area1 !== '' && area1v !== 0 && area2 !== '' && area2v !== 0 && area3 !== '' && area3v !== 0 && area4 !== '' && area4v !== 0">
               <span @click="level('e', index)" :id="'stare_'+index" @mouseover="setlevel('e', index, 1)"  @mouseout="setlevel('e', index, 0)" v-for="(star, index) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
             </span>
@@ -125,7 +125,7 @@
             var este = this;
             this.csrf = $('meta[name="csrf-token"]').attr('content')
             this.$bus.$on('file', ($event) => {
-              este.picture = $event.file              
+              este.picture = $event.file
             });
 
         },
@@ -388,7 +388,7 @@
             }
           },
           register(){
-            if (this.nombre === '' || this.duracion === '' || this.empresaid === 0 || this.pais === '' || this.cv === '') {
+            if (this.nombre === '' || this.duracion === '' || this.empresaid === 0) {
               if (this.nombre === '') {
                 this.alertName = true
               }else{

@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-md-8">
       <div>
-        <h3>Educación</h3>
+        <h3>Clientes con los que hemos trabajado</h3>
         <hr>
         <div class="text-justify">
           {{$user->empresa->cv}}
@@ -51,13 +51,13 @@
         <div>
           <ul class="social-list-float">
             @if ($user->empresa->fb)
-              <li><a target="_blank" href="https://{{$user->empresa->fb}}"><img width="40" src="{{asset('media/img/recursos/fb-logo.png')}}" alt="fb icon"></a></li>
+              <li><a target="_blank" href="https://facebook.com/{{$user->empresa->fb}}"><img width="40" src="{{asset('media/img/recursos/fb-logo.png')}}" alt="fb icon"></a></li>
             @endif
             @if ($user->empresa->tw)
-              <li><a target="_blank" href="https://{{$user->empresa->tw}}"><img width="40" src="{{asset('media/img/recursos/tw-logo.png')}}" alt="fb icon"></a></li>
+              <li><a target="_blank" href="https://twitter.com/{{$user->empresa->tw}}"><img width="40" src="{{asset('media/img/recursos/tw-logo.png')}}" alt="fb icon"></a></li>
             @endif
             @if ($user->empresa->in)
-              <li><a target="_blank" href="https://{{$user->empresa->in}}"><img width="40" src="{{asset('media/img/recursos/in-logo.png')}}" alt="fb icon"></a></li>
+              <li><a target="_blank" href="https://linkedin.com/{{$user->empresa->in}}"><img width="40" src="{{asset('media/img/recursos/in-logo.png')}}" alt="fb icon"></a></li>
             @endif
           </ul>
         </div>

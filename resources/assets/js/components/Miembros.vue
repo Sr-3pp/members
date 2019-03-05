@@ -67,13 +67,13 @@
                                 <h3 v-else class="white">{{member.empresa.name}}</h3>
                               </div>
                             </div>
-                            <a :href="member.perfil ? member.perfil.fb : member.empresa.fb"><img width="30" src="/media/img/recursos/fb-logo.png" alt="facebook logo"></a>
+                            <a :href="member.perfil ? 'https://facebook.com/'+member.perfil.fb : 'https://facebook.com/'+member.empresa.fb"><img width="30" src="/media/img/recursos/fb-logo.png" alt="facebook logo"></a>
 
 
-                            <a :href="member.perfil ? member.perfil.tw : member.empresa.tw"><img width="30" src="/media/img/recursos/tw-logo.png" alt="facebook logo"></a>
+                            <a :href="member.perfil ? 'https://twitter.com/'+member.perfil.tw : 'https://twitter.com/'+member.empresa.tw"><img width="30" src="/media/img/recursos/tw-logo.png" alt="facebook logo"></a>
 
 
-                            <a :href="member.perfil ? member.perfil.in : member.empresa.in"><img width="30" src="/media/img/recursos/in-logo.png" alt="facebook logo"></a>
+                            <a :href="member.perfil ? 'https://linkedin.com/'+member.perfil.in : 'https://linkedin.com/'+member.empresa.in"><img width="30" src="/media/img/recursos/in-logo.png" alt="facebook logo"></a>
 
                           </div>
                         </div>
@@ -127,8 +127,8 @@
                             </div>
                             <span>Programa</span> <br>
                             <a v-if="program.empresa.fb" :href="program.empresa.fb"><img width="30" src="/media/img/recursos/fb-logo.png" alt="facebook logo"></a>
-                            <a v-if="program.empresa.tw" :href="program.empresa.tw"><img width="30" src="/media/img/recursos/tw-logo.png" alt="facebook logo"></a>
-                            <a v-if="program.empresa.in" :href="program.empresa.in"><img width="30" src="/media/img/recursos/in-logo.png" alt="facebook logo"></a>
+                            <a v-if="program.empresa.tw" :href="program.empresa.tw"><img width="30" src="/media/img/recursos/tw-logo.png" alt="twitter logo"></a>
+                            <a v-if="program.empresa.in" :href="program.empresa.in"><img width="30" src="/media/img/recursos/in-logo.png" alt="linkedin logo"></a>
                           </div>
                         </div>
                       </div>

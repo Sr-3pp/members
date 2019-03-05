@@ -13,7 +13,7 @@
             <input @keyup="searchMember()" type="text" class="form-control" id="validationCustomUsername" placeholder="Busca un usuario" aria-describedby="inputGroupPrepend" v-model="search">
             <div class="input-group-prepend">
               <button class="btn btn-default" ><i class="fas fa-search"></i></button>
-        <button @click="$bus.$emit('registerModal', {sw: empresa, admin: 1})" class="btn btn-link" ><i class="fas fa-plus"></i></button>      
+        <button @click="$bus.$emit('registerModal', {sw: empresa, admin: 1})" class="btn btn-link" ><i class="fas fa-plus"></i></button>
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@
                               <div v-if="newVal === 'newVal_'+index" class="row">
                                 <div class="col-12">
                                   <div class="input-group">
-                                    <input @keyup.enter="saveVal(index, user.user_id)" @keyup.esc="newVal = ''" :id="'newValInput_'+index" maxlength="10" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Nombre">
+                                    <input @keyup.enter="saveVal(index, user.user_id)" @keyup.esc="newVal = ''" :id="'newValInput_'+index" maxlength="40" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Nombre">
                                   </div>
                                 </div>
                                 <div class="col-12">
@@ -390,8 +390,69 @@
         <li class="list-group-item">
           <div class="row">
 
-            <div  v-for="(user, index) in empresas" class="col-xl-4" style="padding:30px;">
+            <div  v-for="(user, index) in empresas" class="col-xl-4" style="padding:30px; text-align: center;">
               <div class="user-card">
+                <transition name="fade">
+                  <div v-if="expertise === magic+'_exp_'+index" class="skillsEdit">
+                    <div class="row">
+                      <div class="col">
+                        <h1>Areas de expertise
+                          <button @click="expertise = null" class="close right-30 white"><i class="fas fa-window-close"></i></button>
+                        </h1>
+                        <hr>
+                        <div>
+                          <div v-if="newVal !== 'newVal_'+index" v-for="(valoracion, index2) in user.user.valoracion" class="row editvalorations">
+                            <div class="col-4">
+                              <span @click="editVal(index, valoracion.id, 1)" v-if="valoration !== 'val_'+index+'_'+valoracion.id" :id="'val_'+index+'_'+magic">{{valoracion.area}}</span>
+                              <div v-if="valoration === 'val_'+index+'_'+valoracion.id" class="input-group">
+                                <input ref="valoration" @keyup.esc="editVal(index, valoracion.id, 0)" @keyup.enter="updateVal(valoracion.id, 'name', index, index2)" :id="'valInput_'+valoracion.id" maxlength="30" style="margin-bottom: 10px" type="text" class="form-control" :value="valoracion.area">
+                                <!--<div class="input-group-prepend" style="padding-top: 5px;">
+                                  <button class="btn btn-link" style="height:40px;" @click="editVal(index, valoracion.id, 0)"><i class="fas fa-times danger"></i></button>
+                                </div>
+                                <div class="input-group-prepend" style="padding-top: 5px;">
+                                  <button class="btn btn-link" style="height:40px;" @click="updateVal(valoracion.id, 'name', index, index2)"><i class="fas fa-check success"></i></button>
+                                </div>-->
+                              </div>
+                            </div>
+                            <div class="col-8 text-left">
+                              <span @click="editStars = 'stars_'+index+'_'+valoracion.id" v-if="editStars !== 'stars_'+index+'_'+valoracion.id" class="reg-stars">
+                                  <span v-for="val in parseInt(valoracion.porcentaje)"><i class="fas fa-star active"></i>&nbsp;&nbsp;</span>
+                              </span>
+                              <span v-if="editStars === 'stars_'+index+'_'+valoracion.id" class="reg-stars">
+                                <span @click="level('a', index2, valoracion.id, index, index3)" :id="'staram_'+index3+'_'+valoracion.id" @mouseover="setlevel('a', index3, 1, valoracion.id)"  @mouseout="setlevel('a', index3, 0, valoracion.id)" v-for="(star, index3) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
+                              </span>
+                              <button @click="deleteVal(valoracion.id, index2, index)" class="btn btn-link right danger">
+                                <i class="fas fa-minus-square"></i>
+                              </button>
+                            </div>
+                          </div>
+                          <div v-if="newVal !== 'newVal_'+index" class="text-center" style="width:100%;">
+                            <button @click="newVal = 'newVal_'+index" v-if="user.user.valoracion.length < 5" class="btn btn-link"><i class="fas fa-plus"></i></button>
+                          </div>
+                          <div class="container">
+                            <div v-if="newVal === 'newVal_'+index" class="row">
+                              <div class="col-12">
+                                <div class="input-group">
+                                  <input @keyup.enter="saveVal(index, user.user_id)" @keyup.esc="newVal = ''" :id="'newValInput_'+index" maxlength="40" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Nombre">
+                                </div>
+                              </div>
+                              <div class="col-12">
+                                <br>
+                                <span class="reg-stars">
+                                  <span @click="newStars = indexs" :id="'newStaram_'+indexs" @mouseover="setleveln('a', indexs, 1)"  @mouseout="setleveln('a', indexs, 0)" v-for="(star, indexs) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
+                                </span> <br>
+                                <div>
+                                  <button class="btn btn-link" @click="newVal = ''"><i class="fas fa-times danger"></i></button>
+                                  <button @click="saveVal(index, user.user_id)" class="btn btn-link"><i class="fas fa-check success success"></i></button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </transition>
                 <div class="row" style="border-bottom: none">
                   <div class="col-3">
                     <div class="row">
@@ -635,6 +696,7 @@
                   </div>
                 </div>
               </div>
+              <button @click="editskills(index)" class="btn btn-default btn-sm" style="margin: 0 auto;">Areas de expertise.</button>
             </div>
 
           </div>
@@ -1166,7 +1228,11 @@
             var este = this;
             var porcentaje = parseInt(percent+1);
             axios.post('/panel/update-val', {id: valoracion, percent: porcentaje, magic: 'star'}).then(function(response){
-              este.users[user].user.valoracion[index] = response.data
+              if (!este.empresa) {
+                este.users[user].user.valoracion[index] = response.data
+              }else{
+                este.empresas[user].user.valoracion[index] = response.data
+              }
               este.editStars = null
             })
           },
@@ -1181,7 +1247,11 @@
             var nombre = $('#valInput_'+id).val()
             var este = this;
             axios.post('/panel/update-val', {id: id, name: nombre, magic: magic}).then(function(response){
-              este.users[user].user.valoracion[index] = response.data
+              if (!este.empresa) {
+                este.users[user].user.valoracion[index] = response.data
+              }else{
+                este.empresas[user].user.valoracion[index] = response.data
+              }
               este.valoration = null
             })
           },
@@ -1200,7 +1270,11 @@
             var percent = parseInt(this.newStars+1);
             var este = this;
             axios.post('/panel/add-valoration/'+id, {area: area, percent: percent}).then(function(response){
-              este.users[index].user.valoracion.push(response.data)
+              if (!este.empresa) {
+                este.users[index].user.valoracion.push(response.data)
+              }else{
+                este.empresas[index].user.valoracion.push(response.data)
+              }
               este.newVal = null
             });
           },

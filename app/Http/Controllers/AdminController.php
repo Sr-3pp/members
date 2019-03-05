@@ -26,6 +26,7 @@ class AdminController extends Controller
 
       foreach ($empresas as $key => $perfil) {
         $perfil->user;
+        $perfil->user->valoracion;
         $perfil->pais;
         $perfil->user->categorias;
         foreach ($perfil->user->categorias as $key => $categoria) {
@@ -45,11 +46,12 @@ class AdminController extends Controller
     }
 
     public function getProgramas(){
-      $programas =  Programa::orderBy('desc')->get();
+      $programas =  Programa::orderBy('nombre', 'desc')->get();
 
       foreach ($programas as $key => $programa) {
         $programa->empresa->pais;
         $programa->participantes;
+        $programa->valoracion;
       }
 
       return $programas;
@@ -328,14 +330,15 @@ class AdminController extends Controller
 
 
       if ($r->magic === 'pic') {
-        if ($r->hasFile('file')) {
+        if ($r->hasFile('pic')) {
           Storage::delete($programa->foto);
-          $programa->foto = $r->file->store('/users/'.$programa->id.'/profile_pics');
+          $programa->foto = $r->pic->store('/users/'.$programa->id.'/profile_pics');
         }
       }
       $programa->save();
 
       $programa->empresa->pais;
+      $programa->participantes;
 
       return $programa;
 

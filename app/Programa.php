@@ -16,4 +16,12 @@ class Programa extends Model
       return $this->hasMany('App\Participantes');
     }
 
+    public function valoracion(){
+      return $this->hasMany('App\Valoracion');
+    }
+
+    public function scopeSearch($query, $name){
+      return $query->where('nombre', "LIKE", "%$name%");
+    }
+
 }

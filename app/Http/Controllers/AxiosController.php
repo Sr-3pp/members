@@ -77,7 +77,12 @@ class AxiosController extends Controller
       return $idiomas;
     }
     public function searchPrograma(Request $r){
-      $programas = Programa::search($r->programa)->paginate(10);
+      $programas = Programa::search($r->programa)->orderBy('nombre')->get();
+      foreach ($programas as $key => $programa) {
+        $programa->empresa->pais;
+        $programa->participantes;
+        $programa->valoracion;
+      }
       return $programas;
     }
     public function searchMember(Request $r){
@@ -94,6 +99,7 @@ class AxiosController extends Controller
           $perfil->user;
           $perfil->pais;
           $perfil->user->categorias;
+          $perfil->user->valoracion;
           array_push($resultados, $perfil->user);
           $resultados[$key]["perfil"] = $perfil->user->perfil;
           $resultados[$key]["perfil"]["pais"] = $perfil->pais;
@@ -113,6 +119,7 @@ class AxiosController extends Controller
         $perfil->user;
         $perfil->pais;
         $perfil->user->categorias;
+        $perfil->user->valoracion;
         foreach ($perfil->user->categorias as $key => $categoria) {
           $categoria->categoria;
         }
@@ -139,6 +146,7 @@ class AxiosController extends Controller
         $perfil->user;
         $perfil->pais;
         $perfil->user->categorias;
+        $perfil->user->valoracion;
         foreach ($perfil->user->categorias as $key => $categoria) {
           $categoria->categoria;
         }

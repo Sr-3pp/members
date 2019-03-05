@@ -68,6 +68,7 @@ class ProgramController extends Controller
       }
       $programa->empresa->pais;
         $programa->participantes;
+        $programa->valoracion;
       return $programa;
     }
 
@@ -75,6 +76,7 @@ class ProgramController extends Controller
         $programa = Programa::find($id);
         $programa->empresa;
         $programa->user;
+        $programa->valoracion;
 
         return $programa;
     }
@@ -106,6 +108,9 @@ class ProgramController extends Controller
 
         $programa->save();
         $programa->empresa->user->categorias;
+        $programa->empresa->pais;
+        $programa->participantes;
+        $programa->valoracion;
 
         foreach ($programa->empresa->user->categorias as $key => $categoria) {
           $categoria->categoria;

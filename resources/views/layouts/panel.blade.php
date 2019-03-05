@@ -37,7 +37,6 @@
     <div id="app">
         @yield('content')
         <modal admin="true"></modal>
-        <newprogram></newprogram>
         <participants></participants>
     </div>
 
