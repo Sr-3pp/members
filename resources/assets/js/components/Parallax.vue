@@ -88,13 +88,13 @@
                         <h3>{{member.name}} {{member.apellido_p ? member.apellido_p : '' +' '+member.apellido_m ? member.apellido_m : ''}}</h3>
                       </div>
                     </div>
-                    <a v-if="member.fb" :href="member.fb"><img width="30" src="/media/img/recursos/fb-logo.png" alt="facebook logo"></a>
+                    <a v-if="member.fb" :href="'https://facebook,com/' + member.fb"><img width="30" src="/media/img/recursos/fb-logo.png" alt="facebook logo"></a>
 
 
-                    <a v-if="member.tw" :href="member.tw"><img width="30" src="/media/img/recursos/tw-logo.png" alt="facebook logo"></a>
+                    <a v-if="member.tw" :href="'https://twitter,com/' + member.tw"><img width="30" src="/media/img/recursos/tw-logo.png" alt="facebook logo"></a>
 
 
-                    <a v-if="member.in" :href="member.in"><img width="30" src="/media/img/recursos/in-logo.png" alt="facebook logo"></a>
+                    <a v-if="member.in" :href="'https://linkedin,com/' + member.in"><img width="30" src="/media/img/recursos/in-logo.png" alt="facebook logo"></a>
 
                   </div>
                 </div>
