@@ -51,13 +51,13 @@
         <div>
           <ul class="social-list-float">
             @if ($user->perfil->fb)
-              <li><a target="_blank" href="https://{{$user->perfil->fb}}"><img width="40" src="{{asset('media/img/recursos/fb-logo.png')}}" alt="fb icon"></a></li>
+              <li><a target="_blank" href="https://facebook.com/{{$user->perfil->fb}}"><img width="40" src="{{asset('media/img/recursos/fb-logo.png')}}" alt="fb icon"></a></li>
             @endif
             @if ($user->perfil->tw)
-              <li><a target="_blank" href="https://{{$user->perfil->tw}}"><img width="40" src="{{asset('media/img/recursos/tw-logo.png')}}" alt="fb icon"></a></li>
+              <li><a target="_blank" href="https://twitter.com/{{$user->perfil->tw}}"><img width="40" src="{{asset('media/img/recursos/tw-logo.png')}}" alt="fb icon"></a></li>
             @endif
             @if ($user->perfil->in)
-              <li><a target="_blank" href="https://{{$user->perfil->in}}"><img width="40" src="{{asset('media/img/recursos/in-logo.png')}}" alt="fb icon"></a></li>
+              <li><a target="_blank" href="https://linkedin.com/{{$user->perfil->in}}"><img width="40" src="{{asset('media/img/recursos/in-logo.png')}}" alt="fb icon"></a></li>
             @endif
           </ul>
         </div>
