@@ -45,8 +45,8 @@ Route::get('/delete-user/{id}', 'MemberController@delete');
 Route::get('/status-user/{id}', 'MemberController@status');
 
 Route::get('perfil/{folio}/{slug}', 'Controller@getPerfil');
-Route::get('empresa/{folio}', 'Controller@getEmpresa');
-Route::get('programa/{id}', 'Controller@getPrograma');
+Route::get('empresa/{folio}/{slug}', 'Controller@getEmpresa');
+Route::get('programa/{id}/{slug}', 'Controller@getPrograma');
 
 Route::post('/new-empresa', 'EmpresaController@newEmpresa');
 Route::get('/status-programa/{id}', 'ProgramController@status');

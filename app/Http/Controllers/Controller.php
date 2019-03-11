@@ -123,7 +123,7 @@ class Controller extends BaseController
         }
 
       }
-      if ($r->categoria !== 0) {
+      if ($r->categoria !== 0 && $r->categoria !== 5) {
         $categorias = MemberCat::where('categoria_id', $r->categoria)->get();
         foreach ($categorias as $key => $cat) {
           $perfiles = Perfil::where('user_id', $cat->user_id)->get();
@@ -171,6 +171,14 @@ class Controller extends BaseController
             }
           }
         }
+      }else if($r->categoria == 5){
+        $programas = Programa::where('status', 1)->get();
+        foreach ($programas as $key => $p) {
+          $p->empresa;
+          $p->empresa->user;
+          $p->empresa->pais;
+        }
+        return $programas;
       }
 
 

@@ -67,13 +67,13 @@
                                 <h3 v-else class="white">{{member.empresa.name}}</h3>
                               </div>
                             </div>
-                            <a :href="member.perfil ? 'https://facebook.com/'+member.perfil.fb : 'https://facebook.com/'+member.empresa.fb"><img width="30" src="/media/img/recursos/fb-logo.png" alt="facebook logo"></a>
+                            <a v-if="member.perfil && member.perfil.fb || member.empresa && member.empresa.fb" :href="member.perfil ? 'https://facebook.com/'+member.perfil.fb : 'https://facebook.com/'+member.empresa.fb"><img width="30" src="/media/img/recursos/fb-logo.png" alt="facebook logo"></a>
 
 
-                            <a :href="member.perfil ? 'https://twitter.com/'+member.perfil.tw : 'https://twitter.com/'+member.empresa.tw"><img width="30" src="/media/img/recursos/tw-logo.png" alt="facebook logo"></a>
+                            <a v-if="member.perfil && member.perfil.tw || member.empresa && member.empresa.tw" :href="member.perfil ? 'https://twitter.com/'+member.perfil.tw : 'https://twitter.com/'+member.empresa.tw"><img width="30" src="/media/img/recursos/tw-logo.png" alt="facebook logo"></a>
 
 
-                            <a :href="member.perfil ? 'https://linkedin.com/'+member.perfil.in : 'https://linkedin.com/'+member.empresa.in"><img width="30" src="/media/img/recursos/in-logo.png" alt="facebook logo"></a>
+                            <a v-if="member.perfil && member.perfil.in || member.empresa && member.empresa.in" :href="member.perfil ? 'https://linkedin.com/'+member.perfil.in : 'https://linkedin.com/'+member.empresa.in"><img width="30" src="/media/img/recursos/in-logo.png" alt="facebook logo"></a>
 
                           </div>
                         </div>
@@ -99,7 +99,7 @@
                             </tr>
                           </table>
                           <a v-if="selected !== 4" class="btn btn-primary" :href="'/perfil/'+member.folio+'/'+member.perfil.slug">Más información</a>
-                          <a v-else class="btn btn-primary" :href="'/empresa/'+member.folio">Más información</a>
+                          <a v-else class="btn btn-primary" :href="'/empresa/'+member.folio + '/' + member.empresa.name.toLowerCase().replace(/\s/g, '-')">Más información</a>
                         </div>
                       </div>
                     </div>
@@ -152,7 +152,7 @@
                               <td class="text-left">{{program.empresa.website}}</td>
                             </tr>
                           </table>
-                          <a class="btn btn-primary" :href="'/programa/'+program.id">Más información</a>
+                          <a class="btn btn-primary" :href="'/programa/'+program.id+'/'+program.nombre.toLowerCase().replace(/\s/g, '-')">Más información</a>
                         </div>
                       </div>
 

@@ -19,12 +19,17 @@
             <input type="text" class="form-control" placeholder="Nombre" v-model="nombre">
           </div>
           <div v-if="paisid === 0" class="col" style="position: relative">
-            <input v-model="pais" type="text" class="form-control" placeholder="País" @keyup="searchPais()">
-            <transition name="fade">
-              <ul v-if="searchCountry" class="input-results list-group">
-                 <a @click="setPais(pais.id, pais.nombre)" v-for="pais in paises" role="button" class="list-group-item list-group-item-action">{{pais.nombre}}</a>
-              </ul>
-            </transition>
+            <div class="input-group">
+                  <input :disabled="paises.length === 0" @keyup="searchPais" v-model="pais" type="text" class="form-control" :placeholder="$t('form.placeholder.Country')">
+                  <div class="input-group-prepend">
+                    <button @click="listCountry" type="button" class="btn btn-default"><i class="fas fa-chevron-down"></i></button>
+                  </div>
+                </div>
+                <transition name="fade">
+                  <ul v-if="paises.length !== 0" class="input-results list-group">
+                     <a @click="setPais(pais.id, pais.nombre)" v-for="pais in paises" role="button" class="list-group-item list-group-item-action">{{pais.nombre}}</a>
+                  </ul>
+                </transition>
           </div>
           <div v-else class="col text-center">
               <span>{{pais}}</span> <button class="btn btn-link danger" @click="paisid = 0"><i class="fas fa-times"></i></button>
@@ -95,6 +100,16 @@
               });
             }else{
               este.paises = []
+            }
+          },
+          listCountry(){
+            var este = this;
+            if (this.paises.length !== 0) {
+              this.paises = []
+            }else{
+              axios.get('/get-paises').then(function(paises){
+                este.paises = paises.data;
+              });
             }
           },
           setPais(id, nombre){

@@ -57,7 +57,7 @@
       <div v-else>
         <button @click="home()" style="float:right" class="search-member-btn btn btn-danger"><i class="fas fa-home"></i></button>
         <div class="row" style="height: -webkit-fill-available; padding-top: 30px;">
-          <div  class="col-md-6 result-member" v-for="member in results">
+          <div v-if="categoria !== 5"  class="col-md-6 result-member" v-for="member in results">
             <div class="card" :class="{conscard: member.categoria_id === 1, coachcard: member.categoria_id === 2, capacard: member.categoria_id === 3, empresacard: member.categoria_id === 4, programcard: member.categoria_id === 5}">
               <div class="card-header">
                 <div class="row">
@@ -120,7 +120,66 @@
                     </tr>
                   </table>
                   <a v-if="member.categoria_id !== 4" class="btn btn-primary" :href="'/perfil/'+member.user.folio+'/'+member.slug">{{$t('form.button.more-info')}}</a>
-                  <a v-else class="btn btn-primary" :href="'/empresa/'+member.user.folio">{{$t('form.button.more-info')}}</a>
+                  <a v-else class="btn btn-primary" :href="'/empresa/'+member.user.folio+ '/' + member.name.toLowerCase().replace(/\s/g, '-')">{{$t('form.button.more-info')}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-if="categoria == 5"  class="col-md-6 result-member" v-for="program in results">
+            <div class="card programcard">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="member">
+                      <div class="mobile-member">
+                        <div class="member-picture" :style="'background: url(/storage/'+program.empresa.foto+') center no-repeat'"></div>
+                        <div class="member-flag" :style="'background: url(/storage/flags/'+program.empresa.pais.id+'.png) center no-repeat'"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-9">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="card-category">
+                              <span>{{$t('categoria.Programa')}}</span>
+                              &nbsp;&nbsp;&nbsp;
+                              <img width="40" src="/media/img/categorias/programas.png" alt="categoria_icon">
+                        </div>
+                        <h3>{{program.nombre}}</h3>
+                      </div>
+                    </div>
+                    <a v-if="program.empresa.fb" :href="'https://facebook.com/' + program.empresa.fb"><img width="30" src="/media/img/recursos/fb-logo.png" alt="facebook logo"></a>
+
+
+                    <a v-if="program.empresa.tw" :href="'https://twitter.com/' + program.empresa.tw"><img width="30" src="/media/img/recursos/tw-logo.png" alt="facebook logo"></a>
+
+
+                    <a v-if="program.empresa.in" :href="'https://linkedin.com/' + program.empresa.in"><img width="30" src="/media/img/recursos/in-logo.png" alt="facebook logo"></a>
+
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="card-text text-center table-responsive">
+                  <table class="table">
+                    <tr>
+                      <th class="text-right">Folio</th>
+                      <td class="text-left">{{program.empresa.user.folio}}</td>
+                    </tr>
+                    <tr>
+                      <th class="text-right">{{$t('user.tipo-mimebro')}}</th>
+                      <td class="text-left" style="text-transform: capitalize">{{program.empresa.rango}}</td>
+                    </tr>
+                    <tr>
+                      <th class="text-right">{{$t('user.Email')}}</th>
+                      <td class="text-left">{{program.empresa.user.email}}</td>
+                    </tr>
+                    <tr>
+                      <th class="text-right">{{$t('user.site')}}</th>
+                      <td class="text-left">{{program.empresa.website}}</td>
+                    </tr>
+                  </table>
+                  <a class="btn btn-primary" :href="'/programa/'+program.id+'/'+program.nombre.toLowerCase().replace(/\s/g, '-')">{{$t('form.button.more-info')}}</a>
                 </div>
               </div>
             </div>
@@ -164,6 +223,8 @@ import Parallax from 'vue-parallaxy'
             this.loading = true
                 axios.post('/search', {nombre: this.nombre, pais: this.paisid, categoria: this.categoria}).then(function(results){
                     este.results = results.data
+                    console.log(este.results);
+                    
                     for (var i = 0; i < este.results.length; i++) {
                       if (este.results[i].apellido_p) {
                         var apP = este.results[i].apellido_p
