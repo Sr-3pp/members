@@ -177,6 +177,7 @@ class Controller extends BaseController
           $p->empresa;
           $p->empresa->user;
           $p->empresa->pais;
+          $p->valoracion;
         }
         return $programas;
       }

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="profile-pic profile-cons">
-          <div :style="'background: url(/storage/'+empresa.foto+')center no-repeat'"></div>
+          <div :style="'background: url(/storage/'+programa.foto+')center no-repeat'"></div>
         </div>
         <div>
           <ul class="country-list">

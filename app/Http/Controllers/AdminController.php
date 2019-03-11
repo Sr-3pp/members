@@ -52,6 +52,7 @@ class AdminController extends Controller
         $programa->empresa->pais;
         $programa->participantes;
         $programa->valoracion;
+        $programa->empresa->user;
       }
 
       return $programas;
@@ -375,12 +376,21 @@ class AdminController extends Controller
     }
 
     public function addValoration($id, Request $r){
-      $val = Valoracion::create([
-        'area' => $r->area,
-        'porcentaje' => $r->percent,
-        'user_id' => $id,
-        'programa_id' => 0
-      ]);
+      if($r->magic === 'program'){
+        $val = Valoracion::create([
+          'area' => $r->area,
+          'porcentaje' => $r->percent,
+          'user_id' => 0,
+          'programa_id' => $id
+        ]);
+      }else{
+        $val = Valoracion::create([
+          'area' => $r->area,
+          'porcentaje' => $r->percent,
+          'user_id' => $id,
+          'programa_id' => 0
+        ]);
+      }
 
       return $val;
     }

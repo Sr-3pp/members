@@ -132,7 +132,7 @@
                   <div class="col-sm-3">
                     <div class="member">
                       <div class="mobile-member">
-                        <div class="member-picture" :style="'background: url(/storage/'+program.empresa.foto+') center no-repeat'"></div>
+                        <div class="member-picture" :style="'background: url(/storage/'+program.foto+') center no-repeat'"></div>
                         <div class="member-flag" :style="'background: url(/storage/flags/'+program.empresa.pais.id+'.png) center no-repeat'"></div>
                       </div>
                     </div>

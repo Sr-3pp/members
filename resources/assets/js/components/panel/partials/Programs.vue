@@ -40,7 +40,7 @@
                               <span v-if="editStars === 'stars_'+index+'_'+valoracion.id" class="reg-stars">
                                 <span @click="level('a', index2, valoracion.id, index, index3)" :id="'staram_'+index3+'_'+valoracion.id" @mouseover="setlevel('a', index3, 1, valoracion.id)"  @mouseout="setlevel('a', index3, 0, valoracion.id)" v-for="(star, index3) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
                               </span>
-                              <button @click="deleteVal(valoracion.id, index2, index)" class="btn btn-link right danger">
+                              <button @click="deleteVal(valoracion.id, index, index2)" class="btn btn-link right danger">
                                 <i class="fas fa-minus-square"></i>
                               </button>
                             </div>
@@ -404,9 +404,7 @@
             var este = this;
             if (confirm("Borrar valoración?") == true) {
               axios.get('/panel/delete-val/'+id).then(function(response){
-                if (response.data === 1) {
-                  este.programas[index].valoracion.splice(index, 1)
-                }
+                este.programas[index].valoracion.splice(user, 1)
               });
             }
           },
@@ -414,7 +412,7 @@
             var area = $('#newValInput_'+index).val()
             var percent = parseInt(this.newStars+1);
             var este = this;
-            axios.post('/panel/add-valoration/'+id, {area: area, percent: percent}).then(function(response){
+            axios.post('/panel/add-valoration/'+id, {area: area, percent: percent, magic: 'program'}).then(function(response){
               este.programas[index].valoracion.push(response.data)
               este.newVal = null
             });

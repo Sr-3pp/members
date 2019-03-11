@@ -82,6 +82,7 @@ class AxiosController extends Controller
         $programa->empresa->pais;
         $programa->participantes;
         $programa->valoracion;
+        $programa->empresa->user;
       }
       return $programas;
     }
@@ -157,10 +158,10 @@ class AxiosController extends Controller
     public function getProgramas(){
       $programas = Programa::all();
       foreach ($programas as $key => $programa) {
-
         $programa->empresa->pais;
-        $programa->empresa->user;
         $programa->participantes;
+        $programa->valoracion;
+        $programa->empresa->user;
       }
 
       return $programas;
@@ -170,6 +171,8 @@ class AxiosController extends Controller
       $programa = Programa::find($id);
       $programa->participantes;
       $programa->empresa->pais->zona;
+        $programa->valoracion;
+        $programa->empresa->user;
       foreach ($programa->participantes as $key => $part) {
         $part->pais;
         $part->pais->zona;
