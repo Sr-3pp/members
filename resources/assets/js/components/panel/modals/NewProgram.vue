@@ -104,7 +104,7 @@
             <transition name="fade">
               <span v-if="alertCv" class="must">Este campo es obligatorio</span>
             </transition>
-            <label>Alcance *</label>
+            <label>Objetivo *</label>
             <textarea style="height: 200px!important" v-model="cv" cols="30" rows="10" class="form-control"></textarea>
           </div>
           <div class="col">

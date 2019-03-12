@@ -7,9 +7,9 @@
   <div class="row">
     <div class="col-md-8">
       <div>
-        <h3>Educación</h3>
+        <h3>Objetivo</h3>
         <hr>
-        <div class="text-justify">
+        <div class="text-justify big-text">
           {{$programa->alcance}}
         </div>
       </div>
