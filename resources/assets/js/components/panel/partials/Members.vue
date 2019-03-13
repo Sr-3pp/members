@@ -988,6 +988,12 @@
                   este.editUser(index, 0, magic)
                 });
               }
+            }else if(magic == 'fb' || 'tw' || 'in'){
+              axios.post('/panel/update-user', {id: id, value: input.val(), magic: magic}).then(function(user){
+                  este.users.splice(index, 1);
+                  este.users.splice(index, 0, user.data);
+                  este.editUser(index, 0, magic)
+                });
             }
           },
           searchIdioma(){
@@ -1177,6 +1183,12 @@
                   este.editEmpresa(index, 0, magic)
                 });
               }
+            }else if(magic == 'fb' || 'tw' || 'in'){
+                axios.post('/panel/update-empresa', {id: id, value: input.val(), magic: magic}).then(function(user){
+                  este.empresas.splice(index, 1);
+                  este.empresas.splice(index, 0, user.data);
+                  este.editEmpresa(index, 0, magic)
+                });
             }
           },
           changePicm(index){
