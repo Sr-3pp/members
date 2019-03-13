@@ -17,6 +17,7 @@
           <div class="row">
             <div  v-for="(programa, index) in programas" class="col-xl-4" style="padding:30px; text-align: center">
               <div class="user-card">
+                <button @click="remove(programa.id, index)" class="btn btn-danger btn-delete"><i class="fas fa-trash"></i></button>
                 <transition name="fade">
                   <div v-if="expertise === magic+'_exp_'+index" class="skillsEdit">
                     <div class="row">
@@ -463,6 +464,14 @@
                 }
             }
           },
+          remove(id, index){
+            var este = this;
+            if (confirm('¿Borrar este programa?')) {
+              axios.get('/delete-program/'+id).then(function(response){
+                  este.programas.splice(index, 1);
+              });
+            }
+          }
         }
     }
 </script>

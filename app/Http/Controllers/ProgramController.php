@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Programa;
 use App\Valoracion;
 use App\MemberCat;
+use App\Participantes;
 
 class ProgramController extends Controller
 {
@@ -85,12 +86,16 @@ class ProgramController extends Controller
       $programa = Programa::find($id);
       $memcats = MemberCat::where('programa_id', $programa->id)->get();
       $vals = Valoracion::where('programa_id', $programa->id)->get();
+      $participants = Participantes::where('programa_id', $programa->id)->get();
 
       foreach ($vals as $key => $val) {
         $val->delete();
       }
       foreach ($memcats as $key => $cat) {
         $cat->delete();
+      }
+      foreach ($participants as $key => $p) {
+        $p->delete();
       }
 
       $programa->delete();

@@ -148,7 +148,13 @@ class MemberController extends Controller
       foreach ($memcats as $key => $cat) {
         $cat->delete();
       }
-
+      if($user->perfil){
+        Storage::delete($user->perfil->foto);
+        $user->perfil->delete();
+      }else{
+        Storage::delete($user->empresa->foto);
+        $user->empresa->delete(); 
+      }
       $user->delete();
 
       return 1;

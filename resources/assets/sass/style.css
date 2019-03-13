@@ -356,6 +356,11 @@ textarea {
 .user-card input, .user-card select{
   margin-top: 9px;
 }
+.user-card > .btn-delete{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 .panel-member-pic{
   width: 100%;
   height: 100%;

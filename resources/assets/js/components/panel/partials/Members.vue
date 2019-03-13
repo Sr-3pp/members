@@ -27,6 +27,7 @@
 
               <div v-for="(user, index) in users" class="col-xl-4" style="padding:30px; text-align: center;">
                 <div class="user-card">
+                   <button @click="deleteUser(user.user.id, index, 'user')" class="btn btn-danger btn-delete"><i class="fas fa-trash"></i></button>
                   <transition name="fade">
                     <div v-if="expertise === magic+'_exp_'+index" class="skillsEdit">
                       <div class="row">
@@ -392,6 +393,7 @@
 
             <div  v-for="(user, index) in empresas" class="col-xl-4" style="padding:30px; text-align: center;">
               <div class="user-card">
+                <button @click="deleteUser(user.user.id, index, 'empresa')" class="btn btn-danger btn-delete"><i class="fas fa-trash"></i></button>
                 <transition name="fade">
                   <div v-if="expertise === magic+'_exp_'+index" class="skillsEdit">
                     <div class="row">
@@ -763,11 +765,15 @@
           }
         },
         methods: {
-          deleteUser(id, key){
+          deleteUser(id, key, magic){
             var este = this;
             if (confirm('Seguro?') === true) {
-              axios.get('/delete-user/'+id).then(function(){
-                este.users.splice(key, 1);
+              axios.get('/delete-user/'+id).then(function(response){
+                if (magic === 'empresa') {
+                  este.empresas.splice(key, 1);
+                }else{
+                  este.users.splice(key, 1);
+                }
               })
             }
           },
