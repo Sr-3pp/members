@@ -140,6 +140,9 @@ class AxiosController extends Controller
     public function getVals($id){
       return Valoracion::where('user_id', $id)->get();
     }
+    public function getValsProg($id){
+      return Valoracion::where('programa_id', $id)->get();
+    }
 
     public function searchEmpresas(Request $r){
       $empresas = Empresa::search($r->nombre)->orderBy('name', 'ASC')->get();

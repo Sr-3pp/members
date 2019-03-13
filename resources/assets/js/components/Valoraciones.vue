@@ -28,12 +28,17 @@
     export default {
         mounted() {
           var este = this
-            axios.get('/get-vals/'+this.userid).then(function(valorations){
-              este.vals = valorations.data
-              console.log(este.vals);
-            });
+            if(this.userid){
+              axios.get('/get-vals/'+this.userid).then(function(valorations){
+                  este.vals = valorations.data
+                });
+            }else if(this.program){
+              axios.get('/get-vals-prog/'+this.program).then(function(valorations){
+                  este.vals = valorations.data
+                });
+            }
         },
-        props: ['userid'],
+        props: ['userid', 'program'],
         data(){
           return {
             vals: []

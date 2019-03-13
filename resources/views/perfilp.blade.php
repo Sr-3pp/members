@@ -79,6 +79,6 @@
   </div>
 </div>
 <div class="jumbotron" style="margin-bottom: 0; background: url('/media/img/recursos/footer-bg.png') center no-repeat; background-size: cover;">
-  <valoraciones userid="{{$programa->id}}"></valoraciones>
+  <valoraciones program="{{$programa->id}}"></valoraciones>
 </div>
 @endsection

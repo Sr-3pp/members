@@ -33,6 +33,7 @@ Route::get('/get-paises', 'AxiosController@getPaises');
 Route::get('/get-idiomas', 'AxiosController@getIdiomas');
 Route::post('/search-empresas', 'AxiosController@searchEmpresas');
 Route::get('/get-vals/{id}', 'AxiosController@getVals');
+Route::get('/get-vals-prog/{id}', 'AxiosController@getValsProg');
 Route::post('/search-members', 'AxiosController@searchMember');
 Route::post('/search-pais', 'AxiosController@searchPais');
 Route::post('/search-idioma', 'AxiosController@searchIdioma');

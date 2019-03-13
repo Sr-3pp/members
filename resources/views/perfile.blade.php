@@ -7,18 +7,18 @@
   <div class="row">
     <div class="col-md-8">
       <div>
-        <h3>Currícula de la empresa</h3>
-        <hr>
-        <div class="text-justify big-text">
-          {{$user->empresa->cv}}
-        </div>
-      </div>
-      <br><br>
-      <div>
         <h3>Descripción de la empresa</h3>
         <hr>
         <div class="text-justify big-text">
           {{$user->empresa->descripcion}}
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <h3>Currícula de la empresa</h3>
+        <hr>
+        <div class="text-justify big-text">
+          {{$user->empresa->cv}}
         </div>
       </div>
     </div>
