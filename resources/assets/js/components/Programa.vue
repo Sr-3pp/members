@@ -19,24 +19,6 @@
                 </div>
               </div>
             </li>
-            <li>
-              <div class="row">
-                <div class="col">
-                  <img v-if="empresa.rango === 'afiliado'" width="60" :src="'/media/img/medallas/afiliado.png'" alt="afiliado icon">
-                  <img v-if="empresa.rango === 'especialista'" width="60" :src="'/media/img/medallas/especialista.png'" alt="especialista icon">
-                  <img v-if="empresa.rango === 'experto'" width="60" :src="'/media/img/medallas/experto.png'" alt="experto icon">
-                  <img v-if="empresa.rango === 'profesional'" width="60" :src="'/media/img/medallas/profesional.png'" alt="profesional icon">
-                </div>
-                <div class="col">
-                  <h4 style="margin-bottom: 0; margin-top: 15px; text-transform: capitalize">
-                    <span v-if="empresa.rango === 'afiliado'">Afiliado</span>
-                    <span v-if="empresa.rango === 'especialista'">Especialista</span>
-                    <span v-if="empresa.rango === 'experto'">Experto</span>
-                    <span v-if="empresa.rango === 'profesional'">Profesional</span>
-                  </h4>
-                </div>
-              </div>
-            </li>
           </ul>
         </div>
       </div>

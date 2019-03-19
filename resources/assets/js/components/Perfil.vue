@@ -23,13 +23,10 @@
             </li>
             <li>
               <div class="row">
-                <div v-if="usuario.empresa" class="col">
-                  <img width="60" :src="'/media/img/medallas/'+usuario.empresa.rango+'.png'" alt="medalla_rango">
-                </div>
-                <div v-else class="col">
+                <div v-if="!usuario.empresa" class="col">
                   <img width="60" :src="'/media/img/medallas/'+perfil.rango+'.png'" alt="medalla_rango">
                 </div>
-                <div class="col">
+                <div v-if="!usuario.empresa" class="col">
                   <h4 style="margin-bottom: 0; margin-top: 15px; text-transform: capitalize">
                     <span v-if="perfil.rango === 'afiliado'">Afiliado</span>
                     <span v-if="perfil.rango === 'especialista'">Especialista</span>

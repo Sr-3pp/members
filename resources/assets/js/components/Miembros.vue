@@ -199,6 +199,7 @@
               height: '0px',
               overflowY: 'scroll',
               overflowX: 'hidden',
+              marginBottom: '100px'
             },
             members:[],
             programs:[],
@@ -229,7 +230,6 @@
               overflowX: 'hidden',
               marginBottom: '140px',
               marginTop: '50px',
-              margin: '0px auto 30px auto',
               paddingTop: '60px'
             }
 

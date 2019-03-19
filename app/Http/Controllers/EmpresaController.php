@@ -121,6 +121,10 @@ class EmpresaController extends Controller
   }
   public function delete($id){
     $empresa = Empresa::find($id);
+    $programas = Programa::where('empresa_id', $id)->get();
+    foreach ($programas as $key => $p) {
+      $p->delete();
+    }
     $empresa->delete();
   }
 }
