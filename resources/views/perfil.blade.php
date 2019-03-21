@@ -9,7 +9,7 @@
       <div>
         <h3>Educación</h3>
         <hr>
-        <div class="text-justify big-text">
+        <div class="big-text">
           {{$user->perfil->educacion}}
         </div>
       </div>
@@ -17,7 +17,7 @@
       <div>
         <h3>Resumen</h3>
         <hr>
-        <div class="text-justify big-text">
+        <div class="big-text">
           {{$user->perfil->resumen}}
         </div>
       </div>

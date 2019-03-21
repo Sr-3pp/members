@@ -9,7 +9,7 @@
       <div>
         <h3>Descripción de la empresa</h3>
         <hr>
-        <div class="text-justify big-text">
+        <div class="big-text">
           {{$user->empresa->descripcion}}
         </div>
       </div>
@@ -17,7 +17,7 @@
       <div>
         <h3>Currícula de la empresa</h3>
         <hr>
-        <div class="text-justify big-text">
+        <div class="big-text">
           {{$user->empresa->cv}}
         </div>
       </div>

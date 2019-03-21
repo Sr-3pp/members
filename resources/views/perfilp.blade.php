@@ -9,7 +9,7 @@
       <div>
         <h3>Objetivo</h3>
         <hr>
-        <div class="text-justify big-text">
+        <div class="big-text">
           {{$programa->alcance}}
         </div>
       </div>
