@@ -2,7 +2,8 @@
     <div class="container blanco">
         <div class="row">
             <div class="col-md-4 center-content">
-              <h2>Áreas de expertise</h2>
+              <h2 v-if="!program">Áreas de expertise</h2>
+              <h2 v-if="program">Áreas de Impacto</h2>
             </div>
             <div class="col-md-8 center-content">
               <ul class="valoracion-list">
@@ -37,6 +38,8 @@
                   este.vals = valorations.data
                 });
             }
+            console.log(this.program);
+            
         },
         props: ['userid', 'program'],
         data(){
