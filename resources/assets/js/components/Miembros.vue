@@ -30,6 +30,7 @@
                 </form>
               </div>
               <transition-group name="fade">
+                <loader v-if="loader" :key="99"></loader>
                 <div v-if="selected && selected !== 5" :key="0" id="memberCards" class="row mob-width" :style="active">
                   <div v-if="member.perfil && member.perfil.status == 1 || member.empresa && member.empresa.status == 1" class="col-lg-6" v-for="member in members">
                     <div class="card" :class="{conscard: consultor, coachcard: coach, capacard: capacitador, empresacard: empresa, programcard: programa}">
@@ -195,6 +196,7 @@
         data(){
           return {
             selected: false,
+            loader: false,
             active: {
               height: '0px',
               overflowY: 'scroll',
@@ -221,6 +223,7 @@
           setSelection(sw){
             var este = this;
             this.selected = sw
+            this.loader = true;
             window.location = "#memberSection"
             this.active= {
               height: 'auto',
@@ -270,6 +273,7 @@
                 este.capacitador = false
                 este.empresa = false
                 este.programa = true
+                este.loader = false
               });
             }else{
               axios.get('/get-members/'+sw).then(function(members){
@@ -300,6 +304,7 @@
                     este.members[i].perfil.slug = cadena
                   }
                 }
+                este.loader = false
               });
             }
           },
@@ -307,8 +312,10 @@
             var este = this;
             this.members = [];
             if (this.nombre !== '') {
+              este.loader = true;
               axios.post('/search-members', {nombre: this.nombre, pais: this.paisid, categoria: this.selected}).then(function(results){
                 este.members = results.data
+                este.loader = false;
               });
             }else{
               axios.get('/get-members/'+this.selected).then(function(members){

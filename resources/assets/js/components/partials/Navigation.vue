@@ -112,26 +112,6 @@
             este.password = $event.password,
             este.login();
           });
-
-          var formData = new FormData();
-
-                formData.append('grant_type', 'password');
-                formData.append('client_id', '3');
-                formData.append('client_secret', '1r2mcpauX3dP4vhR0NcxomcPRJD2su8YzZNAOsga');
-                formData.append('username', 'martin.ru@outlook.com');
-                formData.append('password', '12345678');
-                formData.append('scope', '*');
-            axios.post('http://srtripp.com/oauth/token', formData).then((response) => {
-                var token = response.data.access_token;
-                axios.get('http://srtripp.com/api/check-hosting-status/1' ,{headers: {'Authorization': 'Bearer '+token, 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json'}}).then((response) => {
-                    if (response.data == 0) {
-                        console.log('desactivar');
-                    }else{
-                        console.log('activar');
-                        
-                    }
-                });
-            });
       },
       props: ['userid'],
       data(){

@@ -40,6 +40,7 @@ Vue.component('navigation', require('./components/partials/Navigation.vue'));
 Vue.component('preview', require('./components/partials/PreviewPic.vue'));
 Vue.component('modal', require('./components/partials/Modal.vue'));
 Vue.component('card', require('./components/partials/Card.vue'));
+Vue.component('loader', require('./components/partials/loader.vue'));
 
 Vue.prototype.$bus = new Vue();
 
