@@ -24,7 +24,7 @@
                 <div class="input-group">
                   <input :disabled="paises.length === 0" @keyup="searchPais" v-model="pais" type="text" class="form-control" :placeholder="$t('form.placeholder.Country')">
                   <div class="input-group-prepend">
-                    <button @click="listCountry" type="button" class="btn btn-default"><i class="fas fa-chevron-down"></i></button>
+                    <button @click="listCountry" type="button" class="btn btn-primary"><i class="fas fa-chevron-down"></i></button>
                   </div>
                 </div>
                 <transition name="fade">
@@ -40,7 +40,7 @@
                 </select>
               </div>
               <div class="col-md-3 form-group">
-                <button @click="searchFor()" class="btn btn-searchm">{{$t('form.button.Search')}}</button>
+                <button @click="searchFor()" class="btn btn-primary">{{$t('form.button.Search')}}</button>
               </div>
             </div>
           </div>
