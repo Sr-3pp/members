@@ -336,6 +336,9 @@ textarea {
 .user-card .row{
   border-bottom: solid thin #bbbbbb;
 }
+.user-card .row:last-child{
+  border-bottom: none;
+}
 .user-card .col{
   padding: 12px 10px;
   cursor: pointer;
@@ -625,6 +628,9 @@ padding: 0;
 }
 .reg-stars div{
   float: left;
+}
+.editvalorations .reg-stars svg{
+  width: .8rem;
 }
 .active{
   color: #00a7ff;
