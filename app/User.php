@@ -43,7 +43,8 @@ class User extends Authenticatable
     }
 
     public function scopeSearch($query, $name){
-      return $query->where('folio', "LIKE", "%$name%");
+      return $query->where('folio', "LIKE", "%$name%")
+                  ->orwhere('email', 'LIKE', "%$name%")->with('perfil')->get();
     }
 
 }

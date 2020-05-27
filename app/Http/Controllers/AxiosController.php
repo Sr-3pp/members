@@ -94,6 +94,14 @@ class AxiosController extends Controller
       if(count($perfiles) == 0){
         $perfiles = Perfil::search($r->nombre, 'app_m')->orderBy('name', 'ASC')->get();
       }
+      if(count($perfiles) == 0){
+        $users = User::search($r->nombre, 'folio');
+        $perfiles = [];
+        foreach ($users as $key => $u) {
+          $perfil = $u->perfil;
+          array_push($perfiles, $perfil);
+        }
+      }
       $resultados = [];
       foreach ($perfiles as $key => $perfil) {
         if ($perfil->status === 1) {
