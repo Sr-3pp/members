@@ -98,12 +98,25 @@ class AxiosController extends Controller
         $users = User::search($r->nombre, 'folio');
         $perfiles = [];
         foreach ($users as $key => $u) {
-          $perfil = $u->perfil;
-          array_push($perfiles, $perfil);
+          if($u->pais){
+            $perfil = $u->perfil;
+            $perfil->pais;
+            $perfil->user;
+            $perfil->user->perfil;
+            $perfil->user->categorias;
+            $perfil->user->valoracion;
+
+            foreach ($perfil->user->categorias as $key => $categoria) {
+              $categoria->categoria;
+            }
+
+            array_push($perfiles, $perfil);
+          }
         }
       }
       $resultados = [];
       foreach ($perfiles as $key => $perfil) {
+
         if ($perfil->status === 1) {
           $perfil->user;
           $perfil->pais;

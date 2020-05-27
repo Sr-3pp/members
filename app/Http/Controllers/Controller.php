@@ -63,7 +63,7 @@ class Controller extends BaseController
           $perfiles = Perfil::search($r->nombre, 'app_m')->orderBy('name', 'ASC')->get();
         }
         if(count($perfiles) == 0){
-          $users = User::search($r->nombre)->orderBy('folio', 'ASC')->get();
+          $users = User::search($r->nombre);
           $perfiles = [];
           foreach ($users as $key => $user) {
             array_push($perfiles, $user->perfil);
