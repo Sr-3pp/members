@@ -45,8 +45,10 @@ class AxiosController extends Controller
             $categoria->user->empresa->pais;
             $members[$key] = $categoria->user;
           }else{
-            $categoria->user->perfil->pais;
-            $members[$key] = $categoria->user;
+            if(is_object($categoria->user) && is_object($categoria->user->perfil)){
+              $categoria->user->perfil->pais;
+              $members[$key] = $categoria->user;
+            }
           }
         }
       }
