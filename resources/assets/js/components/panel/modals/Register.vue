@@ -278,13 +278,13 @@
       height: 100%;
       left: 0;
       top: 0;
+      opacity: 0;
+      z-index: -1;
       background-color: #FFF;
-      opacity: .8;
-      z-index: 2;
       transition: all .35s ease;
       &.active{
-        opacity: 0;
-        z-index: -1;
+        opacity: .8;
+        z-index: 2;
       }
     }
   }
