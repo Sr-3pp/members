@@ -15,6 +15,8 @@ use App\Empresa;
 use App\Zona;
 use Storage;
 
+use Auth;
+
 class AxiosController extends Controller
 {
     public function getCategorias(){
@@ -119,7 +121,7 @@ class AxiosController extends Controller
       $resultados = [];
       foreach ($perfiles as $key => $perfil) {
 
-        if ($perfil->status === 1) {
+        if (Auth::user()->tipo == 3 || $perfil->status === 1) {
           $perfil->user;
           $perfil->pais;
           $perfil->user->categorias;
