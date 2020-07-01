@@ -1,6 +1,7 @@
 <template>
 
     <div class="modal-content">
+      <div class="overlayed" :class="{'active': loading}"></div>
       <div class="modal-header">
         <h5 v-if="!admin" class="modal-title" id="exampleModalLabel">
           <span>Regístrate</span><br>
@@ -268,7 +269,26 @@
 
 
 </template>
-
+<style lang="scss">
+  .modal-content{
+    position: relative;
+    .overlayed{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background-color: #FFF;
+      opacity: .8;
+      z-index: 2;
+      transition: all .35s ease;
+      &.active{
+        opacity: 0;
+        z-index: -1;
+      }
+    }
+  }
+</style>
 <script>
     export default {
         mounted() {
@@ -287,6 +307,7 @@
         props: ['admin'],
         data(){
           return {
+            loading: false,
             csrf: '',
             folio: '',
             levelsetted: false,
@@ -524,6 +545,7 @@
           },
           register(){
             this.categorias = []
+            this.loading = true;
             if (this.consultor) {
               this.categorias.push(1)
             }
@@ -648,6 +670,7 @@
                   formData.append('file', this.picture);
 
                   axios.post('/new-membrer', formData).then(function(member){
+                    este.loading = false;
                     if (member.data !== 99) {
                       este.alertFolio = false
                       if (!este.admin) {
@@ -666,10 +689,12 @@
                   });
                 }else{
                   this.alertMail = true
+                  this.loading = false;
                   this.alertMailText = 'Introduce un correo válido'
                 }
               }else{
                 this.alertPass = true
+                this.loading = false;
                 this.alertPassText = 'Los passwords no coinciden'
               }
             }
