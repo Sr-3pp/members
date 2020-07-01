@@ -616,6 +616,7 @@
               }else{
                 this.alertConfirm = false
               }
+              this.loading = false;
             }else{
               if (this.password === this.confirm) {
                 this.alertFolio = false
