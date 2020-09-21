@@ -71,11 +71,16 @@ class AdminController extends Controller
       $perfils = Perfil::all();
 
       foreach ($perfils as $key => $perfil) {
-        $perfil->user->valoracion;
         $perfil->pais;
-        $perfil->user->categorias;
-        foreach ($perfil->user->categorias as $key => $categoria) {
-          $categoria->categoria;
+        if ($perfil->user) {
+          $perfil->user->valoracion;
+          $perfil->user->categorias;
+          foreach ($perfil->user->categorias as $key => $categoria) {
+            $categoria->categoria;
+          }
+        }else{
+          Storage::delete($perfil->foto);
+          $perfil->delete();
         }
       }
 
