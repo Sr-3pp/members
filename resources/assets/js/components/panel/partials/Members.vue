@@ -1,1320 +1,361 @@
 <template>
-  <div class="row mt-5">
-    <div class="col-lg-12">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button @click="empresa = 0" type="button" style="border-bottom-left-radius: 0 ;" class="btn" :class="{'btn-primary' : !empresa, 'btn-dark': empresa}">Miembros</button>
-            <button @click="empresa = 1" type="button" style="border-bottom-right-radius: 0;" class="btn" :class="{'btn-primary' : empresa, 'btn-dark': !empresa}">Empresas</button>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="input-group">
-            <input @keyup="searchMember()" type="text" class="form-control" id="validationCustomUsername" placeholder="Busca un usuario" aria-describedby="inputGroupPrepend" v-model="search">
-            <div class="input-group-prepend">
-              <button class="btn btn-default" ><i class="fas fa-search"></i></button>
-        <button @click="$bus.$emit('registerModal', {sw: empresa, admin: 1})" class="btn btn-link" ><i class="fas fa-plus"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <ul v-if="!empresa" class="list-group panel-list">
-        <li class="list-group-item active">
-
-        </li>
-        <li class="list-group-item">
-          <div class="row">
-
-              <div v-for="(user, index) in users" class="col-xl-4" style="padding:30px; text-align: center;">
-                <div class="user-card">
-                   <button @click="deleteUser(user.user.id, index, 'user')" class="btn btn-danger btn-delete"><i class="fas fa-trash"></i></button>
-                  <transition name="fade">
-                    <div v-if="expertise === magic+'_exp_'+index" class="skillsEdit">
-                      <div class="row">
-                        <div class="col">
-                          <h1>Areas de expertise
-                            <button @click="expertise = null" class="close right-30 white"><i class="fas fa-window-close"></i></button>
-                          </h1>
-                          <hr>
-                          <div>
-                            <div v-if="newVal !== 'newVal_'+index" v-for="(valoracion, index2) in user.user.valoracion" class="row editvalorations">
-                              <div class="col-4">
-                                <span @click="editVal(index, valoracion.id, 1)" v-if="valoration !== 'val_'+index+'_'+valoracion.id" :id="'val_'+index+'_'+magic">{{valoracion.area}}</span>
-                                <div v-if="valoration === 'val_'+index+'_'+valoracion.id" class="input-group">
-                                  <input ref="valoration" @keyup.esc="editVal(index, valoracion.id, 0)" @keyup.enter="updateVal(valoracion.id, 'name', index, index2)" :id="'valInput_'+valoracion.id" maxlength="30" style="margin-bottom: 10px" type="text" class="form-control" :value="valoracion.area">
-                                  <!--<div class="input-group-prepend" style="padding-top: 5px;">
-                                    <button class="btn btn-link" style="height:40px;" @click="editVal(index, valoracion.id, 0)"><i class="fas fa-times danger"></i></button>
-                                  </div>
-                                  <div class="input-group-prepend" style="padding-top: 5px;">
-                                    <button class="btn btn-link" style="height:40px;" @click="updateVal(valoracion.id, 'name', index, index2)"><i class="fas fa-check success"></i></button>
-                                  </div>-->
-                                </div>
-                              </div>
-                              <div class="col-8 text-left">
-                                <span @click="editStars = 'stars_'+index+'_'+valoracion.id" v-if="editStars !== 'stars_'+index+'_'+valoracion.id" class="reg-stars">
-                                    <span v-for="val in parseInt(valoracion.porcentaje)"><i class="fas fa-star active"></i>&nbsp;&nbsp;</span>
-                                </span>
-                                <span v-if="editStars === 'stars_'+index+'_'+valoracion.id" class="reg-stars">
-                                  <span @click="level('a', index2, valoracion.id, index, index3)" :id="'staram_'+index3+'_'+valoracion.id" @mouseover="setlevel('a', index3, 1, valoracion.id)"  @mouseout="setlevel('a', index3, 0, valoracion.id)" v-for="(star, index3) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
-                                </span>
-                                <button @click="deleteVal(valoracion.id, index2, index)" class="btn btn-link right danger">
-                                  <i class="fas fa-minus-square"></i>
-                                </button>
-                              </div>
-                            </div>
-                            <div v-if="newVal !== 'newVal_'+index" class="text-center" style="width:100%;">
-                              <button @click="newVal = 'newVal_'+index" v-if="user.user.valoracion.length < 5" class="btn btn-link"><i class="fas fa-plus"></i></button>
-                            </div>
-                            <div class="container">
-                              <div v-if="newVal === 'newVal_'+index" class="row">
-                                <div class="col-12">
-                                  <div class="input-group">
-                                    <input @keyup.enter="saveVal(index, user.user_id)" @keyup.esc="newVal = ''" :id="'newValInput_'+index" maxlength="40" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Nombre">
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <br>
-                                  <span class="reg-stars">
-                                    <span @click="newStars = indexs" :id="'newStaram_'+indexs" @mouseover="setleveln('a', indexs, 1)"  @mouseout="setleveln('a', indexs, 0)" v-for="(star, indexs) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
-                                  </span> <br>
-                                  <div>
-                                    <button class="btn btn-link" @click="newVal = ''"><i class="fas fa-times danger"></i></button>
-                                    <button @click="saveVal(index, user.user_id)" class="btn btn-link"><i class="fas fa-check success success"></i></button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+    <section desk="members">
+        <div class="tabs-component">
+            <ul class="tabs">
+                <li @click="section = 0" class="item" :class="{'active': section === 0}">
+                    Miembros
+                </li>
+                <li @click="section = 1" class="item" :class="{'active': section === 1}">
+                    Empresas
+                </li>
+                <li class="item action search" :class="{'active': searchTab}">
+                    <button @click="searchTab ? searchTab = false : searchTab = true">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="search-input">
+                        <input @keyup="searchFor()" placeholder="Folio / Nombre" type="text" v-model="search">
                     </div>
-                  </transition>
-                  <div class="row" style="border-bottom: none">
-                    <div class="col-3">
-                      <div class="row">
-                        <div class="col" style="height: 151px;">
-                          <div class="panel-member-pic">
-                            <div @click="changePic(index)" :id="'previewM_'+index" :style="'background: url(/storage/'+user.foto+') center no-repeat; background-size: cover; height:100%;'">
-                            </div>
-                            <div v-if="editPic === magic+'_'+index " style="position: absolute; right: 0; bottom: 0; height: auto;">
-                              <button @click="editUser(index, 0 , 'pic')" class="btn btn-light"><i class="fas fa-times danger"></i></button>
-                              <button @click="updateUser(user.user_id, index, 'pic')" class="btn btn-light"><i class="fas fa-check success success"></i></button>
-                            </div>
-                            <input @change="fileChange($event, index)" :id="'fileInput_'+index" type="file" class="hidden">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div @click="editUser(index, 1, 'name')" class="col">
-                          <span :id="'spanMname_'+index">
-                            <b>Nombre: </b><br>{{user.name}}
-                          </span>
-
-                          <div class="wedit" :id="'inputMname_'+index">
-                            <input :value="user.name" type="text" class="form-control">
-                            <div class="edit-btns">
-                              <button @click="editUser(index, 0, 'name')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                              <button @click="updateUser(user.user_id, index, 'name')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                            </div>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-9">
-                      <div v-if="editMemb !== magic+'_'+index && editCat !== magic+'_'+index" class="row">
-                        <div class="col">
-                          <b>Status:</b><br>
-                          <button @click="setStatus(user.user.id, index)" class="btn btn-link" :class="{success : user.status, danger: !user.status}">
-                            <i class="fas fa-circle"></i>
-                          </button>
-                        </div>
-                        <div @click="editUser(index, 1, 'folio')" class="col">
-                          <span :id="'spanMfolio_'+index"><b>Folio: </b> <br>{{user.user.folio}}</span>
-
-                          <div class="wedit" :id="'inputMfolio_'+index">
-                            <input :value="user.user.folio" type="text" class="form-control">
-                            <div class="edit-btns">
-                              <button @click="editUser(index, 0, 'folio')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                              <button @click="updateUser(user.user_id, index, 'folio')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                            </div>
-                          </div>
-                        </div>
-                        <div @click="editUser(index, 1, 'rango')" class="col text-center">
-                          <img width="40%" :src="'/media/img/medallas/'+user.rango+'.png'" alt="membresia icon">
-                        </div>
-                        <div @click="editUser(index, 1, 'cat')" class="col text-center">
-
-                              <img  v-for="categoria in user.user.categorias" width="30%" v-if="categoria.categoria_id !== 5" :src="'/media/img/categorias/'+categoria.categoria.nombre+'.png'" alt="user cat">
-                        </div>
-                      </div>
-                      <div v-if="editMemb === magic+'_'+index" class="row">
-                        <div class="col text-center membresias">
-                          <img @click="updateUser(user.user_id, index, 'rango', 'afiliado')" :class="{selected : user.rango ==='afiliado'}" width="15%" src="/media/img/medallas/afiliado.png" alt="membresia icon">&nbsp;&nbsp;&nbsp;
-                          <img @click="updateUser(user.user_id, index, 'rango', 'especialista')" :class="{selected : user.rango ==='especialista'}" width="15%" src="/media/img/medallas/especialista.png" alt="membresia icon">&nbsp;&nbsp;&nbsp;
-                          <img @click="updateUser(user.user_id, index, 'rango', 'experto')" :class="{selected : user.rango ==='experto'}" width="15%" src="/media/img/medallas/experto.png" alt="membresia icon">&nbsp;&nbsp;&nbsp;
-                          <img @click="updateUser(user.user_id, index, 'rango', 'profesional')" :class="{selected : user.rango ==='profesional'}" width="15%" src="/media/img/medallas/profesional.png" alt="membresia icon">&nbsp;&nbsp;&nbsp;
-                          <span style="float: right; padding: 10px;" @click="editMemb = false"><i class="fas fa-times danger"></i></span>
-                        </div>
-                      </div>
-                      <div v-if="editCat === magic+'_'+index" class="row">
-                        <div class="col text-center membresias">
-                          <span v-for="(categoria, index) in userCats">
-                            <img @click="setCat({categoria_id: 1}, 0)" class="selected" v-if="categoria.categoria_id === 1" width="15%" src="/media/img/categorias/consultor.png" alt="membresia icon">&nbsp;&nbsp;&nbsp;
-                            <img @click="setCat({categoria_id: 2}, 0)" class="selected" v-if="categoria.categoria_id === 2" width="15%" src="/media/img/categorias/coach.png" alt="membresia icon">&nbsp;&nbsp;&nbsp;
-                            <img @click="setCat({categoria_id: 3}, 0)" class="selected" v-if="categoria.categoria_id === 3" width="15%" src="/media/img/categorias/capacitador.png" alt="membresia icon">&nbsp;&nbsp;&nbsp;
-                          </span>
-
-                            <span v-for="cat in categorias">
-                              <img v-if="cat.categoria_id === 1 || cat === 1" @click="setCat({categoria_id: 1}, 1)" width="15%" src="/media/img/categorias/consultor.png" alt="membresia icon">&nbsp;&nbsp;&nbsp;
-                              <img v-if="cat.categoria_id === 2 || cat === 2" @click="setCat({categoria_id: 2}, 1)" width="15%" src="/media/img/categorias/coach.png" alt="membresia icon">&nbsp;&nbsp;&nbsp;
-                              <img v-if="cat.categoria_id === 3 || cat === 3" @click="setCat({categoria_id: 3}, 1)" width="15%" src="/media/img/categorias/capacitador.png" alt="membresia icon">&nbsp;&nbsp;&nbsp;
-                            </span>
-
-
-
-
-                          <span style="float: right; padding: 10px;" @click="editCat = false"><i class="fas fa-times danger"></i></span>
-                          <span style="float: right; padding: 10px;" @click="updateUser(user.user_id, index, 'cat')"><i class="fas fa-check success success"></i></span>
-                        </div>
-                      </div>
-                      <div v-if="editAp !== magic+'_'+index" class="row">
-                        <div  @click="editUser(index, 1, 'apellidos')" class="col">
-                          <span :id="'spanMapellidos_'+index">
-                            <b>Apellidos: </b><br>{{user.apellido_p+' '+user.apellido_m}}
-                          </span>
-                        </div>
-                        <div @click="editUser(index, 1, 'tel')" class="col">
-                          <span :id="'spanMtel_'+index">
-                            <b>Teléfono: </b><br>{{user.telefono}}
-                          </span>
-                          <div class="wedit" :id="'inputMtel_'+index">
-                            <input :value="user.telefono" type="text" class="form-control">
-                            <div class="edit-btns">
-                              <button @click="editUser(index, 0, 'tel')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                              <button @click="updateUser(user.user_id, index, 'tel')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                            </div>
-                          </div>
-                        </div>
-                        <div @click="editUser(index, 1, 'cel')" class="col">
-                          <span :id="'spanMcel_'+index">
-                            <b>Celular: </b><br>{{user.celular}}
-                          </span>
-                          <div class="wedit" :id="'inputMcel_'+index">
-                            <input :value="user.celular" type="text" class="form-control">
-                            <div class="edit-btns">
-                              <button @click="editUser(index, 0, 'cel')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                              <button @click="updateUser(user.user_id, index, 'cel')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div v-if="editAp === magic+'_'+index" class="row">
-                        <div class="col">
-                          <div class="input-group" :id="'inputM'+magic+'_'+index">
-                            <input :id="'input_ap_'+index" type="text" class="form-control" :value="user.apellido_p">
-                            <input :id="'input_am_'+index" type="text" class="form-control" :value="user.apellido_m">
-                            <div class="input-group-prepend">
-                              <button @click="editUser(index, 0, magic)" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                            </div>
-                            <div class="input-group-prepend">
-                              <button @click="updateUser(user.user_id, index, magic)" class="btn btn-link" ><i class="fas fa-check success"></i></button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div v-if="editsocial !== magic+'_'+index" class="row">
-                        <div @click="editUser(index, 1, 'fb')" class="col">
-                          <span :id="'spanMfb_'+index"><b>Facebook: </b><br>{{user.fb ? user.fb : '-'}}</span>
-                        </div>
-                        <div  @click="editUser(index, 1, 'tw')" class="col">
-                          <span :id="'spanMtw_'+index"><b>Twitter: </b><br>{{user.tw ? user.tw : '-'}}</span>
-                        </div>
-                        <div  @click="editUser(index, 1, 'in')" class="col">
-                          <span :id="'spanMin_'+index"><b>Linkedin: </b><br>{{user.in ? user.in : '-'}}</span>
-                        </div>
-                      </div>
-                      <div v-if="editsocial === magic+'_'+index" class="row">
-                        <div class="col social-input">
-                          <span v-if="magic === 'fb'">www.facebook.com/</span>
-                          <span v-if="magic === 'tw'">www.twitter.com/</span>
-                          <span v-if="magic === 'in'">www.linkedin.com/</span>
-                          <div class="input-group" :id="'inputM'+magic+'_'+index">
-                            <input v-if="magic === 'fb'" id="socialInput" type="text" class="form-control" :value="user.fb">
-                            <input v-if="magic === 'tw'" id="socialInput" type="text" class="form-control" :value="user.tw">
-                            <input v-if="magic === 'in'" id="socialInput" type="text" class="form-control" :value="user.in">
-                            <div class="input-group-prepend">
-                              <button @click="editUser(index, 0, magic)" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                            </div>
-                            <div class="input-group-prepend">
-                              <button @click="updateUser(user.user_id, index, magic)" class="btn btn-link" ><i class="fas fa-check success"></i></button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div v-if="editI !== magic+'_'+index" @click="editUser(index, 1, 'web')" class="col">
-                      <span :id="'spanMweb_'+index">
-                        <b>Website: </b><br>{{user.website}}
-                      </span>
-
-                      <div class="wedit" :id="'inputMweb_'+index">
-                        <input :value="user.website" type="text" class="form-control">
-                        <div class="edit-btns">
-                          <button @click="editUser(index, 0, 'web')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                          <button @click="updateUser(user.user_id, index, 'web')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                    <div v-if="editI !== magic+'_'+index" @click="editUser(index, 1, 'pais')" class="col">
-                      <span :id="'spanMpais_'+index">
-                        <b>País: </b><br>{{user.pais.nombre}}
-                      </span>
-                      <div class="wedit" :id="'inputMpais_'+index">
-                        <select class="form-control">
-                          <option selected v-if="pais.id === user.pais_id" :value="pais.id" v-for="pais in paises">{{pais.nombre}}</option>
-                          <option v-if="pais.id !== user.pais_id" :value="pais.id" v-for="pais in paises">{{pais.nombre}}</option>
-                        </select>
-                        <div class="edit-btns">
-                          <button @click="editUser(index, 0, 'pais')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                          <button @click="updateUser(user.user_id, index, 'pais')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                    <div v-if="editI !== magic+'_'+index" @click="editUser(index, 1, 'cd')" class="col">
-                      <span :id="'spanMcd_'+index">
-                        <b>Ciudad: </b><br>{{user.ciudad}}
-                      </span>
-                      <div class="wedit" :id="'inputMcd_'+index">
-                        <input :value="user.ciudad" type="text" class="form-control">
-                        <div class="edit-btns">
-                          <button @click="editUser(index, 0, 'cd')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                          <button @click="updateUser(user.user_id, index, 'cd')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col" :class="{overflowv: idiomasResults}">
-
-                      <div v-if="editI === magic+'_'+index">
-                        <span @click="setLang(index, idioma.nombre, 0)" class="user-lang del-idioma" v-for="(idioma, index) in idiomas"><b><i class="fas fa-times danger"></i></b> {{idioma}}</span>
-                        <div class="input-group">
-                          <input @keyup="searchIdioma" type="text" class="form-control" placeholder="Agregar idioma" v-model="idioma">
-                          <div class="input-group-prepend">
-                            <button @click="editI = false" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                          </div>
-                          <div class="input-group-prepend">
-                            <button @click="updateUser(user.user_id, index, 'idiomas')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
-                          </div>
-                        </div>
-                        <transition name="fade">
-                          <ul v-if="idiomasResults.length !== 0 && idioma !== ''" class="list-group input-results">
-                            <a @click="setLang(index, idioma.nombre, 1)" href="#" role="button" class="list-group-item list-group-item-action" v-for="idioma in idiomasResults">{{idioma.nombre}}</a>
-                          </ul>
-                        </transition>
-                      </div>
-
-                      <span @click="editUser(index, 1, 'idiomas')" v-if="editI !== 'idiomas_'+index">
-                        <b>Idiomas: </b><br>{{JSON.parse(user.idiomas)}}
-                      </span>
-
-                    </div>
-                  </div>
-                  <div v-if="editCred !== magic+'_'+index" class="row">
-                    <div @click="editUser(index, 1, 'email')" class="col-9">
-                      <span :id="'spanMemail_'+index"><b>Email: </b><br>{{user.user.email ? user.user.email : '-'}}</span>
-                    </div>
-                    <div class="col-3">
-                      <span @click="editUser(index, 1, 'pass')" :id="'spanMpass_'+index"><b>Password: </b><br>{{user.user.password ? user.user.password : '******'}}</span>
-                    </div>
-                  </div>
-                  <div v-if="editCred === magic+'_'+index" class="row">
-                    <div v-if="magic === 'email'" class="col social-input">
-                      <div :id="'inputM'+magic+'_'+index" class="input-group">
-                        <input type="text" class="form-control" :value="user.user.email">
-                        <div class="input-group-prepend">
-                          <button @click="editUser(index, 0, 'email')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                        </div>
-                        <div class="input-group-prepend">
-                          <button @click="updateUser(user.user_id, index, 'email')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                    <div v-if="magic === 'pass'" class="col social-input">
-                      <div :id="'inputM'+magic+'_'+index" class="input-group">
-                        <input type="text" class="form-control" placeholder="**********">
-                        <div class="input-group-prepend">
-                          <button @click="editUser(index, 0, 'pass')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                        </div>
-                        <div class="input-group-prepend">
-                          <button @click="updateUser(user.user_id, index, 'pass')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div v-if="editinfo !== magic+'_'+index" class="row">
-                    <div @click="editUser(index, 1, 'cv')" class="col">
-                      <span :id="'spanMcv_'+index">
-                        <b>Cv: </b><br>{{user.resumen}}
-                      </span>
-                    </div>
-                    <div @click="editUser(index, 1, 'ed')" class="col">
-                      <span :id="'spanMed_'+index">
-                        <b>Educacion: </b><br>{{user.educacion}}
-                      </span>
-                    </div>
-                  </div>
-                  <div v-if="editinfo === magic+'_'+index" class="row">
-                    <div class="col">
-                      <div :id="'inputM'+magic+'_'+index">
-                        <textarea v-if="magic === 'ed'" :value="user.educacion" type="text" class="form-control"></textarea>
-                        <textarea v-if="magic === 'cv'" :value="user.resumen" type="text" class="form-control"></textarea>
-                        <div style="float: right">
-                          <button @click="editUser(index, 0, magic)" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                          <button @click="updateUser(user.user_id, index, magic)" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <button @click="editskills(index)" class="btn btn-default btn-sm" style="margin: 0 auto;">Areas de expertise.</button>
-              </div>
-
-          </div>
-        </li>
-      </ul>
-      <ul v-else class="list-group panel-list">
-        <li class="list-group-item active">
-
-        </li>
-        <li class="list-group-item">
-          <div class="row">
-
-            <div  v-for="(user, index) in empresas" class="col-xl-4" style="padding:30px; text-align: center;">
-              <div class="user-card">
-                <button @click="deleteUser(user.user.id, index, 'empresa')" class="btn btn-danger btn-delete"><i class="fas fa-trash"></i></button>
-                <transition name="fade">
-                  <div v-if="expertise === magic+'_exp_'+index" class="skillsEdit">
-                    <div class="row">
-                      <div class="col">
-                        <h1>Areas de expertise
-                          <button @click="expertise = null" class="close right-30 white"><i class="fas fa-window-close"></i></button>
-                        </h1>
-                        <hr>
-                        <div>
-                          <div v-if="newVal !== 'newVal_'+index" v-for="(valoracion, index2) in user.user.valoracion" class="row editvalorations">
-                            <div class="col-4">
-                              <span @click="editVal(index, valoracion.id, 1)" v-if="valoration !== 'val_'+index+'_'+valoracion.id" :id="'val_'+index+'_'+magic">{{valoracion.area}}</span>
-                              <div v-if="valoration === 'val_'+index+'_'+valoracion.id" class="input-group">
-                                <input ref="valoration" @keyup.esc="editVal(index, valoracion.id, 0)" @keyup.enter="updateVal(valoracion.id, 'name', index, index2)" :id="'valInput_'+valoracion.id" maxlength="30" style="margin-bottom: 10px" type="text" class="form-control" :value="valoracion.area">
-                                <!--<div class="input-group-prepend" style="padding-top: 5px;">
-                                  <button class="btn btn-link" style="height:40px;" @click="editVal(index, valoracion.id, 0)"><i class="fas fa-times danger"></i></button>
-                                </div>
-                                <div class="input-group-prepend" style="padding-top: 5px;">
-                                  <button class="btn btn-link" style="height:40px;" @click="updateVal(valoracion.id, 'name', index, index2)"><i class="fas fa-check success"></i></button>
-                                </div>-->
-                              </div>
-                            </div>
-                            <div class="col-8 text-left">
-                              <span @click="editStars = 'stars_'+index+'_'+valoracion.id" v-if="editStars !== 'stars_'+index+'_'+valoracion.id" class="reg-stars">
-                                  <span v-for="val in parseInt(valoracion.porcentaje)"><i class="fas fa-star active"></i>&nbsp;&nbsp;</span>
-                              </span>
-                              <span v-if="editStars === 'stars_'+index+'_'+valoracion.id" class="reg-stars">
-                                <span @click="level('a', index2, valoracion.id, index, index3)" :id="'staram_'+index3+'_'+valoracion.id" @mouseover="setlevel('a', index3, 1, valoracion.id)"  @mouseout="setlevel('a', index3, 0, valoracion.id)" v-for="(star, index3) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
-                              </span>
-                              <button @click="deleteVal(valoracion.id, index2, index)" class="btn btn-link right danger">
-                                <i class="fas fa-minus-square"></i>
-                              </button>
-                            </div>
-                          </div>
-                          <div v-if="newVal !== 'newVal_'+index" class="text-center" style="width:100%;">
-                            <button @click="newVal = 'newVal_'+index" v-if="user.user.valoracion.length < 5" class="btn btn-link"><i class="fas fa-plus"></i></button>
-                          </div>
-                          <div class="container">
-                            <div v-if="newVal === 'newVal_'+index" class="row">
-                              <div class="col-12">
-                                <div class="input-group">
-                                  <input @keyup.enter="saveVal(index, user.user_id)" @keyup.esc="newVal = ''" :id="'newValInput_'+index" maxlength="40" style="margin-bottom: 10px" type="text" class="form-control" placeholder="Nombre">
-                                </div>
-                              </div>
-                              <div class="col-12">
-                                <br>
-                                <span class="reg-stars">
-                                  <span @click="newStars = indexs" :id="'newStaram_'+indexs" @mouseover="setleveln('a', indexs, 1)"  @mouseout="setleveln('a', indexs, 0)" v-for="(star, indexs) in 10"><i class="fas fa-star"></i>&nbsp;&nbsp;</span>
-                                </span> <br>
-                                <div>
-                                  <button class="btn btn-link" @click="newVal = ''"><i class="fas fa-times danger"></i></button>
-                                  <button @click="saveVal(index, user.user_id)" class="btn btn-link"><i class="fas fa-check success success"></i></button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </transition>
-                <div class="row" style="border-bottom: none">
-                  <div class="col-3">
-                    <div class="row">
-                      <div class="col" style="height: 151px;">
-                        <div class="panel-member-pic">
-                          <div @click="changePicm(index)" :id="'previewE_'+index" :style="'background: url(/storage/'+user.foto+') center no-repeat; background-size: cover; height:100%;'">
-                          </div>
-                          <div v-if="editPic === magic+'_'+index " style="position: absolute; right: 0; bottom: 0; height: auto;">
-                            <button @click="editEmpresa(index, 0 , 'pic')" class="btn btn-light"><i class="fas fa-times danger"></i></button>
-                            <button @click="updateEmpresa(user.user_id, index, 'pic')" class="btn btn-light"><i class="fas fa-check success success"></i></button>
-                          </div>
-                          <input @change="fileChangem($event, index)" :id="'fileInput_'+index" type="file" class="hidden">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div @click="editEmpresa(index, 1, 'folio')" class="col">
-                        <span :id="'spanEfolio_'+index"><b>Folio: </b> <br>{{user.user.folio}}</span>
-
-                        <div class="wedit" :id="'inputEfolio_'+index">
-                          <input maxLength="6" :value="user.user.folio" type="text" class="form-control">
-                          <div class="edit-btns">
-                            <button @click="editEmpresa(index, 0, 'folio')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                            <button @click="updateEmpresa(user.user_id, index, 'folio')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                  <div class="col-9">
-                    <div v-if="editMemb !== magic+'_'+index" class="row">
-                      <div class="col">
-                        <b>Status:</b><br>
-                        <button @click="setStatus(user.user.id, index)" class="btn btn-link" :class="{success : user.status, danger: !user.status}">
-                          <i class="fas fa-circle"></i>
+                </li>
+                <li @click="$bus.$emit('registerModal', {sw: section, admin: 1})" class="item action">
+                    <i class="fas fa-plus"></i>
+                </li>
+            </ul>
+            <div class="contents">
+                <ul class="content">
+                    <ol v-for="(u, i) in list" :key="u.id" class="item">
+                    <span @click="toggleStatus(u.id, i)" class="status" :class="{'active': u.status}"></span>
+                    <p class="folio">
+                        {{u.user.folio}}
+                    </p>
+                    <p class="text">
+                        {{u.name}} {{u.appelido_m}} {{u.appelido_p}}
+                    </p>
+                    <div class="actions">
+                        <button @click="userDetail(u)" class="btn btn-primary">
+                            Detail
                         </button>
-                      </div>
-
-                      <div @click="editEmpresa(index, 1, 'rango')" class="col text-center">
-                        <img width="40%" :src="'/media/img/medallas/'+user.rango+'.png'" alt="membresia icon">
-                      </div>
-                      <div @click="editEmpresa(index, 1, 'cat')" class="col text-center">
-
-                            <img width="40%" src="/media/img/categorias/empresa.png" alt="user cat">
-
-                      </div>
+                        <button class="btn btn-danger">
+                            Delete
+                        </button>
                     </div>
-                    <div v-if="editMemb === magic+'_'+index" class="row">
-                      <div class="col text-center membresias">
-                        <img @click="updateEmpresa(user.user_id, index, 'rango', 'afiliado')" :class="{selected : user.rango ==='afiliado'}" width="15%" src="/media/img/medallas/afiliado.png" alt="membresia icon">&nbsp;&nbsp;&nbsp;
-                        <img @click="updateEmpresa(user.user_id, index, 'rango', 'especialista')" :class="{selected : user.rango ==='especialista'}" width="15%" src="/media/img/medallas/especialista.png" alt="membresia icon">&nbsp;&nbsp;&nbsp;
-                        <img @click="updateEmpresa(user.user_id, index, 'rango', 'experto')" :class="{selected : user.rango ==='experto'}" width="15%" src="/media/img/medallas/experto.png" alt="membresia icon">&nbsp;&nbsp;&nbsp;
-                        <img @click="updateEmpresa(user.user_id, index, 'rango', 'profesional')" :class="{selected : user.rango ==='profesional'}" width="15%" src="/media/img/medallas/profesional.png" alt="membresia icon">&nbsp;&nbsp;&nbsp;
-                        <span style="float: right; padding: 10px;" @click="editMemb = false"><i class="fas fa-times danger"></i></span>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div @click="editEmpresa(index, 1, 'name')" class="col">
-                        <span :id="'spanEname_'+index">
-                          <b>Nombre: </b><br>{{user.name}}
-                        </span>
-
-                        <div class="wedit" :id="'inputEname_'+index">
-                          <input :value="user.name" type="text" class="form-control">
-                          <div class="edit-btns">
-                            <button @click="editEmpresa(index, 0, 'name')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                            <button @click="updateEmpresa(user.user_id, index, 'name')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                          </div>
-                        </div>
-
-                      </div>
-                      <div @click="editEmpresa(index, 1, 'tel')" class="col">
-                        <span :id="'spanEtel_'+index">
-                          <b>Telefono: </b><br>{{user.telefono}}
-                        </span>
-
-                        <div class="wedit" :id="'inputEtel_'+index">
-                          <input :value="user.telefono" type="text" class="form-control">
-                          <div class="edit-btns">
-                            <button @click="editEmpresa(index, 0, 'tel')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                            <button @click="updateEmpresa(user.user_id, index, 'tel')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                          </div>
-                        </div>
-
-                      </div>
-                      <div @click="editEmpresa(index, 1, 'web')" class="col">
-                        <span :id="'spanEweb_'+index">
-                          <b>Website: </b><br>{{user.website}}
-                        </span>
-
-                        <div class="wedit" :id="'inputEweb_'+index">
-                          <input :value="user.website" type="text" class="form-control">
-                          <div class="edit-btns">
-                            <button @click="editEmpresa(index, 0, 'web')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                            <button @click="updateEmpresa(user.user_id, index, 'web')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div v-if="editsocial !== magic+'_'+index" class="row">
-                      <div @click="editEmpresa(index, 1, 'fb')" class="col">
-                        <span :id="'spanEfb_'+index"><b>Facebook: </b><br>{{user.fb}}</span>
-                      </div>
-                      <div  @click="editEmpresa(index, 1, 'tw')" class="col">
-                        <span :id="'spanEtw_'+index"><b>Twitter: </b><br>{{user.tw}}</span>
-                      </div>
-                      <div  @click="editEmpresa(index, 1, 'in')" class="col">
-                        <span :id="'spanEin_'+index"><b>Linkedin: </b><br>{{user.in}}</span>
-                      </div>
-                    </div>
-                    <div v-if="editsocial === magic+'_'+index" class="row">
-                      <div class="col social-input">
-                        <span v-if="magic === 'fb'">www.facebook.com/</span>
-                        <span v-if="magic === 'tw'">www.twitter.com/</span>
-                        <span v-if="magic === 'in'">www.linkedin.com/</span>
-                        <div class="input-group" :id="'inputE'+magic+'_'+index">
-                          <input v-if="magic === 'fb'" id="socialInput" type="text" class="form-control" :value="user.fb">
-                          <input v-if="magic === 'tw'" id="socialInput" type="text" class="form-control" :value="user.tw">
-                          <input v-if="magic === 'in'" id="socialInput" type="text" class="form-control" :value="user.in">
-                          <div class="input-group-prepend">
-                            <button @click="editEmpresa(index, 0, magic)" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                          </div>
-                          <div class="input-group-prepend">
-                            <button @click="updateEmpresa(user.user_id, index, magic)" class="btn btn-link" ><i class="fas fa-check success"></i></button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div v-if="editCred !== magic+'_'+index" class="row">
-                  <div @click="editEmpresa(index, 1, 'email')" class="col-9">
-                    <span :id="'spanEemail_'+index"><b>Email: </b><br>{{user.user.email ? user.user.email : '-'}}</span>
-                  </div>
-                  <div class="col-3">
-                    <span @click="editEmpresa(index, 1, 'pass')" :id="'spanEpass_'+index"><b>Password: </b><br>{{user.user.password ? user.user.password : '******'}}</span>
-                  </div>
-                </div>
-                <div v-if="editCred === magic+'_'+index" class="row">
-                  <div v-if="magic === 'email'" class="col social-input">
-                    <div :id="'inputE'+magic+'_'+index" class="input-group">
-                      <input type="text" class="form-control" :value="user.user.email">
-                      <div class="input-group-prepend">
-                        <button @click="editEmpresa(index, 0, 'email')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                      </div>
-                      <div class="input-group-prepend">
-                        <button @click="updateEmpresa(user.user_id, index, 'email')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div v-if="magic === 'pass'" class="col social-input">
-                    <div :id="'inputE'+magic+'_'+index" class="input-group">
-                      <input type="text" class="form-control" placeholder="**********">
-                      <div class="input-group-prepend">
-                        <button @click="editEmpresa(index, 0, 'pass')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                      </div>
-                      <div class="input-group-prepend">
-                        <button @click="updateEmpresa(user.user_id, index, 'pass')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-
-                  <div v-if="editI !== magic+'_'+index" @click="editEmpresa(index, 1, 'pais')" class="col">
-                    <span :id="'spanEpais_'+index">
-                      <b>País: </b><br>{{user.pais.nombre}}
-                    </span>
-                    <div class="wedit" :id="'inputEpais_'+index">
-                      <select class="form-control">
-                        <option selected v-if="pais.id === user.pais_id" :value="pais.id" v-for="pais in paises">{{pais.nombre}}</option>
-                        <option v-if="pais.id !== user.pais_id" :value="pais.id" v-for="pais in paises">{{pais.nombre}}</option>
-                      </select>
-                      <div class="edit-btns">
-                        <button @click="editEmpresa(index, 0, 'pais')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                        <button @click="updateEmpresa(user.user_id, index, 'pais')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div v-if="editI !== magic+'_'+index" @click="editEmpresa(index, 1, 'cd')" class="col">
-                    <span :id="'spanEcd_'+index">
-                      <b>Ciudad: </b><br>{{user.ciudad}}
-                    </span>
-                    <div class="wedit" :id="'inputEcd_'+index">
-                      <input :value="user.ciudad" type="text" class="form-control">
-                      <div class="edit-btns">
-                        <button @click="editEmpresa(index, 0, 'cd')" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                        <button @click="updateEmpresa(user.user_id, index, 'cd')" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col" :class="{overflowv: idiomasResults}">
-
-                    <div v-if="editI === magic+'_'+index">
-                      <span @click="setLang(index, idioma.nombre, 0)" class="user-lang del-idioma" v-for="(idioma, index) in idiomas"><b><i class="fas fa-times danger"></i></b> {{idioma}}</span>
-                      <div class="input-group">
-                        <input @keyup="searchIdioma" type="text" class="form-control" placeholder="Agregar idioma" v-model="idioma">
-                        <div class="input-group-prepend">
-                          <button @click="editI = false" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                        </div>
-                        <div class="input-group-prepend">
-                          <button @click="updateEmpresa(user.user_id, index, 'idiomas')" class="btn btn-link" ><i class="fas fa-check success"></i></button>
-                        </div>
-                      </div>
-                      <transition name="fade">
-                        <ul v-if="idiomasResults.length !== 0 && idioma !== ''" class="list-group input-results">
-                          <a @click="setLang(index, idioma.nombre, 1)" href="#" role="button" class="list-group-item list-group-item-action" v-for="idioma in idiomasResults">{{idioma.nombre}}</a>
-                        </ul>
-                      </transition>
-                    </div>
-
-                    <span @click="editEmpresa(index, 1, 'idiomas')" v-if="editI !== 'idiomas_'+index">
-                      <b>Idiomas: </b><br>{{JSON.parse(user.idiomas)}}
-                    </span>
-
-                  </div>
-                </div>
-                <div v-if="editinfo !== magic+'_'+index" class="row">
-                  <div @click="editEmpresa(index, 1, 'cv')" class="col">
-                    <span :id="'spanEcv_'+index">
-                      <b>Cv: </b><br>{{user.descripcion}}
-                    </span>
-                  </div>
-                  <div @click="editEmpresa(index, 1, 'ed')" class="col">
-                    <span :id="'spanEed_'+index">
-                      <b>Educacion: </b><br>{{user.cv}}
-                    </span>
-                  </div>
-                </div>
-                <div v-if="editinfo === magic+'_'+index" class="row">
-                  <div class="col">
-                    <div :id="'inputE'+magic+'_'+index">
-                      <textarea v-if="magic === 'ed'" :value="user.cv" type="text" class="form-control"></textarea>
-                      <textarea v-if="magic === 'cv'" :value="user.descripcion" type="text" class="form-control"></textarea>
-                      <div style="float: right">
-                        <button @click="editEmpresa(index, 0, magic)" class="btn btn-link" ><i class="fas fa-times danger"></i></button>
-                        <button @click="updateEmpresa(user.user_id, index, magic)" class="btn btn-link" ><i class="fas fa-check success success"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button @click="editskills(index)" class="btn btn-default btn-sm" style="margin: 0 auto;">Areas de expertise.</button>
+                </ol>
+                </ul>
             </div>
+        </div>
+        <article class="user-detail" :class="{'active': duser}">
+            <ul class="content">
+                <div class="actions">
+                    <button @click="edit ? edit = false : edit = true">
+                        edit
+                    </button>
+                </div>
+                <template v-for="(u, i) in duser">
+                    <figure v-if="i == 'foto'" class="img" :key="i+1">
+                        <img :src="'/storage/'+ u" alt="">
+                    </figure>
 
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
+                    <li v-if="!i.includes('_id') && !['status', 'foto', 'website', 'fb', 'tw', 'in', 'created_at', 'updated_at', 'pais', 'user', 'id', 'programas'].includes(i)" :key="i+1" class="item">
+                        <template v-if="!edit">
+                            <p class="title">
+                                {{i}} :
+                            </p>
+                            <p v-if="u != null" class="text">
+                                {{i != 'idiomas' ? u : JSON.parse(u)}}
+                            </p>
+                            <p v-else>
+                                --------------
+                            </p>
+                        </template>
+                        <template v-else>
+                            <div class="input">
+                                <label class="label">
+                                    {{i}}
+                                </label>
+                                <input type="text" v-model="duser[i]">
+                            </div>
+                        </template>
+                    </li>
+                    <template v-if="i == 'user'">
+                        <template v-for="(du, ind) in u">
+                            <li class="item" :key="ind+1">
+                                <p class="title">
+                                    {{ind}} :
+                                </p>
+                                <p class="text">
+                                    {{du}}
+                                </p>
+                            </li>
+                        </template>
+                    </template>
+                </template>
+            </ul>
+            <div @click="duser = false" class="overlay"></div>
+        </article>
+    </section>
 </template>
 
 <script>
-    export default {
-        mounted() {
-          var este = this;
-            axios.get('/panel/get-users').then(function(users){
-              este.users = users.data
-            });
-            axios.get('/panel/get-empresas').then(function(empresas){
-              este.empresas = empresas.data
-            });
-
-            axios.get('/get-paises').then(function(paises){
-              este.paises = paises.data
-            });
-            this.$bus.$on('createdUser', ($event) => {
-              este.users.unshift($event.user);
-              $("#registerModal").modal('hide');
-            }).$on('createdCompany', ($event) => {
-              este.empresas.unshift($event.company)
-              $("#registerModal").modal('hide');
-            });
-
-        },
-        data(){
-          return {
+export default {
+    data () {         
+        return {
+            duser: false,
             users: [],
             empresas: [],
-            paises: [],
-            idiomas: [],
-            categorias: [1,2,3],
-            userCats:[],
-            empresa: 0,
-            search: '',
-            picture: null,
-            rango: '',
-
-            editI: false,
-            editMemb: false,
-            editCat: false,
-            editAp: false,
-            editinfo: false,
-            editsocial: false,
-            editPic: false,
-            editCred: false,
-            bkpic: '',
-
-            idioma: '',
-            idiomasResults: [],
-            magic: '',
-            expertise: false,
-            valoration: null,
-            editStars: null,
-            newVal: null,
-            newStars: null
-          }
-        },
-        methods: {
-          deleteUser(id, key, magic){
-            var este = this;
-            if (confirm('Seguro?') === true) {
-              axios.get('/delete-user/'+id).then(function(response){
-                if (magic === 'empresa') {
-                  este.empresas.splice(key, 1);
-                }else{
-                  este.users.splice(key, 1);
-                }
-              })
-            }
-          },
-          setStatus(id, key){
+            list: [],
+            section: 0,
+            search: null,
+            searchTab: false,
+            edit: false
+        }
+    },
+    mounted () {
+        var este = this;
+        axios.get('/panel/get-users').then((r)  => {
+            este.users = r.data
+            este.list = este.users
+        }) 
+        
+        axios.get('/panel/get-empresas').then((r)  => {
+            este.empresas = r.data
+        })
+    },
+    methods: {
+        toggleStatus(id, key){
             var este = this;
             axios.get('/status-user/'+id).then(function(user){
-              if (este.empresa) {
-                este.empresas.splice(key, 1);
-                este.empresas.splice(key, 0, user.data);
-              }else {
-                este.users.splice(key, 1);
-                este.users.splice(key, 0, user.data);
-              }
+                if (este.empresa) {
+                    este.empresas.splice(key, 1);
+                    este.empresas.splice(key, 0, user.data);
+                }else {
+                    este.users.splice(key, 1);
+                    este.users.splice(key, 0, user.data);
+                }
             });
-          },
-          searchMember(){
+        },
+        searchFor(){
             var este = this;
-            if (this.search !== '') {
-              if (!this.empresa) {
-                this.users = []
-                axios.post('/search-members', {nombre: this.search, magic: '2'}).then(function(users){
-
-                  este.users = users.data
-                });
-              }else{
-                this.empresas = []
-                axios.post('/search-empresas', {nombre: this.search}).then(function(empresas){
-                  este.empresas = empresas.data
-                });
-              }
-            }else{
-              if (!this.empresa) {
-                axios.get('/panel/get-users').then(function(users){
-                  este.users = users.data
-                });
-              }else{
-                axios.get('/panel/get-empresas').then(function(empresas){
-                  este.empresas = empresas.data
-                });
-              }
-            }
-          },
-          setCat(cat, sw){
-            var este = this;
-            if (sw === 1) {
-              var key = this.categorias.indexOf(cat.categoria_id)
-              this.categorias.splice(key, 1)
-
-              this.userCats.push(cat)
-            }else{
-              this.userCats.forEach(function(cate, key){
-
-                if (cate.categoria_id === cat.categoria_id) {
-                  este.userCats.splice(key, 1)
+            if (!this.section) {
+                if (this.search.length > 3) {
+                    axios.post('/search-members', {nombre: this.search, magic: '2'}).then(function(users){
+                        este.list = users.data
+                    });
+                }else {
+                    este.list = este.users
                 }
-              });
-              this.categorias.push(cat)
-            }
-          },
-          editUser(index, sw, magic){
-            var este = this;
-
-            var group = $("#inputM"+magic+"_"+index)
-            var input = $("#inputM"+magic+"_"+index+">input")
-            var span = $("#spanM"+magic+"_"+index)
-            this.magic = magic
-
-
-            if (sw === 1) {
-              if (magic === 'idiomas') {
-                this.idiomas = []
-                this.editI = magic+'_'+index
-                var idiomas = JSON.parse(this.users[index].idiomas).split(',')
-
-                for(var x in idiomas){
-                  this.idiomas.push(idiomas[x]);
-                }
-              }
-
-              if (magic === 'fb' || magic === 'tw' || magic === 'in') {
-                this.editsocial= magic+'_'+index
-              }
-              if (magic === 'email' || magic === 'pass') {
-                this.editCred = magic+'_'+index
-              }
-
-              if (magic === 'apellidos') {
-                this.editAp = magic+'_'+index
-              }
-              if (magic === 'rango') {
-                this.editMemb = magic+'_'+index
-              }
-              if (magic === 'cat') {
-                this.categorias = [1,2,3]
-                this.userCats = []
-                this.editCat = magic+'_'+index
-
-                this.users[index].user.categorias.forEach(function(cat){
-                  var key = este.categorias.indexOf(cat.categoria_id)
-                  if (key > -1) {
-                    este.categorias.splice(key, 1);
-                  }
-                  este.userCats.push(cat)
-
-                })
-
-              }
-
-              if (magic === 'cv' || magic === 'ed') {
-                this.editinfo = magic+'_'+index
-              }
-
-              group.removeClass('wedit')
-              span.addClass('wedit')
             }else{
-              if (magic === 'idiomas') {
-                this.idiomasResults = []
-                this.editI = false
-              }
-
-              if (magic === 'fb' || magic === 'tw' || magic === 'in') {
-                this.editsocial = false
-              }
-              if (magic === 'email' || magic === 'pass') {
-                this.editCred = false
-              }
-
-              if (magic === 'apellidos') {
-                this.editAp = false
-              }
-              if (magic === 'rango') {
-                this.editMemb = false
-              }
-              if (magic === 'cat') {
-                this.editCat = false;
-              }
-              if (magic === 'cv' || magic === 'ed') {
-                this.editinfo = false
-              }
-              if (magic === 'pic') {
-                this.editPic = false
-                $("#previewM_"+index).css('background', 'url(/storage/'+this.bkpic+')center no-repeat')
-                this.picture = null
-              }
-              setTimeout(function(){
-                span.removeClass('wedit')
-                group.addClass('wedit')
-              }, 150);
-            }
-          },
-          updateUser(id, index, magic, rango){
-            var este = this;
-            var group = $("#inputM"+magic+"_"+index)
-            var span = $("#spanM"+magic+"_"+index)
-
-            if (magic === 'pais') {
-              var input = $("#inputM"+magic+"_"+index+">select")
-            }else if (magic === 'cv' || magic === 'ed'){
-
-              var input = $("#inputM"+magic+"_"+index+">textarea")
-            }else{
-              var input = $("#inputM"+magic+"_"+index+">input")
-            }
-
-            if (input.val() !== '') {
-              if(magic === 'idiomas') {
-                var formData = new FormData();
-                formData.append('id', id)
-                formData.append('magic', magic)
-                formData.append('idiomas', this.idiomas)
-                axios.post('/panel/update-user', formData).then(function(user){
-                  este.users.splice(index, 1);
-                  este.users.splice(index, 0, user.data);
-                  este.editUser(index, 0, magic)
-                });
-              }else if(magic === 'apellidos'){
-                var ap = $("#input_ap_"+index)
-                var am = $("#input_am_"+index)
-                axios.post('/panel/update-user', {id: id, value_p: ap.val(), value_m: am.val(), magic: magic}).then(function(user){
-                  este.users.splice(index, 1);
-                  este.users.splice(index, 0, user.data);
-                  este.editUser(index, 0, magic)
-                });
-              }else if(magic === 'rango'){
-                  this.rango = rango
-
-                axios.post('/panel/update-user', {id: id, value: this.rango, magic: magic}).then(function(user){
-                  este.users.splice(index, 1);
-                  este.users.splice(index, 0, user.data);
-                  este.editUser(index, 0, magic)
-                });
-              }else if(magic === 'cat'){
-                var formData = new FormData();
-                formData.append('id', id)
-                formData.append('magic', magic)
-                formData.append('categorias', JSON.stringify(this.userCats))
-
-                axios.post('/panel/update-user', formData).then(function(user){
-                  este.users.splice(index, 1);
-                  este.users.splice(index, 0, user.data);
-                  este.editUser(index, 0, magic)
-                });
-              }else if (!this.picture){
-                axios.post('/panel/update-user', {id: id, value: input.val(), magic: magic}).then(function(user){
-                  este.users.splice(index, 1);
-                  este.users.splice(index, 0, user.data);
-                  este.editUser(index, 0, magic)
-                });
-              }else{
-                var formData = new FormData();
-                formData.append('id', id)
-                formData.append('magic', magic)
-                formData.append('value', input.val())
-                formData.append('file', this.picture)
-                axios.post('/panel/update-user', formData).then(function(user){
-                  este.users.splice(index, 1);
-                  este.users.splice(index, 0, user.data);
-                  este.editUser(index, 0, magic)
-                });
-              }
-            }else if(magic == 'fb' || 'tw' || 'in'){
-              axios.post('/panel/update-user', {id: id, value: input.val(), magic: magic}).then(function(user){
-                  este.users.splice(index, 1);
-                  este.users.splice(index, 0, user.data);
-                  este.editUser(index, 0, magic)
-                });
-            }
-          },
-          searchIdioma(){
-            var este = this;
-            this.idiomasResults = []
-            if (this.idioma !== '') {
-              axios.post('/search-idioma', {idioma: this.idioma}).then(function(idiomas){
-                este.idiomasResults = idiomas.data.data
-              });
-            }else{
-              axios.get('/get-idiomas').then(function(idiomas){
-                este.idiomasResults = idiomas.data
-              });
-            }
-          },
-          setLang(index, nombre, sw){
-            if (sw === 1) {
-              this.idiomas.push(nombre)
-              this.idiomasResults = []
-              this.idioma = ''
-            }else{
-              this.idiomas.splice(index, 1);
-            }
-          },
-          changePic(index){
-            $("#fileInput_"+index).click()
-            this.magic = 'pic'
-            this.editPic = this.magic+'_'+index
-            this.bkpic = this.users[index].foto
-          },
-          fileChange(e, index){
-            let files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                this.preview(files[0], index);
-          },
-          preview(file, index){
-            this.picture = file
-
-            let reader = new FileReader();
-                let vm = this;
-                reader.onload = (e) => {
-                  //  vm.foto = e.target.result;
-                    $("#previewM_"+index).css('background', 'url('+e.target.result+')center no-repeat')
-                };
-                reader.readAsDataURL(file);
-          },
-
-          editEmpresa(index, sw, magic){
-            var este = this;
-
-            var group = $("#inputE"+magic+"_"+index)
-            var input = $("#inputE"+magic+"_"+index+">input")
-            var span = $("#spanE"+magic+"_"+index)
-            this.magic = magic
-
-            if (sw === 1) {
-              if (magic === 'idiomas') {
-                this.idiomas = []
-                this.editI = magic+'_'+index
-                var idiomas = JSON.parse(this.users[index].idiomas).split(',')
-
-                for(var x in idiomas){
-                  this.idiomas.push(idiomas[x]);
-                }
-              }
-
-              if (magic === 'fb' || magic === 'tw' || magic === 'in') {
-                this.editsocial= magic+'_'+index
-              }
-              if (magic === 'email' || magic === 'pass') {
-                this.editCred = magic+'_'+index
-              }
-
-              if (magic === 'apellidos') {
-                this.editAp = magic+'_'+index
-              }
-              if (magic === 'rango') {
-                this.editMemb = magic+'_'+index
-              }
-              if (magic === 'cat') {
-                this.categorias = [1,2,3]
-                this.userCats = []
-                this.editCat = magic+'_'+index
-
-                this.users[index].user.categorias.forEach(function(cat){
-                  var key = este.categorias.indexOf(cat.categoria_id)
-                  if (key > -1) {
-                    este.categorias.splice(key, 1);
-                  }
-                  este.userCats.push(cat)
-
-                })
-
-              }
-
-              if (magic === 'cv' || magic === 'ed') {
-                this.editinfo = magic+'_'+index
-              }
-
-              group.removeClass('wedit')
-              span.addClass('wedit')
-            }else{
-              if (magic === 'idiomas') {
-                this.idiomasResults = []
-                this.editI = false
-              }
-
-              if (magic === 'fb' || magic === 'tw' || magic === 'in') {
-                this.editsocial = false
-              }
-              if (magic === 'email' || magic === 'pass') {
-                this.editCred = false
-              }
-
-              if (magic === 'apellidos') {
-                this.editAp = false
-              }
-              if (magic === 'rango') {
-                this.editMemb = false
-              }
-              if (magic === 'cat') {
-                this.editCat = false;
-              }
-              if (magic === 'cv' || magic === 'ed') {
-                this.editinfo = false
-              }
-              if (magic === 'pic') {
-                this.editPic = false
-                $("#previewE_"+index).css('background', 'url(/storage/'+this.bkpic+')center no-repeat')
-                this.picture = null
-              }
-              setTimeout(function(){
-                span.removeClass('wedit')
-                group.addClass('wedit')
-              }, 150);
-            }
-          },
-          updateEmpresa(id, index, magic, rango){
-            var este = this;
-            var group = $("#inputE"+magic+"_"+index)
-            var span = $("#spanE"+magic+"_"+index)
-
-            if (magic === 'pais') {
-              var input = $("#inputE"+magic+"_"+index+">select")
-            }else if (magic === 'cv' || magic === 'ed'){
-
-              var input = $("#inputE"+magic+"_"+index+">textarea")
-            }else{
-              var input = $("#inputE"+magic+"_"+index+">input")
-            }
-
-            if (input.val() !== '') {
-              if(magic === 'idiomas') {
-                var formData = new FormData();
-                formData.append('id', id)
-                formData.append('magic', magic)
-                formData.append('idiomas', this.idiomas)
-                axios.post('/panel/update-empresa', formData).then(function(user){
-                  este.empresas.splice(index, 1);
-                  este.empresas.splice(index, 0, user.data);
-                  este.editEmpresa(index, 0, magic)
-                });
-              }else if(magic === 'rango'){
-                  this.rango = rango
-
-                axios.post('/panel/update-empresa', {id: id, value: this.rango, magic: magic}).then(function(user){
-                  este.empresas.splice(index, 1);
-                  este.empresas.splice(index, 0, user.data);
-                  este.editEmpresa(index, 0, magic)
-                });
-              }else if (!this.picture){
-                axios.post('/panel/update-empresa', {id: id, value: input.val(), magic: magic}).then(function(user){
-                  este.empresas.splice(index, 1);
-                  este.empresas.splice(index, 0, user.data);
-                  este.editEmpresa(index, 0, magic)
-                });
-              }else{
-                var formData = new FormData();
-                formData.append('id', id)
-                formData.append('magic', magic)
-                formData.append('value', input.val())
-                formData.append('file', this.picture)
-                axios.post('/panel/update-empresa', formData).then(function(user){
-                  este.empresas.splice(index, 1);
-                  este.empresas.splice(index, 0, user.data);
-                  este.editEmpresa(index, 0, magic)
-                });
-              }
-            }else if(magic == 'fb' || 'tw' || 'in'){
-                axios.post('/panel/update-empresa', {id: id, value: input.val(), magic: magic}).then(function(user){
-                  este.empresas.splice(index, 1);
-                  este.empresas.splice(index, 0, user.data);
-                  este.editEmpresa(index, 0, magic)
-                });
-            }
-          },
-          changePicm(index){
-            $("#fileInput_"+index).click()
-            this.magic = 'pic'
-            this.editPic = this.magic+'_'+index
-            this.bkpic = this.empresas[index].foto
-          },
-          fileChangem(e, index){
-            let files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                this.previewm(files[0], index);
-          },
-          previewm(file, index){
-            this.picture = file
-
-            let reader = new FileReader();
-                let vm = this;
-                reader.onload = (e) => {
-                  //  vm.foto = e.target.result;
-                    $("#previewE_"+index).css('background', 'url('+e.target.result+')center no-repeat')
-                };
-                reader.readAsDataURL(file);
-          },
-          editskills(id){
-            this.expertise = this.magic+'_exp_'+id
-          },
-          setlevel(key, index, sw, user){
-            if (sw === 1) {
-              for (var i = 0; i < index+1 ; i++) {
-                if (key === 'a') {
-
-                  $('#star'+key+'m_'+i+'_'+user).addClass('active')
-                }
-              }
-            }else{
-                for (var i = 0; i < index+1 ; i++) {
-                  if (key === 'a') {
-                    $('#star'+key+'m_'+i+'_'+user).removeClass('active')
-                  }
+                if (this.search.length > 3) {
+                    axios.post('/search-empresas', {nombre: this.search}).then(function(empresas){
+                        este.list = empresas.data
+                    });
+                }else {
+                    este.list = este.empresas
                 }
             }
-          },
-          level(key, index, valoracion, user, percent){
-            for (var i = 0; i < index+1 ; i++) {
-              $('#star'+key+'m_'+i+'_'+valoracion).addClass('active')
-            }
-            var este = this;
-            var porcentaje = parseInt(percent+1);
-            axios.post('/panel/update-val', {id: valoracion, percent: porcentaje, magic: 'star'}).then(function(response){
-              if (!este.empresa) {
-                este.users[user].user.valoracion[index] = response.data
-              }else{
-                este.empresas[user].user.valoracion[index] = response.data
-              }
-              este.editStars = null
-            })
-          },
-          editVal(index, id, sw){
-            if (sw === 1) {
-              this.valoration = 'val_'+index+'_'+id
-            }else{
-              this.valoration = null
-            }
-          },
-          updateVal(id, magic, user, index){
-            var nombre = $('#valInput_'+id).val()
-            var este = this;
-            axios.post('/panel/update-val', {id: id, name: nombre, magic: magic}).then(function(response){
-              if (!este.empresa) {
-                este.users[user].user.valoracion[index] = response.data
-              }else{
-                este.empresas[user].user.valoracion[index] = response.data
-              }
-              este.valoration = null
-            })
-          },
-          deleteVal(id, index, user){
-            var este = this;
-            if (confirm("Borrar valoración?") == true) {
-              axios.get('/panel/delete-val/'+id).then(function(response){
-                if (response.data === 1) {
-                  este.users[user].user.valoracion.splice(index, 1)
-                }
-              });
-            }
-          },
-          saveVal(index, id){
-            var area = $('#newValInput_'+index).val()
-            var percent = parseInt(this.newStars+1);
-            var este = this;
-            axios.post('/panel/add-valoration/'+id, {area: area, percent: percent}).then(function(response){
-              if (!este.empresa) {
-                este.users[index].user.valoracion.push(response.data)
-              }else{
-                este.empresas[index].user.valoracion.push(response.data)
-              }
-              este.newVal = null
-            });
-          },
-          setleveln(key, index, sw){
-            if (sw === 1) {
-              for (var i = 0; i < index+1 ; i++) {
-                if (key === 'a') {
-                  if (this.newStars === null) {
-                    $('#newStar'+key+'m_'+i).addClass('active')
-                  }
-                }
-              }
-            }else{
-                for (var i = 0; i < index+1 ; i++) {
-                  if (key === 'a') {
-                    if (this.newStars === null) {
-                      $('#newStar'+key+'m_'+i).removeClass('active')
-                    }
-                  }
+        },
+        userDetail(u){
+            console.log(u);
+            this.duser = u
+        }
+    },
+    watch: {
+        section: {
+            handler(val) {
+                this.search = null
+                this.searchTab = false 
+                if (val) {
+                    this.list = this.empresas
+                }else{
+                    this.list = this.users
                 }
             }
-          },
         }
     }
+}
 </script>
+
+<style lang="scss">
+    .status{
+        width: 1rem;
+        height: 1rem;
+        background-color: red;
+        border-radius: 100%;
+        cursor: pointer;
+        &.active{
+            background-color: green; 
+        }
+    }
+    [desk="members"]{
+        max-width: 1100px;
+        margin: 2rem auto;
+        .tabs-component{
+            >ul{
+                padding: 0;
+                list-style: none;
+            }
+            .tabs{
+                display: flex;
+                border-bottom: {
+                            style: solid;
+                            color:  rgba(#383737, .3);
+                            width: 1px;
+                        }
+                >*{
+                    background-color: #383737;
+                    color: #FFF;
+                    padding: .5rem;
+                    cursor: pointer;
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                    &:not(:last-child){
+                        margin-right: 1rem;
+                    }
+                    &.active{
+                        background-color: #00a7ff;
+                    }
+                    &.search{
+                        position: relative;
+                        margin-left: auto;
+                        padding: 0;
+                        min-width: 2rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        button{
+                                background-color: transparent;
+                                border: none!important;
+                                padding: 0;
+                                height: 100%;
+                                color: #FFF;
+                                outline: none!important;
+                        }
+                        .search-input{
+                            position: absolute;
+                            top: 0;
+                            right: 100%;
+                            height: 100%;
+                            width: 15rem;
+                            max-width: 0;
+                            overflow: hidden;
+                            transition: all .35s ease;
+                            input{
+                                width: 100%;
+                                height: 100%;
+                                border: none;
+                                border-left: {
+                                    style: solid;
+                                    color:  #00a7ff;
+                                    width: .2rem
+                                }
+                            }
+                        }
+                        &.active{
+                            border-top-left-radius: 0;
+                            .search-input{
+                                max-width: 100vw;
+                            }
+                        }
+                    }
+                }
+            }
+            .contents{
+                .content{
+                    display: flex;
+                    align-items: center;
+                    padding: 0;
+                    flex-direction: column;
+                    .item{
+                        display: flex;
+                        align-items: center;
+                        padding: 0;
+                        width: 100%;
+                        >*{
+                            margin-bottom: 0;
+                            &:not(:last-child){
+                                margin-right: 1rem;
+                            }
+                            &:last-child{
+                                margin-left: auto;
+                            }
+                            &.actions{
+                                width: auto;
+                            }
+                        }
+                        &:not(:last-child){
+                            border-bottom: {
+                                style: solid;
+                                color:  rgba(#383737, .3);
+                                width: 1px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .user-detail{
+            background: rgba(#5d5d5d, .5);
+            position: fixed;
+            z-index: -1;
+            visibility: hidden;
+            opacity: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .35s ease;
+            &.active{
+                visibility: visible;
+                opacity: 1;
+                z-index: 4;
+            }
+            .overlay{
+                position: absolute;
+                z-index: 3;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+            }
+            .content{
+                position: relative;
+                z-index: 4;
+                background-color: #FFF;
+                height: 80vh;
+                min-height: 500px;
+                width: 80vw;
+                min-width: 300px;
+                overflow-y: auto;
+                padding: 2rem;
+                display: flex;
+                flex-wrap: wrap;
+                .actions{
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width:auto;
+                }
+                .img{
+                    width: 10rem;
+                    border-radius: 100%;
+                    height: 10rem;
+                    order: -1;
+                }
+                .item{
+                    list-style: none;
+                    padding: 1rem;
+                    margin: auto;
+                    .title{
+                        font-weight: bold;
+                        margin-bottom: 0;
+                        text-transform: capitalize;
+                    }
+                    .text{
+                        color: #3b3b3b;
+                    }
+                }
+            }
+        }
+    }
+</style>

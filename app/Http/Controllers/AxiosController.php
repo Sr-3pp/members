@@ -98,11 +98,13 @@ class AxiosController extends Controller
       if(count($perfiles) == 0){
         $perfiles = Perfil::search($r->nombre, 'app_m')->orderBy('name', 'ASC')->get();
       }
+
       if(count($perfiles) == 0){
         $users = User::search($r->nombre, 'folio');
+
         $perfiles = [];
         foreach ($users as $key => $u) {
-          if($u->pais){
+          if($u->perfil && $u->perfil->pais){
             $perfil = $u->perfil;
             $perfil->pais;
             $perfil->user;
@@ -113,11 +115,11 @@ class AxiosController extends Controller
             foreach ($perfil->user->categorias as $key => $categoria) {
               $categoria->categoria;
             }
-
             array_push($perfiles, $perfil);
           }
         }
       }
+      
       $resultados = [];
       foreach ($perfiles as $key => $perfil) {
 
@@ -180,7 +182,39 @@ class AxiosController extends Controller
           $categoria->categoria;
         }
       }
-      return $empresas;
+      if(count($empresas) == 0){
+        $users = User::search($r->nombre, 'folio');
+        
+        $empresas = [];
+        foreach ($users as $key => $u) {
+          $perfil = $u->empresa;
+          if ($perfil != null) {
+            $perfil->user;
+            $perfil->pais;
+            $perfil->user->categorias;
+            $perfil->user->valoracion;
+            foreach ($perfil->user->categorias as $key => $categoria) {
+              $categoria->categoria;
+            }
+            array_push($empresas, $perfil);
+          }
+        }
+      }
+      
+      $resultados = [];
+      foreach ($empresas as $key => $perfil) {
+        if (Auth::user()->tipo == 3 || $perfil->status === 1) {
+          $perfil->user;
+          $perfil->pais;
+          $perfil->user->categorias;
+          $perfil->user->valoracion;
+          array_push($resultados, $perfil);
+          foreach ($perfil->user->categorias as $key => $categoria) {
+            $categoria->categoria;
+          }
+        }
+      }
+      return $resultados;
     }
 
     public function getProgramas(){
