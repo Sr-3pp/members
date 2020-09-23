@@ -65733,7 +65733,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.status{width:1rem;height:1rem;background-color:red;border-radius:100%;cursor:pointer\n}\n.status.active{background-color:green\n}\n[desk=\"members\"]{max-width:1100px;margin:2rem auto\n}\n[desk=\"members\"] .tabs-component>ul{padding:0;list-style:none\n}\n[desk=\"members\"] .tabs-component .tabs{display:-webkit-box;display:-ms-flexbox;display:flex;border-bottom-style:solid;border-bottom-color:rgba(56,55,55,0.3);border-bottom-width:1px\n}\n[desk=\"members\"] .tabs-component .tabs>*{background-color:#383737;color:#FFF;padding:.5rem;cursor:pointer;border-top-left-radius:10px;border-top-right-radius:10px\n}\n[desk=\"members\"] .tabs-component .tabs>*:not(:last-child){margin-right:1rem\n}\n[desk=\"members\"] .tabs-component .tabs>*.active{background-color:#00a7ff\n}\n[desk=\"members\"] .tabs-component .tabs>*.search{position:relative;margin-left:auto;padding:0;min-width:2rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center\n}\n[desk=\"members\"] .tabs-component .tabs>*.search button{background-color:transparent;border:none !important;padding:0;height:100%;color:#FFF;outline:none !important\n}\n[desk=\"members\"] .tabs-component .tabs>*.search .search-input{position:absolute;top:0;right:100%;height:100%;width:15rem;max-width:0;overflow:hidden;-webkit-transition:all .35s ease;transition:all .35s ease\n}\n[desk=\"members\"] .tabs-component .tabs>*.search .search-input input{width:100%;height:100%;border:none;border-left-style:solid;border-left-color:#00a7ff;border-left-width:.2rem\n}\n[desk=\"members\"] .tabs-component .tabs>*.search.active{border-top-left-radius:0\n}\n[desk=\"members\"] .tabs-component .tabs>*.search.active .search-input{max-width:100vw\n}\n[desk=\"members\"] .tabs-component .contents .content{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:0;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column\n}\n[desk=\"members\"] .tabs-component .contents .content .item{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:0;width:100%\n}\n[desk=\"members\"] .tabs-component .contents .content .item>*{margin-bottom:0\n}\n[desk=\"members\"] .tabs-component .contents .content .item>*:not(:last-child){margin-right:1rem\n}\n[desk=\"members\"] .tabs-component .contents .content .item>*:last-child{margin-left:auto\n}\n[desk=\"members\"] .tabs-component .contents .content .item>*.actions{width:auto\n}\n[desk=\"members\"] .tabs-component .contents .content .item:not(:last-child){border-bottom-style:solid;border-bottom-color:rgba(56,55,55,0.3);border-bottom-width:1px\n}\n[desk=\"members\"] .user-detail{background:rgba(93,93,93,0.5);position:fixed;z-index:-1;visibility:hidden;opacity:0;top:0;left:0;width:100%;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-transition:all .35s ease;transition:all .35s ease\n}\n[desk=\"members\"] .user-detail.active{visibility:visible;opacity:1;z-index:4\n}\n[desk=\"members\"] .user-detail .overlay{position:absolute;z-index:3;width:100%;height:100%;top:0;left:0\n}\n[desk=\"members\"] .user-detail .content{position:relative;z-index:4;background-color:#FFF;height:80vh;min-height:500px;width:80vw;min-width:300px;overflow-y:auto;padding:2rem;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap\n}\n[desk=\"members\"] .user-detail .content .actions{position:absolute;top:0;right:0;width:auto\n}\n[desk=\"members\"] .user-detail .content .img{width:10rem;border-radius:100%;height:10rem;-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1\n}\n[desk=\"members\"] .user-detail .content .item{list-style:none;padding:1rem;margin:auto\n}\n[desk=\"members\"] .user-detail .content .item .title{font-weight:bold;margin-bottom:0;text-transform:capitalize\n}\n[desk=\"members\"] .user-detail .content .item .text{color:#3b3b3b\n}\n", ""]);
+exports.push([module.i, "\n.input{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column\n}\n.input .label{font-weight:bold\n}\n.input textarea{min-height:7rem;min-width:10rem\n}\n.input.email,.input.password{width:auto\n}\n.input.email{margin-right:1rem\n}\n.status{width:1rem;height:1rem;background-color:red;border-radius:100%;cursor:pointer\n}\n.status.active{background-color:green\n}\n[desk=\"members\"]{max-width:1100px;margin:2rem auto\n}\n[desk=\"members\"] .tabs-component>ul{padding:0;list-style:none\n}\n[desk=\"members\"] .tabs-component .tabs{display:-webkit-box;display:-ms-flexbox;display:flex;border-bottom-style:solid;border-bottom-color:rgba(56,55,55,0.3);border-bottom-width:1px\n}\n[desk=\"members\"] .tabs-component .tabs>*{background-color:#383737;color:#FFF;padding:.5rem;cursor:pointer;border-top-left-radius:10px;border-top-right-radius:10px\n}\n[desk=\"members\"] .tabs-component .tabs>*:not(:last-child){margin-right:1rem\n}\n[desk=\"members\"] .tabs-component .tabs>*.active{background-color:#00a7ff\n}\n[desk=\"members\"] .tabs-component .tabs>*.search{position:relative;margin-left:auto;padding:0;min-width:2rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center\n}\n[desk=\"members\"] .tabs-component .tabs>*.search button{background-color:transparent;border:none !important;padding:0;height:100%;color:#FFF;outline:none !important\n}\n[desk=\"members\"] .tabs-component .tabs>*.search .search-input{position:absolute;top:0;right:100%;height:100%;width:15rem;max-width:0;overflow:hidden;-webkit-transition:all .35s ease;transition:all .35s ease\n}\n[desk=\"members\"] .tabs-component .tabs>*.search .search-input input{width:100%;height:100%;border:none;border-left-style:solid;border-left-color:#00a7ff;border-left-width:.2rem\n}\n[desk=\"members\"] .tabs-component .tabs>*.search.active{border-top-left-radius:0\n}\n[desk=\"members\"] .tabs-component .tabs>*.search.active .search-input{max-width:100vw\n}\n[desk=\"members\"] .tabs-component .contents .content{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:0;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column\n}\n[desk=\"members\"] .tabs-component .contents .content .item{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:0;width:100%\n}\n[desk=\"members\"] .tabs-component .contents .content .item>*{margin-bottom:0\n}\n[desk=\"members\"] .tabs-component .contents .content .item>*:not(:last-child){margin-right:1rem\n}\n[desk=\"members\"] .tabs-component .contents .content .item>*:last-child{margin-left:auto\n}\n[desk=\"members\"] .tabs-component .contents .content .item>*.actions{width:auto\n}\n[desk=\"members\"] .tabs-component .contents .content .item:not(:last-child){border-bottom-style:solid;border-bottom-color:rgba(56,55,55,0.3);border-bottom-width:1px\n}\n[desk=\"members\"] .user-detail{background:rgba(93,93,93,0.5);position:fixed;z-index:-1;visibility:hidden;opacity:0;top:0;left:0;width:100%;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-transition:all .35s ease;transition:all .35s ease\n}\n[desk=\"members\"] .user-detail.active{visibility:visible;opacity:1;z-index:4\n}\n[desk=\"members\"] .user-detail .overlay{position:absolute;z-index:3;width:100%;height:100%;top:0;left:0\n}\n[desk=\"members\"] .user-detail .content{position:relative;z-index:4;background-color:#FFF;height:80vh;min-height:500px;width:80vw;min-width:300px;overflow-y:auto;padding:2rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-ms-flex-wrap:wrap;flex-wrap:wrap\n}\n[desk=\"members\"] .user-detail .content ul{padding:0;list-style:none\n}\n[desk=\"members\"] .user-detail .content ul .title{font-weight:bold;margin-bottom:0\n}\n[desk=\"members\"] .user-detail .content ul.idiomas{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;max-width:50%\n}\n[desk=\"members\"] .user-detail .content ul.idiomas .title{-ms-flex-preferred-size:100%;flex-basis:100%\n}\n[desk=\"members\"] .user-detail .content ul.idiomas .item{padding:.3rem;background-color:#00a7ff;color:#FFF;border-radius:.2rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between\n}\n[desk=\"members\"] .user-detail .content ul.idiomas .item:not(:last-child){margin-right:1rem\n}\n[desk=\"members\"] .user-detail .content ul.idiomas .item .text{margin-bottom:0;color:#FFF\n}\n[desk=\"members\"] .user-detail .content ul.idiomas .item.list{background-color:transparent;padding:0;-ms-flex-preferred-size:100%;flex-basis:100%;margin-top:1rem;position:relative\n}\n[desk=\"members\"] .user-detail .content ul.idiomas .item.list .input-results{position:absolute;top:100%;left:0;width:100%;overflow:hidden\n}\n[desk=\"members\"] .user-detail .content>.img{overflow:hidden\n}\n[desk=\"members\"] .user-detail .content>.img img{width:100%;height:auto\n}\n[desk=\"members\"] .user-detail .content .profile{-ms-flex-preferred-size:100%;flex-basis:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;position:relative;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-bottom:4rem\n}\n[desk=\"members\"] .user-detail .content .profile .actions{position:absolute;top:0;right:0;width:auto\n}\n[desk=\"members\"] .user-detail .content .profile .img{position:relative\n}\n[desk=\"members\"] .user-detail .content .profile .img input{display:none\n}\n[desk=\"members\"] .user-detail .content .profile .img.edit{cursor:pointer\n}\n[desk=\"members\"] .user-detail .content .profile .img .user{width:10rem;border-radius:100%;height:10rem;border-radius:100%;overflow:hidden;-o-object-fit:cover;object-fit:cover;-webkit-box-shadow:0rem 0.2rem 1rem rgba(66,66,66,0.2);box-shadow:0rem 0.2rem 1rem rgba(66,66,66,0.2);border-style:solid;border-color:#FFF;border-width:.5rem\n}\n[desk=\"members\"] .user-detail .content .profile .img .rango{position:absolute;bottom:0;left:50%;-webkit-transform:translate(-50%, 50%);transform:translate(-50%, 50%);width:5rem;height:5rem\n}\n[desk=\"members\"] .user-detail .content .profile .rangos{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-preferred-size:100%;flex-basis:100%;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center\n}\n[desk=\"members\"] .user-detail .content .profile .rangos .rango{cursor:pointer\n}\n[desk=\"members\"] .user-detail .content .profile .rangos .rango input{display:none\n}\n[desk=\"members\"] .user-detail .content .profile .rangos .rango input:checked ~ img{width:3.5rem;border-radius:100%;-webkit-box-shadow:0 0.2rem 0.2rem rgba(56,55,55,0.3);box-shadow:0 0.2rem 0.2rem rgba(56,55,55,0.3)\n}\n[desk=\"members\"] .user-detail .content .profile .rangos .rango img{width:3rem\n}\n[desk=\"members\"] .user-detail .content .item{list-style:none;padding:1rem;margin:0\n}\n[desk=\"members\"] .user-detail .content .item .title{font-weight:bold;margin-bottom:0;text-transform:capitalize\n}\n[desk=\"members\"] .user-detail .content .item .text{color:#3b3b3b\n}\n[desk=\"members\"] .user-detail .content .categorias{-ms-flex-preferred-size:100%;flex-basis:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-bottom:2rem\n}\n[desk=\"members\"] .user-detail .content .categorias .title{-ms-flex-preferred-size:100%;flex-basis:100%\n}\n[desk=\"members\"] .user-detail .content .categorias .img{background-color:transparent;border:none;border-radius:100%;padding:0;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center\n}\n[desk=\"members\"] .user-detail .content .categorias .img img{opacity:.3;width:3rem;border-radius:100%\n}\n[desk=\"members\"] .user-detail .content .categorias .img:not(:last-child){margin-right:1rem\n}\n[desk=\"members\"] .user-detail .content .categorias .img input{display:none\n}\n[desk=\"members\"] .user-detail .content .categorias .img input:checked ~ img{opacity:1;-webkit-box-shadow:0 0.2rem 0.2rem rgba(56,55,55,0.3);box-shadow:0 0.2rem 0.2rem rgba(56,55,55,0.3)\n}\n[desk=\"members\"] .user-detail .content .valoraciones{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap\n}\n[desk=\"members\"] .user-detail .content .valoraciones .title{-ms-flex-preferred-size:100%;flex-basis:100%\n}\n[desk=\"members\"] .user-detail .content .valoraciones .item{padding:1rem\n}\n[desk=\"members\"] .user-detail .content .valoraciones .item .text{margin-bottom:0\n}\n[desk=\"members\"] .user-detail .content .valoraciones .item .star{color:#bbbbbb\n}\n[desk=\"members\"] .user-detail .content .valoraciones .item .star.active{color:#00a7ff\n}\n[desk=\"members\"] .user-detail .content .valoraciones .item.edit button{background-color:transparent;border:none;padding:0\n}\n[desk=\"members\"] .user-detail .content .valoraciones .item.edit .star{cursor:pointer\n}\n[desk=\"members\"] .user-detail .content .valoraciones .item.new .stars{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row\n}\n[desk=\"members\"] .user-detail .content .valoraciones .item.new .stars .label{-ms-flex-preferred-size:100%;flex-basis:100%\n}\n[desk=\"members\"] .user-detail .content .valoraciones .item.new .stars input{margin-bottom:1rem\n}\n[desk=\"members\"] .user-detail .content .valoraciones .item.new .stars input .star{cursor:pointer\n}\n", ""]);
 
 // exports
 
@@ -65873,6 +65873,135 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -65884,7 +66013,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             section: 0,
             search: null,
             searchTab: false,
-            edit: false
+            edit: false,
+            idiomas: false,
+            npicture: false,
+            categorias: false,
+            paises: false,
+            idioma: null,
+            idiomasResults: false,
+            nval: {
+                status: false,
+                area: null,
+                porcentaje: 1
+            }
+
         };
     },
     mounted: function mounted() {
@@ -65897,19 +66038,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         axios.get('/panel/get-empresas').then(function (r) {
             este.empresas = r.data;
         });
+
+        axios.get('/get-idiomas').then(function (idiomas) {
+            este.idiomas = idiomas.data;
+        });
+
+        axios.get('/get-categorias').then(function (categorias) {
+            este.categorias = categorias.data;
+        });
+
+        axios.get('/get-paises').then(function (paises) {
+            este.paises = paises.data;
+        });
     },
 
     methods: {
         toggleStatus: function toggleStatus(id, key) {
             var este = this;
             axios.get('/status-user/' + id).then(function (user) {
-                if (este.empresa) {
-                    este.empresas.splice(key, 1);
-                    este.empresas.splice(key, 0, user.data);
-                } else {
-                    este.users.splice(key, 1);
-                    este.users.splice(key, 0, user.data);
-                }
+                este.list.splice(key, 1);
+                este.list.splice(key, 0, user.data);
             });
         },
         searchFor: function searchFor() {
@@ -65932,9 +66080,82 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }
         },
+        searchIdioma: function searchIdioma() {
+            var este = this;
+            axios.post('/search-idioma', { idioma: this.idioma }).then(function (idiomas) {
+                este.idiomasResults = idiomas.data.data;
+            });
+        },
         userDetail: function userDetail(u) {
-            console.log(u);
+            var idiomas = void 0;
+            try {
+                idiomas = JSON.parse(u.idiomas);
+            } catch (error) {
+                idiomas = u.idiomas;
+            }
+            try {
+                u.idiomas = idiomas.split(',');
+            } catch (error) {
+                u.idiomas = idiomas;
+            }
+
             this.duser = u;
+            this.duser.user.cats = this.duser.user.categorias.map(function (e) {
+                if (e && e.categoria != null) {
+                    return e.categoria_id;
+                }
+            });
+        },
+        updateUser: function updateUser() {
+            var _this = this;
+
+            var data = {};
+            var formData = new FormData();
+            Object.keys(this.duser).map(function (k) {
+                if (!['user', 'cats', 'pais', 'created_at', 'updated_at', 'status', 'programas', 'user_id', 'id', 'foto', 'idiomas'].includes(k)) {
+                    var el = _this.duser[k];
+                    data[k] = el;
+                }
+            });
+            data['user_id'] = this.duser.user_id;
+            data['email'] = this.duser.user.email;
+            data['categorias'] = JSON.stringify(this.duser.user.cats);
+            data['valoraciones'] = JSON.stringify(this.duser.user.valoracion);
+            data['idiomas'] = this.duser.idiomas.join();
+
+            if (this.npicture) {
+                data['foto'] = this.npicture;
+            }
+
+            Object.keys(data).map(function (k) {
+                var e = data[k];
+                formData.append(k, e);
+            });
+
+            axios.post('/panel/update-user', formData).then(function (response) {
+                var u = response.data;
+                var idiomas = void 0;
+                try {
+                    idiomas = JSON.parse(u.idiomas);
+                } catch (error) {
+                    idiomas = u.idiomas;
+                }
+                try {
+                    u.idiomas = idiomas.split(',');
+                } catch (error) {
+                    u.idiomas = idiomas;
+                }
+                _this.duser = u;
+                _this.duser.user.cats = _this.duser.user.categorias.map(function (e) {
+                    return e.categoria.id;
+                });
+                _this.duser.user.valoracion = JSON.parse(data['valoraciones']);
+                _this.edit = false;
+            });
+        },
+        setPic: function setPic($event) {
+            this.npicture = $event.target.files[0];
+            $('.profile .user').attr('src', URL.createObjectURL(this.npicture));
         }
     },
     watch: {
@@ -66068,7 +66289,7 @@ var render = function() {
                 class: { active: u.status },
                 on: {
                   click: function($event) {
-                    return _vm.toggleStatus(u.id, i)
+                    return _vm.toggleStatus(u.user_id, i)
                   }
                 }
               }),
@@ -66128,148 +66349,873 @@ var render = function() {
       "article",
       { staticClass: "user-detail", class: { active: _vm.duser } },
       [
-        _c(
-          "ul",
-          { staticClass: "content" },
-          [
-            _c("div", { staticClass: "actions" }, [
-              _c(
-                "button",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.edit ? (_vm.edit = false) : (_vm.edit = true)
-                    }
-                  }
-                },
-                [_vm._v("\n                    edit\n                ")]
-              )
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.duser, function(u, i) {
-              return [
-                i == "foto"
-                  ? _c("figure", { key: i + 1, staticClass: "img" }, [
-                      _c("img", { attrs: { src: "/storage/" + u, alt: "" } })
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                !i.includes("_id") &&
-                ![
-                  "status",
-                  "foto",
-                  "website",
-                  "fb",
-                  "tw",
-                  "in",
-                  "created_at",
-                  "updated_at",
-                  "pais",
-                  "user",
-                  "id",
-                  "programas"
-                ].includes(i)
-                  ? _c(
-                      "li",
-                      { key: i + 1, staticClass: "item" },
-                      [
-                        !_vm.edit
-                          ? [
-                              _c("p", { staticClass: "title" }, [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(i) +
-                                    " :\n                        "
-                                )
-                              ]),
-                              _vm._v(" "),
-                              u != null
-                                ? _c("p", { staticClass: "text" }, [
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(
-                                          i != "idiomas" ? u : JSON.parse(u)
-                                        ) +
-                                        "\n                        "
-                                    )
-                                  ])
-                                : _c("p", [
-                                    _vm._v(
-                                      "\n                            --------------\n                        "
-                                    )
-                                  ])
-                            ]
-                          : [
-                              _c("div", { staticClass: "input" }, [
-                                _c("label", { staticClass: "label" }, [
-                                  _vm._v(
-                                    "\n                                " +
-                                      _vm._s(i) +
-                                      "\n                            "
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.duser[i],
-                                      expression: "duser[i]"
-                                    }
-                                  ],
-                                  attrs: { type: "text" },
-                                  domProps: { value: _vm.duser[i] },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.duser,
-                                        i,
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                })
-                              ])
-                            ]
-                      ],
-                      2
+        _vm.duser
+          ? _c(
+              "ul",
+              { staticClass: "content" },
+              [
+                _c("figure", { staticClass: "profile" }, [
+                  _c("div", { staticClass: "actions" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            _vm.edit ? (_vm.edit = false) : (_vm.edit = true)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "far fa-edit" })]
                     )
-                  : _vm._e(),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "img", class: { edit: _vm.edit } },
+                    [
+                      _c("img", {
+                        staticClass: "user",
+                        attrs: { src: "/storage/" + _vm.duser.foto, alt: "" }
+                      }),
+                      _vm._v(" "),
+                      !_vm.edit
+                        ? _c("img", {
+                            staticClass: "rango",
+                            attrs: {
+                              src:
+                                "/media/img/medallas/" +
+                                _vm.duser.rango +
+                                ".png",
+                              alt: ""
+                            }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.edit
+                        ? _c("input", {
+                            attrs: { type: "file", accept: "*/image" },
+                            on: {
+                              change: function($event) {
+                                return _vm.setPic($event)
+                              }
+                            }
+                          })
+                        : _vm._e()
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm.edit
+                    ? _c("div", { staticClass: "rangos" }, [
+                        _c("label", { staticClass: "rango" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.duser.rango,
+                                expression: "duser.rango"
+                              }
+                            ],
+                            attrs: {
+                              type: "radio",
+                              name: "rango",
+                              value: "afiliado"
+                            },
+                            domProps: {
+                              checked: _vm._q(_vm.duser.rango, "afiliado")
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$set(_vm.duser, "rango", "afiliado")
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("img", {
+                            attrs: {
+                              src: "/media/img/medallas/afiliado.png",
+                              alt: ""
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("label", { staticClass: "rango" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.duser.rango,
+                                expression: "duser.rango"
+                              }
+                            ],
+                            attrs: {
+                              type: "radio",
+                              name: "rango",
+                              value: "especialista"
+                            },
+                            domProps: {
+                              checked: _vm._q(_vm.duser.rango, "especialista")
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$set(
+                                  _vm.duser,
+                                  "rango",
+                                  "especialista"
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("img", {
+                            attrs: {
+                              src: "/media/img/medallas/especialista.png",
+                              alt: ""
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("label", { staticClass: "rango" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.duser.rango,
+                                expression: "duser.rango"
+                              }
+                            ],
+                            attrs: {
+                              type: "radio",
+                              name: "rango",
+                              value: "experto"
+                            },
+                            domProps: {
+                              checked: _vm._q(_vm.duser.rango, "experto")
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$set(_vm.duser, "rango", "experto")
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("img", {
+                            attrs: {
+                              src: "/media/img/medallas/experto.png",
+                              alt: ""
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("label", { staticClass: "rango" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.duser.rango,
+                                expression: "duser.rango"
+                              }
+                            ],
+                            attrs: {
+                              type: "radio",
+                              name: "rango",
+                              value: "profesional"
+                            },
+                            domProps: {
+                              checked: _vm._q(_vm.duser.rango, "profesional")
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$set(
+                                  _vm.duser,
+                                  "rango",
+                                  "profesional"
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("img", {
+                            attrs: {
+                              src: "/media/img/medallas/profesional.png",
+                              alt: ""
+                            }
+                          })
+                        ])
+                      ])
+                    : _vm._e()
+                ]),
                 _vm._v(" "),
-                i == "user"
-                  ? [
-                      _vm._l(u, function(du, ind) {
-                        return [
-                          _c("li", { key: ind + 1, staticClass: "item" }, [
-                            _c("p", { staticClass: "title" }, [
+                _c(
+                  "ul",
+                  { staticClass: "categorias" },
+                  [
+                    _c("p", { staticClass: "title" }, [
+                      _vm._v(
+                        "\n                    Categorias\n                "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.categorias, function(c, ci) {
+                      return _c("label", { key: ci + 1, staticClass: "img" }, [
+                        _c("input", {
+                          attrs: {
+                            disabled: !_vm.edit,
+                            type: "checkbox",
+                            name: "categoria",
+                            "true-value": c.id
+                          },
+                          domProps: {
+                            checked: _vm.duser.user.categorias
+                              .map(function(e) {
+                                return e.categoria_id
+                              })
+                              .includes(c.id)
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("img", {
+                          attrs: {
+                            src: "/media/img/categorias/" + c.nombre + ".png",
+                            alt: ""
+                          }
+                        })
+                      ])
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.duser.user, function(du, ind) {
+                  return [
+                    ![
+                      "perfil",
+                      "tipo",
+                      "valoracion",
+                      "cats",
+                      "categorias",
+                      "id",
+                      "created_at",
+                      "updated_at"
+                    ].includes(ind) && !_vm.edit
+                      ? _c("li", { key: ind + 1, staticClass: "item full" }, [
+                          _c("p", { staticClass: "title" }, [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(ind) +
+                                " :\n                    "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "text" }, [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(du) +
+                                "\n                    "
+                            )
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.edit && ind == "email"
+                      ? _c(
+                          "div",
+                          { key: ind + 1, staticClass: "input email" },
+                          [
+                            _c("label", { staticClass: "label" }, [
                               _vm._v(
-                                "\n                                " +
+                                "\n                        " +
                                   _vm._s(ind) +
-                                  " :\n                            "
+                                  "\n                    "
                               )
                             ]),
                             _vm._v(" "),
-                            _c("p", { staticClass: "text" }, [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(du) +
-                                  "\n                            "
-                              )
-                            ])
-                          ])
-                        ]
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.duser.user.email,
+                                  expression: "duser.user.email"
+                                }
+                              ],
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.duser.user.email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.duser.user,
+                                    "email",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      : _vm._e()
+                  ]
+                }),
+                _vm._v(" "),
+                _vm.edit
+                  ? _c("div", { staticClass: "input password" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v(
+                          "\n                    Password\n                "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.duser.user.password,
+                            expression: "duser.user.password"
+                          }
+                        ],
+                        attrs: {
+                          type: "password",
+                          placeholder: "set password"
+                        },
+                        domProps: { value: _vm.duser.user.password },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.duser.user,
+                              "password",
+                              $event.target.value
+                            )
+                          }
+                        }
                       })
-                    ]
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("li", { staticClass: "pais item" }, [
+                  _c("p", { staticClass: "title" }, [
+                    _vm._v("\n                    País:\n                ")
+                  ]),
+                  _vm._v(" "),
+                  !_vm.edit
+                    ? _c("p", { staticClass: "text" }, [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.duser.pais.nombre) +
+                            "\n                "
+                        )
+                      ])
+                    : _c("div", { staticClass: "input" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.duser.pais_id,
+                                expression: "duser.pais_id"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.duser,
+                                  "pais_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          _vm._l(_vm.paises, function(pais) {
+                            return _c(
+                              "option",
+                              { key: pais.id, domProps: { value: pais.id } },
+                              [_vm._v(_vm._s(pais.nombre))]
+                            )
+                          }),
+                          0
+                        )
+                      ])
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.duser, function(u, i) {
+                  return [
+                    !i.includes("_id") &&
+                    ![
+                      "status",
+                      "foto",
+                      "website",
+                      "fb",
+                      "tw",
+                      "in",
+                      "created_at",
+                      "updated_at",
+                      "pais",
+                      "user",
+                      "cats",
+                      "id",
+                      "programas",
+                      "idiomas",
+                      "rango"
+                    ].includes(i)
+                      ? _c(
+                          "li",
+                          { key: i + 1, staticClass: "item" },
+                          [
+                            !_vm.edit
+                              ? [
+                                  _c("p", { staticClass: "title" }, [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(i) +
+                                        " :\n                        "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  u != null
+                                    ? _c("p", { staticClass: "text" }, [
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(u) +
+                                            "\n                        "
+                                        )
+                                      ])
+                                    : _c("p", [
+                                        _vm._v(
+                                          "\n                            --------------\n                        "
+                                        )
+                                      ])
+                                ]
+                              : [
+                                  !["resumen", "educacion"].includes(i)
+                                    ? _c("div", { staticClass: "input" }, [
+                                        _c("label", { staticClass: "label" }, [
+                                          _vm._v(
+                                            "\n                                " +
+                                              _vm._s(i) +
+                                              "\n                            "
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.duser[i],
+                                              expression: "duser[i]"
+                                            }
+                                          ],
+                                          attrs: { type: "text" },
+                                          domProps: { value: _vm.duser[i] },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.duser,
+                                                i,
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ])
+                                    : _c("div", { staticClass: "input" }, [
+                                        _c("label", { staticClass: "label" }, [
+                                          _vm._v(
+                                            "\n                                " +
+                                              _vm._s(i) +
+                                              "\n                            "
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("textarea", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.duser[i],
+                                              expression: "duser[i]"
+                                            }
+                                          ],
+                                          attrs: { type: "text" },
+                                          domProps: { value: _vm.duser[i] },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.duser,
+                                                i,
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ])
+                                ]
+                          ],
+                          2
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    i == "idiomas"
+                      ? _c(
+                          "ul",
+                          { key: i + 1, staticClass: "idiomas item" },
+                          [
+                            _c("p", { staticClass: "title" }, [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(i) +
+                                  "\n                    "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(u, function(idioma, iid) {
+                              return _c(
+                                "li",
+                                { key: iid + 1, staticClass: "item" },
+                                [
+                                  _c("p", { staticClass: "text" }, [
+                                    _vm._v(_vm._s(idioma))
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm.edit
+                                    ? _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-link",
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.duser.idiomas.splice(
+                                                iid,
+                                                1
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-times danger"
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              )
+                            }),
+                            _vm._v(" "),
+                            _vm.edit
+                              ? _c(
+                                  "li",
+                                  { staticClass: "item list" },
+                                  [
+                                    _c("div", { staticClass: "input-group" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.idioma,
+                                            expression: "idioma"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          type: "text",
+                                          placeholder: "Agregar idioma"
+                                        },
+                                        domProps: { value: _vm.idioma },
+                                        on: {
+                                          keyup: _vm.searchIdioma,
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.idioma = $event.target.value
+                                          }
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "transition",
+                                      { attrs: { name: "fade" } },
+                                      [
+                                        _vm.idiomasResults && _vm.idioma !== ""
+                                          ? _c(
+                                              "ul",
+                                              {
+                                                staticClass:
+                                                  "list-group input-results"
+                                              },
+                                              _vm._l(
+                                                _vm.idiomasResults,
+                                                function(idioma) {
+                                                  return _c(
+                                                    "button",
+                                                    {
+                                                      key: idioma.id,
+                                                      staticClass:
+                                                        "list-group-item list-group-item-action",
+                                                      attrs: { role: "button" },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.duser.idiomas.push(
+                                                            idioma.nombre
+                                                          )
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(idioma.nombre)
+                                                      )
+                                                    ]
+                                                  )
+                                                }
+                                              ),
+                                              0
+                                            )
+                                          : _vm._e()
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              : _vm._e()
+                          ],
+                          2
+                        )
+                      : _vm._e()
+                  ]
+                }),
+                _vm._v(" "),
+                _c(
+                  "ul",
+                  { staticClass: "valoraciones" },
+                  [
+                    _c("p", { staticClass: "title" }, [
+                      _vm._v(
+                        "\n                        Valoraciones\n                    "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.duser.user.valoracion, function(v, ind) {
+                      return _c(
+                        "li",
+                        {
+                          key: ind + 1,
+                          staticClass: "item",
+                          class: { edit: _vm.edit }
+                        },
+                        [
+                          _vm.edit
+                            ? _c(
+                                "button",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.duser.user.valoracion.splice(
+                                        ind,
+                                        1
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "fas fa-times danger"
+                                  })
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "text" }, [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(v.area) +
+                                "\n                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(10, function(n) {
+                            return _c(
+                              "span",
+                              {
+                                key: n,
+                                staticClass: "star",
+                                class: { active: n <= parseInt(v.porcentaje) },
+                                on: {
+                                  click: function($event) {
+                                    _vm.edit ? (v.porcentaje = n) : null
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fas fa-star" })]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    }),
+                    _vm._v(" "),
+                    _vm.edit && _vm.nval.status
+                      ? _c("li", { staticClass: "item new" }, [
+                          _c("div", { staticClass: "input" }, [
+                            _c("label", { staticClass: "label" }, [
+                              _vm._v(
+                                "\n                                Area\n                            "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.nval.area,
+                                  expression: "nval.area"
+                                }
+                              ],
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.nval.area },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.nval,
+                                    "area",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "input stars" },
+                            [
+                              _c("label", { staticClass: "label" }, [
+                                _vm._v(
+                                  "\n                                Porcentaje\n                            "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(10, function(n) {
+                                return _c(
+                                  "span",
+                                  {
+                                    key: n,
+                                    staticClass: "star",
+                                    class: {
+                                      active: n <= parseInt(_vm.nval.porcentaje)
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.nval.porcentaje = n
+                                      }
+                                    }
+                                  },
+                                  [_c("i", { staticClass: "fas fa-star" })]
+                                )
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-secondary",
+                              on: {
+                                click: function($event) {
+                                  return _vm.duser.user.valoracion.push(
+                                    _vm.nval
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            agregar\n                        "
+                              )
+                            ]
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.edit && _vm.duser.user.valoracion.length < 5
+                      ? _c("li", { staticClass: "item" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: {
+                                click: function($event) {
+                                  _vm.nval.status
+                                    ? (_vm.nval.status = false)
+                                    : (_vm.nval.status = true)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-plus" })]
+                          )
+                        ])
+                      : _vm._e()
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _vm.edit
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            return _vm.updateUser()
+                          }
+                        }
+                      },
+                      [_vm._v("\n                Guardar\n            ")]
+                    )
                   : _vm._e()
-              ]
-            })
-          ],
-          2
-        ),
+              ],
+              2
+            )
+          : _vm._e(),
         _vm._v(" "),
         _c("div", {
           staticClass: "overlay",

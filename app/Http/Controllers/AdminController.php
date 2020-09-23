@@ -157,90 +157,89 @@ class AdminController extends Controller
     }
 
     public function updateUser(Request $r){
-      $user = Perfil::where('user_id', $r->id)->first();
+      $data = $r->all();
+      $user = Perfil::where('user_id', $r->user_id)->first();
+      if ($r->password) {
+        $data['password'] = Hash::make($r->password);
+      }
 
-      if ($r->magic === 'name') {
-        $user->name = $r->value;
+      if ($r->hasFile('foto')) {
+        Storage::delete($user->foto);
+        $data['foto'] = $r->foto->store('users/'. $user->user_id . '/');
       }
-      if ($r->magic === 'apellidos') {
 
-        $user->apellido_p = $r->value_p;
-        $user->apellido_m = $r->value_m;
+      if ($r->email) {
+        $user->user->email = $r->email;
       }
-      if ($r->magic === 'tel') {
-        $user->telefono = $r->value;
-      }
-      if ($r->magic === 'cel') {
-        $user->celular = $r->value;
-      }
-      if ($r->magic === 'folio') {
-        $user->user->folio = $r->value;
-      }
-      if ($r->magic === 'fb') {
-        $user->fb = $r->value;
-      }
-      if ($r->magic === 'tw') {
-        $user->tw = $r->value;
-      }
-      if ($r->magic === 'in') {
-        $user->in = $r->value;
-      }
-      if ($r->magic === 'web') {
-        $user->website = $r->value;
-      }
-      if ($r->magic === 'email') {
-        $user->user->email = $r->value;
-      }
-      if ($r->magic === 'pass') {
-        $user->user->password = Hash::make($r->value);
-      }
-      if ($r->magic === 'pais') {
-        $user->pais_id = $r->value;
-      }
-      if ($r->magic === 'cd') {
-        $user->ciudad = $r->value;
-      }
-      if ($r->magic === 'cv') {
-        $user->resumen = $r->value;
-      }
-      if ($r->magic === 'ed') {
-        $user->educacion = $r->value;
-      }
-      if ($r->magic === 'idiomas') {
-        $user->idiomas = json_encode($r->idiomas);
-      }
-      if ($r->magic === 'rango') {
-        $user->rango = $r->value;
-      }
-      if ($r->magic === 'cat') {
-        $categorias = MemberCat::where('user_id', $r->id)->get();
-        foreach ($categorias as $key => $categoria) {
-          $categoria->delete();
-        }
-        $ncategorias = json_decode($r->categorias);
-        foreach ($ncategorias as $key => $cat) {
-          MemberCat::create([
-            'user_id' => $r->id,
-            'categoria_id' => $cat->categoria_id
-          ]);
+
+      if ($r->valoraciones) {
+        $uvals = Valoracion::where('user_id', $user->user_id)->get();
+        $vals = json_decode($r->valoraciones);
+        $vids = [];
+        $uvids = [];
+        
+        foreach ($uvals as $key => $v) {
+            array_push($uvids, $v->id);          
         }
 
-      }
-
-      if ($r->magic === 'pic') {
-        if ($r->hasFile('file')) {
-          Storage::delete($user->foto);
-          $user->foto = $r->file->store('/users/'.$user->id.'/profile_pics');
+        foreach ($vals as $key => $v) {
+          if (isset($v->id)) {
+            array_push($vids, $v->id);  
+            $val = Valoracion::find($v->id);
+          
+            if ($val->first()) {
+              $val->update((array)$v);
+            }        
+          }else{
+            if(count($user->user->valoracion) < 5){
+              Valoracion::create([
+                'user_id' => $r->user_id,
+                'area' => $v->area,
+                'porcentaje' => $v->porcentaje
+              ]);
+            }
+          }
+        }
+        foreach ($uvals as $key => $v) {
+          if (!in_array($v->id, $vids)) {
+            $v->delete();
+          }
         }
       }
-      $user->save();
-      $user->user->save();
+
+      if ($r->categorias) {
+        $cats = json_decode($r->categorias);
+        $mc = MemberCat::where('user_id', $r->user_id)->get();
+        $mcids = [];
+
+        foreach ($mc as $key => $c) {
+          array_push($mcids, $c->categoria_id);          
+        }
+        foreach ($cats as $key => $c) {
+          if (!in_array($c, $mcids) && $c != null) {
+            MemberCat::create([
+              'user_id' => $r->user_id,
+              'categoria_id' => $c
+            ]);
+          }
+        }
+        
+        foreach ($mc as $key => $c) {
+          if (!in_array($c->categoria_id, $cats)) {
+            $c->delete();
+          }
+        }
+      }
+
+      $user->update($data);
+
       $user->pais;
+      $user->user->save();
 
       foreach ($user->user->categorias as $key => $categoria) {
         $categoria->categoria;
       }
-
+      $user->user->valoracion;
       return $user;
 
     }
