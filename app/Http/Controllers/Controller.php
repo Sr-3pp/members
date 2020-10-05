@@ -442,7 +442,7 @@ class Controller extends BaseController
           array_push($fakeUsers, $u);
         }
       }
-      return$fakeUsers;
+      return json_encode($fakeUsers);
 
     }
 
