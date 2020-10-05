@@ -34,7 +34,7 @@
                         <button @click="userDetail(u)" class="btn btn-primary">
                             Detail
                         </button>
-                        <button class="btn btn-danger">
+                        <button @click="deleteUser(u, i)" class="btn btn-danger">
                             Delete
                         </button>
                     </div>
@@ -368,6 +368,16 @@ export default {
         setPic($event){
             this.npicture = $event.target.files[0]
             $('.profile .user').attr('src', URL.createObjectURL(this.npicture))
+        },
+        deleteUser (u, i) {
+            if (confirm('Eliminar usuario' + u.folio + '?')) {
+                var este = this;
+                axios.get('delete-user/' + u.id).then(function(response) {
+                    if (response.data == '1') {
+                        this.list.splice(i, 1);
+                    }
+                });
+            }
         }
     },
     watch: {
