@@ -370,10 +370,10 @@ export default {
             $('.profile .user').attr('src', URL.createObjectURL(this.npicture))
         },
         deleteUser (u, i) {
-            console.log('delete user');
-            if (confirm('Eliminar usuario' + u.folio + '?')) {
+            console.log(u);
+            if (confirm('Eliminar usuario' + u.user.folio + '?')) {
                 var este = this;
-                axios.get('delete-user/' + u.id).then(function(response) {
+                axios.get('delete-user/' + u.user.id).then(function(response) {
                     if (response.data == '1') {
                         this.list.splice(i, 1);
                     }
