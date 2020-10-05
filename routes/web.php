@@ -89,3 +89,5 @@ Route::prefix('panel')->middleware('admin')->group(function () {
 
 
 Route::get('test-user', 'Controller@test');
+
+Route::get('/purge', 'Controller@purgeProfiles');
