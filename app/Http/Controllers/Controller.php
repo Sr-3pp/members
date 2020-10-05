@@ -437,7 +437,7 @@ class Controller extends BaseController
     public function purgeProfiles(){
       $users = User::all();
       foreach ($users as $key => $u) {
-        if(!$u->perfil){
+        if(!$u->perfil && $u->type != 3){
           $u->delete();
         }
       }
