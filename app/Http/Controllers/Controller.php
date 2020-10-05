@@ -438,7 +438,7 @@ class Controller extends BaseController
       $users = User::all();
       $fakeUsers = [];
       foreach ($users as $key => $u) {
-        if($u->perfil){
+        if(!$u->perfil){
           array_push($fakeUsers, $u);
         }
       }
