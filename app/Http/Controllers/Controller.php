@@ -436,14 +436,13 @@ class Controller extends BaseController
 
     public function purgeProfiles(){
       $users = User::all();
-      $fakeUsers = [];
       foreach ($users as $key => $u) {
         if(!$u->perfil){
-          array_push($fakeUsers, $u);
+          $u->delete();
         }
       }
-      return json_encode($fakeUsers);
 
+      return 'purged';
     }
 
 
