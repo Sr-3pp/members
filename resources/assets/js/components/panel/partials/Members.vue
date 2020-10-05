@@ -370,12 +370,11 @@ export default {
             $('.profile .user').attr('src', URL.createObjectURL(this.npicture))
         },
         deleteUser (u, i) {
-            console.log(u);
             if (confirm('Eliminar usuario' + u.user.folio + '?')) {
                 var este = this;
                 axios.get('delete-user/' + u.user.id).then(function(response) {
                     if (response.data == '1') {
-                        this.list.splice(i, 1);
+                        este.list.splice(i, 1);
                     }
                 });
             }
