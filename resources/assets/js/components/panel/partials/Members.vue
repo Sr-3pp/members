@@ -246,7 +246,6 @@ export default {
                 area: null,
                 porcentaje: 1
             }
-
         }
     },
     mounted () {
