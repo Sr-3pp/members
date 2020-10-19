@@ -249,6 +249,7 @@ export default {
         }
     },
     mounted () {
+        console.log('loaded');
         var este = this;
         axios.get('/panel/get-users').then((r)  => {
             este.users = r.data
