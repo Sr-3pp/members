@@ -39,7 +39,7 @@
               <li><img width="40" src="{{asset('media/img/recursos/entidad-icon.png')}}" alt="pais icon"> {{$user->perfil->pais->nombre}}</li>
             @endif
             <li><a href="mailto:{{$user->email}}"><img width="40" src="{{asset('media/img/recursos/mail-icon.png')}}" alt="mail icon"> {{$user->email}}</a></li>
-            @if ($user->perfil->website)
+            @if ($user->perfil->website && $user->perfil->website !== null)
               <li><a target="_blank" href="http://{{$user->perfil->website}}"><img width="40" src="{{asset('media/img/recursos/web-icon.png')}}" alt="website icon"> {{$user->perfil->website}}</a></li>
             @endif
           </ul>
@@ -50,13 +50,13 @@
         <hr>
         <div>
           <ul class="social-list-float">
-            @if ($user->perfil->fb)
+            @if ($user->perfil->fb && $user->perfil->fb !== null)
               <li><a target="_blank" href="https://facebook.com/{{$user->perfil->fb}}"><img width="40" src="{{asset('media/img/recursos/fb-logo.png')}}" alt="fb icon"></a></li>
             @endif
-            @if ($user->perfil->tw)
+            @if ($user->perfil->tw && $user->perfil->tw !== null)
               <li><a target="_blank" href="https://twitter.com/{{$user->perfil->tw}}"><img width="40" src="{{asset('media/img/recursos/tw-logo.png')}}" alt="fb icon"></a></li>
             @endif
-            @if ($user->perfil->in)
+            @if ($user->perfil->in && $user->perfil->in !== null)
               <li><a target="_blank" href="https://linkedin.com/{{$user->perfil->in}}"><img width="40" src="{{asset('media/img/recursos/in-logo.png')}}" alt="fb icon"></a></li>
             @endif
           </ul>

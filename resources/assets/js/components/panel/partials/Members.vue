@@ -124,7 +124,7 @@
                 </li>
 
                 <template v-for="(u, i) in duser">
-                    <li v-if="!i.includes('_id') && !['status', 'foto', 'website', 'fb', 'tw', 'in', 'created_at', 'updated_at', 'pais', 'user', 'cats', 'id', 'programas', 'idiomas', 'rango'].includes(i)" :key="i+1" class="item">
+                    <li v-if="!i.includes('_id') && !['status', 'foto','created_at', 'updated_at', 'pais', 'user', 'cats', 'id', 'programas', 'idiomas', 'rango'].includes(i)" :key="i+1" class="item">
                         <template v-if="!edit">
                             <p class="title">
                                 {{i}} :
