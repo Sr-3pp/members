@@ -80,7 +80,7 @@
                         Categorias
                     </p>
                     <label v-for="(c, ci) in categorias" class="img" :key="ci + 1">
-                        <input :disabled="!edit" type="checkbox" name="categoria" :true-value="c.id" :checked="duser.user.categorias.map((e) => {return e.categoria_id}).includes(c.id)">
+                        <input :disabled="!edit" type="checkbox" name="categoria" v-model="duser.user.cats" :value="c.id" :true-value="c.id" :checked="duser.user.categorias.map((e) => {return e.categoria_id}).includes(c.id)">
                         <img :src="'/media/img/categorias/'+ c.nombre +'.png'" alt="">
                     </label>
                 </ul>
@@ -331,6 +331,7 @@ export default {
                     data[k] = el
                 }
             })
+            console.log(this.duser);
             data['user_id'] = this.duser.user_id
             data['email'] = this.duser.user.email
             data['categorias'] = JSON.stringify(this.duser.user.cats)
