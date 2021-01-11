@@ -159,6 +159,11 @@ class AdminController extends Controller
     public function updateUser(Request $r){
       $data = $r->all();
       $user = Perfil::where('user_id', $r->user_id)->first();
+
+      if ($user == null) {
+        $user = Empresa::where('user_id', $r->user_id)->first();
+      }
+
       if ($r->password) {
         $data['password'] = Hash::make($r->password);
       }
