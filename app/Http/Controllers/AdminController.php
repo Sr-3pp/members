@@ -176,6 +176,10 @@ class AdminController extends Controller
       if ($r->email) {
         $user->user->email = $r->email;
       }
+      
+      if ($r->folio) {
+        $user->user->folio = $r->folio;
+      }
 
       if ($r->valoraciones) {
         $uvals = Valoracion::where('user_id', $user->user_id)->get();

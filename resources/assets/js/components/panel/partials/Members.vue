@@ -94,11 +94,18 @@
                             {{du}}
                         </p>
                     </li>
+                    <div class="input email" v-if="edit && ind == 'folio'" :key="ind+1">
+                        <label class="label">
+                            {{ind}}
+                        </label>
+                        <input class="form-control" type="text" v-model="duser.user.folio">
+                    </div>
+                    
                     <div class="input email" v-if="edit && ind == 'email'" :key="ind+1">
                         <label class="label">
                             {{ind}}
                         </label>
-                        <input type="text" v-model="duser.user.email">
+                        <input class="form-control" type="text" v-model="duser.user.email">
                     </div>
                 </template>
 
@@ -106,7 +113,7 @@
                     <label class="label">
                         Password
                     </label>
-                    <input type="password" placeholder="set password" v-model="duser.user.password">
+                    <input class="form-control" type="password" placeholder="set password" v-model="duser.user.password">
                 </div>
 
                 <li class="pais item">
@@ -141,13 +148,13 @@
                                 <label class="label">
                                     {{i}}
                                 </label>
-                                <input type="text" v-model="duser[i]">
+                                <input class="form-control" type="text" v-model="duser[i]">
                             </div>
                             <div v-else class="input">
                                 <label class="label">
                                     {{i}}
                                 </label>
-                                <textarea type="text" v-model="duser[i]"></textarea>
+                                <textarea class="form-control" type="text" v-model="duser[i]"></textarea>
                             </div>
                         </template>
                     </li>
@@ -331,9 +338,10 @@ export default {
                     data[k] = el
                 }
             })
-            console.log(this.duser);
+
             data['user_id'] = this.duser.user_id
             data['email'] = this.duser.user.email
+            data['folio'] = this.duser.user.folio
             data['categorias'] = JSON.stringify(this.duser.user.cats)
             data['valoraciones'] = JSON.stringify(this.duser.user.valoracion)
             data['idiomas'] = this.duser.idiomas.join()
@@ -747,6 +755,7 @@ export default {
                 .valoraciones{
                     display: flex;
                     flex-wrap: wrap;
+                    flex-basis: 100%;
                     .title{
                         flex-basis: 100%;
                     }
