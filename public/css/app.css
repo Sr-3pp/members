@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 .jumbotron{
   border-radius: 0!important;
@@ -131,6 +132,15 @@ textarea {
 .category-list{
   padding: 0;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 
@@ -138,7 +148,7 @@ textarea {
   list-style: none;
   padding: 0;
   float: left;
-  width: 20%;
+  width: 16%;
   margin: 80px auto;
   text-align: center;
   cursor: pointer;
@@ -278,6 +288,11 @@ textarea {
   background: #d20894;
   color: #FFF;
 }
+
+.especial .card-header{
+  background: #505050;
+  color: #FFF;
+}
 .card-category{
   position: absolute;
   top: -53px;
@@ -310,6 +325,10 @@ textarea {
 }
 .programcard .card-category{
   background-color: #d20894;
+}
+
+.especial .card-category{
+  background-color: #505050;
 }
 
 .top-links{
@@ -586,6 +605,44 @@ padding: 0;
   right: 0px;
   z-index: 99;
 }
+
+#memberSection{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+#memberSection >.row{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+#memberSection .no-members{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 2rem;
+}
+
+#memberSection .membersBackBtn{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#memberCards{
+  margin: 0;
+}
+
 #memberCards h3{
   color: #FFF!important;
 }

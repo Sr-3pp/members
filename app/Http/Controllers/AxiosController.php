@@ -36,7 +36,7 @@ class AxiosController extends Controller
     public function getMembers($id){
 
       $categorias = MemberCat::where('categoria_id', $id)->get();
-
+      
       $members = [];
       if ($id === '5') {
 

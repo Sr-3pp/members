@@ -61673,6 +61673,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -62025,7 +62027,11 @@ var render = function() {
                                         _vm._v(
                                           _vm._s(
                                             _vm.$t(
-                                              "categoria." + categoria.nombre
+                                              "categoria." +
+                                                categoria.nombre.replace(
+                                                  " ",
+                                                  ""
+                                                )
                                             )
                                           )
                                         )
@@ -62127,7 +62133,9 @@ var render = function() {
                                               empresacard:
                                                 member.categoria_id === 4,
                                               programcard:
-                                                member.categoria_id === 5
+                                                member.categoria_id === 5,
+                                              especial:
+                                                member.categoria_id === 6
                                             }
                                           },
                                           [
@@ -62289,6 +62297,22 @@ var render = function() {
                                                                           ]
                                                                         )
                                                                       : _vm._e(),
+                                                                    _vm._v(" "),
+                                                                    member.categoria_id ===
+                                                                    6
+                                                                      ? _c(
+                                                                          "span",
+                                                                          [
+                                                                            _vm._v(
+                                                                              _vm._s(
+                                                                                _vm.$t(
+                                                                                  "categoria.CertificacionesEspecializadas"
+                                                                                )
+                                                                              )
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      : _vm._e(),
                                                                     _vm._v(
                                                                       "\n                                 \n                              "
                                                                     ),
@@ -62370,6 +62394,23 @@ var render = function() {
                                                                                 "40",
                                                                               src:
                                                                                 "/media/img/categorias/programas.png",
+                                                                              alt:
+                                                                                "categoria_icon"
+                                                                            }
+                                                                          }
+                                                                        )
+                                                                      : _vm._e(),
+                                                                    _vm._v(" "),
+                                                                    member.categoria_id ===
+                                                                    6
+                                                                      ? _c(
+                                                                          "img",
+                                                                          {
+                                                                            attrs: {
+                                                                              width:
+                                                                                "40",
+                                                                              src:
+                                                                                "/media/img/categorias/certificaciones_especializadas.png",
                                                                               alt:
                                                                                 "categoria_icon"
                                                                             }
@@ -63363,6 +63404,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
@@ -63383,6 +63437,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       capacitador: false,
       empresa: false,
       programa: false,
+      certificacion: false,
       pais: '',
       nombre: '',
       paisid: 0,
@@ -63416,6 +63471,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.capacitador = false;
         this.empresa = false;
         this.programa = false;
+        this.certificacion = false;
       }
       if (sw === 2) {
         this.consultor = false;
@@ -63423,6 +63479,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.capacitador = false;
         this.empresa = false;
         this.programa = false;
+        this.certificacion = false;
       }
       if (sw === 3) {
         this.consultor = false;
@@ -63430,6 +63487,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.capacitador = true;
         this.empresa = false;
         this.programa = false;
+        this.certificacion = false;
       }
       if (sw === 4) {
         this.consultor = false;
@@ -63437,6 +63495,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.capacitador = false;
         this.empresa = true;
         this.programa = false;
+        this.certificacion = false;
+      }
+      if (sw === 6) {
+        this.consultor = false;
+        this.coach = false;
+        this.capacitador = false;
+        this.empresa = false;
+        this.programa = false;
+        this.certificacion = true;
       }
       if (sw === 5) {
         axios.get('/get-programas').then(function (programas) {
@@ -63479,6 +63546,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
           }
           este.loader = false;
+          console.log(este.members.length);
         });
       }
     },
@@ -63529,11 +63597,7 @@ var render = function() {
     {
       staticClass: "container-fluid center-content",
       class: { activated: _vm.selected },
-      staticStyle: {
-        "min-height": "600px",
-        position: "relative",
-        padding: "0"
-      },
+      staticStyle: { "min-height": "600px", position: "relative" },
       attrs: { id: "memberSection" }
     },
     [
@@ -63542,11 +63606,11 @@ var render = function() {
         {
           staticClass: "row",
           class: { plusWidth: _vm.selected },
-          staticStyle: { height: "100%", margin: "0 auto", width: "100%" }
+          staticStyle: { margin: "0 auto", width: "100%" }
         },
         [
           _vm.selected
-            ? _c("div", { staticClass: "col-md-12 text-right" }, [
+            ? _c("div", { staticClass: "membersBackBtn" }, [
                 _c(
                   "button",
                   {
@@ -63566,880 +63630,1184 @@ var render = function() {
             "div",
             { staticClass: "col-md-12 no-padding" },
             [
-              _c("div", [
-                _c("h2", { staticClass: "text-center" }, [
-                  _vm._v("Conoce a nuestros miembros ICCN")
-                ]),
-                _vm._v(" "),
-                !_vm.selected
-                  ? _c("h3", { staticClass: "text-center" }, [
-                      _vm._v("Selecciona el área de tu interes")
-                    ])
-                  : _c(
-                      "form",
-                      { staticStyle: { width: "80%", margin: "0 auto" } },
-                      [
-                        _c("br"),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _vm._m(0),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-4 mb-20" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.nombre,
-                                  expression: "nombre"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "text", placeholder: "Nombre" },
-                              domProps: { value: _vm.nombre },
-                              on: {
-                                keyup: function($event) {
-                                  return _vm.search()
-                                },
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.nombre = $event.target.value
-                                }
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "col-sm-4",
-                              staticStyle: { position: "relative" }
-                            },
-                            [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.pais,
-                                    expression: "pais"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: { type: "text", placeholder: "País" },
-                                domProps: { value: _vm.pais },
-                                on: {
-                                  keyup: function($event) {
-                                    return _vm.searchPais()
-                                  },
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.pais = $event.target.value
-                                  }
-                                }
-                              }),
+              _vm.members[0]
+                ? _c("div", [
+                    _c("h2", { staticClass: "text-center" }, [
+                      _vm._v("Conoce a nuestros miembros ICCN")
+                    ]),
+                    _vm._v(" "),
+                    !_vm.selected
+                      ? _c("h3", { staticClass: "text-center" }, [
+                          _vm._v("Selecciona el área de tu interes")
+                        ])
+                      : _c(
+                          "form",
+                          { staticStyle: { width: "80%", margin: "0 auto" } },
+                          [
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row" }, [
+                              _vm._m(0),
                               _vm._v(" "),
-                              _c("transition", { attrs: { name: "fade" } }, [
-                                _vm.searchCountry
-                                  ? _c(
-                                      "ul",
+                              _c("div", { staticClass: "col-sm-4 mb-20" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.nombre,
+                                      expression: "nombre"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Nombre"
+                                  },
+                                  domProps: { value: _vm.nombre },
+                                  on: {
+                                    keyup: function($event) {
+                                      return _vm.search()
+                                    },
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.nombre = $event.target.value
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "col-sm-4",
+                                  staticStyle: { position: "relative" }
+                                },
+                                [
+                                  _c("input", {
+                                    directives: [
                                       {
-                                        staticClass: "input-results list-group"
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.pais,
+                                        expression: "pais"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      placeholder: "País"
+                                    },
+                                    domProps: { value: _vm.pais },
+                                    on: {
+                                      keyup: function($event) {
+                                        return _vm.searchPais()
                                       },
-                                      _vm._l(_vm.paises, function(pais) {
-                                        return _c(
-                                          "a",
-                                          {
-                                            staticClass:
-                                              "list-group-item list-group-item-action",
-                                            attrs: { role: "button" },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.setPais(
-                                                  pais.id,
-                                                  pais.nombre
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [_vm._v(_vm._s(pais.nombre))]
-                                        )
-                                      }),
-                                      0
-                                    )
-                                  : _vm._e()
-                              ])
-                            ],
-                            1
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("hr")
-                      ]
-                    )
-              ]),
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.pais = $event.target.value
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "transition",
+                                    { attrs: { name: "fade" } },
+                                    [
+                                      _vm.searchCountry
+                                        ? _c(
+                                            "ul",
+                                            {
+                                              staticClass:
+                                                "input-results list-group"
+                                            },
+                                            _vm._l(_vm.paises, function(pais) {
+                                              return _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "list-group-item list-group-item-action",
+                                                  attrs: { role: "button" },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.setPais(
+                                                        pais.id,
+                                                        pais.nombre
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [_vm._v(_vm._s(pais.nombre))]
+                                              )
+                                            }),
+                                            0
+                                          )
+                                        : _vm._e()
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("hr")
+                          ]
+                        )
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c(
                 "transition-group",
                 { attrs: { name: "fade" } },
                 [
-                  _vm.loader ? _c("loader", { key: 99 }) : _vm._e(),
+                  _vm.loader ? _c("loader", { key: "0" }) : _vm._e(),
                   _vm._v(" "),
-                  _vm.selected && _vm.selected !== 5
+                  _vm.selected && _vm.selected !== 5 && _vm.members[0]
                     ? _c(
                         "div",
                         {
-                          key: 0,
+                          key: "1",
                           staticClass: "row mob-width",
                           style: _vm.active,
                           attrs: { id: "memberCards" }
                         },
-                        _vm._l(_vm.members, function(member) {
-                          return (member.perfil && member.perfil.status == 1) ||
-                            (member.empresa && member.empresa.status == 1)
-                            ? _c("div", { staticClass: "col-lg-6" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "card",
-                                    class: {
-                                      conscard: _vm.consultor,
-                                      coachcard: _vm.coach,
-                                      capacard: _vm.capacitador,
-                                      empresacard: _vm.empresa,
-                                      programcard: _vm.programa
-                                    }
-                                  },
-                                  [
-                                    _c("div", { staticClass: "card-header" }, [
-                                      _c("div", { staticClass: "row" }, [
-                                        _c("div", { staticClass: "col-md-3" }, [
-                                          member.perfil
-                                            ? _c(
+                        [
+                          _vm._l(_vm.members, function(member, i) {
+                            return [
+                              (member.perfil && member.perfil.status == 1) ||
+                              (member.empresa && member.empresa.status == 1)
+                                ? _c(
+                                    "div",
+                                    { key: i, staticClass: "col-lg-6" },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "card",
+                                          class: {
+                                            conscard: _vm.consultor,
+                                            coachcard: _vm.coach,
+                                            capacard: _vm.capacitador,
+                                            empresacard: _vm.empresa,
+                                            programcard: _vm.programa,
+                                            especial: _vm.certificacion
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "card-header" },
+                                            [
+                                              _c(
                                                 "div",
-                                                { staticClass: "member" },
+                                                { staticClass: "row" },
                                                 [
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-md-3" },
+                                                    [
+                                                      member.perfil
+                                                        ? _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "member"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "mobile-member"
+                                                                },
+                                                                [
+                                                                  _c("div", {
+                                                                    staticClass:
+                                                                      "member-picture",
+                                                                    style:
+                                                                      "background: url(/storage/" +
+                                                                      member
+                                                                        .perfil
+                                                                        .foto +
+                                                                      ") center no-repeat"
+                                                                  }),
+                                                                  _vm._v(" "),
+                                                                  _c("div", {
+                                                                    staticClass:
+                                                                      "member-flag",
+                                                                    style:
+                                                                      "background: url(/storage/flags/" +
+                                                                      member
+                                                                        .perfil
+                                                                        .pais
+                                                                        .id +
+                                                                      ".png) center no-repeat"
+                                                                  })
+                                                                ]
+                                                              )
+                                                            ]
+                                                          )
+                                                        : _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "member"
+                                                            },
+                                                            [
+                                                              _c("div", {
+                                                                staticClass:
+                                                                  "member-picture",
+                                                                style:
+                                                                  "background: url(/storage/" +
+                                                                  member.empresa
+                                                                    .foto +
+                                                                  ") center no-repeat"
+                                                              }),
+                                                              _vm._v(" "),
+                                                              _c("div", {
+                                                                staticClass:
+                                                                  "member-flag",
+                                                                style:
+                                                                  "background: url(/storage/flags/" +
+                                                                  member.empresa
+                                                                    .pais.id +
+                                                                  ".png) center no-repeat"
+                                                              })
+                                                            ]
+                                                          )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
                                                   _c(
                                                     "div",
                                                     {
                                                       staticClass:
-                                                        "mobile-member"
+                                                        "col-md-9 text-right"
                                                     },
                                                     [
-                                                      _c("div", {
-                                                        staticClass:
-                                                          "member-picture",
-                                                        style:
-                                                          "background: url(/storage/" +
-                                                          member.perfil.foto +
-                                                          ") center no-repeat"
-                                                      }),
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "row" },
+                                                        [
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "col-md-12",
+                                                              staticStyle: {
+                                                                "padding-top":
+                                                                  "3px"
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "card-category"
+                                                                },
+                                                                [
+                                                                  _vm.selected ===
+                                                                  1
+                                                                    ? _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            _vm._s(
+                                                                              _vm.$t(
+                                                                                "categoria.Consultor"
+                                                                              )
+                                                                            )
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    : _vm._e(),
+                                                                  _vm._v(" "),
+                                                                  _vm.selected ===
+                                                                  2
+                                                                    ? _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            _vm._s(
+                                                                              _vm.$t(
+                                                                                "categoria.Coach"
+                                                                              )
+                                                                            )
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    : _vm._e(),
+                                                                  _vm._v(" "),
+                                                                  _vm.selected ===
+                                                                  3
+                                                                    ? _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            _vm._s(
+                                                                              _vm.$t(
+                                                                                "categoria.Capacitador"
+                                                                              )
+                                                                            )
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    : _vm._e(),
+                                                                  _vm._v(" "),
+                                                                  _vm.selected ===
+                                                                  4
+                                                                    ? _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            _vm._s(
+                                                                              _vm.$t(
+                                                                                "categoria.Empresa"
+                                                                              )
+                                                                            )
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    : _vm._e(),
+                                                                  _vm._v(" "),
+                                                                  _vm.selected ===
+                                                                  5
+                                                                    ? _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            _vm._s(
+                                                                              _vm.$t(
+                                                                                "categoria.Programa"
+                                                                              )
+                                                                            )
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    : _vm._e(),
+                                                                  _vm._v(" "),
+                                                                  _vm.selected ===
+                                                                  6
+                                                                    ? _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            _vm._s(
+                                                                              _vm.$t(
+                                                                                "categoria.CertificacionesEspecializadas"
+                                                                              )
+                                                                            )
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    : _vm._e(),
+                                                                  _vm._v(
+                                                                    "\n                                       \n                                    "
+                                                                  ),
+                                                                  _vm.selected ===
+                                                                  1
+                                                                    ? _c(
+                                                                        "img",
+                                                                        {
+                                                                          attrs: {
+                                                                            width:
+                                                                              "40",
+                                                                            src:
+                                                                              "/media/img/categorias/consultor.png",
+                                                                            alt:
+                                                                              "categoria_icon"
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    : _vm._e(),
+                                                                  _vm._v(" "),
+                                                                  _vm.selected ===
+                                                                  2
+                                                                    ? _c(
+                                                                        "img",
+                                                                        {
+                                                                          attrs: {
+                                                                            width:
+                                                                              "40",
+                                                                            src:
+                                                                              "/media/img/categorias/coach.png",
+                                                                            alt:
+                                                                              "categoria_icon"
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    : _vm._e(),
+                                                                  _vm._v(" "),
+                                                                  _vm.selected ===
+                                                                  3
+                                                                    ? _c(
+                                                                        "img",
+                                                                        {
+                                                                          attrs: {
+                                                                            width:
+                                                                              "40",
+                                                                            src:
+                                                                              "/media/img/categorias/capacitador.png",
+                                                                            alt:
+                                                                              "categoria_icon"
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    : _vm._e(),
+                                                                  _vm._v(" "),
+                                                                  _vm.selected ===
+                                                                  4
+                                                                    ? _c(
+                                                                        "img",
+                                                                        {
+                                                                          attrs: {
+                                                                            width:
+                                                                              "40",
+                                                                            src:
+                                                                              "/media/img/categorias/empresa.png",
+                                                                            alt:
+                                                                              "categoria_icon"
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    : _vm._e(),
+                                                                  _vm._v(" "),
+                                                                  _vm.selected ===
+                                                                  5
+                                                                    ? _c(
+                                                                        "img",
+                                                                        {
+                                                                          attrs: {
+                                                                            width:
+                                                                              "40",
+                                                                            src:
+                                                                              "/media/img/categorias/programas.png",
+                                                                            alt:
+                                                                              "categoria_icon"
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    : _vm._e(),
+                                                                  _vm._v(" "),
+                                                                  _vm.selected ===
+                                                                  6
+                                                                    ? _c(
+                                                                        "img",
+                                                                        {
+                                                                          attrs: {
+                                                                            width:
+                                                                              "40",
+                                                                            src:
+                                                                              "/media/img/categorias/certificaciones_especializadas.png",
+                                                                            alt:
+                                                                              "categoria_icon"
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    : _vm._e()
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _vm.selected !== 4
+                                                                ? _c(
+                                                                    "h3",
+                                                                    {
+                                                                      staticClass:
+                                                                        "white"
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          member
+                                                                            .perfil
+                                                                            .name
+                                                                        ) +
+                                                                          " " +
+                                                                          _vm._s(
+                                                                            member
+                                                                              .perfil
+                                                                              .apellido_p
+                                                                              ? member
+                                                                                  .perfil
+                                                                                  .apellido_p
+                                                                              :  true
+                                                                              ? member
+                                                                                  .perfil
+                                                                                  .apellido_m
+                                                                              : ""
+                                                                          )
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                : _c(
+                                                                    "h3",
+                                                                    {
+                                                                      staticClass:
+                                                                        "white"
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          member
+                                                                            .empresa
+                                                                            .name
+                                                                        )
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      ),
                                                       _vm._v(" "),
-                                                      _c("div", {
-                                                        staticClass:
-                                                          "member-flag",
-                                                        style:
-                                                          "background: url(/storage/flags/" +
-                                                          member.perfil.pais
-                                                            .id +
-                                                          ".png) center no-repeat"
-                                                      })
+                                                      (member.perfil &&
+                                                        member.perfil.fb) ||
+                                                      (member.empresa &&
+                                                        member.empresa.fb)
+                                                        ? _c(
+                                                            "a",
+                                                            {
+                                                              attrs: {
+                                                                href: member.perfil
+                                                                  ? "https://facebook.com/" +
+                                                                    member
+                                                                      .perfil.fb
+                                                                  : "https://facebook.com/" +
+                                                                    member
+                                                                      .empresa
+                                                                      .fb
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("img", {
+                                                                attrs: {
+                                                                  width: "30",
+                                                                  src:
+                                                                    "/media/img/recursos/fb-logo.png",
+                                                                  alt:
+                                                                    "facebook logo"
+                                                                }
+                                                              })
+                                                            ]
+                                                          )
+                                                        : _vm._e(),
+                                                      _vm._v(" "),
+                                                      (member.perfil &&
+                                                        member.perfil.tw) ||
+                                                      (member.empresa &&
+                                                        member.empresa.tw)
+                                                        ? _c(
+                                                            "a",
+                                                            {
+                                                              attrs: {
+                                                                href: member.perfil
+                                                                  ? "https://twitter.com/" +
+                                                                    member
+                                                                      .perfil.tw
+                                                                  : "https://twitter.com/" +
+                                                                    member
+                                                                      .empresa
+                                                                      .tw
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("img", {
+                                                                attrs: {
+                                                                  width: "30",
+                                                                  src:
+                                                                    "/media/img/recursos/tw-logo.png",
+                                                                  alt:
+                                                                    "facebook logo"
+                                                                }
+                                                              })
+                                                            ]
+                                                          )
+                                                        : _vm._e(),
+                                                      _vm._v(" "),
+                                                      (member.perfil &&
+                                                        member.perfil.in) ||
+                                                      (member.empresa &&
+                                                        member.empresa.in)
+                                                        ? _c(
+                                                            "a",
+                                                            {
+                                                              attrs: {
+                                                                href: member.perfil
+                                                                  ? "https://linkedin.com/" +
+                                                                    member
+                                                                      .perfil.in
+                                                                  : "https://linkedin.com/" +
+                                                                    member
+                                                                      .empresa
+                                                                      .in
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("img", {
+                                                                attrs: {
+                                                                  width: "30",
+                                                                  src:
+                                                                    "/media/img/recursos/in-logo.png",
+                                                                  alt:
+                                                                    "facebook logo"
+                                                                }
+                                                              })
+                                                            ]
+                                                          )
+                                                        : _vm._e()
                                                     ]
                                                   )
                                                 ]
                                               )
-                                            : _c(
-                                                "div",
-                                                { staticClass: "member" },
-                                                [
-                                                  _c("div", {
-                                                    staticClass:
-                                                      "member-picture",
-                                                    style:
-                                                      "background: url(/storage/" +
-                                                      member.empresa.foto +
-                                                      ") center no-repeat"
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("div", {
-                                                    staticClass: "member-flag",
-                                                    style:
-                                                      "background: url(/storage/flags/" +
-                                                      member.empresa.pais.id +
-                                                      ".png) center no-repeat"
-                                                  })
-                                                ]
-                                              )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass: "col-md-9 text-right"
-                                          },
-                                          [
-                                            _c("div", { staticClass: "row" }, [
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "card-body" },
+                                            [
                                               _c(
                                                 "div",
                                                 {
-                                                  staticClass: "col-md-12",
-                                                  staticStyle: {
-                                                    "padding-top": "3px"
-                                                  }
+                                                  staticClass:
+                                                    "card-text text-center"
                                                 },
                                                 [
                                                   _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "card-category"
-                                                    },
+                                                    "table",
+                                                    { staticClass: "table" },
                                                     [
-                                                      _vm.selected === 1
-                                                        ? _c("span", [
+                                                      _c("tr", [
+                                                        _c(
+                                                          "th",
+                                                          {
+                                                            staticClass:
+                                                              "text-right"
+                                                          },
+                                                          [_vm._v("Folio")]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "td",
+                                                          {
+                                                            staticClass:
+                                                              "text-left"
+                                                          },
+                                                          [
                                                             _vm._v(
                                                               _vm._s(
-                                                                _vm.$t(
-                                                                  "categoria.Consultor"
-                                                                )
+                                                                member.folio
                                                               )
                                                             )
-                                                          ])
-                                                        : _vm._e(),
+                                                          ]
+                                                        )
+                                                      ]),
                                                       _vm._v(" "),
-                                                      _vm.selected === 2
-                                                        ? _c("span", [
+                                                      _c("tr", [
+                                                        _c(
+                                                          "th",
+                                                          {
+                                                            staticClass:
+                                                              "text-right"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "Tipo de Miembro"
+                                                            )
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "td",
+                                                          {
+                                                            staticClass:
+                                                              "text-left",
+                                                            staticStyle: {
+                                                              "text-transform":
+                                                                "capitalize"
+                                                            }
+                                                          },
+                                                          [
                                                             _vm._v(
                                                               _vm._s(
-                                                                _vm.$t(
-                                                                  "categoria.Coach"
-                                                                )
+                                                                member.perfil
+                                                                  ? member
+                                                                      .perfil
+                                                                      .rango
+                                                                  : member
+                                                                      .empresa
+                                                                      .rango
                                                               )
                                                             )
-                                                          ])
-                                                        : _vm._e(),
+                                                          ]
+                                                        )
+                                                      ]),
                                                       _vm._v(" "),
-                                                      _vm.selected === 3
-                                                        ? _c("span", [
+                                                      _c("tr", [
+                                                        _c(
+                                                          "th",
+                                                          {
+                                                            staticClass:
+                                                              "text-right"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "Correo electrónico"
+                                                            )
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "td",
+                                                          {
+                                                            staticClass:
+                                                              "text-left"
+                                                          },
+                                                          [
                                                             _vm._v(
                                                               _vm._s(
-                                                                _vm.$t(
-                                                                  "categoria.Capacitador"
-                                                                )
+                                                                member.email
                                                               )
                                                             )
-                                                          ])
-                                                        : _vm._e(),
+                                                          ]
+                                                        )
+                                                      ]),
                                                       _vm._v(" "),
-                                                      _vm.selected === 4
-                                                        ? _c("span", [
+                                                      _c("tr", [
+                                                        _c(
+                                                          "th",
+                                                          {
+                                                            staticClass:
+                                                              "text-right"
+                                                          },
+                                                          [_vm._v("Sitio Web")]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "td",
+                                                          {
+                                                            staticClass:
+                                                              "text-left"
+                                                          },
+                                                          [
                                                             _vm._v(
                                                               _vm._s(
-                                                                _vm.$t(
-                                                                  "categoria.Empresa"
-                                                                )
+                                                                member.perfil
+                                                                  ? member
+                                                                      .perfil
+                                                                      .website
+                                                                  : member
+                                                                      .empresa
+                                                                      .website
                                                               )
                                                             )
-                                                          ])
-                                                        : _vm._e(),
-                                                      _vm._v(" "),
-                                                      _vm.selected === 5
-                                                        ? _c("span", [
-                                                            _vm._v(
-                                                              _vm._s(
-                                                                _vm.$t(
-                                                                  "categoria.Programa"
-                                                                )
-                                                              )
-                                                            )
-                                                          ])
-                                                        : _vm._e(),
-                                                      _vm._v(
-                                                        "\n                                     \n                                  "
-                                                      ),
-                                                      _vm.selected === 1
-                                                        ? _c("img", {
-                                                            attrs: {
-                                                              width: "40",
-                                                              src:
-                                                                "/media/img/categorias/consultor.png",
-                                                              alt:
-                                                                "categoria_icon"
-                                                            }
-                                                          })
-                                                        : _vm._e(),
-                                                      _vm._v(" "),
-                                                      _vm.selected === 2
-                                                        ? _c("img", {
-                                                            attrs: {
-                                                              width: "40",
-                                                              src:
-                                                                "/media/img/categorias/coach.png",
-                                                              alt:
-                                                                "categoria_icon"
-                                                            }
-                                                          })
-                                                        : _vm._e(),
-                                                      _vm._v(" "),
-                                                      _vm.selected === 3
-                                                        ? _c("img", {
-                                                            attrs: {
-                                                              width: "40",
-                                                              src:
-                                                                "/media/img/categorias/capacitador.png",
-                                                              alt:
-                                                                "categoria_icon"
-                                                            }
-                                                          })
-                                                        : _vm._e(),
-                                                      _vm._v(" "),
-                                                      _vm.selected === 4
-                                                        ? _c("img", {
-                                                            attrs: {
-                                                              width: "40",
-                                                              src:
-                                                                "/media/img/categorias/empresa.png",
-                                                              alt:
-                                                                "categoria_icon"
-                                                            }
-                                                          })
-                                                        : _vm._e(),
-                                                      _vm._v(" "),
-                                                      _vm.selected === 5
-                                                        ? _c("img", {
-                                                            attrs: {
-                                                              width: "40",
-                                                              src:
-                                                                "/media/img/categorias/programas.png",
-                                                              alt:
-                                                                "categoria_icon"
-                                                            }
-                                                          })
-                                                        : _vm._e()
+                                                          ]
+                                                        )
+                                                      ])
                                                     ]
                                                   ),
                                                   _vm._v(" "),
                                                   _vm.selected !== 4
                                                     ? _c(
-                                                        "h3",
+                                                        "a",
                                                         {
-                                                          staticClass: "white"
+                                                          staticClass:
+                                                            "btn btn-primary",
+                                                          attrs: {
+                                                            href:
+                                                              "/perfil/" +
+                                                              member.folio +
+                                                              "/" +
+                                                              member.perfil.slug
+                                                          }
                                                         },
                                                         [
                                                           _vm._v(
-                                                            _vm._s(
-                                                              member.perfil.name
-                                                            ) +
-                                                              " " +
-                                                              _vm._s(
-                                                                member.perfil
-                                                                  .apellido_p
-                                                                  ? member
-                                                                      .perfil
-                                                                      .apellido_p
-                                                                  :  true
-                                                                  ? member
-                                                                      .perfil
-                                                                      .apellido_m
-                                                                  : ""
-                                                              )
+                                                            "Más información"
                                                           )
                                                         ]
                                                       )
                                                     : _c(
-                                                        "h3",
+                                                        "a",
                                                         {
-                                                          staticClass: "white"
+                                                          staticClass:
+                                                            "btn btn-primary",
+                                                          attrs: {
+                                                            href:
+                                                              "/empresa/" +
+                                                              member.folio +
+                                                              "/" +
+                                                              member.empresa.name
+                                                                .toLowerCase()
+                                                                .replace(
+                                                                  /\s/g,
+                                                                  "-"
+                                                                )
+                                                          }
                                                         },
                                                         [
                                                           _vm._v(
-                                                            _vm._s(
-                                                              member.empresa
-                                                                .name
-                                                            )
+                                                            "Más información"
                                                           )
                                                         ]
                                                       )
                                                 ]
                                               )
-                                            ]),
-                                            _vm._v(" "),
-                                            (member.perfil &&
-                                              member.perfil.fb) ||
-                                            (member.empresa &&
-                                              member.empresa.fb)
-                                              ? _c(
-                                                  "a",
-                                                  {
-                                                    attrs: {
-                                                      href: member.perfil
-                                                        ? "https://facebook.com/" +
-                                                          member.perfil.fb
-                                                        : "https://facebook.com/" +
-                                                          member.empresa.fb
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("img", {
-                                                      attrs: {
-                                                        width: "30",
-                                                        src:
-                                                          "/media/img/recursos/fb-logo.png",
-                                                        alt: "facebook logo"
-                                                      }
-                                                    })
-                                                  ]
-                                                )
-                                              : _vm._e(),
-                                            _vm._v(" "),
-                                            (member.perfil &&
-                                              member.perfil.tw) ||
-                                            (member.empresa &&
-                                              member.empresa.tw)
-                                              ? _c(
-                                                  "a",
-                                                  {
-                                                    attrs: {
-                                                      href: member.perfil
-                                                        ? "https://twitter.com/" +
-                                                          member.perfil.tw
-                                                        : "https://twitter.com/" +
-                                                          member.empresa.tw
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("img", {
-                                                      attrs: {
-                                                        width: "30",
-                                                        src:
-                                                          "/media/img/recursos/tw-logo.png",
-                                                        alt: "facebook logo"
-                                                      }
-                                                    })
-                                                  ]
-                                                )
-                                              : _vm._e(),
-                                            _vm._v(" "),
-                                            (member.perfil &&
-                                              member.perfil.in) ||
-                                            (member.empresa &&
-                                              member.empresa.in)
-                                              ? _c(
-                                                  "a",
-                                                  {
-                                                    attrs: {
-                                                      href: member.perfil
-                                                        ? "https://linkedin.com/" +
-                                                          member.perfil.in
-                                                        : "https://linkedin.com/" +
-                                                          member.empresa.in
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("img", {
-                                                      attrs: {
-                                                        width: "30",
-                                                        src:
-                                                          "/media/img/recursos/in-logo.png",
-                                                        alt: "facebook logo"
-                                                      }
-                                                    })
-                                                  ]
-                                                )
-                                              : _vm._e()
-                                          ]
-                                        )
-                                      ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "card-body" }, [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass: "card-text text-center"
-                                        },
-                                        [
-                                          _c(
-                                            "table",
-                                            { staticClass: "table" },
-                                            [
-                                              _c("tr", [
-                                                _c(
-                                                  "th",
-                                                  { staticClass: "text-right" },
-                                                  [_vm._v("Folio")]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "td",
-                                                  { staticClass: "text-left" },
-                                                  [_vm._v(_vm._s(member.folio))]
-                                                )
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("tr", [
-                                                _c(
-                                                  "th",
-                                                  { staticClass: "text-right" },
-                                                  [_vm._v("Tipo de Miembro")]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "td",
-                                                  {
-                                                    staticClass: "text-left",
-                                                    staticStyle: {
-                                                      "text-transform":
-                                                        "capitalize"
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        member.perfil
-                                                          ? member.perfil.rango
-                                                          : member.empresa.rango
-                                                      )
-                                                    )
-                                                  ]
-                                                )
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("tr", [
-                                                _c(
-                                                  "th",
-                                                  { staticClass: "text-right" },
-                                                  [_vm._v("Correo electrónico")]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "td",
-                                                  { staticClass: "text-left" },
-                                                  [_vm._v(_vm._s(member.email))]
-                                                )
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("tr", [
-                                                _c(
-                                                  "th",
-                                                  { staticClass: "text-right" },
-                                                  [_vm._v("Sitio Web")]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "td",
-                                                  { staticClass: "text-left" },
-                                                  [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        member.perfil
-                                                          ? member.perfil
-                                                              .website
-                                                          : member.empresa
-                                                              .website
-                                                      )
-                                                    )
-                                                  ]
-                                                )
-                                              ])
                                             ]
-                                          ),
-                                          _vm._v(" "),
-                                          _vm.selected !== 4
-                                            ? _c(
-                                                "a",
-                                                {
-                                                  staticClass:
-                                                    "btn btn-primary",
-                                                  attrs: {
-                                                    href:
-                                                      "/perfil/" +
-                                                      member.folio +
-                                                      "/" +
-                                                      member.perfil.slug
-                                                  }
-                                                },
-                                                [_vm._v("Más información")]
-                                              )
-                                            : _c(
-                                                "a",
-                                                {
-                                                  staticClass:
-                                                    "btn btn-primary",
-                                                  attrs: {
-                                                    href:
-                                                      "/empresa/" +
-                                                      member.folio +
-                                                      "/" +
-                                                      member.empresa.name
-                                                        .toLowerCase()
-                                                        .replace(/\s/g, "-")
-                                                  }
-                                                },
-                                                [_vm._v("Más información")]
-                                              )
+                                          )
                                         ]
                                       )
-                                    ])
-                                  ]
-                                )
-                              ])
-                            : _vm._e()
-                        }),
-                        0
+                                    ]
+                                  )
+                                : _vm._e()
+                            ]
+                          })
+                        ],
+                        2
+                      )
+                    : _vm.selected && _vm.selected !== 5 && !_vm.members[0]
+                    ? _c(
+                        "div",
+                        {
+                          key: "1",
+                          staticClass: "row mob-width no-members",
+                          attrs: { id: "memberCards" }
+                        },
+                        [
+                          _c("h2", [
+                            _vm._v(
+                              "\n                No se encontraron resultados.\n              "
+                            )
+                          ])
+                        ]
                       )
                     : _vm.selected && _vm.selected === 5
                     ? _c(
                         "div",
                         {
-                          key: 1,
+                          key: "2",
                           staticClass: "row",
                           style: _vm.active,
                           attrs: { id: "memberCards" }
                         },
                         _vm._l(_vm.programs, function(program) {
                           return program.status === 1
-                            ? _c("div", { staticClass: "col-md-6" }, [
-                                _c("div", { staticClass: "card programcard" }, [
-                                  _c("div", { staticClass: "card-header" }, [
-                                    _c("div", { staticClass: "row" }, [
-                                      _c("div", { staticClass: "col-sm-3" }, [
-                                        _c("div", { staticClass: "member" }, [
-                                          _c("div", {
-                                            staticClass: "member-picture",
-                                            style:
-                                              "background: url(/storage/" +
-                                              program.foto +
-                                              ") center no-repeat"
-                                          }),
-                                          _vm._v(" "),
-                                          _c("div", {
-                                            staticClass: "member-flag",
-                                            style:
-                                              "background: url(/storage/flags/" +
-                                              program.empresa.pais.id +
-                                              ".png) center no-repeat"
-                                          })
-                                        ])
-                                      ]),
-                                      _vm._v(" "),
+                            ? _c(
+                                "div",
+                                { key: program.name, staticClass: "col-md-6" },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "card programcard" },
+                                    [
                                       _c(
                                         "div",
-                                        { staticClass: "col-sm-9 text-right" },
+                                        { staticClass: "card-header" },
                                         [
                                           _c("div", { staticClass: "row" }, [
                                             _c(
                                               "div",
+                                              { staticClass: "col-sm-3" },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "member" },
+                                                  [
+                                                    _c("div", {
+                                                      staticClass:
+                                                        "member-picture",
+                                                      style:
+                                                        "background: url(/storage/" +
+                                                        program.foto +
+                                                        ") center no-repeat"
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("div", {
+                                                      staticClass:
+                                                        "member-flag",
+                                                      style:
+                                                        "background: url(/storage/flags/" +
+                                                        program.empresa.pais
+                                                          .id +
+                                                        ".png) center no-repeat"
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
                                               {
-                                                staticClass: "col-md-10",
-                                                staticStyle: {
-                                                  "padding-top": "3px"
-                                                }
+                                                staticClass:
+                                                  "col-sm-9 text-right"
                                               },
                                               [
-                                                _c("h3", [
-                                                  _vm._v(_vm._s(program.nombre))
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-10",
+                                                        staticStyle: {
+                                                          "padding-top": "3px"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("h3", [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              program.nombre
+                                                            )
+                                                          )
+                                                        ])
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass: "col-md-2"
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          attrs: {
+                                                            width: "40",
+                                                            src:
+                                                              "/media/img/categorias/programas.png",
+                                                            alt:
+                                                              "categoria_icon"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c("span", [
+                                                  _vm._v("Programa")
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("br"),
+                                                _vm._v(" "),
+                                                program.empresa.fb
+                                                  ? _c(
+                                                      "a",
+                                                      {
+                                                        attrs: {
+                                                          href:
+                                                            program.empresa.fb
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          attrs: {
+                                                            width: "30",
+                                                            src:
+                                                              "/media/img/recursos/fb-logo.png",
+                                                            alt: "facebook logo"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  : _vm._e(),
+                                                _vm._v(" "),
+                                                program.empresa.tw
+                                                  ? _c(
+                                                      "a",
+                                                      {
+                                                        attrs: {
+                                                          href:
+                                                            program.empresa.tw
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          attrs: {
+                                                            width: "30",
+                                                            src:
+                                                              "/media/img/recursos/tw-logo.png",
+                                                            alt: "twitter logo"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  : _vm._e(),
+                                                _vm._v(" "),
+                                                program.empresa.in
+                                                  ? _c(
+                                                      "a",
+                                                      {
+                                                        attrs: {
+                                                          href:
+                                                            program.empresa.in
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          attrs: {
+                                                            width: "30",
+                                                            src:
+                                                              "/media/img/recursos/in-logo.png",
+                                                            alt: "linkedin logo"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  : _vm._e()
+                                              ]
+                                            )
+                                          ])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "card-body" }, [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass: "card-text text-center"
+                                          },
+                                          [
+                                            _c(
+                                              "table",
+                                              { staticClass: "table" },
+                                              [
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "text-right"
+                                                    },
+                                                    [_vm._v("Folio")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "td",
+                                                    {
+                                                      staticClass: "text-left"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          program.empresa.user
+                                                            .folio
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "text-right"
+                                                    },
+                                                    [_vm._v("Tipo de Miembro")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "td",
+                                                    {
+                                                      staticClass: "text-left"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          program.empresa.rango
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "text-right"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Correo electrónico"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "td",
+                                                    {
+                                                      staticClass: "text-left"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          program.empresa.user
+                                                            .email
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "text-right"
+                                                    },
+                                                    [_vm._v("Sitio Web")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "td",
+                                                    {
+                                                      staticClass: "text-left"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          program.empresa
+                                                            .website
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
                                                 ])
                                               ]
                                             ),
                                             _vm._v(" "),
                                             _c(
-                                              "div",
-                                              { staticClass: "col-md-2" },
-                                              [
-                                                _c("img", {
-                                                  attrs: {
-                                                    width: "40",
-                                                    src:
-                                                      "/media/img/categorias/programas.png",
-                                                    alt: "categoria_icon"
-                                                  }
-                                                })
-                                              ]
+                                              "a",
+                                              {
+                                                staticClass: "btn btn-primary",
+                                                attrs: {
+                                                  href:
+                                                    "/programa/" +
+                                                    program.id +
+                                                    "/" +
+                                                    program.nombre
+                                                      .toLowerCase()
+                                                      .replace(/\s/g, "-")
+                                                }
+                                              },
+                                              [_vm._v("Más información")]
                                             )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("span", [_vm._v("Programa")]),
-                                          _vm._v(" "),
-                                          _c("br"),
-                                          _vm._v(" "),
-                                          program.empresa.fb
-                                            ? _c(
-                                                "a",
-                                                {
-                                                  attrs: {
-                                                    href: program.empresa.fb
-                                                  }
-                                                },
-                                                [
-                                                  _c("img", {
-                                                    attrs: {
-                                                      width: "30",
-                                                      src:
-                                                        "/media/img/recursos/fb-logo.png",
-                                                      alt: "facebook logo"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          program.empresa.tw
-                                            ? _c(
-                                                "a",
-                                                {
-                                                  attrs: {
-                                                    href: program.empresa.tw
-                                                  }
-                                                },
-                                                [
-                                                  _c("img", {
-                                                    attrs: {
-                                                      width: "30",
-                                                      src:
-                                                        "/media/img/recursos/tw-logo.png",
-                                                      alt: "twitter logo"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          program.empresa.in
-                                            ? _c(
-                                                "a",
-                                                {
-                                                  attrs: {
-                                                    href: program.empresa.in
-                                                  }
-                                                },
-                                                [
-                                                  _c("img", {
-                                                    attrs: {
-                                                      width: "30",
-                                                      src:
-                                                        "/media/img/recursos/in-logo.png",
-                                                      alt: "linkedin logo"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            : _vm._e()
-                                        ]
-                                      )
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "card-body" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "card-text text-center" },
-                                      [
-                                        _c("table", { staticClass: "table" }, [
-                                          _c("tr", [
-                                            _c(
-                                              "th",
-                                              { staticClass: "text-right" },
-                                              [_vm._v("Folio")]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "td",
-                                              { staticClass: "text-left" },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    program.empresa.user.folio
-                                                  )
-                                                )
-                                              ]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("tr", [
-                                            _c(
-                                              "th",
-                                              { staticClass: "text-right" },
-                                              [_vm._v("Tipo de Miembro")]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "td",
-                                              { staticClass: "text-left" },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(program.empresa.rango)
-                                                )
-                                              ]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("tr", [
-                                            _c(
-                                              "th",
-                                              { staticClass: "text-right" },
-                                              [_vm._v("Correo electrónico")]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "td",
-                                              { staticClass: "text-left" },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    program.empresa.user.email
-                                                  )
-                                                )
-                                              ]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("tr", [
-                                            _c(
-                                              "th",
-                                              { staticClass: "text-right" },
-                                              [_vm._v("Sitio Web")]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "td",
-                                              { staticClass: "text-left" },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    program.empresa.website
-                                                  )
-                                                )
-                                              ]
-                                            )
-                                          ])
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "a",
-                                          {
-                                            staticClass: "btn btn-primary",
-                                            attrs: {
-                                              href:
-                                                "/programa/" +
-                                                program.id +
-                                                "/" +
-                                                program.nombre
-                                                  .toLowerCase()
-                                                  .replace(/\s/g, "-")
-                                            }
-                                          },
-                                          [_vm._v("Más información")]
+                                          ]
                                         )
-                                      ]
-                                    )
-                                  ])
-                                ])
-                              ])
+                                      ])
+                                    ]
+                                  )
+                                ]
+                              )
                             : _vm._e()
                         }),
                         0
@@ -64561,13 +64929,39 @@ var render = function() {
                       _c("img", {
                         attrs: {
                           name: "cat",
-                          src: "/media/img/categorias/programas.png",
+                          src: "/media/img/categorias/programa.png",
                           alt: "programa_icon"
                         }
                       }),
                       _vm._v(" "),
                       _c("br"),
                       _vm._v("\n                Programas\n              ")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.setSelection(6)
+                        }
+                      }
+                    },
+                    [
+                      _c("img", {
+                        attrs: {
+                          name: "cat",
+                          src:
+                            "/media/img/categorias/certificaciones_especializadas.png",
+                          alt: "programa_icon"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(
+                        "\n                Certificaciones Especializadas\n              "
+                      )
                     ]
                   )
                 ]
@@ -67202,7 +67596,10 @@ var render = function() {
                         _vm._v(" "),
                         _c("img", {
                           attrs: {
-                            src: "/media/img/categorias/" + c.nombre + ".png",
+                            src:
+                              "/media/img/categorias/" +
+                              c.nombre.replace(" ", "_").toLowerCase() +
+                              ".png",
                             alt: ""
                           }
                         })
@@ -75016,6 +75413,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -75058,6 +75459,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       consultor: false,
       coach: false,
       capacitador: false,
+      especialidad: false,
       categorias: [],
       area1: '',
       area2: '',
@@ -75282,6 +75684,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
       if (this.capacitador) {
         this.categorias.push(3);
+      }
+      if (this.especialidad) {
+        this.categorias.push(6);
       }
       if (this.folio === '' || this.nombre === '' || this.apellido_p === '' || this.email === '' || this.membresia === '' || this.pais === '' || this.paisr === '' || this.categorias.length === 0 || this.cv === '' || this.educacion === '' || this.password === '' || this.confirm === '') {
         if (this.folio === '') {
@@ -76224,6 +76629,26 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("h4", [_vm._v("Capacitador")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-4 text-center" }, [
+          _c("img", {
+            class: { activeCat: _vm.especialidad },
+            attrs: {
+              width: "90",
+              src: "/media/img/categorias/certificaciones_especializadas.png",
+              alt: "capacitador icon"
+            },
+            on: {
+              click: function($event) {
+                _vm.especialidad
+                  ? (_vm.especialidad = false)
+                  : (_vm.especialidad = true)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("h4", [_vm._v("Certificaciones Especiales")])
         ])
       ]),
       _vm._v(" "),
@@ -80409,7 +80834,8 @@ VueI18n.version = '8.22.2';
             "Coach": "Coach",
             "Capacitador": "Trainer",
             "Empresa": "Company",
-            "Programa": "Program"
+            "Programa": "Program",
+            "CertificacionesEspecializadas": "Special Certifications"
         },
         "user": {
             "tipo-mimebro": "Member Type",
@@ -80439,7 +80865,8 @@ VueI18n.version = '8.22.2';
             "Coach": "Coach",
             "Capacitador": "Capacitador",
             "Empresa": "Empresa",
-            "Programa": "Programa"
+            "Programa": "Programa",
+            "CertificacionesEspecializadas": "Certificaciones Especiales"
         },
         "user": {
             "tipo-mimebro": "Tipo de miembro",

@@ -118,7 +118,8 @@ export default {
            "Coach": "Coach",
            "Capacitador": "Trainer",
            "Empresa": "Company",
-           "Programa": "Program"
+           "Programa": "Program",
+           "CertificacionesEspecializadas": "Special Certifications",
          },
          "user": {
            "tipo-mimebro": "Member Type",
@@ -148,7 +149,8 @@ export default {
          "Coach": "Coach",
          "Capacitador": "Capacitador",
          "Empresa": "Empresa",
-         "Programa": "Programa"
+         "Programa": "Programa",
+         "CertificacionesEspecializadas": "Certificaciones Especiales",
        },
        "user": {
          "tipo-mimebro": "Tipo de miembro",

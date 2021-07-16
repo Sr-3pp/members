@@ -160,6 +160,10 @@
             <img :class="{activeCat : capacitador}" @click="capacitador ? capacitador = false : capacitador = true " width="90" src="/media/img/categorias/capacitador.png" alt="capacitador icon">
             <h4>Capacitador</h4>
           </div>
+          <div class="col-sm-4 text-center">
+            <img :class="{activeCat : especialidad}" @click="especialidad ? especialidad = false : especialidad = true " width="90" src="/media/img/categorias/certificaciones_especializadas.png" alt="capacitador icon">
+            <h4>Certificaciones Especiales</h4>
+          </div>
         </div>
         <hr>
         <div class="row">
@@ -331,6 +335,7 @@
             consultor: false,
             coach: false,
             capacitador: false,
+            especialidad: false,
             categorias:[],
             area1: '',
             area2: '',
@@ -554,6 +559,9 @@
             }
             if (this.capacitador) {
               this.categorias.push(3)
+            }
+            if (this.especialidad) {
+              this.categorias.push(6)
             }
             if (this.folio === ''  || this.nombre === '' || this.apellido_p === '' || this.email === '' || this.membresia === '' || this.pais === '' || this.paisr === '' || this.categorias.length === 0 || this.cv === '' || this.educacion === '' || this.password === '' || this.confirm === '') {
               if (this.folio === '') {

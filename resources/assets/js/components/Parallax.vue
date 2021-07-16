@@ -36,7 +36,7 @@
               <div class="col-md-3 form-group">
                 <select class="form-control" v-model="categoria">
                   <option :value="0">{{$t('form.select-categoria')}}</option>
-                  <option v-for="categoria in categorias" :value="categoria.id">{{$t('categoria.'+categoria.nombre)}}</option>
+                  <option v-for="categoria in categorias" :value="categoria.id">{{$t('categoria.'+categoria.nombre.replace(" ", ""))}}</option>
                 </select>
               </div>
               <div class="col-md-3 form-group">
@@ -58,7 +58,7 @@
         <button @click="home()" style="float:right" class="search-member-btn btn btn-danger"><i class="fas fa-home"></i></button>
         <div class="row" style="height: -webkit-fill-available; padding-top: 30px;">
           <div v-if="categoria !== 5"  class="col-md-6 result-member" v-for="member in results">
-            <div class="card" :class="{conscard: member.categoria_id === 1, coachcard: member.categoria_id === 2, capacard: member.categoria_id === 3, empresacard: member.categoria_id === 4, programcard: member.categoria_id === 5}">
+            <div class="card" :class="{conscard: member.categoria_id === 1, coachcard: member.categoria_id === 2, capacard: member.categoria_id === 3, empresacard: member.categoria_id === 4, programcard: member.categoria_id === 5, especial: member.categoria_id === 6}">
               <div class="card-header">
                 <div class="row">
                   <div class="col-sm-3">
@@ -78,12 +78,14 @@
                               <span v-if="member.categoria_id === 3">{{$t('categoria.Capacitador')}}</span>
                               <span v-if="member.categoria_id === 4">{{$t('categoria.Empresa')}}</span>
                               <span v-if="member.categoria_id === 5">{{$t('categoria.Programa')}}</span>
+                              <span v-if="member.categoria_id === 6">{{$t('categoria.CertificacionesEspecializadas')}}</span>
                               &nbsp;&nbsp;&nbsp;
                               <img v-if="member.categoria_id === 1" width="40" src="/media/img/categorias/consultor.png" alt="categoria_icon">
                               <img v-if="member.categoria_id === 2" width="40" src="/media/img/categorias/coach.png" alt="categoria_icon">
                               <img v-if="member.categoria_id === 3" width="40" src="/media/img/categorias/capacitador.png" alt="categoria_icon">
                               <img v-if="member.categoria_id === 4" width="40" src="/media/img/categorias/empresa.png" alt="categoria_icon">
                               <img v-if="member.categoria_id === 5" width="40" src="/media/img/categorias/programas.png" alt="categoria_icon">
+                              <img v-if="member.categoria_id === 6" width="40" src="/media/img/categorias/certificaciones_especializadas.png" alt="categoria_icon">
                         </div>
                         <h3>{{member.name}} {{member.apellido_p ? member.apellido_p : '' +' '+member.apellido_m ? member.apellido_m : ''}}</h3>
                       </div>
