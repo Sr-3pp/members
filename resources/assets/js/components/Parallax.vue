@@ -1,8 +1,8 @@
 <template>
   <div id="results" class="parallax">
-    <div>
+    <parallax :parallax="true" :speedFactor="0.5">
       <img src="/media/img/recursos/parallax-bg.png" alt="very cool bg">
-    </div>
+    </parallax>
     <div v-if="loading" class="content loader">
       <div>
         {{ $t('Searching') }} &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-spiner fa-spin"></i>
@@ -89,8 +89,8 @@
                             <span v-if="member.categoria_id === 3">{{ $t('categoria.Capacitador') }}</span>
                             <span v-if="member.categoria_id === 4">{{ $t('categoria.Empresa') }}</span>
                             <span v-if="member.categoria_id === 5">{{ $t('categoria.Programa') }}</span>
-                            <span v-if="member.categoria_id === 6">{{ $t('categoria.CertificacionesEspecializadas')
-                            }}</span>
+                            <span
+                              v-if="member.categoria_id === 6">{{ $t('categoria.CertificacionesEspecializadas') }}</span>
                             &nbsp;&nbsp;&nbsp;
                             <img v-if="member.categoria_id === 1" width="40" src="/media/img/categorias/consultor.png"
                               alt="categoria_icon">
@@ -146,8 +146,7 @@
                     <a v-if="member.categoria_id !== 4" class="btn btn-primary"
                       :href="'/perfil/' + member.user.folio + '/' + member.slug">{{ $t('form.button.more-info') }}</a>
                     <a v-else class="btn btn-primary"
-                      :href="'/empresa/' + member.user.folio + '/' + member.name.toLowerCase().replace(/\s/g, '-')">{{
-                        $t('form.button.more-info') }}</a>
+                      :href="'/empresa/' + member.user.folio + '/' + member.name.toLowerCase().replace(/\s/g, '-')">{{ $t('form.button.more-info') }}</a>
                   </div>
                 </div>
               </div>
@@ -213,8 +212,7 @@
                       </tr>
                     </table>
                     <a class="btn btn-primary"
-                      :href="'/programa/' + program.id + '/' + program.nombre.toLowerCase().replace(/\s/g, '-')">{{
-                        $t('form.button.more-info') }}</a>
+                      :href="'/programa/' + program.id + '/' + program.nombre.toLowerCase().replace(/\s/g, '-')">{{ $t('form.button.more-info') }}</a>
                   </div>
                 </div>
               </div>
