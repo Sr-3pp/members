@@ -21,7 +21,7 @@ class Controller extends BaseController
 
     public function getPerfil($folio){
       $user = User::where('folio', $folio)->first();
-      if ($user->status === 0) {
+      if ($user->perfil->status === 0) {
         return redirect()->route('home');
       }
       return view('perfil', compact('user'));
