@@ -1,0 +1,31 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - '8000:80'
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=members_db
+      - DB_USERNAME=root
+      - DB_PASSWORD=ElSenorTripas123.
+  mysql:
+    image: mysql:8.0
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=ElSenorTripas123.
+      - MYSQL_DATABASE=members_db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=ElSenorTripas123.
+    volumes:
+      - mysql_data:/var/lib/mysql
+volumes:
+  mysql_data:
