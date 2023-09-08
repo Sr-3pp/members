@@ -89,8 +89,8 @@
                             <span v-if="member.categoria_id === 3">{{ $t('categoria.Capacitador') }}</span>
                             <span v-if="member.categoria_id === 4">{{ $t('categoria.Empresa') }}</span>
                             <span v-if="member.categoria_id === 5">{{ $t('categoria.Programa') }}</span>
-                            <span
-                              v-if="member.categoria_id === 6">{{ $t('categoria.CertificacionesEspecializadas') }}</span>
+                            <span v-if="member.categoria_id === 6">{{ $t('categoria.CertificacionesEspecializadas')
+                            }}</span>
                             &nbsp;&nbsp;&nbsp;
                             <img v-if="member.categoria_id === 1" width="40" src="/media/img/categorias/consultor.png"
                               alt="categoria_icon">
@@ -146,7 +146,8 @@
                     <a v-if="member.categoria_id !== 4" class="btn btn-primary"
                       :href="'/perfil/' + member.user.folio + '/' + member.slug">{{ $t('form.button.more-info') }}</a>
                     <a v-else class="btn btn-primary"
-                      :href="'/empresa/' + member.user.folio + '/' + member.name.toLowerCase().replace(/\s/g, '-')">{{ $t('form.button.more-info') }}</a>
+                      :href="'/empresa/' + member.user.folio + '/' + member.name.toLowerCase().replace(/\s/g, '-')">{{
+                        $t('form.button.more-info') }}</a>
                   </div>
                 </div>
               </div>
@@ -212,7 +213,8 @@
                       </tr>
                     </table>
                     <a class="btn btn-primary"
-                      :href="'/programa/' + program.id + '/' + program.nombre.toLowerCase().replace(/\s/g, '-')">{{ $t('form.button.more-info') }}</a>
+                      :href="'/programa/' + program.id + '/' + program.nombre.toLowerCase().replace(/\s/g, '-')">{{
+                        $t('form.button.more-info') }}</a>
                   </div>
                 </div>
               </div>
@@ -256,7 +258,6 @@ export default {
       this.loading = true
       axios.post('/search', { nombre: this.nombre, pais: this.paisid, categoria: this.categoria }).then(function (results) {
         este.results = results.data
-        console.log(este.results);
 
         for (var i = 0; i < este.results.length; i++) {
           if (este.results[i].apellido_p) {
@@ -316,6 +317,7 @@ export default {
           este.paises = paises.data.data;
         });
       } else {
+        este.paisid = 0
         este.paises = []
       }
     },

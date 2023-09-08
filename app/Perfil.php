@@ -38,12 +38,10 @@ class Perfil extends Model
 
 
     public function scopeSearch($query, $name, $key){
-          if($key === 'name'){
-            return $query->where('name', "LIKE", "%$name%");
-          }else if($key === 'app_p'){
-            return $query->where('apellido_p', "LIKE", "%$name%");
-          }else if($key === 'app_m'){
-            return $query->where('apellido_m', "LIKE", "%$name%");
-          }
+            return $query->where('name', "LIKE", "%$name%")
+              ->orWhere('apellido_p', "LIKE", "%$name%")
+              ->orWhere('apellido_m', "LIKE", "%$name%")
+              ->with('user.categorias.categoria')
+              ->with('pais');
     }
 }

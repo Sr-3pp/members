@@ -58,27 +58,11 @@ class Controller extends BaseController
             array_push($results, $perfil);
           }
         }
-        $perfiles = Perfil::search($r->nombre, 'name')->orderBy('name', 'ASC')->get();
-        if (count($perfiles) == 0) {
-          $perfiles = Perfil::search($r->nombre, 'app_p')->orderBy('name', 'ASC')->get();
-        }
-        if(count($perfiles) == 0){
-          $perfiles = Perfil::search($r->nombre, 'app_m')->orderBy('name', 'ASC')->get();
-        }
-        if(count($perfiles) == 0){
-          $users = User::search($r->nombre);
-          $perfiles = [];
-          foreach ($users as $key => $user) {
-            array_push($perfiles, $user->perfil);
-          }
-        }
+
+        $perfiles = Perfil::search($r->nombre, 'name')->orderBy('name', 'ASC')->get(); 
+
         foreach ($perfiles as $key => $perfil) {
-          $perfil->user;
-          $perfil->pais;
-          $perfil->user->categorias;
-          foreach ($perfil->user->categorias as $key => $categoria) {
-            $categoria->categoria;
-          }
+
           foreach ($cats as $key => $cat) {
             if ($perfil->user_id === $cat->user_id) {
               $perfil->categoria_id = $cat->categoria_id;
@@ -91,15 +75,15 @@ class Controller extends BaseController
 
       }
       if ($r->pais) {
-        $perfiles = Perfil::where('pais_id', $r->pais)->paginate(15);
-        $empresas = Empresa::where('pais_id', $r->pais)->get();
+        $perfiles = Perfil::where('pais_id', $r->pais)
+                            ->with('user.categorias.categoria')
+                            ->with('pais')
+                            ->paginate(15);
+        $empresas = Empresa::where('pais_id', $r->pais)
+                            ->with('user.categorias.categoria')
+                            ->with('pais')
+                            ->get();
         foreach ($perfiles as $key => $perfil) {
-          $perfil->user;
-          $perfil->pais;
-          $perfil->user->categorias;
-          foreach ($perfil->user->categorias as $key => $categoria) {
-            $categoria->categoria;
-          }
           foreach ($cats as $key => $cat) {
 
             if ($perfil->user_id === $cat->user_id) {
@@ -110,12 +94,6 @@ class Controller extends BaseController
         }
 
         foreach ($empresas as $key => $perfil) {
-          $perfil->user;
-          $perfil->pais;
-          $perfil->user->categorias;
-          foreach ($perfil->user->categorias as $key => $categoria) {
-            $categoria->categoria;
-          }
           foreach ($cats as $key => $cat) {
 
             if ($perfil->user_id === $cat->user_id) {
