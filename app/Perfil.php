@@ -39,7 +39,11 @@ class Perfil extends Model
 
 
     public function scopeSearch($query, $name, $key){
-            return $query->where('full_name', "LIKE", "%$name%")
+            return $query
+              ->where('name', "LIKE", "%$name%")
+              ->orWhere('apellido_p', "LIKE", "%$name%")
+              ->orWhere('apellido_m', "LIKE", "%$name%")
+              ->orWhere('full_name', "LIKE", "%$name%")
               ->with('user.categorias.categoria')
               ->with('pais');
     }
