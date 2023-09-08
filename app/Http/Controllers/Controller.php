@@ -59,16 +59,7 @@ class Controller extends BaseController
           }
         }
 
-        $terms = explode(' ', $r->nombre);
-        $first_term = array_shift($terms);
-        $perfiles = Perfil::search($first_term, 'name')->orderBy('name', 'ASC')->get();
-
-        foreach ($terms as $key => $value) {
-          $word_result = Perfil::search($value, 'name')->orderBy('name', 'ASC')->get();
-          $perfiles->union($word_result);
-        }
-
-
+        $perfiles = Perfil::search($r->nombre, 'name')->orderBy('name', 'ASC')->get();
 
         foreach ($perfiles as $key => $perfil) {
 
