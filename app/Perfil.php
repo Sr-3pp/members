@@ -8,6 +8,7 @@ class Perfil extends Model
 {
     protected $fillable = [
       "user_id",
+      "full_name",
       "name",
       "apellido_p",
       "apellido_m",
@@ -38,9 +39,7 @@ class Perfil extends Model
 
 
     public function scopeSearch($query, $name, $key){
-            return $query->where('name', "LIKE", "%$name%")
-              ->orWhere('apellido_p', "LIKE", "%$name%")
-              ->orWhere('apellido_m', "LIKE", "%$name%")
+            return $query->where('full_name', "LIKE", "%$name%")
               ->with('user.categorias.categoria')
               ->with('pais');
     }

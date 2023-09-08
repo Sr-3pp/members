@@ -59,6 +59,8 @@ Route::post('/upload-pic', 'Controller@test');
 
 Route::post('/user-logout', 'Auth\LoginController@logout');
 
+Route::get('/helper-full-name', 'ToolsHelperController@buildFullName');
+
 Route::prefix('panel')->middleware('admin')->group(function () {
     Route::get('/', 'AdminController@index');
     Route::get('/get-programas', 'AdminController@getProgramas');

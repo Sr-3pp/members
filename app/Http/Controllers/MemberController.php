@@ -41,6 +41,7 @@ class MemberController extends Controller
       if ($r->hasFile('file')) {
         $perfil = Perfil::create([
           'user_id' => $user->id,
+          'full_name' => $r->nombre.' '.$r->apellido_p.' '.$r->apellido_m,
           'name' => $r->nombre,
           'apellido_p' => $r->apellido_p,
           'apellido_m' => $r->apellido_m,
@@ -63,6 +64,7 @@ class MemberController extends Controller
         $perfil = Perfil::create([
           'user_id' => $user->id,
           'name' => $r->nombre,
+          'full_name' => $r->nombre.' '.$r->apellido_p.' '.$r->apellido_m,
           'apellido_p' => $r->apellido_p,
           'apellido_m' => $r->apellido_m,
           'rango' => $r->membresia,
