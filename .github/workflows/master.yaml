@@ -17,15 +17,13 @@ jobs:
         install -m 600 -D /dev/null ~/.ssh/id_rsa
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
-        
+
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
         node-version: 14
-    
-    
-    - name: Connect pull and build
-      run: "ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} && cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && export NVM_DIR=~/.nvm && source ~/.nvm/nvm.sh && npm install && npm run production && exit"
-    
+
+    - name: connect pull and build
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && export NVM_DIR=~/.nvm && source ~/.nvm/nvm.sh && npm install && npm run production && exit"
     - name: cleanup
       run: rm -rf ~/.ssh
