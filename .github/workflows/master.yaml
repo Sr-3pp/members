@@ -24,6 +24,6 @@ jobs:
         node-version: 14
 
     - name: connect pull and build
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && export NVM_DIR=~/.nvm && source ~/.nvm/nvm.sh && npm install && npm run production && exit"
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && export NVM_DIR=~/.nvm && source ~/.nvm/nvm.sh && nvm use 14 && npm install && npm run production && exit"
     - name: cleanup
       run: rm -rf ~/.ssh
