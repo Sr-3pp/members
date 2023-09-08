@@ -27,7 +27,7 @@ jobs:
     
     
     - name: pull and build
-      run: "cd ${{ secrets.WORK_DIR }} git checkout ${{ secrets.MAIN_BRANCH }} && git pull && export NVM_DIR=~/.nvm && source ~/.nvm/nvm.sh && npm install && npm run production && exit"
+      run: "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && export NVM_DIR=~/.nvm && source ~/.nvm/nvm.sh && npm install && npm run production && exit"
     
     - name: cleanup
       run: rm -rf ~/.ssh
