@@ -78,7 +78,7 @@ class Controller extends BaseController
         $perfiles = Perfil::where('pais_id', $r->pais)
                             ->with('user.categorias.categoria')
                             ->with('pais')
-                            ->paginate(15);
+                            ->get();
         $empresas = Empresa::where('pais_id', $r->pais)
                             ->with('user.categorias.categoria')
                             ->with('pais')
@@ -347,7 +347,7 @@ class Controller extends BaseController
 
         return $resultados;
       }else if($r->pais && $r->categoria !== 0){
-        $perfiles = Perfil::where('pais_id', $r->pais)->paginate(15);
+        $perfiles = Perfil::where('pais_id', $r->pais)->get();
         $empresas = Empresa::where('pais_id', $r->pais)->get();
         foreach ($perfiles as $key => $perfil) {
           $perfil->user;
