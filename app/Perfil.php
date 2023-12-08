@@ -20,6 +20,7 @@ class Perfil extends Model
       "fb",
       "tw",
       "in",
+      "insta",
       "programas",
       "pais_id",
       "ciudad",
