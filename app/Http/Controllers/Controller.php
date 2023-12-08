@@ -19,20 +19,39 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 
-    public function getPerfil($folio){
-      $user = User::where('folio', $folio)->first();
-      if ($user->perfil->status === 0) {
+    public function getPerfil(Request $r, $folio){
+      $profile;
+      $url = $r->url();
+
+      if(strpos($url, 'programa') !== false){
+        $profile = Programa::find($folio);
+        $profile->pais = $profile->empresa->pais;
+        $user = $profile->empresa;
+      }else{
+        $user = User::where('folio', $folio)->first();
+        $profile = ($user->perfil) ? $user->perfil : $user->empresa;
+      }
+      if ($profile->status === 0) {
         return redirect()->route('home');
       }
-      return view('perfil', compact('user'));
-    }
-    public function getEmpresa($folio){
-      $user = User::where('folio', $folio)->first();
-      return view('perfile', compact('user'));
-    }
-    public function getPrograma($id){
-      $programa = Programa::find($id);
-      return view('perfilp', compact('programa'));
+      $contact = [
+        "telefono" => ($profile->telefono) ? $profile->telefono : $user->telefono,
+        "celular" => ($profile->celular) ? $profile->celular : $user->celular,
+        "email" => ($user->email) ? $user->email : $user->user->email,
+        "website" => ($profile->website) ? $profile->website : $user->website,
+        "social" => [
+          "fb" => ($profile->fb) ? $profile->fb : $user->fb,
+          "tw" => ($profile->tw) ? $profile->tw : $user->tw,
+          "in" => ($profile->in) ? $profile->in : $user->in,
+          "insta" => ($profile->insta) ? $profile->insta : $user->insta
+        ]
+      ];
+      $categories = $user->categorias;
+      $empresa = ($user->empresa) ? $user->empresa : $user;
+      $user_folio = ($user->folio) ? $user->folio : $user->user->folio;
+      $user_id = ($user->id) ? $user->id : $user->user->id;
+
+      return view('profile', compact(['profile', 'contact', 'categories', 'empresa', 'user_folio', 'user_id']));
     }
 
     public function search(Request $r){
